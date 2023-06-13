@@ -147,10 +147,10 @@
     <value>10</value>
   </data>
   <data name="monthlyDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 123</value>
+    <value>587, 123</value>
   </data>
   <data name="monthlyDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 275</value>
+    <value>500, 275</value>
   </data>
   <data name="monthlyDataGridView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -168,10 +168,10 @@
     <value>9</value>
   </data>
   <data name="yearlyDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 430</value>
+    <value>587, 430</value>
   </data>
   <data name="yearlyDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 249</value>
+    <value>500, 249</value>
   </data>
   <data name="yearlyDataGridView.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -192,7 +192,7 @@
     <value>20, 123</value>
   </data>
   <data name="allDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>495, 521</value>
+    <value>500, 521</value>
   </data>
   <data name="allDataGridView.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -217,7 +217,7 @@
     <value>NoControl</value>
   </data>
   <data name="resource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>340, 1</value>
+    <value>342, 1</value>
   </data>
   <data name="resource.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 27</value>
@@ -232,7 +232,7 @@
     <value>20, 650</value>
   </data>
   <data name="restTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 29</value>
+    <value>370, 29</value>
   </data>
   <data name="restTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -276,62 +276,56 @@
   <data name="&gt;&gt;all_label.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="monthly_label.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="monthlyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 97</value>
   </data>
-  <data name="monthly_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 95</value>
+  <data name="monthlyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
   </data>
-  <data name="monthly_label.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 25</value>
+  <data name="monthlyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
   </data>
-  <data name="monthly_label.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="monthly_label.Text" xml:space="preserve">
+  <data name="monthlyLabel.Text" xml:space="preserve">
     <value>Monthly</value>
   </data>
-  <data name="&gt;&gt;monthly_label.Name" xml:space="preserve">
-    <value>monthly_label</value>
+  <data name="&gt;&gt;monthlyLabel.Name" xml:space="preserve">
+    <value>monthlyLabel</value>
   </data>
-  <data name="&gt;&gt;monthly_label.Type" xml:space="preserve">
+  <data name="&gt;&gt;monthlyLabel.Type" xml:space="preserve">
     <value>MetroFramework.Controls.MetroLabel, MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
   </data>
-  <data name="&gt;&gt;monthly_label.Parent" xml:space="preserve">
+  <data name="&gt;&gt;monthlyLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;monthly_label.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;monthlyLabel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="metroLabel8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="yearlyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 404</value>
   </data>
-  <data name="metroLabel8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 402</value>
+  <data name="yearlyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
   </data>
-  <data name="metroLabel8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 25</value>
+  <data name="yearlyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="metroLabel8.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="metroLabel8.Text" xml:space="preserve">
+  <data name="yearlyLabel.Text" xml:space="preserve">
     <value>Yearly</value>
   </data>
-  <data name="&gt;&gt;metroLabel8.Name" xml:space="preserve">
-    <value>metroLabel8</value>
+  <data name="&gt;&gt;yearlyLabel.Name" xml:space="preserve">
+    <value>yearlyLabel</value>
   </data>
-  <data name="&gt;&gt;metroLabel8.Type" xml:space="preserve">
+  <data name="&gt;&gt;yearlyLabel.Type" xml:space="preserve">
     <value>MetroFramework.Controls.MetroLabel, MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
   </data>
-  <data name="&gt;&gt;metroLabel8.Parent" xml:space="preserve">
+  <data name="&gt;&gt;yearlyLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;metroLabel8.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;yearlyLabel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="updateButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 97</value>
+    <value>445, 94</value>
   </data>
   <data name="updateButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -364,10 +358,10 @@
     <value>Yearly</value>
   </data>
   <data name="unitComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 650</value>
+    <value>396, 650</value>
   </data>
   <data name="unitComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 29</value>
+    <value>124, 29</value>
   </data>
   <data name="unitComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -387,6 +381,12 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>566, 23</value>
   </metadata>
+  <data name="menuStrip1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="menuStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 22</value>
   </data>
@@ -406,22 +406,28 @@
     <value>Load...</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+    <value>37, 15</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 60</value>
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1068, 24</value>
+    <value>92, 19</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
+    <value>0</value>
   </data>
   <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+    <value>miniToolStrip</value>
+  </data>
+  <data name="menuStrip1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
     <value>menuStrip1</value>
@@ -451,10 +457,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1108, 695</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+    <value>1110, 695</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>WindowsDefaultLocation</value>
@@ -505,7 +508,7 @@
     <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>GUI</value>
+    <value>Gui</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>MetroFramework.Forms.MetroForm, MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>

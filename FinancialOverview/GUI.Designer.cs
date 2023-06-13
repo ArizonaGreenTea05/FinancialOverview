@@ -1,6 +1,6 @@
 ﻿namespace FinancialOverview
 {
-    partial class GUI
+    partial class Gui
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gui));
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.monthlyDataGridView = new System.Windows.Forms.DataGridView();
             this.yearlyDataGridView = new System.Windows.Forms.DataGridView();
             this.allDataGridView = new System.Windows.Forms.DataGridView();
             this.restTextBox = new MetroFramework.Controls.MetroTextBox();
             this.all_label = new MetroFramework.Controls.MetroLabel();
-            this.monthly_label = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.monthlyLabel = new MetroFramework.Controls.MetroLabel();
+            this.yearlyLabel = new MetroFramework.Controls.MetroLabel();
             this.updateButton = new MetroFramework.Controls.MetroButton();
             this.unitComboBox = new MetroFramework.Controls.MetroComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -128,19 +128,19 @@
             this.all_label.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.all_label.Name = "all_label";
             // 
-            // monthly_label
+            // monthlyLabel
             // 
-            resources.ApplyResources(this.monthly_label, "monthly_label");
-            this.monthly_label.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.monthly_label.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.monthly_label.Name = "monthly_label";
+            this.monthlyLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.monthlyLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            resources.ApplyResources(this.monthlyLabel, "monthlyLabel");
+            this.monthlyLabel.Name = "monthlyLabel";
             // 
-            // metroLabel8
+            // yearlyLabel
             // 
-            resources.ApplyResources(this.metroLabel8, "metroLabel8");
-            this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel8.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel8.Name = "metroLabel8";
+            this.yearlyLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.yearlyLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            resources.ApplyResources(this.yearlyLabel, "yearlyLabel");
+            this.yearlyLabel.Name = "yearlyLabel";
             // 
             // updateButton
             // 
@@ -153,26 +153,20 @@
             // 
             this.unitComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.unitComboBox, "unitComboBox");
-            this.unitComboBox.Items.AddRange(new object[] {
-            resources.GetString("unitComboBox.Items"),
-            resources.GetString("unitComboBox.Items1")});
+            this.unitComboBox.Items.AddRange(new object[] { resources.GetString("unitComboBox.Items"), resources.GetString("unitComboBox.Items1") });
             this.unitComboBox.Name = "unitComboBox";
             this.unitComboBox.UseSelectable = true;
             this.unitComboBox.SelectedIndexChanged += new System.EventHandler(this.unitComboBox_SelectedIndexChanged);
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem });
             this.menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
-            this.loadToolStripMenuItem});
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem, this.saveAsToolStripMenuItem, this.loadToolStripMenuItem });
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
@@ -206,22 +200,22 @@
             // 
             this.runBindingSource.RaiseListChangedEvents = false;
             // 
-            // GUI
+            // Gui
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.unitComboBox);
             this.Controls.Add(this.updateButton);
-            this.Controls.Add(this.metroLabel8);
-            this.Controls.Add(this.monthly_label);
+            this.Controls.Add(this.yearlyLabel);
+            this.Controls.Add(this.monthlyLabel);
             this.Controls.Add(this.all_label);
             this.Controls.Add(this.restTextBox);
             this.Controls.Add(this.allDataGridView);
             this.Controls.Add(this.yearlyDataGridView);
             this.Controls.Add(this.monthlyDataGridView);
             this.Controls.Add(this.metroLabel1);
-            this.Name = "GUI";
+            this.Name = "Gui";
             this.Load += new System.EventHandler(this.GUI_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyDown);
             this.Resize += new System.EventHandler(this.GUI_Resize);
@@ -235,7 +229,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -248,8 +241,8 @@
         private System.Windows.Forms.DataGridView allDataGridView;
         private MetroFramework.Controls.MetroTextBox restTextBox;
         private MetroFramework.Controls.MetroLabel all_label;
-        private MetroFramework.Controls.MetroLabel monthly_label;
-        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroLabel monthlyLabel;
+        private MetroFramework.Controls.MetroLabel yearlyLabel;
         private MetroFramework.Controls.MetroButton updateButton;
         private MetroFramework.Controls.MetroComboBox unitComboBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
