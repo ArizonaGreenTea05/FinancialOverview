@@ -30,12 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.miniToolStrip = new System.Windows.Forms.ToolStrip();
-            this.file_toolStripItem = new System.Windows.Forms.ToolStripDropDownButton();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gUIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gUIBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.runBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,58 +37,29 @@
             this.monthlyDataGridView = new System.Windows.Forms.DataGridView();
             this.yearlyDataGridView = new System.Windows.Forms.DataGridView();
             this.allDataGridView = new System.Windows.Forms.DataGridView();
-            this.metroTextBox7 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox8 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox9 = new MetroFramework.Controls.MetroTextBox();
+            this.restTextBox = new MetroFramework.Controls.MetroTextBox();
             this.all_label = new MetroFramework.Controls.MetroLabel();
             this.monthly_label = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
-            this.monthlySaveButton = new MetroFramework.Controls.MetroButton();
-            this.yearlySaveButton = new MetroFramework.Controls.MetroButton();
-            this.miniToolStrip.SuspendLayout();
+            this.updateButton = new MetroFramework.Controls.MetroButton();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.unitComboBox = new MetroFramework.Controls.MetroComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlyDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yearlyDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allDataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
-            // 
-            // miniToolStrip
-            // 
-            this.miniToolStrip.CanOverflow = false;
-            this.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.miniToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.file_toolStripItem });
-            resources.ApplyResources(this.miniToolStrip, "miniToolStrip");
-            this.miniToolStrip.Name = "miniToolStrip";
-            // 
-            // file_toolStripItem
-            // 
-            this.file_toolStripItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.file_toolStripItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem, this.saveAsToolStripMenuItem, this.loadToolStripMenuItem });
-            resources.ApplyResources(this.file_toolStripItem, "file_toolStripItem");
-            this.file_toolStripItem.Name = "file_toolStripItem";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            resources.ApplyResources(this.saveAsToolStripMenuItem, "saveAsToolStripMenuItem");
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
-            // 
-            // loadToolStripMenuItem
-            // 
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            resources.ApplyResources(this.loadToolStripMenuItem, "loadToolStripMenuItem");
             // 
             // gUIBindingSource
             // 
@@ -137,104 +102,40 @@
             this.allDataGridView.Name = "allDataGridView";
             this.allDataGridView.TabStop = false;
             // 
-            // metroTextBox7
+            // restTextBox
             // 
             // 
             // 
             // 
-            this.metroTextBox7.CustomButton.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.metroTextBox7.CustomButton.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("resource.ImeMode")));
-            this.metroTextBox7.CustomButton.Location = ((System.Drawing.Point)(resources.GetObject("resource.Location")));
-            this.metroTextBox7.CustomButton.Name = "";
-            this.metroTextBox7.CustomButton.Size = ((System.Drawing.Size)(resources.GetObject("resource.Size")));
-            this.metroTextBox7.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox7.CustomButton.TabIndex = ((int)(resources.GetObject("resource.TabIndex")));
-            this.metroTextBox7.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox7.CustomButton.UseSelectable = true;
-            this.metroTextBox7.CustomButton.Visible = ((bool)(resources.GetObject("resource.Visible")));
-            resources.ApplyResources(this.metroTextBox7, "metroTextBox7");
-            this.metroTextBox7.Lines = new string[0];
-            this.metroTextBox7.MaxLength = 32767;
-            this.metroTextBox7.Name = "metroTextBox7";
-            this.metroTextBox7.PasswordChar = '\0';
-            this.metroTextBox7.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox7.SelectedText = "";
-            this.metroTextBox7.SelectionLength = 0;
-            this.metroTextBox7.SelectionStart = 0;
-            this.metroTextBox7.ShortcutsEnabled = true;
-            this.metroTextBox7.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox7.TabStop = false;
-            this.metroTextBox7.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox7.UseSelectable = true;
-            this.metroTextBox7.UseStyleColors = true;
-            this.metroTextBox7.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox7.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox8
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox8.CustomButton.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            this.metroTextBox8.CustomButton.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("resource.ImeMode1")));
-            this.metroTextBox8.CustomButton.Location = ((System.Drawing.Point)(resources.GetObject("resource.Location1")));
-            this.metroTextBox8.CustomButton.Name = "";
-            this.metroTextBox8.CustomButton.Size = ((System.Drawing.Size)(resources.GetObject("resource.Size1")));
-            this.metroTextBox8.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox8.CustomButton.TabIndex = ((int)(resources.GetObject("resource.TabIndex1")));
-            this.metroTextBox8.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox8.CustomButton.UseSelectable = true;
-            this.metroTextBox8.CustomButton.Visible = ((bool)(resources.GetObject("resource.Visible1")));
-            resources.ApplyResources(this.metroTextBox8, "metroTextBox8");
-            this.metroTextBox8.Lines = new string[0];
-            this.metroTextBox8.MaxLength = 32767;
-            this.metroTextBox8.Name = "metroTextBox8";
-            this.metroTextBox8.PasswordChar = '\0';
-            this.metroTextBox8.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox8.SelectedText = "";
-            this.metroTextBox8.SelectionLength = 0;
-            this.metroTextBox8.SelectionStart = 0;
-            this.metroTextBox8.ShortcutsEnabled = true;
-            this.metroTextBox8.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox8.TabStop = false;
-            this.metroTextBox8.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox8.UseSelectable = true;
-            this.metroTextBox8.UseStyleColors = true;
-            this.metroTextBox8.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox8.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox9
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox9.CustomButton.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            this.metroTextBox9.CustomButton.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("resource.ImeMode2")));
-            this.metroTextBox9.CustomButton.Location = ((System.Drawing.Point)(resources.GetObject("resource.Location2")));
-            this.metroTextBox9.CustomButton.Name = "";
-            this.metroTextBox9.CustomButton.Size = ((System.Drawing.Size)(resources.GetObject("resource.Size2")));
-            this.metroTextBox9.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox9.CustomButton.TabIndex = ((int)(resources.GetObject("resource.TabIndex2")));
-            this.metroTextBox9.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox9.CustomButton.UseSelectable = true;
-            this.metroTextBox9.CustomButton.Visible = ((bool)(resources.GetObject("resource.Visible2")));
-            resources.ApplyResources(this.metroTextBox9, "metroTextBox9");
-            this.metroTextBox9.Lines = new string[0];
-            this.metroTextBox9.MaxLength = 32767;
-            this.metroTextBox9.Name = "metroTextBox9";
-            this.metroTextBox9.PasswordChar = '\0';
-            this.metroTextBox9.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox9.SelectedText = "";
-            this.metroTextBox9.SelectionLength = 0;
-            this.metroTextBox9.SelectionStart = 0;
-            this.metroTextBox9.ShortcutsEnabled = true;
-            this.metroTextBox9.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox9.TabStop = false;
-            this.metroTextBox9.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox9.UseSelectable = true;
-            this.metroTextBox9.UseStyleColors = true;
-            this.metroTextBox9.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox9.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.restTextBox.CustomButton.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.restTextBox.CustomButton.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("resource.ImeMode")));
+            this.restTextBox.CustomButton.Location = ((System.Drawing.Point)(resources.GetObject("resource.Location")));
+            this.restTextBox.CustomButton.Name = "";
+            this.restTextBox.CustomButton.Size = ((System.Drawing.Size)(resources.GetObject("resource.Size")));
+            this.restTextBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.restTextBox.CustomButton.TabIndex = ((int)(resources.GetObject("resource.TabIndex")));
+            this.restTextBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.restTextBox.CustomButton.UseSelectable = true;
+            this.restTextBox.CustomButton.Visible = ((bool)(resources.GetObject("resource.Visible")));
+            this.restTextBox.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.restTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Bold;
+            this.restTextBox.Lines = new string[0];
+            resources.ApplyResources(this.restTextBox, "restTextBox");
+            this.restTextBox.MaxLength = 32767;
+            this.restTextBox.Name = "restTextBox";
+            this.restTextBox.PasswordChar = '\0';
+            this.restTextBox.ReadOnly = true;
+            this.restTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.restTextBox.SelectedText = "";
+            this.restTextBox.SelectionLength = 0;
+            this.restTextBox.SelectionStart = 0;
+            this.restTextBox.ShortcutsEnabled = false;
+            this.restTextBox.TabStop = false;
+            this.restTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.restTextBox.UseSelectable = true;
+            this.restTextBox.UseStyleColors = true;
+            this.restTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.restTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // all_label
             // 
@@ -257,58 +158,105 @@
             this.metroLabel8.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.metroLabel8.Name = "metroLabel8";
             // 
-            // monthlySaveButton
+            // updateButton
             // 
-            resources.ApplyResources(this.monthlySaveButton, "monthlySaveButton");
-            this.monthlySaveButton.Name = "monthlySaveButton";
-            this.monthlySaveButton.UseSelectable = true;
-            this.monthlySaveButton.Click += new System.EventHandler(this.monthlySaveButton_Click);
+            resources.ApplyResources(this.updateButton, "updateButton");
+            this.updateButton.Name = "updateButton";
+            this.updateButton.UseSelectable = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
-            // yearlySaveButton
+            // menuStrip1
             // 
-            resources.ApplyResources(this.yearlySaveButton, "yearlySaveButton");
-            this.yearlySaveButton.Name = "yearlySaveButton";
-            this.yearlySaveButton.UseSelectable = true;
-            this.yearlySaveButton.Click += new System.EventHandler(this.yearlySaveButton_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem, this.fileToolStripMenuItem1 });
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem, this.saveAsToolStripMenuItem, this.loadToolStripMenuItem });
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            resources.ApplyResources(this.saveAsToolStripMenuItem, "saveAsToolStripMenuItem");
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            resources.ApplyResources(this.loadToolStripMenuItem, "loadToolStripMenuItem");
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // fileToolStripMenuItem1
+            // 
+            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem1, this.saveAsToolStripMenuItem1, this.loadToolStripMenuItem1 });
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            resources.ApplyResources(this.fileToolStripMenuItem1, "fileToolStripMenuItem1");
+            // 
+            // saveToolStripMenuItem1
+            // 
+            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
+            resources.ApplyResources(this.saveToolStripMenuItem1, "saveToolStripMenuItem1");
+            // 
+            // saveAsToolStripMenuItem1
+            // 
+            this.saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
+            resources.ApplyResources(this.saveAsToolStripMenuItem1, "saveAsToolStripMenuItem1");
+            // 
+            // loadToolStripMenuItem1
+            // 
+            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
+            resources.ApplyResources(this.loadToolStripMenuItem1, "loadToolStripMenuItem1");
+            // 
+            // unitComboBox
+            // 
+            this.unitComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.unitComboBox, "unitComboBox");
+            this.unitComboBox.Items.AddRange(new object[] { resources.GetString("unitComboBox.Items"), resources.GetString("unitComboBox.Items1") });
+            this.unitComboBox.Name = "unitComboBox";
+            this.unitComboBox.UseSelectable = true;
+            this.unitComboBox.SelectedIndexChanged += new System.EventHandler(this.unitComboBox_SelectedIndexChanged);
             // 
             // GUI
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.yearlySaveButton);
-            this.Controls.Add(this.monthlySaveButton);
+            this.Controls.Add(this.unitComboBox);
+            this.Controls.Add(this.updateButton);
             this.Controls.Add(this.metroLabel8);
             this.Controls.Add(this.monthly_label);
             this.Controls.Add(this.all_label);
-            this.Controls.Add(this.metroTextBox7);
-            this.Controls.Add(this.metroTextBox8);
-            this.Controls.Add(this.metroTextBox9);
+            this.Controls.Add(this.restTextBox);
             this.Controls.Add(this.allDataGridView);
             this.Controls.Add(this.yearlyDataGridView);
             this.Controls.Add(this.monthlyDataGridView);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.miniToolStrip);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "GUI";
+            this.Load += new System.EventHandler(this.GUI_Load);
             this.Resize += new System.EventHandler(this.GUI_Resize);
-            this.miniToolStrip.ResumeLayout(false);
-            this.miniToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlyDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yearlyDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allDataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStrip miniToolStrip;
-        private System.Windows.Forms.ToolStripDropDownButton file_toolStripItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.BindingSource gUIBindingSource;
         private System.Windows.Forms.BindingSource gUIBindingSource1;
         private System.Windows.Forms.BindingSource runBindingSource;
@@ -316,14 +264,21 @@
         private System.Windows.Forms.DataGridView monthlyDataGridView;
         private System.Windows.Forms.DataGridView yearlyDataGridView;
         private System.Windows.Forms.DataGridView allDataGridView;
-        private MetroFramework.Controls.MetroTextBox metroTextBox7;
-        private MetroFramework.Controls.MetroTextBox metroTextBox8;
-        private MetroFramework.Controls.MetroTextBox metroTextBox9;
+        private MetroFramework.Controls.MetroTextBox restTextBox;
         private MetroFramework.Controls.MetroLabel all_label;
         private MetroFramework.Controls.MetroLabel monthly_label;
         private MetroFramework.Controls.MetroLabel metroLabel8;
-        private MetroFramework.Controls.MetroButton monthlySaveButton;
-        private MetroFramework.Controls.MetroButton yearlySaveButton;
+        private MetroFramework.Controls.MetroButton updateButton;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private MetroFramework.Controls.MetroComboBox unitComboBox;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
     }
 }
 

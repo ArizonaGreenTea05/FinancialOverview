@@ -10,7 +10,18 @@ namespace FinancialOverview
 {
     public class FinancialOverview
     {
+        public enum Unit
+        {
+            Monthly,
+            Yearly
+        }
+        
         private DataTable _allSales;
+
+        public Unit UnitOfAll { get; set; } = Unit.Monthly;
+
+        public string DefaultPath { get; set; } = null;
+        
         public DataTable MonthlySales { get; set; }
         public DataTable YearlySales { get; set; }
 
@@ -18,11 +29,20 @@ namespace FinancialOverview
         {
             get
             {
-                _allSales.Rows.Clear();
+                var isMonthly = UnitOfAll == Unit.Monthly;_allSales.Rows.Clear();
                 foreach (DataRow row in MonthlySales.Rows)
                 {
                     var newRow = new object[3];
-                    for (int i = 0; i < _allSales.Columns.Count; ++i)
+                    newRow[0] = isMonthly ? row[0] : Convert.ToDouble(row[0]) * 12;
+                    for (int i = 1; i < _allSales.Columns.Count; ++i)
+                        newRow[i] = row[i];
+                    _allSales.Rows.Add(newRow);
+                }
+                foreach (DataRow row in YearlySales.Rows)
+                {
+                    var newRow = new object[3];
+                    newRow[0] = isMonthly ? Convert.ToDouble(row[0]) / 12 : row[0];
+                    for (int i = 1; i < _allSales.Columns.Count; ++i)
                         newRow[i] = row[i];
                     _allSales.Rows.Add(newRow);
                 }
@@ -48,6 +68,38 @@ namespace FinancialOverview
             AllSales.Columns.Add(new DataColumn("Sales"));
             AllSales.Columns.Add(new DataColumn("Name"));
             AllSales.Columns.Add(new DataColumn("Addition"));
+        }
+
+        public bool LoadData(string path)
+        {
+            if (path == null) throw new ArgumentNullException("path");
+            return true;
+        }
+
+        public bool LoadData()
+        {
+            return LoadData(DefaultPath);
+        }
+
+        public bool SaveData(string path)
+        {
+            if (path == null) throw new ArgumentNullException("path");
+            return true;
+        }
+
+        public bool SaveData()
+        {
+            return SaveData(DefaultPath);
+        }
+
+
+        public double GetRest()
+        {
+            if (AllSales.Rows.Count <= 0) return 0;
+            var rest = Convert.ToDouble(AllSales.Rows[0][0]);
+            for (int i = 1; i < AllSales.Rows.Count; ++i)
+                rest += Convert.ToDouble(AllSales.Rows[i][0]);
+            return rest;
         }
     }
 }
