@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 
@@ -27,6 +21,7 @@ namespace FinancialOverview
             yearlyDataGridView.DataSource = _financialOverview.YearlySales;
             _allSales = _financialOverview.AllSales;
             allDataGridView.DataSource = _allSales;
+            KeyPreview = true;
         }
 
         private void GUI_Resize(object sender, EventArgs e)
@@ -46,29 +41,45 @@ namespace FinancialOverview
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _financialOverview.SaveData(null);
+            var dialog = new GetPathDialog();
+            dialog.Filepath = _financialOverview.DefaultPath;
+            if (dialog.ShowDialog() == DialogResult.OK)
+                _financialOverview.SaveData(dialog.Filepath);
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _financialOverview.LoadData(null);
+            var dialog = new GetPathDialog();
+            dialog.Filepath = _financialOverview.DefaultPath;
+            if (dialog.ShowDialog() == DialogResult.OK)
+                _financialOverview.LoadData(dialog.Filepath);
         }
 
         private void unitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _financialOverview.UnitOfAll = (FinancialOverview.Unit) unitComboBox.SelectedIndex;
+            UpdateGui();
         }
 
         private void GUI_Load(object sender, EventArgs e)
         {
-            _financialOverview.LoadData();
-            unitComboBox.SelectedIndex = (int) _financialOverview.UnitOfAll;
+            UpdateGui();
         }
 
         private void UpdateGui()
         {
             _allSales = _financialOverview.AllSales;
+            unitComboBox.SelectedIndex = (int)_financialOverview.UnitOfAll;
             restTextBox.Text = $"{_financialOverview.GetRest()}{_resources.GetString("Unit")} ";
+        }
+
+        private void GUI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                _financialOverview.SaveData();
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

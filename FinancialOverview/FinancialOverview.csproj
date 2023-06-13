@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FinancialOverview.cs" />
+    <Compile Include="GetPathDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetPathDialog.Designer.cs">
+      <DependentUpon>GetPathDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     </Compile>
     <Compile Include="Run.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GetPathDialog.resx">
+      <DependentUpon>GetPathDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
     </EmbeddedResource>

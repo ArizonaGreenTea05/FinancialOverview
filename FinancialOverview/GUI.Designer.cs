@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
-            this.gUIBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gUIBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.runBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.monthlyDataGridView = new System.Windows.Forms.DataGridView();
             this.yearlyDataGridView = new System.Windows.Forms.DataGridView();
@@ -42,36 +39,23 @@
             this.monthly_label = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.updateButton = new MetroFramework.Controls.MetroButton();
+            this.unitComboBox = new MetroFramework.Controls.MetroComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.unitComboBox = new MetroFramework.Controls.MetroComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).BeginInit();
+            this.gUIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gUIBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.runBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.monthlyDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yearlyDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allDataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gUIBindingSource
-            // 
-            this.gUIBindingSource.RaiseListChangedEvents = false;
-            // 
-            // gUIBindingSource1
-            // 
-            this.gUIBindingSource1.RaiseListChangedEvents = false;
-            // 
-            // runBindingSource
-            // 
-            this.runBindingSource.RaiseListChangedEvents = false;
             // 
             // metroLabel1
             // 
@@ -165,15 +149,30 @@
             this.updateButton.UseSelectable = true;
             this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
+            // unitComboBox
+            // 
+            this.unitComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.unitComboBox, "unitComboBox");
+            this.unitComboBox.Items.AddRange(new object[] {
+            resources.GetString("unitComboBox.Items"),
+            resources.GetString("unitComboBox.Items1")});
+            this.unitComboBox.Name = "unitComboBox";
+            this.unitComboBox.UseSelectable = true;
+            this.unitComboBox.SelectedIndexChanged += new System.EventHandler(this.unitComboBox_SelectedIndexChanged);
+            // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem, this.fileToolStripMenuItem1 });
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem, this.saveAsToolStripMenuItem, this.loadToolStripMenuItem });
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.loadToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
@@ -195,40 +194,23 @@
             resources.ApplyResources(this.loadToolStripMenuItem, "loadToolStripMenuItem");
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
-            // fileToolStripMenuItem1
+            // gUIBindingSource
             // 
-            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem1, this.saveAsToolStripMenuItem1, this.loadToolStripMenuItem1 });
-            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            resources.ApplyResources(this.fileToolStripMenuItem1, "fileToolStripMenuItem1");
+            this.gUIBindingSource.RaiseListChangedEvents = false;
             // 
-            // saveToolStripMenuItem1
+            // gUIBindingSource1
             // 
-            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            resources.ApplyResources(this.saveToolStripMenuItem1, "saveToolStripMenuItem1");
+            this.gUIBindingSource1.RaiseListChangedEvents = false;
             // 
-            // saveAsToolStripMenuItem1
+            // runBindingSource
             // 
-            this.saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
-            resources.ApplyResources(this.saveAsToolStripMenuItem1, "saveAsToolStripMenuItem1");
-            // 
-            // loadToolStripMenuItem1
-            // 
-            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            resources.ApplyResources(this.loadToolStripMenuItem1, "loadToolStripMenuItem1");
-            // 
-            // unitComboBox
-            // 
-            this.unitComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.unitComboBox, "unitComboBox");
-            this.unitComboBox.Items.AddRange(new object[] { resources.GetString("unitComboBox.Items"), resources.GetString("unitComboBox.Items1") });
-            this.unitComboBox.Name = "unitComboBox";
-            this.unitComboBox.UseSelectable = true;
-            this.unitComboBox.SelectedIndexChanged += new System.EventHandler(this.unitComboBox_SelectedIndexChanged);
+            this.runBindingSource.RaiseListChangedEvents = false;
             // 
             // GUI
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.unitComboBox);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.metroLabel8);
@@ -239,21 +221,21 @@
             this.Controls.Add(this.yearlyDataGridView);
             this.Controls.Add(this.monthlyDataGridView);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "GUI";
             this.Load += new System.EventHandler(this.GUI_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyDown);
             this.Resize += new System.EventHandler(this.GUI_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.monthlyDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yearlyDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allDataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gUIBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -269,16 +251,12 @@
         private MetroFramework.Controls.MetroLabel monthly_label;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroButton updateButton;
+        private MetroFramework.Controls.MetroComboBox unitComboBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private MetroFramework.Controls.MetroComboBox unitComboBox;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
     }
 }
 

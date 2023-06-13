@@ -10,17 +10,18 @@ namespace FinancialOverview
 {
     public class FinancialOverview
     {
+        DataSet _dataSet = new DataSet();
+        private DataTable _allSales;
+
         public enum Unit
         {
             Monthly,
             Yearly
         }
         
-        private DataTable _allSales;
-
         public Unit UnitOfAll { get; set; } = Unit.Monthly;
 
-        public string DefaultPath { get; set; } = null;
+        public string DefaultPath { get; set; } = "D:/OneDrive/Documents/FinancialOverview.xml";
         
         public DataTable MonthlySales { get; set; }
         public DataTable YearlySales { get; set; }
@@ -41,7 +42,7 @@ namespace FinancialOverview
                 foreach (DataRow row in YearlySales.Rows)
                 {
                     var newRow = new object[3];
-                    newRow[0] = isMonthly ? Convert.ToDouble(row[0]) / 12 : row[0];
+                    newRow[0] = isMonthly ? Math.Round(Convert.ToDouble(row[0]) / 12, 2) : row[0];
                     for (int i = 1; i < _allSales.Columns.Count; ++i)
                         newRow[i] = row[i];
                     _allSales.Rows.Add(newRow);
@@ -68,11 +69,14 @@ namespace FinancialOverview
             AllSales.Columns.Add(new DataColumn("Sales"));
             AllSales.Columns.Add(new DataColumn("Name"));
             AllSales.Columns.Add(new DataColumn("Addition"));
+            _dataSet.Tables.Add(MonthlySales);
+            _dataSet.Tables.Add(YearlySales);
         }
 
         public bool LoadData(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
+            _dataSet.ReadXml(path);
             return true;
         }
 
@@ -84,6 +88,7 @@ namespace FinancialOverview
         public bool SaveData(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
+            _dataSet.WriteXml(path);
             return true;
         }
 
