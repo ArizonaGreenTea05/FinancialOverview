@@ -44,7 +44,7 @@ namespace FinancialOverview
 
         private void yearlySaveButton_Click(object sender, EventArgs e)
         {
-
+            _allSales = _financialOverview.AllSales;
         }
     }
 }
