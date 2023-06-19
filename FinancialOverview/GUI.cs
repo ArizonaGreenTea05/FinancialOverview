@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 
@@ -11,6 +12,7 @@ namespace FinancialOverview
         private readonly FinancialOverview _financialOverview;
         private DataTable _allSales;
         private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(Gui));
+        private const string FILE_FILTER_FOR_XML_FILES = "XML files (.xml)|*.xml";
 
         public Gui()
         {
@@ -41,18 +43,16 @@ namespace FinancialOverview
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new GetPathDialog();
-            dialog.Filepath = _financialOverview.DefaultPath;
-            if (dialog.ShowDialog() == DialogResult.OK)
-                _financialOverview.SaveData(dialog.Filepath);
+            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
+                FILE_FILTER_FOR_XML_FILES, FileDialogType.Save);
+            if (null != filepath) _financialOverview.SaveData(filepath);
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new GetPathDialog();
-            dialog.Filepath = _financialOverview.DefaultPath;
-            if (dialog.ShowDialog() == DialogResult.OK)
-                _financialOverview.LoadData(dialog.Filepath);
+            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
+                FILE_FILTER_FOR_XML_FILES, FileDialogType.Open);
+            if (null != filepath) _financialOverview.LoadData(filepath);
         }
 
         private void unitComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,6 +119,33 @@ namespace FinancialOverview
             yearlyDataGridView.Bounds = yearlyDataGridViewBounds;
             yearlyLabel.Bounds = yearlyLabelBounds;
             updateButton.Bounds = updateButtonBounds;
+        }
+
+        public enum FileDialogType
+        {
+            Save,
+            Open
+        }
+        
+        public static string GetFilepathFromUser(string defaultDirectory, string defaultFilename, string defaultExtension, string filter, FileDialogType type)
+        {
+            FileDialog dialog;
+            if (type == FileDialogType.Save)
+                dialog = new SaveFileDialog();
+            else
+                dialog = new OpenFileDialog();
+            dialog.Title = $@"Select {defaultExtension}";
+            dialog.InitialDirectory = Directory.Exists(defaultDirectory) ? defaultDirectory : Directory.GetCurrentDirectory();
+            dialog.FileName = defaultFilename;
+            dialog.DefaultExt = defaultExtension;
+            dialog.Filter = filter;
+            if (dialog.ShowDialog() == DialogResult.Cancel) return null;
+            return dialog.FileName;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -21,7 +21,11 @@ namespace FinancialOverview
         
         public Unit UnitOfAll { get; set; } = Unit.Monthly;
 
-        public string DefaultPath { get; set; } = "D:/OneDrive/Documents/FinancialOverview.xml";
+        public string DefaultFilePath => $@"{DefaultDirectory}/{DefaultFilename}";
+
+        public string DefaultDirectory { get; set; } = "D:/OneDrive/Documents";
+
+        public string DefaultFilename { get; set; } = "FinancialOverview.xml";
         
         public DataTable MonthlySales { get; set; }
         public DataTable YearlySales { get; set; }
@@ -76,13 +80,15 @@ namespace FinancialOverview
         public bool LoadData(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
+            MonthlySales.Clear();
+            YearlySales.Clear();
             _dataSet.ReadXml(path);
             return true;
         }
 
         public bool LoadData()
         {
-            return LoadData(DefaultPath);
+            return LoadData(DefaultFilePath);
         }
 
         public bool SaveData(string path)
@@ -94,7 +100,7 @@ namespace FinancialOverview
 
         public bool SaveData()
         {
-            return SaveData(DefaultPath);
+            return SaveData(DefaultFilePath);
         }
 
 
