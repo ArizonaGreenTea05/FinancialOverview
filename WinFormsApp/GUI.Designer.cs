@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp
 {
-    partial class Gui
+    partial class GUI
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gui));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI));
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.monthlyDataGridView = new System.Windows.Forms.DataGridView();
             this.yearlyDataGridView = new System.Windows.Forms.DataGridView();
@@ -350,7 +350,7 @@
             this.toolStripMenuItem29.Name = "toolStripMenuItem29";
             resources.ApplyResources(this.toolStripMenuItem29, "toolStripMenuItem29");
             // 
-            // Gui
+            // GUI
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -366,7 +366,7 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip2;
-            this.Name = "Gui";
+            this.Name = "GUI";
             this.Load += new System.EventHandler(this.GUI_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyDown);
             this.Resize += new System.EventHandler(this.GUI_Resize);

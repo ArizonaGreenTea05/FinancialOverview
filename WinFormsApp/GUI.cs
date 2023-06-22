@@ -7,14 +7,14 @@ using MetroFramework.Forms;
 
 namespace WinFormsApp
 {
-    public partial class Gui : MetroForm
+    public partial class GUI : MetroForm
     {
         private readonly FinancialOverview.FinancialOverview _financialOverview;
         private DataTable _allSales;
-        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(Gui));
+        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(GUI));
         private const string FILE_FILTER_FOR_XML_FILES = "XML files (.xml)|*.xml";
 
-        public Gui()
+        public GUI()
         {
             InitializeComponent();
             _financialOverview = new FinancialOverview.FinancialOverview();
@@ -57,7 +57,7 @@ namespace WinFormsApp
 
         private void unitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _financialOverview.UnitOfAll = (FinancialOverview.FinancialOverview.Unit) unitComboBox.SelectedIndex;
+            _financialOverview.UnitOfAll = (FinancialOverview.FinancialOverview.Unit)unitComboBox.SelectedIndex;
             UpdateGui();
         }
 
@@ -126,7 +126,7 @@ namespace WinFormsApp
             Save,
             Open
         }
-        
+
         private static string GetFilepathFromUser(string defaultDirectory, string defaultFilename, string defaultExtension, string filter, FileDialogType type)
         {
             FileDialog dialog;
