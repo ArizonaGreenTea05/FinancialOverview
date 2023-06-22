@@ -10,8 +10,9 @@ namespace FinancialOverview
 {
     public class FinancialOverview
     {
-        DataSet _dataSet = new DataSet();
+        private readonly DataSet _dataSet = new DataSet();
         private DataTable _allSales;
+        private readonly History _history;
 
         public enum Unit
         {
@@ -59,22 +60,29 @@ namespace FinancialOverview
         public FinancialOverview()
         {
             MonthlySales = new DataTable();
+            MonthlySales.TableName = nameof(MonthlySales);
             MonthlySales.Columns.Clear();
             MonthlySales.Columns.Add(new DataColumn("Sales"));
             MonthlySales.Columns.Add(new DataColumn("Name"));
             MonthlySales.Columns.Add(new DataColumn("Addition"));
             YearlySales = new DataTable();
+            YearlySales.TableName = nameof(YearlySales);
             YearlySales.Columns.Clear();
             YearlySales.Columns.Add(new DataColumn("Sales"));
             YearlySales.Columns.Add(new DataColumn("Name"));
             YearlySales.Columns.Add(new DataColumn("Addition"));
             AllSales = new DataTable();
+            AllSales.TableName = nameof(AllSales);
             AllSales.Columns.Clear();
             AllSales.Columns.Add(new DataColumn("Sales"));
             AllSales.Columns.Add(new DataColumn("Name"));
             AllSales.Columns.Add(new DataColumn("Addition"));
+            _dataSet.DataSetName = "FinancialOverview";
             _dataSet.Tables.Add(MonthlySales);
             _dataSet.Tables.Add(YearlySales);
+            MonthlySales.RowChanged += RowChanged;
+            YearlySales.RowChanged += RowChanged;
+            _history = new History(new Snapshot(YearlySales, MonthlySales));
         }
 
         public bool LoadData(string path)
