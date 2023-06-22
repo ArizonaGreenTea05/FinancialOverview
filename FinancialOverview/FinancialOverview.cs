@@ -112,12 +112,12 @@ namespace FinancialOverview
         }
 
 
-        public double GetRest()
+        public decimal GetRest()
         {
             if (AllSales.Rows.Count <= 0) return 0;
-            var rest = Convert.ToDouble(AllSales.Rows[0][0]);
+            var rest = Convert.ToDecimal(AllSales.Rows[0][0]);
             for (int i = 1; i < AllSales.Rows.Count; ++i)
-                rest += Convert.ToDouble(AllSales.Rows[i][0]);
+                rest += Convert.ToDecimal(AllSales.Rows[i][0]);
             return rest;
         }
 

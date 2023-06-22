@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using MetroFramework.Forms;
@@ -97,7 +98,8 @@ namespace WinFormsApp
         {
             _allSales = _financialOverview.AllSales;
             unitComboBox.SelectedIndex = (int)_financialOverview.UnitOfAll;
-            restTextBox.Text = $"{_financialOverview.GetRest()}{_resources.GetString("Unit")} ";
+            restTextBox.Text =
+                $"{_financialOverview.GetRest().ToString("F")}{_resources.GetString("Unit") ?? "€"} ";
         }
 
         private void ResizeGui()
