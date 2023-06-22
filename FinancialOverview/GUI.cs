@@ -5,11 +5,11 @@ using System.IO;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 
-namespace FinancialOverview
+namespace WinFormsApp
 {
     public partial class Gui : MetroForm
     {
-        private readonly FinancialOverview _financialOverview;
+        private readonly FinancialOverview.FinancialOverview _financialOverview;
         private DataTable _allSales;
         private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(Gui));
         private const string FILE_FILTER_FOR_XML_FILES = "XML files (.xml)|*.xml";
@@ -17,7 +17,7 @@ namespace FinancialOverview
         public Gui()
         {
             InitializeComponent();
-            _financialOverview = new FinancialOverview();
+            _financialOverview = new FinancialOverview.FinancialOverview();
             _financialOverview.LoadData();
             monthlyDataGridView.DataSource = _financialOverview.MonthlySales;
             yearlyDataGridView.DataSource = _financialOverview.YearlySales;
@@ -57,7 +57,7 @@ namespace FinancialOverview
 
         private void unitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _financialOverview.UnitOfAll = (FinancialOverview.Unit) unitComboBox.SelectedIndex;
+            _financialOverview.UnitOfAll = (FinancialOverview.FinancialOverview.Unit) unitComboBox.SelectedIndex;
             UpdateGui();
         }
 
@@ -127,7 +127,7 @@ namespace FinancialOverview
             Open
         }
         
-        public static string GetFilepathFromUser(string defaultDirectory, string defaultFilename, string defaultExtension, string filter, FileDialogType type)
+        private static string GetFilepathFromUser(string defaultDirectory, string defaultFilename, string defaultExtension, string filter, FileDialogType type)
         {
             FileDialog dialog;
             if (type == FileDialogType.Save)
@@ -146,6 +146,18 @@ namespace FinancialOverview
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _financialOverview.Undo();
+            UpdateGui();
+        }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _financialOverview.Redo();
+            UpdateGui();
         }
     }
 }

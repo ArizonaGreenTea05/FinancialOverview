@@ -120,5 +120,33 @@ namespace FinancialOverview
                 rest += Convert.ToDouble(AllSales.Rows[i][0]);
             return rest;
         }
+
+        public void Undo()
+        {
+            if(_history.CurrentIndex == 0) return;
+            --_history.CurrentIndex;
+            var current = _history.CurrentSnapshot;
+            MonthlySales = current.MonthlySales;
+            YearlySales = current.YearlySales;
+        }
+
+        public void Redo()
+        {
+            if(_history.CurrentIndex == _history.Length - 1) return;
+            ++_history.CurrentIndex;
+            var current = _history.CurrentSnapshot;
+            MonthlySales = current.MonthlySales;
+            YearlySales = current.YearlySales;
+        }
+        
+        private void AddSnapshot()
+        {
+            _history.Add(new Snapshot(YearlySales, MonthlySales));
+        }
+
+        private void RowChanged(object obj, DataRowChangeEventArgs eventArgs)
+        {
+            AddSnapshot();
+        }
     }
 }

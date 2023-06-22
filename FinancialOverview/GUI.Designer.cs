@@ -1,4 +1,4 @@
-﻿namespace FinancialOverview
+﻿namespace WinFormsApp
 {
     partial class Gui
     {
@@ -265,11 +265,13 @@
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
             resources.ApplyResources(this.toolStripMenuItem13, "toolStripMenuItem13");
+            this.toolStripMenuItem13.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
             resources.ApplyResources(this.toolStripMenuItem14, "toolStripMenuItem14");
+            this.toolStripMenuItem14.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
