@@ -13,6 +13,8 @@ namespace WinFormsApp
         private DataTable _allSales;
         private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(GUI));
         private const string FILE_FILTER_FOR_XML_FILES = "XML files (.xml)|*.xml";
+        private FormWindowState _lastWindowState = FormWindowState.Minimized;
+        private bool _guiLoaded = false;
 
         public GUI()
         {
@@ -29,6 +31,20 @@ namespace WinFormsApp
         private void GUI_Resize(object sender, EventArgs e)
         {
             ResizeGui();
+            if (WindowState != _lastWindowState)
+            {
+                _lastWindowState = WindowState;
+                if (WindowState != FormWindowState.Minimized)
+                {
+                    ResizeGui();
+                    ResizeDataGridViews();
+                }
+            }
+        }
+
+        private void GUI_ResizeEnd(object sender, EventArgs e)
+        {
+            ResizeDataGridViews();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -73,6 +89,8 @@ namespace WinFormsApp
         private void GUI_Load(object sender, EventArgs e)
         {
             UpdateGui();
+            _guiLoaded = true;
+            ResizeDataGridViews();
         }
 
         private void UpdateGui()
@@ -110,7 +128,7 @@ namespace WinFormsApp
             yearlyDataGridViewBounds.Y = monthlyDataGridViewBounds.Y + monthlyDataGridViewBounds.Height + 32;
             yearlyLabelBounds.Y = yearlyDataGridViewBounds.Y - yearlyLabelBounds.Height - yearlyDataGridView.Margin.Top;
             updateButtonBounds.X = allDataGridViewBounds.X + allDataGridViewBounds.Width - updateButtonBounds.Width;
-
+            
             restTextBox.Bounds = restTextBoxBounds;
             unitComboBox.Bounds = unitComboBoxBounds;
             monthlyDataGridView.Bounds = monthlyDataGridViewBounds;
@@ -119,6 +137,20 @@ namespace WinFormsApp
             yearlyDataGridView.Bounds = yearlyDataGridViewBounds;
             yearlyLabel.Bounds = yearlyLabelBounds;
             updateButton.Bounds = updateButtonBounds;
+        }
+
+        private void ResizeDataGridViews()
+        {
+            if (!_guiLoaded) return;
+            monthlyDataGridView.Columns["Sales"].Width =
+                yearlyDataGridView.Columns["Sales"].Width =
+                    allDataGridView.Columns["Sales"].Width = monthlyDataGridView.Bounds.Width / 6 - 18;
+            monthlyDataGridView.Columns["Name"].Width =
+                yearlyDataGridView.Columns["Name"].Width =
+                    allDataGridView.Columns["Name"].Width = monthlyDataGridView.Bounds.Width / 3 - 20;
+            monthlyDataGridView.Columns["Addition"].Width =
+                yearlyDataGridView.Columns["Addition"].Width =
+                    allDataGridView.Columns["Addition"].Width = monthlyDataGridView.Bounds.Width / 2 - 5;
         }
 
         public enum FileDialogType

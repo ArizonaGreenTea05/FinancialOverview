@@ -177,7 +177,9 @@
             // 
             this.unitComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.unitComboBox, "unitComboBox");
-            this.unitComboBox.Items.AddRange(new object[] { resources.GetString("unitComboBox.Items"), resources.GetString("unitComboBox.Items1") });
+            this.unitComboBox.Items.AddRange(new object[] {
+            resources.GetString("unitComboBox.Items"),
+            resources.GetString("unitComboBox.Items1")});
             this.unitComboBox.Name = "unitComboBox";
             this.unitComboBox.UseSelectable = true;
             this.unitComboBox.SelectedIndexChanged += new System.EventHandler(this.unitComboBox_SelectedIndexChanged);
@@ -196,13 +198,26 @@
             // 
             // menuStrip2
             // 
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripMenuItem1, this.toolStripMenuItem12, this.toolStripMenuItem21, this.toolStripMenuItem24 });
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem12,
+            this.toolStripMenuItem21,
+            this.toolStripMenuItem24});
             resources.ApplyResources(this.menuStrip2, "menuStrip2");
             this.menuStrip2.Name = "menuStrip2";
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripMenuItem2, this.toolStripMenuItem3, this.toolStripSeparator1, this.toolStripMenuItem5, this.toolStripMenuItem6, this.toolStripSeparator2, this.toolStripMenuItem8, this.toolStripMenuItem9, this.toolStripMenuItem11 });
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6,
+            this.toolStripSeparator2,
+            this.toolStripMenuItem8,
+            this.toolStripMenuItem9,
+            this.toolStripMenuItem11});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
@@ -257,7 +272,15 @@
             // 
             // toolStripMenuItem12
             // 
-            this.toolStripMenuItem12.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripMenuItem13, this.toolStripMenuItem14, this.toolStripSeparator4, this.toolStripMenuItem16, this.toolStripMenuItem17, this.toolStripMenuItem18, this.toolStripSeparator3, this.toolStripMenuItem20 });
+            this.toolStripMenuItem12.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem13,
+            this.toolStripMenuItem14,
+            this.toolStripSeparator4,
+            this.toolStripMenuItem16,
+            this.toolStripMenuItem17,
+            this.toolStripMenuItem18,
+            this.toolStripSeparator3,
+            this.toolStripMenuItem20});
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
             resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
             // 
@@ -305,7 +328,9 @@
             // 
             // toolStripMenuItem21
             // 
-            this.toolStripMenuItem21.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripMenuItem22, this.toolStripMenuItem23 });
+            this.toolStripMenuItem21.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem22,
+            this.toolStripMenuItem23});
             this.toolStripMenuItem21.Name = "toolStripMenuItem21";
             resources.ApplyResources(this.toolStripMenuItem21, "toolStripMenuItem21");
             // 
@@ -321,7 +346,12 @@
             // 
             // toolStripMenuItem24
             // 
-            this.toolStripMenuItem24.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripMenuItem25, this.toolStripMenuItem26, this.toolStripMenuItem27, this.toolStripSeparator5, this.toolStripMenuItem29 });
+            this.toolStripMenuItem24.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem25,
+            this.toolStripMenuItem26,
+            this.toolStripMenuItem27,
+            this.toolStripSeparator5,
+            this.toolStripMenuItem29});
             this.toolStripMenuItem24.Name = "toolStripMenuItem24";
             resources.ApplyResources(this.toolStripMenuItem24, "toolStripMenuItem24");
             // 
@@ -368,6 +398,7 @@
             this.MainMenuStrip = this.menuStrip2;
             this.Name = "GUI";
             this.Load += new System.EventHandler(this.GUI_Load);
+            this.ResizeEnd += new System.EventHandler(this.GUI_ResizeEnd);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GUI_KeyDown);
             this.Resize += new System.EventHandler(this.GUI_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.monthlyDataGridView)).EndInit();
@@ -380,6 +411,7 @@
             this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
