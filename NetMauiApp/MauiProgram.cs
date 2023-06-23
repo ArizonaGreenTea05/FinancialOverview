@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
-using FinancialOverview;
 
-namespace MauiApp
+namespace NetMauiApp
 {
     public static class MauiProgram
     {
-        public static Microsoft.Maui.Hosting.MauiApp CreateMauiApp()
+        public static MauiApp CreateMauiApp()
         {
-            var builder = Microsoft.Maui.Hosting.MauiApp.CreateBuilder();
+            var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -19,6 +18,7 @@ namespace MauiApp
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+
             return builder.Build();
         }
     }

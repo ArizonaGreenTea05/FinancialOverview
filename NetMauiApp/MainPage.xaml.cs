@@ -1,4 +1,4 @@
-﻿namespace MauiApp
+﻿namespace NetMauiApp
 {
     public partial class MainPage : ContentPage
     {
