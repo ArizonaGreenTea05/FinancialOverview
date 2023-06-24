@@ -4,7 +4,7 @@
              x:Class="NetMauiApp.MainPage"
              Loaded="OnMainPageLoaded">
 
-    <Grid RowDefinitions="50, *, 50, *, 40"
+    <Grid RowDefinitions="50, 44, *, 50, 44, *, 40"
           ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           Padding="20">
 
@@ -15,18 +15,26 @@
         <BoxView Grid.Column="0"
                  Grid.ColumnSpan="100"
                  Grid.Row="1"
-                 Color="DarkOrange" />
+                 Color="OrangeRed" />
         <BoxView Grid.Column="0"
                  Grid.ColumnSpan="100"
                  Grid.Row="2"
-                 Color="Orange" />
+                 Color="DarkOrange" />
         <BoxView Grid.Column="0"
                  Grid.ColumnSpan="100"
                  Grid.Row="3"
-                 Color="Green" />
+                 Color="Orange" />
         <BoxView Grid.Column="0"
                  Grid.ColumnSpan="100"
                  Grid.Row="4"
+                 Color="Yellow" />
+        <BoxView Grid.Column="0"
+                 Grid.ColumnSpan="100"
+                 Grid.Row="5"
+                 Color="Green" />
+        <BoxView Grid.Column="0"
+                 Grid.ColumnSpan="100"
+                 Grid.Row="6"
                  Color="LightGreen" />
 
         <Label Grid.Column="0"
@@ -34,7 +42,6 @@
                Grid.Row="0"
                x:Name="AllSalesLbl"
                Text="All"
-               SemanticProperties.HeadingLevel="Level1"
                FontSize="32"
                HorizontalOptions="Start"
                VerticalOptions="Start"/>
@@ -47,49 +54,140 @@
                 SemanticProperties.Hint="Updates the 'all' table"
                 VerticalOptions="Start"
                 FontSize="16"
-                Scale="1"
-                HeightRequest="40"
+                Scale=".8"
                 Clicked="OnUpdateClicked"/>
 
-        <Label Grid.Column="53"
+        <Label Grid.Column="54"
                Grid.ColumnSpan="45"
                Grid.Row="0"
                x:Name="MonthlySalesLbl"
                Text="Monthly"
-               SemanticProperties.HeadingLevel="Level1"
                FontSize="32"
                VerticalOptions="Start" />
 
-        <Label Grid.Column="53"
+        <Entry Placeholder="0,00"
+               Grid.Column="54"
+               Grid.ColumnSpan="6"
+               Grid.Row="1"
+               x:Name="MonthlySalesEntry"
+               FontSize="12" />
+
+        <Entry Placeholder="Name"
+               Grid.Column="60"
+               Grid.ColumnSpan="11"
+               Grid.Row="1"
+               x:Name="MonthlyNameEntry"
+               FontSize="12" />
+
+        <Entry Placeholder="Addition"
+               Grid.Column="71"
+               Grid.ColumnSpan="20"
+               Grid.Row="1"
+               x:Name="MonthlyAdditionEntry"
+               FontSize="12" />
+
+        <Button Text="Add"
+                Grid.Column="91"
+                Grid.ColumnSpan="9"
+                Grid.Row="1"
+                FontSize="16"
+                Scale=".8"
+                x:Name="MonthlyAddBtn" 
+                Clicked="OnMonthlyAddClicked" />
+
+        <CollectionView Grid.Column="53"
+                        Grid.ColumnSpan="37"
+                        Grid.Row="2"
+                        x:Name="MonthlyCv"
+                        VerticalOptions="Start">
+                <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>-621,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
+                    <x:String>-62,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
+                    <x:String>-6,02 | Versicherung (Aut) | wird abgebucht am 02.01.</x:String>
+                    <x:String>-1621,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
+                    <x:String>621,02 | Versicherung | wird abgebucht am 02.01.</x:String>
+                    <x:String>1621,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
+                </x:Array>
+                </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:Name="SalesTemplate">
+                    <Grid RowDefinitions="Auto"
+                          ColumnDefinitions="*, Auto"
+                        Padding="0,5">
+                        <Frame Grid.Column="0">
+                            <Label Text="{Binding}"
+                                   FontSize="14"/>
+                        </Frame>
+                        <Button Grid.Column="1"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                Text="Delete"
+                                x:Name="DeleteEntryBtn"
+                                Clicked="OnDeleteEntryBtnClicked"></Button>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Grid.Column="54"
                Grid.ColumnSpan="45"
-               Grid.Row="2"
+               Grid.Row="3"
                x:Name="YearlySalesLbl"
                Text="Yearly"
-               SemanticProperties.HeadingLevel="Level1"
                FontSize="32"
                VerticalOptions="Start" />
+
+        <Entry Placeholder="0,00"
+               Grid.Column="54"
+               Grid.ColumnSpan="6"
+               Grid.Row="4"
+               x:Name="YearlySalesEntry"
+               FontSize="12" />
+
+        <Entry Placeholder="Name"
+               Grid.Column="60"
+               Grid.ColumnSpan="11"
+               Grid.Row="4"
+               x:Name="YearlyNameEntry"
+               FontSize="12" />
+
+        <Entry Placeholder="Addition"
+               Grid.Column="71"
+               Grid.ColumnSpan="20"
+               Grid.Row="4"
+               x:Name="YearlyAdditionEntry"
+               FontSize="12" />
+
+        <Button Text="Add"
+                Grid.Column="91"
+                Grid.ColumnSpan="9"
+                Grid.Row="4"
+                FontSize="16"
+                Scale=".8"
+                x:Name="YearlyAddBtn" 
+                Clicked="OnYearlyAddClicked"/>
 
         <Label Grid.Column="0"
                Grid.ColumnSpan="10"
-               Grid.Row="4"
+               Grid.Row="6"
                x:Name="RestLbl"
                Text="Rest:"
-               SemanticProperties.HeadingLevel="Level1"
                FontSize="20"
                VerticalTextAlignment="Center"
                HorizontalOptions="Start" />
 
-        <BoxView Grid.Column="10"
+        <BoxView CornerRadius="5"
+                 Grid.Column="10"
                  Grid.ColumnSpan="22"
-                 Grid.Row="4"
+                 Grid.Row="6"
                  Color="BlueViolet" />
 
         <Label Grid.Column="10"
                Grid.ColumnSpan="20"
-               Grid.Row="4"
+               Grid.Row="6"
                x:Name="RestMoneyLbl"
                Text="0,00"
-               SemanticProperties.HeadingLevel="Level1"
                FontSize="20"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
@@ -97,10 +195,9 @@
 
         <Label Grid.Column="30"
                Grid.ColumnSpan="2"
-               Grid.Row="4"
+               Grid.Row="6"
                x:Name="MoneyUnitLbl"
                Text="€"
-               SemanticProperties.HeadingLevel="Level1"
                FontSize="20"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="Start"
@@ -108,11 +205,10 @@
 
         <Picker Grid.Column="32"
                 Grid.ColumnSpan="13"
-                Grid.Row="4"
+                Grid.Row="6"
                 x:Name="TimeUnitPkr"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
-                SemanticProperties.HeadingLevel="Level1"
                 FontSize="20">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
