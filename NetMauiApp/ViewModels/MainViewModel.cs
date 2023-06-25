@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using BusinessLogic;
@@ -18,7 +19,7 @@ namespace NetMauiApp.ViewModels
         private ObservableCollection<string> _allSales;
 
         [ObservableProperty]
-        private string _updateBtnText;
+        private string _deleteBtnText;
 
         [ObservableProperty]
         private string _addBtnText;
@@ -41,16 +42,31 @@ namespace NetMauiApp.ViewModels
         [ObservableProperty]
         private string _yearlyAdditionEntryText;
 
-        private FinancialOverview _financialOverview;
+        [ObservableProperty]
+        private int _timeUnit;
+
+        [ObservableProperty]
+        private decimal _restMoney;
+
+        private readonly FinancialOverview _financialOverview;
 
         public MainViewModel(FinancialOverview financialOverview)
         {
-            _financialOverview = financialOverview;
-            UpdateBtnText = "Update";
             AddBtnText = "Add";
+            DeleteBtnText = "Delete";
+            _financialOverview = financialOverview;
+            _financialOverview.LoadData();
+
             MonthlySales = new ObservableCollection<string>();
             YearlySales = new ObservableCollection<string>();
             AllSales = new ObservableCollection<string>();
+            foreach (DataRow row in _financialOverview.MonthlySales.Rows)
+                Add(MonthlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            foreach (DataRow row in _financialOverview.YearlySales.Rows)
+                Add(YearlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            UpdateAllSales();
+
+            _timeUnit = (int)_financialOverview.UnitOfAll;
         }
 
         [RelayCommand]
@@ -58,12 +74,7 @@ namespace NetMauiApp.ViewModels
         {
             if (string.IsNullOrWhiteSpace(MonthlySalesEntryText) || string.IsNullOrWhiteSpace(MonthlyNameEntryText))
                 return;
-            MonthlySales.Add(
-                $@"{MonthlySalesEntryText} | {MonthlyNameEntryText} {
-                    (string.IsNullOrWhiteSpace(MonthlyAdditionEntryText) 
-                    ? "" 
-                    : $" | {MonthlyAdditionEntryText}"
-                    )}");
+            Add(MonthlySales, Convert.ToDouble(MonthlySalesEntryText), MonthlyNameEntryText, MonthlyAdditionEntryText);
             MonthlySalesEntryText = string.Empty;
             MonthlyNameEntryText = string.Empty;
             MonthlyAdditionEntryText = string.Empty;
@@ -74,10 +85,7 @@ namespace NetMauiApp.ViewModels
         {
             if (string.IsNullOrWhiteSpace(YearlySalesEntryText) || string.IsNullOrWhiteSpace(YearlyNameEntryText))
                 return;
-            YearlySales.Add($@"{YearlySalesEntryText} | {YearlyNameEntryText} {(string.IsNullOrWhiteSpace(YearlyAdditionEntryText)
-                    ? ""
-                    : $" | {MonthlyAdditionEntryText}"
-                )}");
+            Add(MonthlySales, Convert.ToDouble(YearlySalesEntryText), YearlyNameEntryText, YearlyAdditionEntryText);
             YearlySalesEntryText = string.Empty;
             YearlyNameEntryText = string.Empty;
             YearlyAdditionEntryText = string.Empty;
@@ -88,6 +96,7 @@ namespace NetMauiApp.ViewModels
         {
             if (MonthlySales.Contains(s)) 
                 MonthlySales.Remove(s);
+            UpdateAllSales();
         }
 
         [RelayCommand]
@@ -95,12 +104,31 @@ namespace NetMauiApp.ViewModels
         {
             if (YearlySales.Contains(s))
                 YearlySales.Remove(s);
+            UpdateAllSales();
         }
 
-        [RelayCommand]
-        void Update()
+        public void TimeUnitChanged()
         {
+            _financialOverview.UnitOfAll = (FinancialOverview.Unit)_timeUnit;
+            UpdateAllSales();
+        }
 
+        private void UpdateAllSales()
+        {
+            var tmp = _financialOverview.AllSales.Copy();
+            AllSales.Clear();
+            foreach (DataRow row in tmp.Rows)
+                Add(AllSales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            RestMoney = _financialOverview.GetRest();
+        }
+
+        private void Add(ObservableCollection<string> collection, double sales, string name, string addition = null)
+        {
+            collection.Add(
+                $@"{sales} | {name} {(string.IsNullOrWhiteSpace(addition)
+                        ? ""
+                        : $" | {addition}"
+                    )}");
         }
     }
 }
