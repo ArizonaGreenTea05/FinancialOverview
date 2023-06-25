@@ -13,8 +13,8 @@
                Grid.ColumnSpan="25"
                Grid.Row="0"
                x:Name="AllSalesLbl"
-               Text="All"
-               FontSize="32"
+               Text="{Binding AllSalesLblText}"
+               FontSize="30"
                HorizontalOptions="Start"
                VerticalOptions="Start"/>
 
@@ -42,8 +42,8 @@
                Grid.ColumnSpan="45"
                Grid.Row="0"
                x:Name="MonthlySalesLbl"
-               Text="Monthly"
-               FontSize="32"
+               Text="{Binding MonthlySalesLblText}"
+               FontSize="30"
                VerticalOptions="Start" />
 
         <Entry Placeholder="0,00"
@@ -54,7 +54,7 @@
                FontSize="12"
                Text="{Binding MonthlySalesEntryText}"/>
 
-        <Entry Placeholder="Name"
+        <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="1"
@@ -62,7 +62,7 @@
                FontSize="12"
                Text="{Binding MonthlyNameEntryText}"/>
 
-        <Entry Placeholder="Addition"
+        <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="20"
                Grid.Row="1"
@@ -71,10 +71,10 @@
                Text="{Binding MonthlyAdditionEntryText}"/>
 
         <Button Text="{Binding AddBtnText}"
-                Grid.Column="91"
-                Grid.ColumnSpan="9"
+                Grid.Column="90"
+                Grid.ColumnSpan="10"
                 Grid.Row="1"
-                FontSize="16"
+                FontSize="{Binding AddBtnFontSize}"
                 Scale=".8"
                 x:Name="MonthlyAddBtn" 
                 Command="{Binding AddMonthlyCommand}"/>
@@ -115,8 +115,8 @@
                Grid.ColumnSpan="45"
                Grid.Row="3"
                x:Name="YearlySalesLbl"
-               Text="Yearly"
-               FontSize="32"
+               Text="{Binding YearlySalesLblText}"
+               FontSize="30"
                VerticalOptions="Start" />
 
         <Entry Placeholder="0,00"
@@ -126,14 +126,14 @@
                x:Name="YearlySalesEntry"
                FontSize="12" />
 
-        <Entry Placeholder="Name"
+        <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="4"
                x:Name="YearlyNameEntry"
                FontSize="12" />
 
-        <Entry Placeholder="Addition"
+        <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="20"
                Grid.Row="4"
@@ -141,10 +141,10 @@
                FontSize="12" />
 
         <Button Text="{Binding AddBtnText}"
-                Grid.Column="91"
-                Grid.ColumnSpan="9"
+                Grid.Column="90"
+                Grid.ColumnSpan="10"
                 Grid.Row="4"
-                FontSize="16"
+                FontSize="{Binding AddBtnFontSize}"
                 Scale=".8"
                 x:Name="YearlyAddBtn"
                 Command="{Binding AddYearlyCommand}"/>
@@ -185,7 +185,7 @@
                Grid.ColumnSpan="10"
                Grid.Row="6"
                x:Name="RestLbl"
-               Text="Rest:"
+               Text="{Binding RestLblText}"
                FontSize="20"
                VerticalTextAlignment="Center"
                HorizontalOptions="Start" />
@@ -210,7 +210,7 @@
                Grid.ColumnSpan="2"
                Grid.Row="6"
                x:Name="MoneyUnitLbl"
-               Text="€"
+               Text="{Binding UnitLblText}"
                FontSize="20"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="Start"
@@ -223,14 +223,9 @@
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
                 FontSize="20"
-                SelectedIndex="{Binding TimeUnit}"
-                SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Monthly</x:String>
-                    <x:String>Yearly</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
+                SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
+                ItemsSource="{Binding TimeUnits}"
+                SelectedIndex="{Binding SelectedTimeUnit}">
         </Picker>
     </Grid>
 
