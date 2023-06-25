@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using NetMauiApp.ViewModels;
 
 namespace NetMauiApp
 {
@@ -15,9 +16,8 @@ namespace NetMauiApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton(new MainViewModel(new FinancialOverview.FinancialOverview()));
 
             return builder.Build();
         }

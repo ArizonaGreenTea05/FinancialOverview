@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NetMauiApp.MainPage"
-             Loaded="OnMainPageLoaded">
+             xmlns:viewmodel="clr-namespace:NetMauiApp.ViewModels"
+             x:DataType="viewmodel:MainViewModel">
 
     <Grid RowDefinitions="50, 44, *, 50, 44, *, 40"
           ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
@@ -50,12 +51,11 @@
                 Grid.ColumnSpan="10"
                 Grid.Row="0"
                 x:Name="UpdateBtn"
-                Text="Update"
+                Text="{Binding UpdateBtnText}"
                 SemanticProperties.Hint="Updates the 'all' table"
                 VerticalOptions="Start"
                 FontSize="16"
-                Scale=".8"
-                Clicked="OnUpdateClicked"/>
+                Scale=".8"/>
 
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
@@ -70,51 +70,46 @@
                Grid.ColumnSpan="6"
                Grid.Row="1"
                x:Name="MonthlySalesEntry"
-               FontSize="12" />
+               FontSize="12"
+               Text="{Binding MonthlySalesEntryText}"/>
 
         <Entry Placeholder="Name"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="1"
                x:Name="MonthlyNameEntry"
-               FontSize="12" />
+               FontSize="12"
+               Text="{Binding MonthlyNameEntryText}"/>
 
         <Entry Placeholder="Addition"
                Grid.Column="71"
                Grid.ColumnSpan="20"
                Grid.Row="1"
                x:Name="MonthlyAdditionEntry"
-               FontSize="12" />
+               FontSize="12"
+               Text="{Binding MonthlyAdditionEntryText}"/>
 
-        <Button Text="Add"
+        <Button Text="{Binding AddBtnText}"
                 Grid.Column="91"
                 Grid.ColumnSpan="9"
                 Grid.Row="1"
                 FontSize="16"
                 Scale=".8"
                 x:Name="MonthlyAddBtn" 
-                Clicked="OnMonthlyAddClicked" />
+                Command="{Binding AddMonthlyCommand}"/>
 
-        <CollectionView Grid.Column="53"
+        <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
                         Grid.Row="2"
                         x:Name="MonthlyCv"
-                        VerticalOptions="Start">
-                <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>-621,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
-                    <x:String>-62,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
-                    <x:String>-6,02 | Versicherung (Aut) | wird abgebucht am 02.01.</x:String>
-                    <x:String>-1621,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
-                    <x:String>621,02 | Versicherung | wird abgebucht am 02.01.</x:String>
-                    <x:String>1621,02 | Versicherung (Auto) | wird abgebucht am 02.01.</x:String>
-                </x:Array>
-                </CollectionView.ItemsSource>
+                        VerticalOptions="Start"
+                        ItemsSource="{Binding MonthlySales}">
+                
             <CollectionView.ItemTemplate>
-                <DataTemplate x:Name="SalesTemplate">
+                <DataTemplate x:DataType="{x:Type x:String}">
                     <Grid RowDefinitions="Auto"
                           ColumnDefinitions="*, Auto"
-                        Padding="0,5">
+                          Padding="0,5">
                         <Frame Grid.Column="0">
                             <Label Text="{Binding}"
                                    FontSize="14"/>
@@ -124,7 +119,8 @@
                                 TextColor="White"
                                 Text="Delete"
                                 x:Name="DeleteEntryBtn"
-                                Clicked="OnDeleteEntryBtnClicked"></Button>
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteMonthlyCommand}"
+                                CommandParameter="{Binding}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -159,14 +155,41 @@
                x:Name="YearlyAdditionEntry"
                FontSize="12" />
 
-        <Button Text="Add"
+        <Button Text="{Binding AddBtnText}"
                 Grid.Column="91"
                 Grid.ColumnSpan="9"
                 Grid.Row="4"
                 FontSize="16"
                 Scale=".8"
-                x:Name="YearlyAddBtn" 
-                Clicked="OnYearlyAddClicked"/>
+                x:Name="YearlyAddBtn" />
+
+        <CollectionView Grid.Column="54"
+                        Grid.ColumnSpan="37"
+                        Grid.Row="2"
+                        x:Name="YearlyCv"
+                        VerticalOptions="Start"
+                        ItemsSource="{Binding YearlySales}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+                    <Grid RowDefinitions="Auto"
+                          ColumnDefinitions="*, Auto"
+                          Padding="0,5">
+                        <Frame Grid.Column="0">
+                            <Label Text="{Binding}"
+                                   FontSize="14"/>
+                        </Frame>
+                        <Button Grid.Column="1"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                Text="Delete"
+                                x:Name="DeleteEntryBtn"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteYearlyCommand}"
+                                CommandParameter="{Binding}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <Label Grid.Column="0"
                Grid.ColumnSpan="10"
