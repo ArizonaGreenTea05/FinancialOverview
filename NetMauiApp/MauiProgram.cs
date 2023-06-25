@@ -17,7 +17,7 @@ namespace NetMauiApp
                 });
 
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton(new MainViewModel(new FinancialOverview.FinancialOverview()));
+            builder.Services.AddSingleton(new MainViewModel(new BusinessLogic.FinancialOverview()));
 
             return builder.Build();
         }

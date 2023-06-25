@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using FinancialOverview;
+using BusinessLogic;
 
 namespace NetMauiApp.ViewModels
 {
@@ -41,9 +41,9 @@ namespace NetMauiApp.ViewModels
         [ObservableProperty]
         private string _yearlyAdditionEntryText;
 
-        private FinancialOverview.FinancialOverview _financialOverview;
+        private FinancialOverview _financialOverview;
 
-        public MainViewModel(FinancialOverview.FinancialOverview financialOverview)
+        public MainViewModel(FinancialOverview financialOverview)
         {
             _financialOverview = financialOverview;
             UpdateBtnText = "Update";
