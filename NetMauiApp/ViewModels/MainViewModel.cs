@@ -20,6 +20,10 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _addBtnText;
 
+    [ObservableProperty] private string _filePageBtnText;
+
+    [ObservableProperty] private string _mainPageBtnText;
+
     [ObservableProperty] private int _addBtnFontSize;
 
     [ObservableProperty] private string _namePlaceholder;
@@ -115,6 +119,12 @@ public partial class MainViewModel : ObservableObject
         UpdateAllSales();
     }
 
+    [RelayCommand]
+    private async Task SwitchToFilePage()
+    {
+        await Shell.Current.GoToAsync(nameof(FilePage));
+    }
+
     public void TimeUnitChanged()
     {
         _financialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
@@ -141,6 +151,8 @@ public partial class MainViewModel : ObservableObject
 
     private void LoadResources()
     {
+        FilePageBtnText = "File";
+        MainPageBtnText = "Start";
         AddBtnText = _resources.GetString("Add") ?? string.Empty;
         AddBtnFontSize = Convert.ToInt16(_resources.GetString("AddBtnFontSize"));
         DeleteBtnText = _resources.GetString("Delete") ?? string.Empty;

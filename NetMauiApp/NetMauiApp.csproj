@@ -58,6 +58,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="FilePage.xaml.cs">
+	    <DependentUpon>FilePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Languages\MainViewResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -73,6 +76,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="FilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Colors_Purple.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

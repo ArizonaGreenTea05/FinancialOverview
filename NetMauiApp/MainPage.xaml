@@ -6,23 +6,33 @@
              x:DataType="viewmodel:MainViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
 
-    <Grid RowDefinitions="40, Auto, *, Auto, Auto, *, 40"
+    
+    <Grid RowDefinitions="50, 40, Auto, *, Auto, Auto, *, 40"
           ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           Padding="20">
 
+        <HorizontalStackLayout Grid.Column="0"
+                               Grid.ColumnSpan="100"
+                               Grid.Row="0"
+                               Padding="0,0,0,20">
+            <Button Text="{Binding FilePageBtnText}"
+                    Style="{StaticResource PageSwitcher}"
+                    Command="{Binding SwitchToFilePageCommand}"/>
+        </HorizontalStackLayout>
+
         <Frame Grid.Column="32"
-           Grid.ColumnSpan="12"
-           Grid.Row="0"
-           Style="{StaticResource Frame2}"/>
+               Grid.ColumnSpan="12"
+               Grid.Row="1"
+               Style="{StaticResource Frame2}"/>
 
         <Frame Grid.Column="0"
                Grid.ColumnSpan="33"
-               Grid.Row="0"
+               Grid.Row="1"
                Style="{StaticResource Frame1}"/>
         
         <Label Grid.Column="1"
                Grid.ColumnSpan="25"
-               Grid.Row="0"
+               Grid.Row="1"
                x:Name="AllSalesLbl"
                Text="{Binding AllSalesLblText}"
                Style="{StaticResource Label1}"
@@ -32,7 +42,7 @@
 
         <Picker Grid.Column="31"
                 Grid.ColumnSpan="13"
-                Grid.Row="0"
+                Grid.Row="1"
                 x:Name="TimeUnitPkr"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
@@ -44,7 +54,7 @@
 
         <CollectionView Grid.Column="0"
                         Grid.ColumnSpan="44"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Grid.RowSpan="4"
                         x:Name="AllCv"
                         VerticalOptions="Start"
@@ -67,7 +77,7 @@
 
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
-               Grid.Row="0"
+               Grid.Row="1"
                x:Name="MonthlySalesLbl"
                Text="{Binding MonthlySalesLblText}"
                Style="{StaticResource Label1}"
@@ -77,28 +87,28 @@
         <Entry Placeholder="0,00"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="1"
+               Grid.Row="2"
                x:Name="MonthlySalesEntry"
                Text="{Binding MonthlySalesEntryText}"/>
 
         <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="1"
+               Grid.Row="2"
                x:Name="MonthlyNameEntry"
                Text="{Binding MonthlyNameEntryText}"/>
 
         <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="1"
+               Grid.Row="2"
                x:Name="MonthlyAdditionEntry"
                Text="{Binding MonthlyAdditionEntryText}"/>
 
         <Button Text="{Binding AddBtnText}"
                 Grid.Column="90"
                 Grid.ColumnSpan="10"
-                Grid.Row="1"
+                Grid.Row="2"
                 FontSize="{Binding AddBtnFontSize}"
                 Scale=".8"
                 x:Name="MonthlyAddBtn" 
@@ -106,7 +116,7 @@
 
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
-                        Grid.Row="2"
+                        Grid.Row="3"
                         x:Name="MonthlyCv"
                         VerticalOptions="Start"
                         ItemsSource="{Binding MonthlySales}">
@@ -137,7 +147,7 @@
 
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
-               Grid.Row="3"
+               Grid.Row="4"
                x:Name="YearlySalesLbl"
                Text="{Binding YearlySalesLblText}"
                Style="{StaticResource Label1}"
@@ -147,25 +157,25 @@
         <Entry Placeholder="0,00"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="4"
+               Grid.Row="5"
                x:Name="YearlySalesEntry"/>
 
         <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="4"
+               Grid.Row="5"
                x:Name="YearlyNameEntry"/>
 
         <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="4"
+               Grid.Row="5"
                x:Name="YearlyAdditionEntry"/>
 
         <Button Text="{Binding AddBtnText}"
                 Grid.Column="90"
                 Grid.ColumnSpan="10"
-                Grid.Row="4"
+                Grid.Row="5"
                 FontSize="{Binding AddBtnFontSize}"
                 Scale=".8"
                 x:Name="YearlyAddBtn"
@@ -173,7 +183,7 @@
 
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
-                        Grid.Row="5 "
+                        Grid.Row="6 "
                         x:Name="YearlyCv"
                         VerticalOptions="Start"
                         ItemsSource="{Binding YearlySales}">
@@ -204,17 +214,17 @@
 
         <Frame Grid.Column="0"
                  Grid.ColumnSpan="12"
-                 Grid.Row="6"
+                 Grid.Row="7"
                  Style="{StaticResource Frame2}"/>
 
         <Frame Grid.Column="10"
                Grid.ColumnSpan="34"
-               Grid.Row="6"
+               Grid.Row="7"
                Style="{StaticResource Frame1}"/>
 
         <Label Grid.Column="1"
                Grid.ColumnSpan="9"
-               Grid.Row="6"
+               Grid.Row="7"
                x:Name="RestLbl"
                Text="{Binding RestLblText}"
                FontSize="24"
@@ -222,20 +232,19 @@
                HorizontalOptions="Start"
                TextColor="{StaticResource Primary}"/>
 
-        <Label Grid.Column="10"
+        <Label Grid.Column="11"
                Grid.ColumnSpan="31"
-               Grid.Row="6"
+               Grid.Row="7"
                x:Name="RestMoneyLbl"
                Text="{Binding RestMoney}"
                FontSize="24"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
-               HorizontalOptions="End"
-/>
+               HorizontalOptions="End"/>
 
         <Label Grid.Column="42"
                Grid.ColumnSpan="1"
-               Grid.Row="6"
+               Grid.Row="7"
                x:Name="MoneyUnitLbl"
                Text="{Binding UnitLblText}"
                FontSize="24"
@@ -243,5 +252,4 @@
                HorizontalTextAlignment="End"
                HorizontalOptions="Start" />
     </Grid>
-
 </ContentPage>
