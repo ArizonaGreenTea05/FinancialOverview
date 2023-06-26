@@ -16,6 +16,8 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private ObservableCollection<string> _allSales;
 
+    [ObservableProperty] private string _financialOverviewTitle;
+
     [ObservableProperty] private string _deleteBtnText;
 
     [ObservableProperty] private string _addBtnText;
@@ -59,7 +61,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private decimal _restMoney;
 
     private readonly FinancialOverview _financialOverview;
-    private readonly ResourceManager _resources = MainViewResource.ResourceManager;
+    private readonly ResourceManager _resources = TextResource.ResourceManager;
 
     public MainViewModel(FinancialOverview financialOverview)
     {
@@ -151,8 +153,8 @@ public partial class MainViewModel : ObservableObject
 
     private void LoadResources()
     {
-        FilePageBtnText = "File";
-        MainPageBtnText = "Start";
+        FinancialOverviewTitle = _resources.GetString("FinancialOverviewTitle") ?? string.Empty;
+        FilePageBtnText = _resources.GetString("FilePageTitle") ?? string.Empty;
         AddBtnText = _resources.GetString("Add") ?? string.Empty;
         AddBtnFontSize = Convert.ToInt16(_resources.GetString("AddBtnFontSize"));
         DeleteBtnText = _resources.GetString("Delete") ?? string.Empty;

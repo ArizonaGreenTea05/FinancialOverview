@@ -4,6 +4,7 @@
              x:Class="NetMauiApp.MainPage"
              xmlns:viewmodel="clr-namespace:NetMauiApp.ViewModels"
              x:DataType="viewmodel:MainViewModel"
+             Title="{Binding FinancialOverviewTitle}"
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
 
     

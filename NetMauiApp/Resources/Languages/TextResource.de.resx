@@ -153,4 +153,10 @@
   <data name="NamePlaceholder" xml:space="preserve">
     <value>Bezeichnung</value>
   </data>
+  <data name="FilePageTitle" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="FinancialOverviewTitle" xml:space="preserve">
+    <value>Finanzübersicht</value>
+  </data>
 </root>

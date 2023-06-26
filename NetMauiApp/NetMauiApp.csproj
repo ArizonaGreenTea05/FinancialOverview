@@ -61,17 +61,17 @@
 	  <Compile Update="FilePage.xaml.cs">
 	    <DependentUpon>FilePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Languages\MainViewResource.Designer.cs">
+	  <Compile Update="Resources\Languages\TextResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>MainViewResource.resx</DependentUpon>
+	    <DependentUpon>TextResource.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Languages\MainViewResource.resx">
+	  <EmbeddedResource Update="Resources\Languages\TextResource.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>MainViewResource.Designer.cs</LastGenOutput>
+	    <LastGenOutput>TextResource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 
