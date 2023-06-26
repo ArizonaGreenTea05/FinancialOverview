@@ -92,6 +92,7 @@ public partial class MainViewModel : ObservableObject
         MonthlySalesEntryText = string.Empty;
         MonthlyNameEntryText = string.Empty;
         MonthlyAdditionEntryText = string.Empty;
+        UpdateAllSales();
     }
 
     [RelayCommand]
@@ -99,10 +100,11 @@ public partial class MainViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(YearlySalesEntryText) || string.IsNullOrWhiteSpace(YearlyNameEntryText))
             return;
-        Add(MonthlySales, Convert.ToDouble(YearlySalesEntryText), YearlyNameEntryText, YearlyAdditionEntryText);
+        Add(YearlySales, Convert.ToDouble(YearlySalesEntryText), YearlyNameEntryText, YearlyAdditionEntryText);
         YearlySalesEntryText = string.Empty;
         YearlyNameEntryText = string.Empty;
         YearlyAdditionEntryText = string.Empty;
+        UpdateAllSales();
     }
 
     [RelayCommand]

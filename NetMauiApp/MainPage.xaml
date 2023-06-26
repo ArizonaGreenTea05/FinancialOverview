@@ -159,19 +159,22 @@
                Grid.Column="54"
                Grid.ColumnSpan="6"
                Grid.Row="5"
-               x:Name="YearlySalesEntry"/>
+               x:Name="YearlySalesEntry"
+               Text="{Binding YearlySalesEntryText}"/>
 
         <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="5"
-               x:Name="YearlyNameEntry"/>
+               x:Name="YearlyNameEntry"
+               Text="{Binding YearlyNameEntryText}"/>
 
         <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
                Grid.Row="5"
-               x:Name="YearlyAdditionEntry"/>
+               x:Name="YearlyAdditionEntry"
+               Text="{Binding YearlyAdditionEntryText}"/>
 
         <Button Text="{Binding AddBtnText}"
                 Grid.Column="90"
