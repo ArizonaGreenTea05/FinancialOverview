@@ -3,30 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NetMauiApp.MainPage"
              xmlns:viewmodel="clr-namespace:NetMauiApp.ViewModels"
-             x:DataType="viewmodel:MainViewModel">
+             x:DataType="viewmodel:MainViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
 
-    <Grid RowDefinitions="Auto, Auto, *, Auto, Auto, *, Auto"
+    <Grid RowDefinitions="40, Auto, *, Auto, Auto, *, 40"
           ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           Padding="20">
 
-        <BoxView Grid.Column="32"
-                 Grid.ColumnSpan="12"
-                 Grid.Row="0"
-                 Style="{StaticResource BoxView2}"/>
+        <Frame Grid.Column="32"
+           Grid.ColumnSpan="12"
+           Grid.Row="0"
+           Style="{StaticResource Frame2}"/>
 
-        <BoxView Grid.Column="0"
-                 Grid.ColumnSpan="33"
-                 Grid.Row="0"
-                 Style="{StaticResource BoxView1}"/>
+        <Frame Grid.Column="0"
+               Grid.ColumnSpan="33"
+               Grid.Row="0"
+               Style="{StaticResource Frame1}"/>
         
         <Label Grid.Column="1"
                Grid.ColumnSpan="25"
                Grid.Row="0"
                x:Name="AllSalesLbl"
                Text="{Binding AllSalesLblText}"
+               Style="{StaticResource Label1}"
                FontSize="30"
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
+
+        <Picker Grid.Column="31"
+                Grid.ColumnSpan="13"
+                Grid.Row="0"
+                x:Name="TimeUnitPkr"
+                VerticalTextAlignment="Center"
+                HorizontalOptions="End"
+                FontSize="20"
+                SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
+                ItemsSource="{Binding TimeUnits}"
+                SelectedIndex="{Binding SelectedTimeUnit}">
+        </Picker>
 
         <CollectionView Grid.Column="0"
                         Grid.ColumnSpan="44"
@@ -39,11 +53,12 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type x:String}">
                     <Grid>
-                        <Frame Margin="3">
+                        <Frame Margin="3"
+                               Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
                                FontSize="14"
                                LineBreakMode="WordWrap"
-                               TextColor="{StaticResource Primary}"/>
+                               Style="{StaticResource Label2}"/>
                         </Frame>
                     </Grid>
                 </DataTemplate>
@@ -55,6 +70,7 @@
                Grid.Row="0"
                x:Name="MonthlySalesLbl"
                Text="{Binding MonthlySalesLblText}"
+               Style="{StaticResource Label1}"
                FontSize="30"
                VerticalOptions="Start" />
 
@@ -63,27 +79,21 @@
                Grid.ColumnSpan="6"
                Grid.Row="1"
                x:Name="MonthlySalesEntry"
-               FontSize="12"
-               Text="{Binding MonthlySalesEntryText}"
-               PlaceholderColor="{DynamicResource Secondary}"/>
+               Text="{Binding MonthlySalesEntryText}"/>
 
         <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="1"
                x:Name="MonthlyNameEntry"
-               FontSize="12"
-               Text="{Binding MonthlyNameEntryText}"
-               PlaceholderColor="{DynamicResource Secondary}"/>
+               Text="{Binding MonthlyNameEntryText}"/>
 
         <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
                Grid.Row="1"
                x:Name="MonthlyAdditionEntry"
-               FontSize="12"
-               Text="{Binding MonthlyAdditionEntryText}"
-               PlaceholderColor="{DynamicResource Secondary}"/>
+               Text="{Binding MonthlyAdditionEntryText}"/>
 
         <Button Text="{Binding AddBtnText}"
                 Grid.Column="90"
@@ -106,18 +116,18 @@
                     <Grid RowDefinitions="Auto"
                           ColumnDefinitions="*, Auto">
                         <Frame Grid.Column="0"
-                               Margin="3">
+                               Margin="3"
+                               Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
                                    FontSize="14"
                                    LineBreakMode="WordWrap"
-                                   TextColor="{StaticResource Primary}"/>
+                                   Style="{StaticResource Label2}"/>
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
-                                BackgroundColor="Red"
-                                TextColor="{StaticResource Secondary}"
-                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtnText}"
                                 x:Name="DeleteEntryBtn"
+                                Style="{StaticResource DeleteBtn}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtnText}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteMonthlyCommand}"
                                 CommandParameter="{Binding}"/>
                     </Grid>
@@ -130,6 +140,7 @@
                Grid.Row="3"
                x:Name="YearlySalesLbl"
                Text="{Binding YearlySalesLblText}"
+               Style="{StaticResource Label1}"
                FontSize="30"
                VerticalOptions="Start" />
 
@@ -137,25 +148,19 @@
                Grid.Column="54"
                Grid.ColumnSpan="6"
                Grid.Row="4"
-               x:Name="YearlySalesEntry"
-               FontSize="12"
-               PlaceholderColor="{DynamicResource Secondary}"/>
+               x:Name="YearlySalesEntry"/>
 
         <Entry Placeholder="{Binding NamePlaceholder}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="4"
-               x:Name="YearlyNameEntry"
-               FontSize="12"
-               PlaceholderColor="{DynamicResource Secondary}"/>
+               x:Name="YearlyNameEntry"/>
 
         <Entry Placeholder="{Binding AdditionPlaceholder}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
                Grid.Row="4"
-               x:Name="YearlyAdditionEntry"
-               FontSize="12"
-               PlaceholderColor="{DynamicResource Secondary}"/>
+               x:Name="YearlyAdditionEntry"/>
 
         <Button Text="{Binding AddBtnText}"
                 Grid.Column="90"
@@ -178,19 +183,18 @@
                     <Grid RowDefinitions="Auto"
                           ColumnDefinitions="*, Auto">
                         <Frame Grid.Column="0"
-                               Margin="3">
+                               Margin="3"
+                               Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
                                    FontSize="14"
                                    LineBreakMode="WordWrap"
-                                   TextColor="{StaticResource Primary}"
-                                   />
+                                   Style="{StaticResource Label2}"/>
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
-                                BackgroundColor="Red"
-                                TextColor="{StaticResource Secondary}"
-                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtnText}"
                                 x:Name="DeleteEntryBtn"
+                                Style="{StaticResource DeleteBtn}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtnText}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteYearlyCommand}"
                                 CommandParameter="{Binding}"/>
                     </Grid>
@@ -198,58 +202,46 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <BoxView Grid.Column="0"
+        <Frame Grid.Column="0"
                  Grid.ColumnSpan="12"
                  Grid.Row="6"
-                 Style="{StaticResource BoxView2}"/>
+                 Style="{StaticResource Frame2}"/>
 
-        <BoxView Grid.Column="10"
-                 Grid.ColumnSpan="23"
-                 Grid.Row="6"
-                 Style="{StaticResource BoxView1}"/>
+        <Frame Grid.Column="10"
+               Grid.ColumnSpan="34"
+               Grid.Row="6"
+               Style="{StaticResource Frame1}"/>
 
         <Label Grid.Column="1"
                Grid.ColumnSpan="9"
                Grid.Row="6"
                x:Name="RestLbl"
                Text="{Binding RestLblText}"
-               FontSize="20"
+               FontSize="24"
                VerticalTextAlignment="Center"
                HorizontalOptions="Start"
                TextColor="{StaticResource Primary}"/>
 
-        <Label Grid.Column="11"
-               Grid.ColumnSpan="20"
+        <Label Grid.Column="10"
+               Grid.ColumnSpan="31"
                Grid.Row="6"
                x:Name="RestMoneyLbl"
                Text="{Binding RestMoney}"
-               FontSize="20"
+               FontSize="24"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
                HorizontalOptions="End"
 />
 
-        <Label Grid.Column="31"
+        <Label Grid.Column="42"
                Grid.ColumnSpan="1"
                Grid.Row="6"
                x:Name="MoneyUnitLbl"
                Text="{Binding UnitLblText}"
-               FontSize="20"
+               FontSize="24"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
                HorizontalOptions="Start" />
-
-        <Picker Grid.Column="31"
-                Grid.ColumnSpan="13"
-                Grid.Row="6"
-                x:Name="TimeUnitPkr"
-                VerticalTextAlignment="Center"
-                HorizontalOptions="End"
-                FontSize="20"
-                SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
-                ItemsSource="{Binding TimeUnits}"
-                SelectedIndex="{Binding SelectedTimeUnit}">
-        </Picker>
     </Grid>
 
 </ContentPage>

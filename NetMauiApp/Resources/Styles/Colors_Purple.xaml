@@ -4,9 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="Primary">#a32ad3</Color>
     <Color x:Key="Secondary">WhiteSmoke</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Tertiary">#070021</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
