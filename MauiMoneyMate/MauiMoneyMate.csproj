@@ -80,6 +80,7 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		  
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
@@ -87,6 +88,12 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\Images\open.png" />
+		<None Remove="Resources\Images\save.png" />
+		<None Remove="Resources\Images\save_as.png" />
 	</ItemGroup>
 
 	<ItemGroup>
