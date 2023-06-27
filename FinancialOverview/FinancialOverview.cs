@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,6 +89,7 @@ namespace BusinessLogic
         public bool LoadData(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
+            if (!Directory.Exists(path)) return false;
             MonthlySales.Clear();
             YearlySales.Clear();
             _dataSet.ReadXml(path);
