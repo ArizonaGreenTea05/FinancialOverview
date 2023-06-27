@@ -89,7 +89,7 @@ namespace BusinessLogic
         public bool LoadData(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
-            if (!Directory.Exists(path)) return false;
+            if (!Directory.Exists(Path.GetDirectoryName(path))) return false;
             MonthlySales.Clear();
             YearlySales.Clear();
             _dataSet.ReadXml(path);
