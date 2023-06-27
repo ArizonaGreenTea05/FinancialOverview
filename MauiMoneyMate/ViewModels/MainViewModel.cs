@@ -40,8 +40,6 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _restLblText;
 
-    [ObservableProperty] private string _unitLblText;
-
     [ObservableProperty] private string _monthlySalesEntryText;
 
     [ObservableProperty] private string _monthlyNameEntryText;
@@ -59,6 +57,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private int _selectedTimeUnit;
 
     [ObservableProperty] private decimal _restMoney;
+
+    [ObservableProperty] private string _moneyUnit;
 
     private readonly FinancialOverview _financialOverview;
     private readonly ResourceManager _resources = TextResource.ResourceManager;
@@ -166,7 +166,7 @@ public partial class MainViewModel : ObservableObject
         MonthlySalesLblText = _resources.GetString("MonthlySales") ?? string.Empty;
         YearlySalesLblText = _resources.GetString("YearlySales") ?? string.Empty;
         RestLblText = _resources.GetString("RestLblText") ?? string.Empty;
-        UnitLblText = _resources.GetString("MoneyUnit") ?? string.Empty;
+        MoneyUnit = _resources.GetString("MoneyUnit") ?? string.Empty;
         TimeUnits.Clear();
         foreach (var name in Enum.GetNames(typeof(FinancialOverview.Unit)))
             TimeUnits.Add(_resources.GetString(name) ?? string.Empty);

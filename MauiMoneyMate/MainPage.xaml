@@ -41,8 +41,8 @@
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
 
-        <Picker Grid.Column="31"
-                Grid.ColumnSpan="13"
+        <Picker Grid.Column="33"
+                Grid.ColumnSpan="10"
                 Grid.Row="1"
                 x:Name="TimeUnitPkr"
                 VerticalTextAlignment="Center"
@@ -234,26 +234,27 @@
                FontSize="24"
                VerticalTextAlignment="Center"
                HorizontalOptions="Start"
-               TextColor="{StaticResource Primary}"/>
+               Style="{StaticResource Label2}"/>
 
-        <Label Grid.Column="11"
-               Grid.ColumnSpan="31"
+        <Label Grid.Column="9"
+               Grid.ColumnSpan="32"
                Grid.Row="7"
+               Padding="0,0,6,0"
                x:Name="RestMoneyLbl"
                Text="{Binding RestMoney}"
                FontSize="24"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
-               HorizontalOptions="End"/>
+               Style="{StaticResource Label1}"/>
 
-        <Label Grid.Column="42"
-               Grid.ColumnSpan="1"
+        <Label Grid.Column="41"
+               Grid.ColumnSpan="2"
                Grid.Row="7"
                x:Name="MoneyUnitLbl"
-               Text="{Binding UnitLblText}"
+               Text="{Binding MoneyUnit}"
                FontSize="24"
                VerticalTextAlignment="Center"
-               HorizontalTextAlignment="End"
-               HorizontalOptions="Start" />
+               HorizontalTextAlignment="Start"
+               Style="{StaticResource Label1}"/>
     </Grid>
 </ContentPage>
