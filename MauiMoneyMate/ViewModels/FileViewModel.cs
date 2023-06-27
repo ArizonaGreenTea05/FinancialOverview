@@ -21,8 +21,6 @@ namespace MauiMoneyMate.ViewModels
 
         [ObservableProperty] private int _saveFileAsFontSize;
 
-        private readonly ResourceManager _resources = TextResource.ResourceManager;
-
         public FileViewModel()
         {
             LoadResources();
@@ -30,15 +28,15 @@ namespace MauiMoneyMate.ViewModels
 
         private void LoadResources()
         {
-            FilePageTitle = _resources.GetString("FilePageTitle") ?? string.Empty;
-            OpenFileText = _resources.GetString("OpenFile") ?? string.Empty;
-            SaveFileText = _resources.GetString("SaveFile") ?? string.Empty;
-            SaveFileAsText = _resources.GetString("SaveFileAs") ?? string.Empty;
-            OpenFileFontSize = Convert.ToInt32(_resources.GetString("OpenFileFontSize"));
+            FilePageTitle = TextResource.FilePageTitle ?? string.Empty;
+            OpenFileText = TextResource.OpenFile ?? string.Empty;
+            SaveFileText = TextResource.SaveFile ?? string.Empty;
+            SaveFileAsText = TextResource.SaveFileAs ?? string.Empty;
+            OpenFileFontSize = Convert.ToInt32(TextResource.OpenFileFontSize);
             OpenFileFontSize = 0 == OpenFileFontSize ? 17 : OpenFileFontSize;
-            SaveFileFontSize = Convert.ToInt32(_resources.GetString("SaveFileFontSize"));
+            SaveFileFontSize = Convert.ToInt32(TextResource.SaveFileFontSize);
             SaveFileFontSize = 0 == SaveFileFontSize ? 17 : SaveFileFontSize;
-            SaveFileAsFontSize = Convert.ToInt32(_resources.GetString("SaveFileAsFontSize"));
+            SaveFileAsFontSize = Convert.ToInt32(TextResource.SaveFileAsFontSize);
             SaveFileAsFontSize = 0 == SaveFileAsFontSize ? 17 : SaveFileAsFontSize;
         }
     }

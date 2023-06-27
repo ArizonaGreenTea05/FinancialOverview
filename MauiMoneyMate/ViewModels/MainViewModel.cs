@@ -61,7 +61,6 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private string _moneyUnit;
 
     private readonly FinancialOverview _financialOverview;
-    private readonly ResourceManager _resources = TextResource.ResourceManager;
 
     public MainViewModel(FinancialOverview financialOverview)
     {
@@ -155,20 +154,20 @@ public partial class MainViewModel : ObservableObject
 
     private void LoadResources()
     {
-        FinancialOverviewTitle = _resources.GetString("FinancialOverviewTitle") ?? string.Empty;
-        FilePageBtnText = _resources.GetString("FilePageTitle") ?? string.Empty;
-        AddBtnText = _resources.GetString("Add") ?? string.Empty;
-        AddBtnFontSize = Convert.ToInt16(_resources.GetString("AddBtnFontSize"));
-        DeleteBtnText = _resources.GetString("Delete") ?? string.Empty;
-        AllSalesLblText = _resources.GetString("AllSales") ?? string.Empty;
-        NamePlaceholder = _resources.GetString("NamePlaceholder") ?? string.Empty;
-        AdditionPlaceholder = _resources.GetString("AdditionPlaceholder") ?? string.Empty;
-        MonthlySalesLblText = _resources.GetString("MonthlySales") ?? string.Empty;
-        YearlySalesLblText = _resources.GetString("YearlySales") ?? string.Empty;
-        RestLblText = _resources.GetString("RestLblText") ?? string.Empty;
-        MoneyUnit = _resources.GetString("MoneyUnit") ?? string.Empty;
+        FinancialOverviewTitle = TextResource.FinancialOverviewTitle ?? string.Empty;
+        FilePageBtnText = TextResource.FilePageTitle ?? string.Empty;
+        AddBtnText = TextResource.Add ?? string.Empty;
+        AddBtnFontSize = Convert.ToInt16(TextResource.AddBtnFontSize);
+        DeleteBtnText = TextResource.Delete ?? string.Empty;
+        AllSalesLblText = TextResource.AllSales ?? string.Empty;
+        NamePlaceholder = TextResource.NamePlaceholder ?? string.Empty;
+        AdditionPlaceholder = TextResource.AdditionPlaceholder ?? string.Empty;
+        MonthlySalesLblText = TextResource.MonthlySales ?? string.Empty;
+        YearlySalesLblText = TextResource.YearlySales ?? string.Empty;
+        RestLblText = TextResource.RestLblText ?? string.Empty;
+        MoneyUnit = TextResource.MoneyUnit ?? string.Empty;
         TimeUnits.Clear();
         foreach (var name in Enum.GetNames(typeof(FinancialOverview.Unit)))
-            TimeUnits.Add(_resources.GetString(name) ?? string.Empty);
+            TimeUnits.Add(TextResource.ResourceManager.GetString(name) ?? string.Empty);
     }
 }
