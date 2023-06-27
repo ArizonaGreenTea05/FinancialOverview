@@ -160,11 +160,65 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open File.
+        /// </summary>
+        internal static string OpenFile {
+            get {
+                return ResourceManager.GetString("OpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 17.
+        /// </summary>
+        internal static string OpenFileFontSize {
+            get {
+                return ResourceManager.GetString("OpenFileFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rest:.
         /// </summary>
         internal static string RestLblText {
             get {
                 return ResourceManager.GetString("RestLblText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save File.
+        /// </summary>
+        internal static string SaveFile {
+            get {
+                return ResourceManager.GetString("SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save File As.
+        /// </summary>
+        internal static string SaveFileAs {
+            get {
+                return ResourceManager.GetString("SaveFileAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 17.
+        /// </summary>
+        internal static string SaveFileAsFontSize {
+            get {
+                return ResourceManager.GetString("SaveFileAsFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 17.
+        /// </summary>
+        internal static string SaveFileFontSize {
+            get {
+                return ResourceManager.GetString("SaveFileFontSize", resourceCulture);
             }
         }
         

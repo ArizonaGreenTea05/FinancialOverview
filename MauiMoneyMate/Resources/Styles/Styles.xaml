@@ -251,8 +251,8 @@
         <Setter Property="FontFamily" Value="OpenSansBold"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="FontAttributes" Value="None"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="FontAutoScalingEnabled" Value="True"/>
     </Style>
 
     <Style TargetType="ListView">
