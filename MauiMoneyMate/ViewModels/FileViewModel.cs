@@ -1,12 +1,19 @@
 ﻿using BusinessLogic;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Resources;
 using MauiMoneyMate.Resources.Languages;
+using CommunityToolkit.Mvvm.Input;
+using static MauiMoneyMate.Utils;
 
 namespace MauiMoneyMate.ViewModels
 {
     public partial class FileViewModel : ObservableObject
     {
+        public enum FileDialogType
+        {
+            Save,
+            Open
+        }
+
         [ObservableProperty] private string _filePageTitle;
 
         [ObservableProperty] private string _openFileText;
@@ -21,9 +28,51 @@ namespace MauiMoneyMate.ViewModels
 
         [ObservableProperty] private int _saveFileAsFontSize;
 
-        public FileViewModel()
+        private readonly FinancialOverview _financialOverview;
+        private const string FileFilterForXmlFiles = "XML files (.xml)|*.xml";
+        
+        public FileViewModel(ref FinancialOverview financialOverview)
         {
+            _financialOverview = financialOverview;
             LoadResources();
+        }
+
+        [RelayCommand]
+        private void OpenFile()
+        {
+            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
+                FileFilterForXmlFiles, FileDialogType.Open);
+            if (null != filepath) _financialOverview.LoadData(filepath);
+        }
+
+        [RelayCommand]
+        private void SaveFile()
+        {
+            _financialOverview.SaveData();
+        }
+
+        [RelayCommand]
+        private void SaveFileAs()
+        {
+            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
+                FileFilterForXmlFiles, FileDialogType.Save);
+            if (null != filepath) _financialOverview.SaveData(filepath);
+        }
+
+        private static string GetFilepathFromUser(string defaultDirectory, string defaultFilename, string defaultExtension, string filter, FileDialogType type)
+        {
+            FileDialog dialog;
+            if (type == FileDialogType.Save)
+                dialog = new SaveFileDialog();
+            else
+                dialog = new OpenFileDialog();
+            dialog.Title = $@"Select {defaultExtension}";
+            dialog.InitialDirectory = Directory.Exists(defaultDirectory) ? defaultDirectory : Directory.GetCurrentDirectory();
+            dialog.FileName = defaultFilename;
+            dialog.DefaultExt = defaultExtension;
+            dialog.Filter = filter;
+            if (dialog.ShowDialog() == DialogResult.Cancel) return null;
+            return dialog.FileName;
         }
 
         private void LoadResources()

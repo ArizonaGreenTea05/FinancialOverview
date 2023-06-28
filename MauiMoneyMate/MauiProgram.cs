@@ -1,5 +1,8 @@
-﻿using MauiMoneyMate.ViewModels;
+﻿using BusinessLogic;
+using MauiMoneyMate.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using static CommonUtilities.CommonFunctions;
 
 namespace MauiMoneyMate
 {
@@ -16,11 +19,13 @@ namespace MauiMoneyMate
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            var financialOverview = new BusinessLogic.FinancialOverview();
+
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton(new MainViewModel(new BusinessLogic.FinancialOverview()));
+            builder.Services.AddSingleton(new MainViewModel(ref financialOverview));
 
             builder.Services.AddTransient<FilePage>();
-            builder.Services.AddTransient<FileViewModel>();
+            builder.Services.AddSingleton(new FileViewModel(ref financialOverview));
 
             return builder.Build();
         }

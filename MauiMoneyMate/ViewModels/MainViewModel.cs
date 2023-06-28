@@ -62,7 +62,7 @@ public partial class MainViewModel : ObservableObject
 
     private readonly FinancialOverview _financialOverview;
 
-    public MainViewModel(FinancialOverview financialOverview)
+    public MainViewModel(ref FinancialOverview financialOverview)
     {
         TimeUnits = new ObservableCollection<string>();
         LoadResources();
