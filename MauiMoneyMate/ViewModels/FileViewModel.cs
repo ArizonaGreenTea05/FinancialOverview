@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using MauiMoneyMate.Resources.Languages;
 using CommunityToolkit.Mvvm.Input;
-using static MauiMoneyMate.Utils;
 
 namespace MauiMoneyMate.ViewModels
 {
