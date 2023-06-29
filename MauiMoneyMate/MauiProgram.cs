@@ -1,7 +1,4 @@
-﻿using BusinessLogic;
-using MauiMoneyMate.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate
 {
@@ -19,12 +16,13 @@ namespace MauiMoneyMate
                 });
 
             var financialOverview = new BusinessLogic.FinancialOverview();
+            var commonVariables = new CommonVariables();
 
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton(new MainViewModel(ref financialOverview));
+            builder.Services.AddSingleton(new MainViewModel(financialOverview, commonVariables));
 
             builder.Services.AddTransient<FilePage>();
-            builder.Services.AddSingleton(new FileViewModel(ref financialOverview));
+            builder.Services.AddSingleton(new FileViewModel(financialOverview, commonVariables));
 
             return builder.Build();
         }

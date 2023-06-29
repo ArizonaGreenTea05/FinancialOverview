@@ -5,8 +5,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using MauiMoneyMate.Resources.Languages;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Maui.Storage;
-using CommunityToolkit.Maui.Core;
-using System.Threading;
 
 namespace MauiMoneyMate.ViewModels
 {
@@ -34,21 +32,21 @@ namespace MauiMoneyMate.ViewModels
         [ObservableProperty] private int _saveFileAsFontSize;
 
         private readonly FinancialOverview _financialOverview;
-        private const string FileFilterForXmlFiles = "XML files (.xml)|*.xml";
-        
-        public FileViewModel(ref FinancialOverview financialOverview)
+        private readonly CommonVariables _commonVariables;
+
+        public FileViewModel(FinancialOverview financialOverview, CommonVariables commonVariables)
         {
+            _commonVariables = commonVariables;
             _financialOverview = financialOverview;
             LoadResources();
         }
 
         [RelayCommand]
-        async Task OpenFile(CancellationToken cancellationToken)
+        private async Task OpenFile(CancellationToken cancellationToken)
         {
-            var pickOptions = PickOptions.Default;
             try
             {
-                var folderPickerResult = await FilePicker.PickAsync(pickOptions);
+                var folderPickerResult = await FilePicker.PickAsync(PickOptions.Default);
                 if (folderPickerResult == null)
                 {
                     Toast.Make("File could not be opened");
@@ -56,6 +54,7 @@ namespace MauiMoneyMate.ViewModels
                 }
 
                 _financialOverview.LoadData(folderPickerResult.FullPath);
+                DataIsSaved = true;
             }
             catch (Exception ex)
             {
@@ -66,24 +65,50 @@ namespace MauiMoneyMate.ViewModels
         [RelayCommand]
         private async Task SaveFile(CancellationToken cancellationToken)
         {
-            _financialOverview.SaveData();
+            DataIsSaved = _financialOverview.SaveData();
+            if (DataIsSaved)
+                await Toast.Make($"File has been saved: {_financialOverview.DefaultFilePath}").Show(cancellationToken);
+            else
+                await Toast.Make($"File could not be saved").Show(cancellationToken);
         }
 
         [RelayCommand]
         private async Task SaveFileAs(CancellationToken cancellationToken)
         {
-            using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
             try
             {
-                var fileLocationResult = await FileSaver.SaveAsync(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, stream, cancellationToken);
+                var fileLocationResult = await FileSaver.SaveAsync(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, Stream.Null, cancellationToken);
                 fileLocationResult.EnsureSuccess();
                 _financialOverview.SaveData(fileLocationResult.FilePath);
-                await Toast.Make($"File is saved: {fileLocationResult.FilePath}").Show(cancellationToken);
+                await Toast.Make($"File has been saved: {fileLocationResult.FilePath}").Show(cancellationToken);
+                DataIsSaved = true;
             }
             catch (Exception ex)
             {
-                await Toast.Make($"File is not saved, {ex.Message}").Show(cancellationToken);
+                await Toast.Make($"File could not be saved, {ex.Message}").Show(cancellationToken);
             }
+        }
+
+        public void OnAppearing()
+        {
+            DisplaySavingState();
+        }
+
+        private bool DataIsSaved
+        {
+            set
+            {
+                _commonVariables.DataIsSaved = value;
+                DisplaySavingState();
+            }
+            get => _commonVariables.DataIsSaved;
+        }
+
+        private void DisplaySavingState()
+        {
+            FilePageTitle = FilePageTitle.TrimEnd('*');
+            if (!DataIsSaved)
+                FilePageTitle += '*';
         }
 
         private void LoadResources()

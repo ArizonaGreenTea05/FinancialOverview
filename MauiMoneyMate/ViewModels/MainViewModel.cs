@@ -61,12 +61,14 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private string _moneyUnit;
 
     private readonly FinancialOverview _financialOverview;
+    private readonly CommonVariables _commonVariables;
 
-    public MainViewModel(ref FinancialOverview financialOverview)
+    public MainViewModel(FinancialOverview financialOverview, CommonVariables commonVariables)
     {
         TimeUnits = new ObservableCollection<string>();
         LoadResources();
 
+        _commonVariables = commonVariables;
         _financialOverview = financialOverview;
         _financialOverview.LoadData();
 
@@ -88,6 +90,7 @@ public partial class MainViewModel : ObservableObject
         MonthlyNameEntryText = string.Empty;
         MonthlyAdditionEntryText = string.Empty;
         UpdateAllSales();
+        DataIsSaved = false;
     }
 
     [RelayCommand]
@@ -100,6 +103,7 @@ public partial class MainViewModel : ObservableObject
         YearlyNameEntryText = string.Empty;
         YearlyAdditionEntryText = string.Empty;
         UpdateAllSales();
+        DataIsSaved = false;
     }
 
     [RelayCommand]
@@ -108,6 +112,7 @@ public partial class MainViewModel : ObservableObject
         if (MonthlySales.Contains(s))
             MonthlySales.Remove(s);
         UpdateAllSales();
+        DataIsSaved = false;
     }
 
     [RelayCommand]
@@ -116,6 +121,7 @@ public partial class MainViewModel : ObservableObject
         if (YearlySales.Contains(s))
             YearlySales.Remove(s);
         UpdateAllSales();
+        DataIsSaved = false;
     }
 
     [RelayCommand]
@@ -127,12 +133,30 @@ public partial class MainViewModel : ObservableObject
     public void OnAppearing()
     {
         UpdateSales();
+        DisplaySavingState();
     }
 
     public void TimeUnitChanged()
     {
         _financialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
         UpdateAllSales();
+    }
+
+    private bool DataIsSaved
+    {
+        set
+        {
+            _commonVariables.DataIsSaved = value;
+            DisplaySavingState();
+        }
+        get => _commonVariables.DataIsSaved;
+    }
+
+    private void DisplaySavingState()
+    {
+        FinancialOverviewTitle = FinancialOverviewTitle.TrimEnd('*');
+        if (!DataIsSaved)
+            FinancialOverviewTitle += '*';
     }
 
     private void UpdateSales()
