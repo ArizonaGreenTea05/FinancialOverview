@@ -1,12 +1,18 @@
-﻿using BusinessLogic;
+﻿using System.Text;
+using BusinessLogic;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MauiMoneyMate.Resources.Languages;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Maui.Storage;
+using CommunityToolkit.Maui.Core;
+using System.Threading;
 
 namespace MauiMoneyMate.ViewModels
 {
     public partial class FileViewModel : ObservableObject
     {
+
         public enum FileDialogType
         {
             Save,
@@ -37,41 +43,47 @@ namespace MauiMoneyMate.ViewModels
         }
 
         [RelayCommand]
-        private void OpenFile()
+        async Task OpenFile(CancellationToken cancellationToken)
         {
-            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
-                FileFilterForXmlFiles, FileDialogType.Open);
-            if (null != filepath) _financialOverview.LoadData(filepath);
-        }
+            var pickOptions = PickOptions.Default;
+            try
+            {
+                var folderPickerResult = await FilePicker.PickAsync(pickOptions);
+                if (folderPickerResult == null)
+                {
+                    Toast.Make("File could not be opened");
+                    return;
+                }
 
+                _financialOverview.LoadData(folderPickerResult.FullPath);
+            }
+            catch (Exception ex)
+            {
+                await Toast.Make($"File could not be opened, {ex.Message}").Show(cancellationToken);
+            }
+
+        }
         [RelayCommand]
-        private void SaveFile()
+        private async Task SaveFile(CancellationToken cancellationToken)
         {
             _financialOverview.SaveData();
         }
 
         [RelayCommand]
-        private void SaveFileAs()
+        private async Task SaveFileAs(CancellationToken cancellationToken)
         {
-            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
-                FileFilterForXmlFiles, FileDialogType.Save);
-            if (null != filepath) _financialOverview.SaveData(filepath);
-        }
-
-        private static string GetFilepathFromUser(string defaultDirectory, string defaultFilename, string defaultExtension, string filter, FileDialogType type)
-        {
-            FileDialog dialog;
-            if (type == FileDialogType.Save)
-                dialog = new SaveFileDialog();
-            else
-                dialog = new OpenFileDialog();
-            dialog.Title = $@"Select {defaultExtension}";
-            dialog.InitialDirectory = Directory.Exists(defaultDirectory) ? defaultDirectory : Directory.GetCurrentDirectory();
-            dialog.FileName = defaultFilename;
-            dialog.DefaultExt = defaultExtension;
-            dialog.Filter = filter;
-            if (dialog.ShowDialog() == DialogResult.Cancel) return null;
-            return dialog.FileName;
+            using var stream = new MemoryStream(Encoding.Default.GetBytes("Hello from the Community Toolkit!"));
+            try
+            {
+                var fileLocationResult = await FileSaver.SaveAsync(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, stream, cancellationToken);
+                fileLocationResult.EnsureSuccess();
+                _financialOverview.SaveData(fileLocationResult.FilePath);
+                await Toast.Make($"File is saved: {fileLocationResult.FilePath}").Show(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                await Toast.Make($"File is not saved, {ex.Message}").Show(cancellationToken);
+            }
         }
 
         private void LoadResources()

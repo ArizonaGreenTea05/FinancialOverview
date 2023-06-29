@@ -12,6 +12,12 @@ namespace MauiMoneyMate
             BindingContext = _viewModel = viewModel;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
+        }
+
         private void TimeUnitPkr_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             _viewModel.TimeUnitChanged();

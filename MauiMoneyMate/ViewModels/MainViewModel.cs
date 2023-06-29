@@ -73,11 +73,7 @@ public partial class MainViewModel : ObservableObject
         MonthlySales = new ObservableCollection<string>();
         YearlySales = new ObservableCollection<string>();
         AllSales = new ObservableCollection<string>();
-        foreach (DataRow row in _financialOverview.MonthlySales.Rows)
-            Add(MonthlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
-        foreach (DataRow row in _financialOverview.YearlySales.Rows)
-            Add(YearlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
-        UpdateAllSales();
+        UpdateSales();
 
         SelectedTimeUnit = (int)_financialOverview.UnitOfAll;
     }
@@ -128,10 +124,36 @@ public partial class MainViewModel : ObservableObject
         await Shell.Current.GoToAsync(nameof(FilePage));
     }
 
+    public void OnAppearing()
+    {
+        UpdateSales();
+    }
+
     public void TimeUnitChanged()
     {
         _financialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
         UpdateAllSales();
+    }
+
+    private void UpdateSales()
+    {
+        UpdateMonthlySales();
+        UpdateYearlySales();
+        UpdateAllSales();
+    }
+
+    private void UpdateMonthlySales()
+    {
+        MonthlySales.Clear();
+        foreach (DataRow row in _financialOverview.MonthlySales.Rows)
+            Add(MonthlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+    }
+
+    private void UpdateYearlySales()
+    {
+        YearlySales.Clear();
+        foreach (DataRow row in _financialOverview.YearlySales.Rows)
+            Add(YearlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
     }
 
     private void UpdateAllSales()
