@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
-using System.Threading;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,6 +10,8 @@ namespace MauiMoneyMate.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
+    #region private Observable Properties
+
     [ObservableProperty] private ObservableCollection<string> _monthlySales;
 
     [ObservableProperty] private ObservableCollection<string> _yearlySales;
@@ -61,10 +62,18 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _moneyUnit;
 
+    #endregion
+
+    #region private Members
+
     private readonly FinancialOverview _financialOverview;
     private readonly CommonVariables _commonVariables;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
+
+    #endregion
+
+    #region public Constructors
 
     public MainViewModel(FinancialOverview financialOverview, CommonVariables commonVariables)
     {
@@ -86,6 +95,10 @@ public partial class MainViewModel : ObservableObject
         SelectedTimeUnit = (int)_financialOverview.UnitOfAll;
     }
 
+    #endregion
+
+    #region private Relay Commands
+
     [RelayCommand]
     private async Task AddMonthly(CancellationToken cancellationToken)
     {
@@ -95,9 +108,11 @@ public partial class MainViewModel : ObservableObject
             MonthlyAdditionEntryText);
         if (MonthlySales.Contains(tmp))
         {
-            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, MonthlySalesLblText, tmp)).Show(cancellationToken);
+            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, MonthlySalesLblText, tmp))
+                .Show(cancellationToken);
             return;
         }
+
         _monthlySalesDict[tmp] =
             _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntryText, MonthlyNameEntryText,
                 MonthlyAdditionEntryText);
@@ -118,9 +133,11 @@ public partial class MainViewModel : ObservableObject
             YearlyAdditionEntryText);
         if (YearlySales.Contains(tmp))
         {
-            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, YearlySalesLblText, tmp)).Show(cancellationToken);
+            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, YearlySalesLblText, tmp))
+                .Show(cancellationToken);
             return;
         }
+
         _yearlySalesDict[tmp] =
             _financialOverview.YearlySales.Rows.Add(YearlySalesEntryText, YearlyNameEntryText,
                 YearlyAdditionEntryText);
@@ -140,6 +157,7 @@ public partial class MainViewModel : ObservableObject
             MonthlySales.Remove(s);
             _monthlySalesDict[s].Delete();
         }
+
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -152,6 +170,7 @@ public partial class MainViewModel : ObservableObject
             YearlySales.Remove(s);
             _yearlySalesDict[s].Delete();
         }
+
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -161,6 +180,10 @@ public partial class MainViewModel : ObservableObject
     {
         await Shell.Current.GoToAsync(nameof(FilePage));
     }
+
+    #endregion
+
+    #region public Methods
 
     public void OnAppearing()
     {
@@ -173,6 +196,10 @@ public partial class MainViewModel : ObservableObject
         _financialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
         UpdateAllSales();
     }
+
+    #endregion
+
+    #region private Methods
 
     private bool DataIsSaved
     {
@@ -225,7 +252,8 @@ public partial class MainViewModel : ObservableObject
         var tmp = _financialOverview.AllSales.Copy();
         AllSales.Clear();
         foreach (DataRow row in tmp.Rows)
-            AllSales.Add(ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2])));
+            AllSales.Add(ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]),
+                Convert.ToString(row[2])));
         RestMoney = _financialOverview.GetRest();
     }
 
@@ -255,4 +283,6 @@ public partial class MainViewModel : ObservableObject
         foreach (var name in Enum.GetNames(typeof(FinancialOverview.Unit)))
             TimeUnits.Add(TextResource.ResourceManager.GetString(name) ?? string.Empty);
     }
+
+    #endregion
 }
