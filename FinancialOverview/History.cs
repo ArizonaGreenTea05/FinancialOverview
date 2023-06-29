@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace FinancialOverview
+namespace BusinessLogic
 {
     public class History : IEnumerable
     {

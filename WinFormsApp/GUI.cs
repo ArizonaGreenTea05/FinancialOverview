@@ -10,7 +10,7 @@ namespace WinFormsApp
 {
     public partial class GUI : MetroForm
     {
-        private readonly FinancialOverview.FinancialOverview _financialOverview;
+        private readonly BusinessLogic.FinancialOverview _financialOverview;
         private DataTable _allSales;
         private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(GUI));
         private const string FILE_FILTER_FOR_XML_FILES = "XML files (.xml)|*.xml";
@@ -20,7 +20,7 @@ namespace WinFormsApp
         public GUI()
         {
             InitializeComponent();
-            _financialOverview = new FinancialOverview.FinancialOverview();
+            _financialOverview = new BusinessLogic.FinancialOverview();
             _financialOverview.LoadData();
             monthlyDataGridView.DataSource = _financialOverview.MonthlySales;
             yearlyDataGridView.DataSource = _financialOverview.YearlySales;
@@ -74,7 +74,7 @@ namespace WinFormsApp
 
         private void unitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _financialOverview.UnitOfAll = (FinancialOverview.FinancialOverview.Unit)unitComboBox.SelectedIndex;
+            _financialOverview.UnitOfAll = (BusinessLogic.FinancialOverview.Unit)unitComboBox.SelectedIndex;
             UpdateGui();
         }
 

@@ -2,7 +2,7 @@
 using System.Data;
 using System.IO.IsolatedStorage;
 
-namespace FinancialOverview
+namespace BusinessLogic
 {
     public class Snapshot
     {

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiMoneyMate.ViewModels"
+             x:Class="MauiMoneyMate.FilePage"
+             x:DataType="viewModels:FileViewModel"
+             Title="{Binding FilePageTitle}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
+    <Grid RowDefinitions="40,40,40,40,40,40,40,40,40,40,40,40,40,40,40"
+          ColumnDefinitions="40,40,40,40,40,40,40,40,40,40,40,40,40,40,40">
+        <ImageButton Grid.Row="2"
+                     Grid.RowSpan="3"
+                     Grid.Column="3"
+                     Grid.ColumnSpan="3"
+                     Source="open.png"
+                     Command="{Binding OpenFileCommand}"/>
+
+        <Label Grid.Row="4"
+               Grid.RowSpan="1"
+               Grid.Column="3"
+               Grid.ColumnSpan="3"
+               FontSize="{Binding OpenFileFontSize}"
+               Text="{Binding OpenFileText}"
+               Style="{StaticResource Label3}"/>
+
+        <ImageButton Grid.Row="6"
+                     Grid.RowSpan="3"
+                     Grid.Column="3"
+                     Grid.ColumnSpan="3"
+                     Source="save.png"
+                     Command="{Binding SaveFileCommand}"/>
+
+        <Label Grid.Row="8"
+               Grid.RowSpan="1"
+               Grid.Column="3"
+               Grid.ColumnSpan="3"
+               FontSize="{Binding SaveFileFontSize}"
+               Text="{Binding SaveFileText}"
+               Style="{StaticResource Label3}"/>
+
+        <ImageButton Grid.Row="6"
+                     Grid.RowSpan="3"
+                     Grid.Column="7"
+                     Grid.ColumnSpan="3"
+                     Source="save_as.png"
+                     Command="{Binding SaveFileAsCommand}"/>
+
+        <Label Grid.Row="8"
+               Grid.RowSpan="1"
+               Grid.Column="7"
+               Grid.ColumnSpan="3"
+               FontSize="{Binding SaveFileAsFontSize}"
+               Text="{Binding SaveFileAsText}"
+               Style="{StaticResource Label3}"/>
+    </Grid>
+</ContentPage>

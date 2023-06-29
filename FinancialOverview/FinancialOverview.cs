@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FinancialOverview
+namespace BusinessLogic
 {
     public class FinancialOverview
     {
@@ -88,6 +89,7 @@ namespace FinancialOverview
         public bool LoadData(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
+            if (!Directory.Exists(Path.GetDirectoryName(path))) return false;
             MonthlySales.Clear();
             YearlySales.Clear();
             _dataSet.ReadXml(path);
