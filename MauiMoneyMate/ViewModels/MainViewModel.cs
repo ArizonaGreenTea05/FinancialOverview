@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
-using System.Resources;
+using System.Threading;
 using BusinessLogic;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
@@ -62,6 +63,8 @@ public partial class MainViewModel : ObservableObject
 
     private readonly FinancialOverview _financialOverview;
     private readonly CommonVariables _commonVariables;
+    private readonly Dictionary<string, DataRow> _monthlySalesDict;
+    private readonly Dictionary<string, DataRow> _yearlySalesDict;
 
     public MainViewModel(FinancialOverview financialOverview, CommonVariables commonVariables)
     {
@@ -72,6 +75,9 @@ public partial class MainViewModel : ObservableObject
         _financialOverview = financialOverview;
         _financialOverview.LoadData();
 
+        _monthlySalesDict = new Dictionary<string, DataRow>();
+        _yearlySalesDict = new Dictionary<string, DataRow>();
+
         MonthlySales = new ObservableCollection<string>();
         YearlySales = new ObservableCollection<string>();
         AllSales = new ObservableCollection<string>();
@@ -81,11 +87,21 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void AddMonthly()
+    private async Task AddMonthly(CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(MonthlySalesEntryText) || string.IsNullOrWhiteSpace(MonthlyNameEntryText))
             return;
-        Add(MonthlySales, Convert.ToDouble(MonthlySalesEntryText), MonthlyNameEntryText, MonthlyAdditionEntryText);
+        var tmp = ConvertToLabelText(Convert.ToDouble(MonthlySalesEntryText), MonthlyNameEntryText,
+            MonthlyAdditionEntryText);
+        if (MonthlySales.Contains(tmp))
+        {
+            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, MonthlySalesLblText, tmp)).Show(cancellationToken);
+            return;
+        }
+        _monthlySalesDict[tmp] =
+            _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntryText, MonthlyNameEntryText,
+                MonthlyAdditionEntryText);
+        MonthlySales.Add(tmp);
         MonthlySalesEntryText = string.Empty;
         MonthlyNameEntryText = string.Empty;
         MonthlyAdditionEntryText = string.Empty;
@@ -94,11 +110,21 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void AddYearly()
+    private async Task AddYearly(CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(YearlySalesEntryText) || string.IsNullOrWhiteSpace(YearlyNameEntryText))
             return;
-        Add(YearlySales, Convert.ToDouble(YearlySalesEntryText), YearlyNameEntryText, YearlyAdditionEntryText);
+        var tmp = ConvertToLabelText(Convert.ToDouble(YearlySalesEntryText), YearlyNameEntryText,
+            YearlyAdditionEntryText);
+        if (YearlySales.Contains(tmp))
+        {
+            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, YearlySalesLblText, tmp)).Show(cancellationToken);
+            return;
+        }
+        _yearlySalesDict[tmp] =
+            _financialOverview.YearlySales.Rows.Add(YearlySalesEntryText, YearlyNameEntryText,
+                YearlyAdditionEntryText);
+        YearlySales.Add(tmp);
         YearlySalesEntryText = string.Empty;
         YearlyNameEntryText = string.Empty;
         YearlyAdditionEntryText = string.Empty;
@@ -110,7 +136,10 @@ public partial class MainViewModel : ObservableObject
     private void DeleteMonthly(string s)
     {
         if (MonthlySales.Contains(s))
+        {
             MonthlySales.Remove(s);
+            _monthlySalesDict[s].Delete();
+        }
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -119,7 +148,10 @@ public partial class MainViewModel : ObservableObject
     private void DeleteYearly(string s)
     {
         if (YearlySales.Contains(s))
+        {
             YearlySales.Remove(s);
+            _yearlySalesDict[s].Delete();
+        }
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -170,14 +202,22 @@ public partial class MainViewModel : ObservableObject
     {
         MonthlySales.Clear();
         foreach (DataRow row in _financialOverview.MonthlySales.Rows)
-            Add(MonthlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+        {
+            var tmp = ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            MonthlySales.Add(tmp);
+            _monthlySalesDict[tmp] = row;
+        }
     }
 
     private void UpdateYearlySales()
     {
         YearlySales.Clear();
         foreach (DataRow row in _financialOverview.YearlySales.Rows)
-            Add(YearlySales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+        {
+            var tmp = ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            YearlySales.Add(tmp);
+            _yearlySalesDict[tmp] = row;
+        }
     }
 
     private void UpdateAllSales()
@@ -185,17 +225,16 @@ public partial class MainViewModel : ObservableObject
         var tmp = _financialOverview.AllSales.Copy();
         AllSales.Clear();
         foreach (DataRow row in tmp.Rows)
-            Add(AllSales, Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            AllSales.Add(ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2])));
         RestMoney = _financialOverview.GetRest();
     }
 
-    private void Add(ObservableCollection<string> collection, double sales, string name, string addition = null)
+    private string ConvertToLabelText(double sales, string name, string addition = null)
     {
-        collection.Add(
-            $@"{sales} | {name} {(string.IsNullOrWhiteSpace(addition)
-                    ? ""
-                    : $" | {addition}"
-                )}");
+        return $@"{sales} | {name} {(string.IsNullOrWhiteSpace(addition)
+                ? ""
+                : $" | {addition}"
+            )}";
     }
 
     private void LoadResources()

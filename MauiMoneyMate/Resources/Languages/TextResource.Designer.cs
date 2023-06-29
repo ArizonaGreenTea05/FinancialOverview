@@ -97,6 +97,15 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} already contains the entry {1}.
+        /// </summary>
+        internal static string AlreadyContainsEntry {
+            get {
+                return ResourceManager.GetString("AlreadyContainsEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {

@@ -177,4 +177,7 @@
   <data name="SaveFileFontSize" xml:space="preserve">
     <value>16</value>
   </data>
+  <data name="AlreadyContainsEntry" xml:space="preserve">
+    <value>{0} enthält bereits den Eintrag {1}</value>
+  </data>
 </root>
