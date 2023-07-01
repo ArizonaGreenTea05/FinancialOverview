@@ -117,70 +117,160 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Hinzufügen</value>
+  <data name="MonthlyAddBtn.Text" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="AllSales" xml:space="preserve">
-    <value>Umsatz (Gesamt)</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Löschen</value>
+  <data name="DeleteBtn.Text" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="Monthly" xml:space="preserve">
-    <value>Monatlich</value>
-  </data>
-  <data name="MonthlySales" xml:space="preserve">
-    <value>Umsatz (Monatlich)</value>
-  </data>
-  <data name="RestLblText" xml:space="preserve">
-    <value>Rest:</value>
+    <value>Monthly</value>
   </data>
   <data name="Yearly" xml:space="preserve">
-    <value>Jährlich</value>
+    <value>Yearly</value>
   </data>
-  <data name="YearlySales" xml:space="preserve">
-    <value>Umsatz (Jährlich)</value>
+  <data name="AllSalesLbl.Text" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="AddBtnFontSize" xml:space="preserve">
-    <value>15</value>
+  <data name="MonthlySalesLbl.Text" xml:space="preserve">
+    <value>Monthly</value>
   </data>
-  <data name="AdditionPlaceholder" xml:space="preserve">
-    <value>Kommentar</value>
+  <data name="YearlySalesLbl.Text" xml:space="preserve">
+    <value>Yearly</value>
   </data>
-  <data name="NamePlaceholder" xml:space="preserve">
-    <value>Bezeichnung</value>
+  <data name="MoneyUnitLbl.Text" xml:space="preserve">
+    <value>€</value>
   </data>
-  <data name="FilePageTitle" xml:space="preserve">
-    <value>Datei</value>
+  <data name="RestLbl.Text" xml:space="preserve">
+    <value>Rest:</value>
   </data>
-  <data name="FinancialOverviewTitle" xml:space="preserve">
-    <value>Finanzübersicht</value>
-  </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>Datei öffnen</value>
-  </data>
-  <data name="SaveFile" xml:space="preserve">
-    <value>Datei speichern</value>
-  </data>
-  <data name="SaveFileAs" xml:space="preserve">
-    <value>Datei speichern als</value>
-  </data>
-  <data name="SaveFileAsFontSize" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="SaveFileFontSize" xml:space="preserve">
+  <data name="MonthlyAddBtn.FontSize" xml:space="preserve">
     <value>16</value>
   </data>
+  <data name="MonthlyAdditionEntry.Placeholder" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="MonthlyNameEntry.Placeholder" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FilePageTitle" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FinancialOverviewTitle" xml:space="preserve">
+    <value>Financial Overview</value>
+  </data>
+  <data name="OpenFileLbl.Text" xml:space="preserve">
+    <value>Open File</value>
+  </data>
+  <data name="SaveFileLbl.Text" xml:space="preserve">
+    <value>Save File</value>
+  </data>
+  <data name="SaveFileAsLbl.Text" xml:space="preserve">
+    <value>Save File As</value>
+  </data>
+  <data name="OpenFileLbl.FontSize" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="SaveFileLbl.FontSize" xml:space="preserve">
+    <value>17</value>
+  </data>
   <data name="AlreadyContainsEntry" xml:space="preserve">
-    <value>{0} enthält bereits den Eintrag {1}</value>
+    <value>{0} already contains the entry {1}</value>
   </data>
   <data name="CouldNotOpenFile" xml:space="preserve">
-    <value>Datei konnte nicht geöffnet werden</value>
+    <value>File could not be opened</value>
   </data>
   <data name="CouldNotSaveFile" xml:space="preserve">
-    <value>Datei konnte nicht gespeichert werden</value>
+    <value>File could not be saved</value>
   </data>
   <data name="SavedFile" xml:space="preserve">
-    <value>Datei wurde gespeichert: {0}</value>
+    <value>File has been saved: {0}</value>
+  </data>
+  <data name="AllSalesLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="MonthlySalesLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="YearlySalesLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="RestLbl.FontSize" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="RestMoneyLbl.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RestMoneyLbl.FontSize" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="MoneyUnitLbl.FontSize" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="FilePageBtn.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FilePageBtn.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="YearlyAddBtn.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="YearlyAddBtn.FontSize" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="DeleteBtn.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="MonthlySalesEntry.Placeholder" xml:space="preserve">
+    <value>0,00</value>
+  </data>
+  <data name="MonthlySalesEntry.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="MonthlySalesEntry.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="YearlySalesEntry.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="YearlySalesEntry.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="YearlySalesEntry.Placeholder" xml:space="preserve">
+    <value>0,00</value>
+  </data>
+  <data name="MonthlyNameEntry.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="MonthlyNameEntry.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonthlyAdditionEntry.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MonthlyAdditionEntry.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="YearlyNameEntry.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="YearlyNameEntry.Placeholder" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="YearlyNameEntry.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="YearlyAdditionEntry.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="YearlyAdditionEntry.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
+    <value>Comment</value>
   </data>
 </root>

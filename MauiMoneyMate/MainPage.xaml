@@ -17,7 +17,8 @@
                                Grid.ColumnSpan="100"
                                Grid.Row="0"
                                Padding="0,0,0,20">
-            <Button Text="{Binding FilePageBtnText}"
+            <Button Text="{Binding FilePageBtn.Text}"
+                    FontSize="{Binding FilePageBtn.FontSize}"
                     Style="{StaticResource PageSwitcher}"
                     Command="{Binding SwitchToFilePageCommand}"/>
         </HorizontalStackLayout>
@@ -31,21 +32,19 @@
                Grid.ColumnSpan="33"
                Grid.Row="1"
                Style="{StaticResource Frame1}"/>
-        
+
         <Label Grid.Column="1"
                Grid.ColumnSpan="25"
                Grid.Row="1"
-               x:Name="AllSalesLbl"
-               Text="{Binding AllSalesLblText}"
+               Text="{Binding AllSalesLbl.Text}"
+               FontSize="{Binding AllSalesLbl.FontSize}"
                Style="{StaticResource Label1}"
-               FontSize="30"
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
 
         <Picker Grid.Column="33"
                 Grid.ColumnSpan="10"
                 Grid.Row="1"
-                x:Name="TimeUnitPkr"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
                 FontSize="20"
@@ -58,7 +57,6 @@
                         Grid.ColumnSpan="44"
                         Grid.Row="3"
                         Grid.RowSpan="4"
-                        x:Name="AllCv"
                         VerticalOptions="Start"
                         ItemsSource="{Binding AllSales}">
 
@@ -80,46 +78,43 @@
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
                Grid.Row="1"
-               x:Name="MonthlySalesLbl"
-               Text="{Binding MonthlySalesLblText}"
+               Text="{Binding MonthlySalesLbl.Text}"
+               FontSize="{Binding MonthlySalesLbl.FontSize}"
                Style="{StaticResource Label1}"
-               FontSize="30"
                VerticalOptions="Start" />
 
-        <Entry Placeholder="0,00"
+        <Entry Placeholder="{Binding MonthlySalesEntry.Placeholder}"
+               Text="{Binding MonthlySalesEntry.Text}"
+               FontSize="{Binding MonthlySalesEntry.FontSize}"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="2"
-               x:Name="MonthlySalesEntry"
-               Text="{Binding MonthlySalesEntryText}"/>
+               Grid.Row="2"/>
 
-        <Entry Placeholder="{Binding NamePlaceholder}"
+        <Entry Placeholder="{Binding MonthlyNameEntry.Placeholder}"
+               Text="{Binding MonthlyNameEntry.Text}"
+               FontSize="{Binding MonthlyNameEntry.FontSize}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="2"
-               x:Name="MonthlyNameEntry"
-               Text="{Binding MonthlyNameEntryText}"/>
+               Grid.Row="2"/>
 
-        <Entry Placeholder="{Binding AdditionPlaceholder}"
+        <Entry Placeholder="{Binding MonthlyAdditionEntry.Placeholder}"
+               Text="{Binding MonthlyAdditionEntry.Text}"
+               FontSize="{Binding MonthlyAdditionEntry.FontSize}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="2"
-               x:Name="MonthlyAdditionEntry"
-               Text="{Binding MonthlyAdditionEntryText}"/>
+               Grid.Row="2"/>
 
-        <Button Text="{Binding AddBtnText}"
+        <Button Text="{Binding MonthlyAddBtn.Text}"
+                FontSize="{Binding MonthlyAddBtn.FontSize}"
                 Grid.Column="90"
                 Grid.ColumnSpan="10"
                 Grid.Row="2"
-                FontSize="{Binding AddBtnFontSize}"
                 Scale=".8"
-                x:Name="MonthlyAddBtn" 
                 Command="{Binding AddMonthlyCommand}"/>
 
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
                         Grid.Row="3"
-                        x:Name="MonthlyCv"
                         VerticalOptions="Start"
                         ItemsSource="{Binding MonthlySales}">
                 
@@ -137,9 +132,9 @@
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
-                                x:Name="DeleteEntryBtn"
                                 Style="{StaticResource DeleteBtn}"
-                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtnText}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteMonthlyCommand}"
                                 CommandParameter="{Binding}"/>
                     </Grid>
@@ -150,46 +145,43 @@
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
                Grid.Row="4"
-               x:Name="YearlySalesLbl"
-               Text="{Binding YearlySalesLblText}"
+               Text="{Binding YearlySalesLbl.Text}"
+               FontSize="{Binding YearlySalesLbl.FontSize}"
                Style="{StaticResource Label1}"
-               FontSize="30"
                VerticalOptions="Start" />
 
-        <Entry Placeholder="0,00"
+        <Entry Placeholder="{Binding YearlySalesEntry.Placeholder}"
+               Text="{Binding YearlySalesEntry.Text}"
+               FontSize="{Binding YearlySalesEntry.FontSize}"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="5"
-               x:Name="YearlySalesEntry"
-               Text="{Binding YearlySalesEntryText}"/>
+               Grid.Row="5"/>
 
-        <Entry Placeholder="{Binding NamePlaceholder}"
+        <Entry Placeholder="{Binding YearlyNameEntry.Placeholder}"
+               Text="{Binding YearlyNameEntry.Text}"
+               FontSize="{Binding YearlyNameEntry.FontSize}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="5"
-               x:Name="YearlyNameEntry"
-               Text="{Binding YearlyNameEntryText}"/>
+               Grid.Row="5"/>
 
-        <Entry Placeholder="{Binding AdditionPlaceholder}"
+        <Entry Placeholder="{Binding YearlyAdditionEntry.Placeholder}"
+               Text="{Binding YearlyAdditionEntry.Text}"
+               FontSize="{Binding YearlyAdditionEntry.FontSize}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="5"
-               x:Name="YearlyAdditionEntry"
-               Text="{Binding YearlyAdditionEntryText}"/>
+               Grid.Row="5"/>
 
-        <Button Text="{Binding AddBtnText}"
-                Grid.Column="90"
+        <Button Grid.Column="90"
                 Grid.ColumnSpan="10"
                 Grid.Row="5"
-                FontSize="{Binding AddBtnFontSize}"
+                Text="{Binding YearlyAddBtn.Text}"
+                FontSize="{Binding YearlyAddBtn.FontSize}"
                 Scale=".8"
-                x:Name="YearlyAddBtn"
                 Command="{Binding AddYearlyCommand}"/>
 
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
                         Grid.Row="6 "
-                        x:Name="YearlyCv"
                         VerticalOptions="Start"
                         ItemsSource="{Binding YearlySales}">
 
@@ -207,9 +199,9 @@
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
-                                x:Name="DeleteEntryBtn"
                                 Style="{StaticResource DeleteBtn}"
-                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtnText}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteYearlyCommand}"
                                 CommandParameter="{Binding}"/>
                     </Grid>
@@ -230,9 +222,8 @@
         <Label Grid.Column="1"
                Grid.ColumnSpan="9"
                Grid.Row="7"
-               x:Name="RestLbl"
-               Text="{Binding RestLblText}"
-               FontSize="24"
+               Text="{Binding RestLbl.Text}"
+               FontSize="{Binding RestLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalOptions="Start"
                Style="{StaticResource Label2}"/>
@@ -241,9 +232,8 @@
                Grid.ColumnSpan="32"
                Grid.Row="7"
                Padding="0,0,6,0"
-               x:Name="RestMoneyLbl"
                Text="{Binding RestMoney}"
-               FontSize="24"
+               FontSize="{Binding RestMoneyLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
                Style="{StaticResource Label1}"/>
@@ -251,9 +241,8 @@
         <Label Grid.Column="41"
                Grid.ColumnSpan="2"
                Grid.Row="7"
-               x:Name="MoneyUnitLbl"
-               Text="{Binding MoneyUnit}"
-               FontSize="24"
+               Text="{Binding MoneyUnitLbl.Text}"
+               FontSize="{Binding MoneyUnitLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="Start"
                Style="{StaticResource Label1}"/>
