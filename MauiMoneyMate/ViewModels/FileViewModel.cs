@@ -59,14 +59,15 @@ public partial class FileViewModel : ObservableObject
         }
         _financialOverview.LoadData(path);
         DataIsSaved = true;
-        await Shell.Current.GoToAsync("../../route");
+        Shell.Current.GoToAsync("../../route");
     }
 
     [RelayCommand]
-    private async Task SaveFile(CancellationToken cancellationToken)
+    private void SaveFile()
     {
         DataIsSaved = _financialOverview.SaveData();
         if (!DataIsSaved) SaveFileDialog();
+        Shell.Current.GoToAsync("../../route");
     }
 
     [RelayCommand]
@@ -81,7 +82,7 @@ public partial class FileViewModel : ObservableObject
         _financialOverview.SaveData(path);
         Toast.Make($"File has been saved: {path}").Show();
         DataIsSaved = true;
-        await Shell.Current.GoToAsync("../../route");
+        Shell.Current.GoToAsync("../../route");
     }
 
     #endregion
