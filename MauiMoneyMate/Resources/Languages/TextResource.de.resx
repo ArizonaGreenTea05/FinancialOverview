@@ -117,37 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
+  <data name="MonthlyAddBtn.Text" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
-  <data name="AllSales" xml:space="preserve">
+  <data name="AllSalesLbl.Text" xml:space="preserve">
     <value>Umsatz (Gesamt)</value>
   </data>
-  <data name="Delete" xml:space="preserve">
+  <data name="DeleteBtn.Text" xml:space="preserve">
     <value>Löschen</value>
   </data>
   <data name="Monthly" xml:space="preserve">
     <value>Monatlich</value>
   </data>
-  <data name="MonthlySales" xml:space="preserve">
+  <data name="MonthlySalesLbl.Text" xml:space="preserve">
     <value>Umsatz (Monatlich)</value>
   </data>
-  <data name="RestLblText" xml:space="preserve">
+  <data name="RestLbl.Text" xml:space="preserve">
     <value>Rest:</value>
   </data>
   <data name="Yearly" xml:space="preserve">
     <value>Jährlich</value>
   </data>
-  <data name="YearlySales" xml:space="preserve">
+  <data name="YearlySalesLbl.Text" xml:space="preserve">
     <value>Umsatz (Jährlich)</value>
   </data>
-  <data name="AddBtnFontSize" xml:space="preserve">
+  <data name="MonthlyAddBtn.FontSize" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="AdditionPlaceholder" xml:space="preserve">
+  <data name="MonthlyAdditionEntry.Placeholder" xml:space="preserve">
     <value>Kommentar</value>
   </data>
-  <data name="NamePlaceholder" xml:space="preserve">
+  <data name="MonthlyNameEntry.Placeholder" xml:space="preserve">
     <value>Bezeichnung</value>
   </data>
   <data name="FilePageTitle" xml:space="preserve">
@@ -182,5 +182,20 @@
   </data>
   <data name="SavedFile" xml:space="preserve">
     <value>Datei wurde gespeichert: {0}</value>
+  </data>
+  <data name="FilePageBtn.Text" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="YearlyAddBtn.Text" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="YearlyAddBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="YearlyNameEntry.Placeholder" xml:space="preserve">
+    <value>Bezeichnung</value>
+  </data>
+  <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
+    <value>Kommentar</value>
   </data>
 </root>

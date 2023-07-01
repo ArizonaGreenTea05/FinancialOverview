@@ -60,38 +60,20 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to 30.
         /// </summary>
-        internal static string Add {
+        internal static string AllSalesLbl_FontSize {
             get {
-                return ResourceManager.GetString("Add", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 16.
-        /// </summary>
-        internal static string AddBtnFontSize {
-            get {
-                return ResourceManager.GetString("AddBtnFontSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Comment.
-        /// </summary>
-        internal static string AdditionPlaceholder {
-            get {
-                return ResourceManager.GetString("AdditionPlaceholder", resourceCulture);
+                return ResourceManager.GetString("AllSalesLbl.FontSize", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
-        internal static string AllSales {
+        internal static string AllSalesLbl_Text {
             get {
-                return ResourceManager.GetString("AllSales", resourceCulture);
+                return ResourceManager.GetString("AllSalesLbl.Text", resourceCulture);
             }
         }
         
@@ -123,11 +105,38 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string DeleteBtn_FontSize {
+            get {
+                return ResourceManager.GetString("DeleteBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static string Delete {
+        internal static string DeleteBtn_Text {
             get {
-                return ResourceManager.GetString("Delete", resourceCulture);
+                return ResourceManager.GetString("DeleteBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string FilePageBtn_FontSize {
+            get {
+                return ResourceManager.GetString("FilePageBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string FilePageBtn_Text {
+            get {
+                return ResourceManager.GetString("FilePageBtn.Text", resourceCulture);
             }
         }
         
@@ -150,11 +159,20 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 24.
+        /// </summary>
+        internal static string MoneyUnitLbl_FontSize {
+            get {
+                return ResourceManager.GetString("MoneyUnitLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to €.
         /// </summary>
-        internal static string MoneyUnit {
+        internal static string MoneyUnitLbl_Text {
             get {
-                return ResourceManager.GetString("MoneyUnit", resourceCulture);
+                return ResourceManager.GetString("MoneyUnitLbl.Text", resourceCulture);
             }
         }
         
@@ -168,20 +186,119 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
-        internal static string MonthlySales {
+        internal static string MonthlyAddBtn_FontSize {
             get {
-                return ResourceManager.GetString("MonthlySales", resourceCulture);
+                return ResourceManager.GetString("MonthlyAddBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string MonthlyAddBtn_Text {
+            get {
+                return ResourceManager.GetString("MonthlyAddBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string MonthlyAdditionEntry_FontSize {
+            get {
+                return ResourceManager.GetString("MonthlyAdditionEntry.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        internal static string MonthlyAdditionEntry_Placeholder {
+            get {
+                return ResourceManager.GetString("MonthlyAdditionEntry.Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MonthlyAdditionEntry_Text {
+            get {
+                return ResourceManager.GetString("MonthlyAdditionEntry.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string MonthlyNameEntry_FontSize {
+            get {
+                return ResourceManager.GetString("MonthlyNameEntry.FontSize", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string NamePlaceholder {
+        internal static string MonthlyNameEntry_Placeholder {
             get {
-                return ResourceManager.GetString("NamePlaceholder", resourceCulture);
+                return ResourceManager.GetString("MonthlyNameEntry.Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MonthlyNameEntry_Text {
+            get {
+                return ResourceManager.GetString("MonthlyNameEntry.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string MonthlySalesEntry_FontSize {
+            get {
+                return ResourceManager.GetString("MonthlySalesEntry.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0,00.
+        /// </summary>
+        internal static string MonthlySalesEntry_Placeholder {
+            get {
+                return ResourceManager.GetString("MonthlySalesEntry.Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MonthlySalesEntry_Text {
+            get {
+                return ResourceManager.GetString("MonthlySalesEntry.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string MonthlySalesLbl_FontSize {
+            get {
+                return ResourceManager.GetString("MonthlySalesLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly.
+        /// </summary>
+        internal static string MonthlySalesLbl_Text {
+            get {
+                return ResourceManager.GetString("MonthlySalesLbl.Text", resourceCulture);
             }
         }
         
@@ -204,11 +321,38 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 24.
+        /// </summary>
+        internal static string RestLbl_FontSize {
+            get {
+                return ResourceManager.GetString("RestLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rest:.
         /// </summary>
-        internal static string RestLblText {
+        internal static string RestLbl_Text {
             get {
-                return ResourceManager.GetString("RestLblText", resourceCulture);
+                return ResourceManager.GetString("RestLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 24.
+        /// </summary>
+        internal static string RestMoneyLbl_FontSize {
+            get {
+                return ResourceManager.GetString("RestMoneyLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string RestMoneyLbl_Text {
+            get {
+                return ResourceManager.GetString("RestMoneyLbl.Text", resourceCulture);
             }
         }
         
@@ -267,11 +411,119 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        internal static string YearlyAddBtn_FontSize {
+            get {
+                return ResourceManager.GetString("YearlyAddBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string YearlyAddBtn_Text {
+            get {
+                return ResourceManager.GetString("YearlyAddBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string YearlyAdditionEntry_FontSize {
+            get {
+                return ResourceManager.GetString("YearlyAdditionEntry.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        internal static string YearlyAdditionEntry_Placeholder {
+            get {
+                return ResourceManager.GetString("YearlyAdditionEntry.Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string YearlyAdditionEntry_Text {
+            get {
+                return ResourceManager.GetString("YearlyAdditionEntry.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string YearlyNameEntry_FontSize {
+            get {
+                return ResourceManager.GetString("YearlyNameEntry.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string YearlyNameEntry_Placeholder {
+            get {
+                return ResourceManager.GetString("YearlyNameEntry.Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string YearlyNameEntry_Text {
+            get {
+                return ResourceManager.GetString("YearlyNameEntry.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string YearlySalesEntry_FontSize {
+            get {
+                return ResourceManager.GetString("YearlySalesEntry.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0,00.
+        /// </summary>
+        internal static string YearlySalesEntry_Placeholder {
+            get {
+                return ResourceManager.GetString("YearlySalesEntry.Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string YearlySalesEntry_Text {
+            get {
+                return ResourceManager.GetString("YearlySalesEntry.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string YearlySalesLbl_FontSize {
+            get {
+                return ResourceManager.GetString("YearlySalesLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yearly.
         /// </summary>
-        internal static string YearlySales {
+        internal static string YearlySalesLbl_Text {
             get {
-                return ResourceManager.GetString("YearlySales", resourceCulture);
+                return ResourceManager.GetString("YearlySalesLbl.Text", resourceCulture);
             }
         }
     }

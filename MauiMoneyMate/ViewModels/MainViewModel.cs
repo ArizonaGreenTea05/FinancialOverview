@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
+using MauiMoneyMate.Utils.LocalizableItemTemplates;
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -21,12 +22,6 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _financialOverviewTitle;
 
-    [ObservableProperty] private string _deleteBtnText;
-
-    [ObservableProperty] private string _addBtnText;
-
-    [ObservableProperty] private string _filePageBtnText;
-
     [ObservableProperty] private string _mainPageBtnText;
 
     [ObservableProperty] private int _addBtnFontSize;
@@ -35,33 +30,41 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _additionPlaceholder;
 
-    [ObservableProperty] private string _allSalesLblText;
+    [ObservableProperty] private LocalizableLabel _allSalesLbl;
 
-    [ObservableProperty] private string _monthlySalesLblText;
+    [ObservableProperty] private LocalizableLabel _monthlySalesLbl;
 
-    [ObservableProperty] private string _yearlySalesLblText;
+    [ObservableProperty] private LocalizableLabel _yearlySalesLbl;
 
-    [ObservableProperty] private string _restLblText;
+    [ObservableProperty] private LocalizableLabel _restLbl;
 
-    [ObservableProperty] private string _monthlySalesEntryText;
+    [ObservableProperty] private LocalizableLabel _restMoneyLbl;
 
-    [ObservableProperty] private string _monthlyNameEntryText;
+    [ObservableProperty] private LocalizableLabel _moneyUnitLbl;
 
-    [ObservableProperty] private string _monthlyAdditionEntryText;
+    [ObservableProperty] private LocalizableButton _filePageBtn;
 
-    [ObservableProperty] private string _yearlySalesEntryText;
+    [ObservableProperty] private LocalizableButton _yearlyAddBtn;
 
-    [ObservableProperty] private string _yearlyNameEntryText;
+    [ObservableProperty] private LocalizableButton _monthlyAddBtn;
 
-    [ObservableProperty] private string _yearlyAdditionEntryText;
+    [ObservableProperty] private LocalizableButton _deleteBtn;
+
+    [ObservableProperty] private LocalizableEntry _monthlySalesEntry;
+
+    [ObservableProperty] private LocalizableEntry _monthlyNameEntry;
+
+    [ObservableProperty] private LocalizableEntry _monthlyAdditionEntry;
+
+    [ObservableProperty] private LocalizableEntry _yearlySalesEntry;
+
+    [ObservableProperty] private LocalizableEntry _yearlyNameEntry;
+
+    [ObservableProperty] private LocalizableEntry _yearlyAdditionEntry;
 
     [ObservableProperty] private ObservableCollection<string> _timeUnits;
 
     [ObservableProperty] private int _selectedTimeUnit;
-
-    [ObservableProperty] private decimal _restMoney;
-
-    [ObservableProperty] private string _moneyUnit;
 
     #endregion
 
@@ -115,24 +118,24 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task AddMonthly(CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(MonthlySalesEntryText) || string.IsNullOrWhiteSpace(MonthlyNameEntryText))
+        if (string.IsNullOrWhiteSpace(MonthlySalesEntry.Text) || string.IsNullOrWhiteSpace(MonthlyNameEntry.Text))
             return;
-        var tmp = ConvertToLabelText(Convert.ToDouble(MonthlySalesEntryText), MonthlyNameEntryText,
-            MonthlyAdditionEntryText);
+        var tmp = ConvertToLabelText(Convert.ToDouble(MonthlySalesEntry.Text), MonthlyNameEntry.Text,
+            MonthlyAdditionEntry.Text);
         if (MonthlySales.Contains(tmp))
         {
-            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, MonthlySalesLblText, tmp))
+            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, MonthlySalesLbl.Text, tmp))
                 .Show(cancellationToken);
             return;
         }
 
         _monthlySalesDict[tmp] =
-            _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntryText, MonthlyNameEntryText,
-                MonthlyAdditionEntryText);
+            _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntry.Text, MonthlyNameEntry.Text,
+                MonthlyAdditionEntry.Text);
         MonthlySales.Add(tmp);
-        MonthlySalesEntryText = string.Empty;
-        MonthlyNameEntryText = string.Empty;
-        MonthlyAdditionEntryText = string.Empty;
+        MonthlySalesEntry.Text = string.Empty;
+        MonthlyNameEntry.Text = string.Empty;
+        MonthlyAdditionEntry.Text = string.Empty;
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -140,24 +143,24 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task AddYearly(CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(YearlySalesEntryText) || string.IsNullOrWhiteSpace(YearlyNameEntryText))
+        if (string.IsNullOrWhiteSpace(YearlySalesEntry.Text) || string.IsNullOrWhiteSpace(YearlyNameEntry.Text))
             return;
-        var tmp = ConvertToLabelText(Convert.ToDouble(YearlySalesEntryText), YearlyNameEntryText,
-            YearlyAdditionEntryText);
+        var tmp = ConvertToLabelText(Convert.ToDouble(YearlySalesEntry.Text), YearlyNameEntry.Text,
+            YearlyAdditionEntry.Text);
         if (YearlySales.Contains(tmp))
         {
-            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, YearlySalesLblText, tmp))
+            await Toast.Make(string.Format(TextResource.AlreadyContainsEntry, YearlySalesLbl.Text, tmp))
                 .Show(cancellationToken);
             return;
         }
 
         _yearlySalesDict[tmp] =
-            _financialOverview.YearlySales.Rows.Add(YearlySalesEntryText, YearlyNameEntryText,
-                YearlyAdditionEntryText);
+            _financialOverview.YearlySales.Rows.Add(YearlySalesEntry.Text, YearlyNameEntry.Text,
+                YearlyAdditionEntry.Text);
         YearlySales.Add(tmp);
-        YearlySalesEntryText = string.Empty;
-        YearlyNameEntryText = string.Empty;
-        YearlyAdditionEntryText = string.Empty;
+        YearlySalesEntry.Text = string.Empty;
+        YearlyNameEntry.Text = string.Empty;
+        YearlyAdditionEntry.Text = string.Empty;
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -297,7 +300,7 @@ public partial class MainViewModel : ObservableObject
         foreach (DataRow row in tmp.Rows)
             AllSales.Add(ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]),
                 Convert.ToString(row[2])));
-        RestMoney = _financialOverview.GetRest();
+        RestMoneyLbl.Text = _financialOverview.GetRest().ToString();
     }
 
     private string ConvertToLabelText(double sales, string name, string addition = null)
@@ -310,18 +313,23 @@ public partial class MainViewModel : ObservableObject
 
     private void LoadResources()
     {
+        AllSalesLbl = new LocalizableLabel(nameof(AllSalesLbl));
+        MonthlySalesLbl = new LocalizableLabel(nameof(MonthlySalesLbl));
+        YearlySalesLbl = new LocalizableLabel(nameof(YearlySalesLbl));
+        RestLbl = new LocalizableLabel(nameof(RestLbl));
+        RestMoneyLbl = new LocalizableLabel(nameof(RestMoneyLbl));
+        MoneyUnitLbl = new LocalizableLabel(nameof(MoneyUnitLbl));
+        FilePageBtn = new LocalizableButton(nameof(FilePageBtn));
+        MonthlyAddBtn = new LocalizableButton(nameof(MonthlyAddBtn));
+        YearlyAddBtn = new LocalizableButton(nameof(YearlyAddBtn));
+        DeleteBtn = new LocalizableButton(nameof(DeleteBtn));
+        MonthlySalesEntry = new LocalizableEntry(nameof(MonthlySalesEntry));
+        MonthlyNameEntry = new LocalizableEntry(nameof(MonthlyNameEntry));
+        MonthlyAdditionEntry = new LocalizableEntry(nameof(MonthlyAdditionEntry));
+        YearlySalesEntry = new LocalizableEntry(nameof(YearlySalesEntry));
+        YearlyNameEntry = new LocalizableEntry(nameof(YearlyNameEntry));
+        YearlyAdditionEntry = new LocalizableEntry(nameof(YearlyAdditionEntry));
         FinancialOverviewTitle = TextResource.FinancialOverviewTitle ?? string.Empty;
-        FilePageBtnText = TextResource.FilePageTitle ?? string.Empty;
-        AddBtnText = TextResource.Add ?? string.Empty;
-        AddBtnFontSize = Convert.ToInt16(TextResource.AddBtnFontSize);
-        DeleteBtnText = TextResource.Delete ?? string.Empty;
-        AllSalesLblText = TextResource.AllSales ?? string.Empty;
-        NamePlaceholder = TextResource.NamePlaceholder ?? string.Empty;
-        AdditionPlaceholder = TextResource.AdditionPlaceholder ?? string.Empty;
-        MonthlySalesLblText = TextResource.MonthlySales ?? string.Empty;
-        YearlySalesLblText = TextResource.YearlySales ?? string.Empty;
-        RestLblText = TextResource.RestLblText ?? string.Empty;
-        MoneyUnit = TextResource.MoneyUnit ?? string.Empty;
         TimeUnits.Clear();
         foreach (var name in Enum.GetNames(typeof(FinancialOverview.Unit)))
             TimeUnits.Add(TextResource.ResourceManager.GetString(name) ?? string.Empty);
