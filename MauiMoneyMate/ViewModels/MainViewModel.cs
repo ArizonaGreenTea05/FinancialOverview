@@ -86,6 +86,7 @@ public partial class MainViewModel : ObservableObject
         _commonVariables = commonVariables;
         _financialOverview = financialOverview;
         _financialOverview.DefaultFilePath = LoadStringFromAppData().Split("\r\n")[0];
+        DataIsSaved = File.Exists(_financialOverview.DefaultFilePath);
         _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
         _monthlySalesDict = new Dictionary<string, DataRow>();
