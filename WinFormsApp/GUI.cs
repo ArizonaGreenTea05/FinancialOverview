@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
-using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using MetroFramework.Forms;
@@ -16,17 +15,40 @@ namespace WinFormsApp
         private const string FILE_FILTER_FOR_XML_FILES = "XML files (.xml)|*.xml";
         private FormWindowState _lastWindowState = FormWindowState.Minimized;
         private bool _guiLoaded = false;
+        private readonly string _appDataFilePath = Path.Combine(Environment.GetFolderPath(
+            Environment.SpecialFolder.ApplicationData) + @"\WinFormsFinance", "WinFormsFinance.AppData");
 
         public GUI()
         {
             InitializeComponent();
             _financialOverview = new BusinessLogic.FinancialOverview();
-            _financialOverview.LoadData();
+            _financialOverview.DefaultFilePath = LoadStringFromAppData().Split('\r', '\n')[0];
+            _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
+            if (!_financialOverview.LoadData())
+                _financialOverview.LoadData(GetFilepathFromUser("", "", ".xml", FILE_FILTER_FOR_XML_FILES, FileDialogType.Open));
             monthlyDataGridView.DataSource = _financialOverview.MonthlySales;
             yearlyDataGridView.DataSource = _financialOverview.YearlySales;
             _allSales = _financialOverview.AllSales;
             allDataGridView.DataSource = _allSales;
             KeyPreview = true;
+        }
+
+        private void OnDefaultFilePathChanged(object sender, string path)
+        {
+            SaveStringToAppData(path);
+        }
+
+        private void SaveStringToAppData(string s)
+        {
+            if(!Directory.Exists(_appDataFilePath)) Directory.CreateDirectory(Path.GetDirectoryName(_appDataFilePath));
+            File.WriteAllText(_appDataFilePath, s);
+        }
+
+        private string LoadStringFromAppData()
+        {
+            return File.Exists(_appDataFilePath)
+                ? File.ReadAllText(_appDataFilePath)
+                : string.Empty;
         }
 
         private void GUI_Resize(object sender, EventArgs e)

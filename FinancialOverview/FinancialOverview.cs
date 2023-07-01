@@ -25,6 +25,7 @@ namespace BusinessLogic
         {
             set
             {
+                if (string.IsNullOrEmpty(value)) return;
                 DefaultDirectory = Path.GetDirectoryName(value);
                 DefaultFilename = Path.GetFileName(value);
                 OnDefaultFilePathChanged?.Invoke(this, value);
