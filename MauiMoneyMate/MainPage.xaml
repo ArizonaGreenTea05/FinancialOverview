@@ -232,7 +232,7 @@
                Grid.ColumnSpan="32"
                Grid.Row="7"
                Padding="0,0,6,0"
-               Text="{Binding RestMoneyLbl.Text}"
+               Text="{Binding RestMoney}"
                FontSize="{Binding RestMoneyLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"

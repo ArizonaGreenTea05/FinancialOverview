@@ -156,19 +156,19 @@
   <data name="FinancialOverviewTitle" xml:space="preserve">
     <value>Finanzübersicht</value>
   </data>
-  <data name="OpenFile" xml:space="preserve">
+  <data name="OpenFileLbl.Text" xml:space="preserve">
     <value>Datei öffnen</value>
   </data>
-  <data name="SaveFile" xml:space="preserve">
+  <data name="SaveFileLbl.Text" xml:space="preserve">
     <value>Datei speichern</value>
   </data>
-  <data name="SaveFileAs" xml:space="preserve">
+  <data name="SaveFileAsLbl.Text" xml:space="preserve">
     <value>Datei speichern als</value>
   </data>
-  <data name="SaveFileAsFontSize" xml:space="preserve">
+  <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="SaveFileFontSize" xml:space="preserve">
+  <data name="SaveFileLbl.FontSize" xml:space="preserve">
     <value>16</value>
   </data>
   <data name="AlreadyContainsEntry" xml:space="preserve">

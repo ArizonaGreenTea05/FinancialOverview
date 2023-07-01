@@ -1,10 +1,10 @@
 ﻿using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
+using MauiMoneyMate.Utils.ResourceItemTemplates;
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -14,17 +14,11 @@ public partial class FileViewModel : ObservableObject
 
     [ObservableProperty] private string _filePageTitle;
 
-    [ObservableProperty] private string _openFileText;
+    [ObservableProperty] private ResourceLabel _openFileLbl;
 
-    [ObservableProperty] private string _saveFileText;
+    [ObservableProperty] private ResourceLabel _saveFileLbl;
 
-    [ObservableProperty] private string _saveFileAsText;
-
-    [ObservableProperty] private int _openFileFontSize;
-
-    [ObservableProperty] private int _saveFileFontSize;
-
-    [ObservableProperty] private int _saveFileAsFontSize;
+    [ObservableProperty] private ResourceLabel _saveFileAsLbl;
 
     #endregion
 
@@ -54,7 +48,7 @@ public partial class FileViewModel : ObservableObject
         var path = FileHandler.OpenFileDialog();
         if (null == path)
         {
-            Toast.Make(TextResource.CouldNotOpenFile).Show();
+            Toast.Make(LanguageResource.CouldNotOpenFile).Show();
             return;
         }
         _financialOverview.LoadData(path);
@@ -76,11 +70,11 @@ public partial class FileViewModel : ObservableObject
         var path = FileHandler.SaveFileDialog(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename);
         if (null == path)
         {
-            Toast.Make(TextResource.CouldNotSaveFile).Show();
+            Toast.Make(LanguageResource.CouldNotSaveFile).Show();
             return;
         }
         _financialOverview.SaveData(path);
-        Toast.Make(string.Format(TextResource.SavedFile, path)).Show();
+        Toast.Make(string.Format(LanguageResource.SavedFile, path)).Show();
         DataIsSaved = true;
         Shell.Current.GoToAsync("../../route");
     }
@@ -117,16 +111,10 @@ public partial class FileViewModel : ObservableObject
 
     private void LoadResources()
     {
-        FilePageTitle = TextResource.FilePageTitle ?? string.Empty;
-        OpenFileText = TextResource.OpenFile ?? string.Empty;
-        SaveFileText = TextResource.SaveFile ?? string.Empty;
-        SaveFileAsText = TextResource.SaveFileAs ?? string.Empty;
-        OpenFileFontSize = Convert.ToInt32(TextResource.OpenFileFontSize);
-        OpenFileFontSize = 0 == OpenFileFontSize ? 17 : OpenFileFontSize;
-        SaveFileFontSize = Convert.ToInt32(TextResource.SaveFileFontSize);
-        SaveFileFontSize = 0 == SaveFileFontSize ? 17 : SaveFileFontSize;
-        SaveFileAsFontSize = Convert.ToInt32(TextResource.SaveFileAsFontSize);
-        SaveFileAsFontSize = 0 == SaveFileAsFontSize ? 17 : SaveFileAsFontSize;
+        FilePageTitle = LanguageResource.FilePageTitle ?? string.Empty;
+        OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));
+        SaveFileLbl = new ResourceLabel(nameof(SaveFileLbl));
+        SaveFileAsLbl = new ResourceLabel(nameof(SaveFileAsLbl));
     }
 
     #endregion
