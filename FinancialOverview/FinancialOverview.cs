@@ -32,7 +32,7 @@ namespace BusinessLogic
             }
             get => string.IsNullOrEmpty(DefaultDirectory) || string.IsNullOrEmpty(DefaultFilename)
                 ? null
-                : $@"{DefaultDirectory}/{DefaultFilename}";
+                : $@"{DefaultDirectory.Replace('/', '\\')}\{DefaultFilename.Replace('/', '\\')}";
         }
 
         public string DefaultDirectory { get; set; } = null;
