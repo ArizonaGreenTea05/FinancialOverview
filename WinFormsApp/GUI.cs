@@ -77,7 +77,10 @@ namespace WinFormsApp
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _financialOverview.SaveData();
+            if (_financialOverview.SaveData()) return;
+            var filepath = GetFilepathFromUser(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename, ".xml",
+                FILE_FILTER_FOR_XML_FILES, FileDialogType.Save);
+            if (null != filepath) _financialOverview.SaveData(filepath);
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
