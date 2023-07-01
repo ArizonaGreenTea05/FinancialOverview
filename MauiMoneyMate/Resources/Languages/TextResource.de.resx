@@ -141,9 +141,6 @@
   <data name="YearlySales" xml:space="preserve">
     <value>Umsatz (Jährlich)</value>
   </data>
-  <data name="MoneyUnit" xml:space="preserve">
-    <value>€</value>
-  </data>
   <data name="AddBtnFontSize" xml:space="preserve">
     <value>15</value>
   </data>
@@ -168,9 +165,6 @@
   <data name="SaveFileAs" xml:space="preserve">
     <value>Datei speichern als</value>
   </data>
-  <data name="OpenFileFontSize" xml:space="preserve">
-    <value>17</value>
-  </data>
   <data name="SaveFileAsFontSize" xml:space="preserve">
     <value>13</value>
   </data>
@@ -179,5 +173,14 @@
   </data>
   <data name="AlreadyContainsEntry" xml:space="preserve">
     <value>{0} enthält bereits den Eintrag {1}</value>
+  </data>
+  <data name="CouldNotOpenFile" xml:space="preserve">
+    <value>Datei konnte nicht geöffnet werden</value>
+  </data>
+  <data name="CouldNotSaveFile" xml:space="preserve">
+    <value>Datei konnte nicht gespeichert werden</value>
+  </data>
+  <data name="SavedFile" xml:space="preserve">
+    <value>Datei wurde gespeichert: {0}</value>
   </data>
 </root>

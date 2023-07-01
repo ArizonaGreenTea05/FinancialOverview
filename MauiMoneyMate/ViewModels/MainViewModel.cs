@@ -211,7 +211,7 @@ public partial class MainViewModel : ObservableObject
             var path = FileHandler.OpenFileDialog();
             if (null == path)
             {
-                Toast.Make("File could not be opened").Show();
+                Toast.Make(TextResource.CouldNotOpenFile).Show();
                 return;
             }
             _financialOverview.LoadData(path);

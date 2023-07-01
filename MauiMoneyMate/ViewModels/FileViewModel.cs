@@ -54,7 +54,7 @@ public partial class FileViewModel : ObservableObject
         var path = FileHandler.OpenFileDialog();
         if (null == path)
         {
-            Toast.Make("File could not be opened").Show();
+            Toast.Make(TextResource.CouldNotOpenFile).Show();
             return;
         }
         _financialOverview.LoadData(path);
@@ -76,11 +76,11 @@ public partial class FileViewModel : ObservableObject
         var path = FileHandler.SaveFileDialog(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename);
         if (null == path)
         {
-            Toast.Make("File could not be saved").Show();
+            Toast.Make(TextResource.CouldNotSaveFile).Show();
             return;
         }
         _financialOverview.SaveData(path);
-        Toast.Make($"File has been saved: {path}").Show();
+        Toast.Make(string.Format(TextResource.SavedFile, path)).Show();
         DataIsSaved = true;
         Shell.Current.GoToAsync("../../route");
     }
