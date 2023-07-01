@@ -180,4 +180,13 @@
   <data name="AlreadyContainsEntry" xml:space="preserve">
     <value>{0} already contains the entry {1}</value>
   </data>
+  <data name="CouldNotOpenFile" xml:space="preserve">
+    <value>File could not be opened</value>
+  </data>
+  <data name="CouldNotSaveFile" xml:space="preserve">
+    <value>File could not be saved</value>
+  </data>
+  <data name="SavedFile" xml:space="preserve">
+    <value>File has been saved: {0}</value>
+  </data>
 </root>
