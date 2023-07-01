@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BusinessLogic
 {
@@ -15,6 +11,8 @@ namespace BusinessLogic
         private DataTable _allSales;
         private readonly History _history;
 
+        public event EventHandler<string> OnDefaultFilePathChanged;
+
         public enum Unit
         {
             Monthly,
@@ -23,9 +21,21 @@ namespace BusinessLogic
         
         public Unit UnitOfAll { get; set; } = Unit.Monthly;
 
-        public string DefaultFilePath => $@"{DefaultDirectory}/{DefaultFilename}";
+        public string DefaultFilePath
+        {
+            set
+            {
+                if (string.IsNullOrEmpty(value)) return;
+                DefaultDirectory = Path.GetDirectoryName(value);
+                DefaultFilename = Path.GetFileName(value);
+                OnDefaultFilePathChanged?.Invoke(this, value);
+            }
+            get => string.IsNullOrEmpty(DefaultDirectory) || string.IsNullOrEmpty(DefaultFilename)
+                ? null
+                : $@"{DefaultDirectory}/{DefaultFilename}";
+        }
 
-        public string DefaultDirectory { get; set; } = "D:/OneDrive/Documents";
+        public string DefaultDirectory { get; set; } = null;
 
         public string DefaultFilename { get; set; } = "FinancialOverview.xml";
         
@@ -88,11 +98,11 @@ namespace BusinessLogic
 
         public bool LoadData(string path)
         {
-            if (path == null) throw new ArgumentNullException("path");
-            if (!Directory.Exists(Path.GetDirectoryName(path))) return false;
+            if (!File.Exists(path)) return false;
             MonthlySales.Clear();
             YearlySales.Clear();
             _dataSet.ReadXml(path);
+            DefaultFilePath = path;
             return true;
         }
 
@@ -105,6 +115,7 @@ namespace BusinessLogic
         {
             if (path == null) throw new ArgumentNullException("path");
             _dataSet.WriteXml(path);
+            DefaultFilePath = path;
             return true;
         }
 

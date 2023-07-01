@@ -5,6 +5,7 @@
              xmlns:viewmodel="clr-namespace:MauiMoneyMate.ViewModels"
              x:DataType="viewmodel:MainViewModel"
              Title="{Binding FinancialOverviewTitle}"
+             Loaded="MainPage_OnLoaded"
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
 
     

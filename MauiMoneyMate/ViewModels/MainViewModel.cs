@@ -5,6 +5,7 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Utils;
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -70,6 +71,8 @@ public partial class MainViewModel : ObservableObject
     private readonly CommonVariables _commonVariables;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
+    private readonly string _appDataFilePath = Path.Combine(Environment.GetFolderPath(
+        Environment.SpecialFolder.ApplicationData) + @"\MauiMoneyMate", "MauiMoneyMate.AppData");
 
     #endregion
 
@@ -82,7 +85,9 @@ public partial class MainViewModel : ObservableObject
 
         _commonVariables = commonVariables;
         _financialOverview = financialOverview;
-        _financialOverview.LoadData();
+        _financialOverview.DefaultFilePath = LoadStringFromAppData().Split("\r\n")[0];
+        DataIsSaved = File.Exists(_financialOverview.DefaultFilePath);
+        _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
         _monthlySalesDict = new Dictionary<string, DataRow>();
         _yearlySalesDict = new Dictionary<string, DataRow>();
@@ -90,9 +95,17 @@ public partial class MainViewModel : ObservableObject
         MonthlySales = new ObservableCollection<string>();
         YearlySales = new ObservableCollection<string>();
         AllSales = new ObservableCollection<string>();
-        UpdateSales();
 
         SelectedTimeUnit = (int)_financialOverview.UnitOfAll;
+    }
+
+    #endregion
+
+    #region private EventHandlers
+
+    private void OnDefaultFilePathChanged(object sender, string path)
+    {
+        SaveStringToAppData(path);
     }
 
     #endregion
@@ -191,6 +204,21 @@ public partial class MainViewModel : ObservableObject
         DisplaySavingState();
     }
 
+    public void OnLoaded()
+    {
+        if (!_financialOverview.LoadData())
+        {
+            var path = FileHandler.OpenFileDialog();
+            if (null == path)
+            {
+                Toast.Make("File could not be opened").Show();
+                return;
+            }
+            _financialOverview.LoadData(path);
+        }
+        UpdateSales();
+    }
+
     public void TimeUnitChanged()
     {
         _financialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
@@ -200,6 +228,18 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private void SaveStringToAppData(string s)
+    {
+        if (!FileHandler.WriteTextToFile(s, _appDataFilePath))
+            return;
+    }
+
+    private string LoadStringFromAppData()
+    {
+        var text = FileHandler.ReadTextFile(_appDataFilePath);
+        return text ?? string.Empty;
+    }
 
     private bool DataIsSaved
     {

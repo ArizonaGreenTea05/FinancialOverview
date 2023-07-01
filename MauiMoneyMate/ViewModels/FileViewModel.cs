@@ -4,6 +4,7 @@ using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Utils;
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -48,60 +49,40 @@ public partial class FileViewModel : ObservableObject
     #region private Relay Commands
 
     [RelayCommand]
-    private async Task OpenFile(CancellationToken cancellationToken)
+    private void OpenFileDialog()
     {
-        try
+        var path = FileHandler.OpenFileDialog();
+        if (null == path)
         {
-            var folderPickerResult = await FilePicker.PickAsync(PickOptions.Default);
-            if (folderPickerResult == null)
-            {
-                Toast.Make("File could not be opened");
-                return;
-            }
-
-            _financialOverview.LoadData(folderPickerResult.FullPath);
-            DataIsSaved = true;
-            await Shell.Current.GoToAsync("../../route");
+            Toast.Make("File could not be opened").Show();
+            return;
         }
-        catch (Exception ex)
-        {
-            await Toast.Make($"File could not be opened, {ex.Message}").Show(cancellationToken);
-        }
+        _financialOverview.LoadData(path);
+        DataIsSaved = true;
+        Shell.Current.GoToAsync("../../route");
     }
 
     [RelayCommand]
-    private async Task SaveFile(CancellationToken cancellationToken)
+    private void SaveFile()
     {
         DataIsSaved = _financialOverview.SaveData();
-        if (DataIsSaved)
-        {
-            await Toast.Make($"File has been saved: {_financialOverview.DefaultFilePath}").Show(cancellationToken);
-            await Shell.Current.GoToAsync("../../route");
-        }
-        else
-        {
-            await Toast.Make("File could not be saved").Show(cancellationToken);
-        }
-
+        if (!DataIsSaved) SaveFileDialog();
+        Shell.Current.GoToAsync("../../route");
     }
 
     [RelayCommand]
-    private async Task SaveFileAs(CancellationToken cancellationToken)
+    private void SaveFileDialog()
     {
-        try
+        var path = FileHandler.SaveFileDialog(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename);
+        if (null == path)
         {
-            var fileLocationResult = await FileSaver.SaveAsync(_financialOverview.DefaultDirectory,
-                _financialOverview.DefaultFilename, Stream.Null, cancellationToken);
-            fileLocationResult.EnsureSuccess();
-            _financialOverview.SaveData(fileLocationResult.FilePath);
-            await Toast.Make($"File has been saved: {fileLocationResult.FilePath}").Show(cancellationToken);
-            DataIsSaved = true;
-            await Shell.Current.GoToAsync("../../route");
+            Toast.Make("File could not be saved").Show();
+            return;
         }
-        catch (Exception ex)
-        {
-            await Toast.Make($"File could not be saved, {ex.Message}").Show(cancellationToken);
-        }
+        _financialOverview.SaveData(path);
+        Toast.Make($"File has been saved: {path}").Show();
+        DataIsSaved = true;
+        Shell.Current.GoToAsync("../../route");
     }
 
     #endregion

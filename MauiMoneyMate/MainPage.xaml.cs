@@ -23,5 +23,10 @@ namespace MauiMoneyMate
         {
             _viewModel.TimeUnitChanged();
         }
+
+        private void MainPage_OnLoaded(object sender, EventArgs e)
+        {
+            _viewModel.OnLoaded();
+        }
     }
 }

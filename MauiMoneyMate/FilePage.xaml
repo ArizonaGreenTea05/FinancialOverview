@@ -13,7 +13,7 @@
                      Grid.Column="3"
                      Grid.ColumnSpan="3"
                      Source="open.png"
-                     Command="{Binding OpenFileCommand}"/>
+                     Command="{Binding OpenFileDialogCommand}"/>
 
         <Label Grid.Row="4"
                Grid.RowSpan="1"
@@ -43,7 +43,7 @@
                      Grid.Column="7"
                      Grid.ColumnSpan="3"
                      Source="save_as.png"
-                     Command="{Binding SaveFileAsCommand}"/>
+                     Command="{Binding SaveFileDialogCommand}"/>
 
         <Label Grid.Row="8"
                Grid.RowSpan="1"
