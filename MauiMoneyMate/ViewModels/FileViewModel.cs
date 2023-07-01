@@ -61,6 +61,7 @@ public partial class FileViewModel : ObservableObject
 
             _financialOverview.LoadData(folderPickerResult.FullPath);
             DataIsSaved = true;
+            await Shell.Current.GoToAsync("../../route");
         }
         catch (Exception ex)
         {
@@ -73,9 +74,15 @@ public partial class FileViewModel : ObservableObject
     {
         DataIsSaved = _financialOverview.SaveData();
         if (DataIsSaved)
+        {
             await Toast.Make($"File has been saved: {_financialOverview.DefaultFilePath}").Show(cancellationToken);
+            await Shell.Current.GoToAsync("../../route");
+        }
         else
+        {
             await Toast.Make("File could not be saved").Show(cancellationToken);
+        }
+
     }
 
     [RelayCommand]
@@ -89,6 +96,7 @@ public partial class FileViewModel : ObservableObject
             _financialOverview.SaveData(fileLocationResult.FilePath);
             await Toast.Make($"File has been saved: {fileLocationResult.FilePath}").Show(cancellationToken);
             DataIsSaved = true;
+            await Shell.Current.GoToAsync("../../route");
         }
         catch (Exception ex)
         {
