@@ -2,6 +2,8 @@
 {
     public partial class App : Application
     {
+        public static Window Window;
+
         public App()
         {
             InitializeComponent();
@@ -11,11 +13,9 @@
 
         protected override Window CreateWindow(IActivationState activationState)
         {
-            Window window = base.CreateWindow(activationState);
-
-            window.Title = "MauiMoneyMate";
-
-            return window;
+            Window = base.CreateWindow(activationState);
+            Window.Title = nameof(MauiMoneyMate);
+            return Window;
         }
     }
 }
