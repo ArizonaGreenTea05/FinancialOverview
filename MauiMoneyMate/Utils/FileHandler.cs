@@ -8,30 +8,30 @@ public class FileHandler
 
     public static string SaveFileDialog(string defaultDirectory, string defaultFilename)
     {
-        return Task.Run(() => new FileHandler().SaveFileDialogTask(defaultDirectory, defaultFilename),
+        return Task.Run(() => SaveFileDialogTask(defaultDirectory, defaultFilename),
             new CancellationToken()).Result;
     }
 
     public static string OpenFileDialog()
     {
-        return Task.Run(() => new FileHandler().OpenFileDialogTask(), new CancellationToken()).Result;
+        return Task.Run(OpenFileDialogTask, new CancellationToken()).Result;
     }
 
     public static string ReadTextFile(string targetFile)
     {
-        return Task.Run(() => new FileHandler().ReadTextFileTask(targetFile), new CancellationToken()).Result;
+        return Task.Run(() => ReadTextFileTask(targetFile), new CancellationToken()).Result;
     }
 
     public static bool WriteTextToFile(string text, string targetFile)
     {
-        return Task.Run(() => new FileHandler().WriteTextToFileTask(text, targetFile), new CancellationToken()).Result;
+        return Task.Run(() => WriteTextToFileTask(text, targetFile), new CancellationToken()).Result;
     }
 
     #endregion
 
     #region private Methods
 
-    private async Task<string> ReadTextFileTask(string targetFile)
+    private static async Task<string> ReadTextFileTask(string targetFile)
     {
         if (!Path.Exists(targetFile)) return null;
         await using var inputStream = File.OpenRead(targetFile);
@@ -39,7 +39,7 @@ public class FileHandler
         return await reader.ReadToEndAsync();
     }
 
-    private async Task<bool> WriteTextToFileTask(string text, string targetFile)
+    private static async Task<bool> WriteTextToFileTask(string text, string targetFile)
     {
         if (null == targetFile) return false;
         if (!Directory.Exists(targetFile)) Directory.CreateDirectory(Path.GetDirectoryName(targetFile));
@@ -49,7 +49,7 @@ public class FileHandler
         return true;
     }
 
-    private async Task<string> SaveFileDialogTask(string defaultDirectory, string defaultFilename)
+    private static async Task<string> SaveFileDialogTask(string defaultDirectory, string defaultFilename)
     {
         try
         {
@@ -64,7 +64,7 @@ public class FileHandler
         }
     }
 
-    private async Task<string> OpenFileDialogTask()
+    private static async Task<string> OpenFileDialogTask()
     {
         try
         {
