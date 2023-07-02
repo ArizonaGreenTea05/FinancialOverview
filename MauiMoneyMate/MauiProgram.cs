@@ -1,4 +1,5 @@
-﻿using MauiMoneyMate.ViewModels;
+﻿using CommunityToolkit.Maui;
+using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate
 {
@@ -13,7 +14,7 @@ namespace MauiMoneyMate
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                }).UseMauiCommunityToolkit();
 
             var financialOverview = new BusinessLogic.FinancialOverview();
             var commonVariables = new CommonVariables();
