@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -30,21 +29,20 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-		<PackageCertificateThumbprint>49625EE316612C2F2FA8542CACAC5003BED9FB47</PackageCertificateThumbprint>
+		<PackageCertificateThumbprint>29F4DE656C3F6BB7E0A4023B45AC70DD0B93AE4F</PackageCertificateThumbprint>
 		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
 		<AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<AppInstallerUri>https://github.com/ArizonaGreenTea05/FinancialOverview</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-		<AppxPackageDir>D:\source\releases\</AppxPackageDir>
+		<AppxPackageDir>D:\source\releases\MauiMoneyMate</AppxPackageDir>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<SignAssembly>False</SignAssembly>
 		<Title>MauiMoneyMate</Title>
 		<Authors>Tobias Schälte</Authors>
-		<PackageIcon>appicon.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/ArizonaGreenTea05/FinancialOverview</RepositoryUrl>
 		<NeutralLanguage>en-001</NeutralLanguage>
@@ -119,8 +117,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
