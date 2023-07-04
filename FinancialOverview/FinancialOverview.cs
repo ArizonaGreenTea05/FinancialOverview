@@ -113,7 +113,7 @@ namespace BusinessLogic
 
         public bool SaveData(string path)
         {
-            if (path == null) throw new ArgumentNullException("path");
+            if (!File.Exists(path)) return false;
             _dataSet.WriteXml(path);
             DefaultFilePath = path;
             return true;

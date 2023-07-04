@@ -235,16 +235,7 @@ public partial class MainViewModel : ObservableObject
 
     public void OnLoaded()
     {
-        if (!_financialOverview.LoadData())
-        {
-            var path = FileHandler.OpenFileDialog();
-            if (null == path)
-            {
-                Toast.Make(LanguageResource.CouldNotOpenFile).Show();
-                return;
-            }
-            _financialOverview.LoadData(path);
-        }
+        _financialOverview.LoadData();
         UpdateSales();
     }
 
