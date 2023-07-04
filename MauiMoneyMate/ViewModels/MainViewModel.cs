@@ -64,13 +64,13 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private ResourceEntry _yearlyAdditionEntry;
 
-    [ObservableProperty] private decimal _monthlySalesEntryInput;
+    [ObservableProperty] private string _monthlySalesEntryInput;
 
     [ObservableProperty] private string _monthlyNameEntryInput;
 
     [ObservableProperty] private string _monthlyAdditionEntryInput;
 
-    [ObservableProperty] private decimal _yearlySalesEntryInput;
+    [ObservableProperty] private string _yearlySalesEntryInput;
 
     [ObservableProperty] private string _yearlyNameEntryInput;
 
@@ -132,9 +132,9 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task AddMonthly(CancellationToken cancellationToken)
     {
-        if (MonthlySalesEntryInput == 0 || string.IsNullOrWhiteSpace(MonthlyNameEntryInput))
+        if (string.IsNullOrWhiteSpace(MonthlySalesEntryInput) || string.IsNullOrWhiteSpace(MonthlyNameEntryInput))
             return;
-        var tmp = ConvertToLabelText(MonthlySalesEntryInput, MonthlyNameEntryInput,
+        var tmp = ConvertToLabelText(Convert.ToDecimal(MonthlySalesEntryInput), MonthlyNameEntryInput,
             MonthlyAdditionEntryInput);
         if (MonthlySales.Contains(tmp))
         {
@@ -147,7 +147,7 @@ public partial class MainViewModel : ObservableObject
             _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntryInput, MonthlyNameEntryInput,
                 MonthlyAdditionEntryInput);
         MonthlySales.Add(tmp);
-        MonthlySalesEntryInput = 0;
+        MonthlySalesEntryInput = string.Empty;
         MonthlyNameEntryInput = string.Empty;
         MonthlyAdditionEntryInput = string.Empty;
         UpdateAllSales();
@@ -157,9 +157,9 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task AddYearly(CancellationToken cancellationToken)
     {
-        if (YearlySalesEntryInput == 0 || string.IsNullOrWhiteSpace(YearlyNameEntryInput))
+        if (string.IsNullOrWhiteSpace(YearlySalesEntryInput) || string.IsNullOrWhiteSpace(YearlyNameEntryInput))
             return;
-        var tmp = ConvertToLabelText(YearlySalesEntryInput, YearlyNameEntryInput,
+        var tmp = ConvertToLabelText(Convert.ToDecimal(YearlySalesEntryInput), YearlyNameEntryInput,
             YearlyAdditionEntryInput);
         if (YearlySales.Contains(tmp))
         {
@@ -172,7 +172,7 @@ public partial class MainViewModel : ObservableObject
             _financialOverview.YearlySales.Rows.Add(YearlySalesEntryInput, YearlyNameEntryInput,
                 YearlyAdditionEntryInput);
         YearlySales.Add(tmp);
-        YearlySalesEntryInput = 0;
+        YearlySalesEntryInput = string.Empty;
         YearlyNameEntryInput = string.Empty;
         YearlyAdditionEntryInput = string.Empty;
         UpdateAllSales();
