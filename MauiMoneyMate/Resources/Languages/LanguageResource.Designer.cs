@@ -160,6 +160,15 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is no valid decimal..
+        /// </summary>
+        internal static string IsNoValidDecimal {
+            get {
+                return ResourceManager.GetString("IsNoValidDecimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 24.
         /// </summary>
         internal static string MoneyUnitLbl_FontSize {

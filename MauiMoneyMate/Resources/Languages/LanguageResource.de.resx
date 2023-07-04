@@ -198,4 +198,7 @@
   <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
     <value>Kommentar</value>
   </data>
+  <data name="IsNoValidDecimal" xml:space="preserve">
+    <value>{0} ist keine valide Dezimalzahl.</value>
+  </data>
 </root>

@@ -273,4 +273,7 @@
   <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="IsNoValidDecimal" xml:space="preserve">
+    <value>{0} is no valid decimal.</value>
+  </data>
 </root>

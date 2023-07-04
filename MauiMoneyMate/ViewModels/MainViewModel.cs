@@ -134,7 +134,13 @@ public partial class MainViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(MonthlySalesEntryInput) || string.IsNullOrWhiteSpace(MonthlyNameEntryInput))
             return;
-        var tmp = ConvertToLabelText(Convert.ToDecimal(MonthlySalesEntryInput), MonthlyNameEntryInput,
+        if (!decimal.TryParse(MonthlySalesEntryInput, out var monthlySalesEntry))
+        {
+            await Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, MonthlySalesEntryInput))
+                .Show(cancellationToken);
+            return;
+        }
+        var tmp = ConvertToLabelText(monthlySalesEntry, MonthlyNameEntryInput,
             MonthlyAdditionEntryInput);
         if (MonthlySales.Contains(tmp))
         {
@@ -159,7 +165,13 @@ public partial class MainViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(YearlySalesEntryInput) || string.IsNullOrWhiteSpace(YearlyNameEntryInput))
             return;
-        var tmp = ConvertToLabelText(Convert.ToDecimal(YearlySalesEntryInput), YearlyNameEntryInput,
+        if (!decimal.TryParse(YearlySalesEntryInput, out var yearlySalesEntry))
+        {
+            await Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, MonthlySalesEntryInput))
+                .Show(cancellationToken);
+            return;
+        }
+        var tmp = ConvertToLabelText(yearlySalesEntry, YearlyNameEntryInput,
             YearlyAdditionEntryInput);
         if (YearlySales.Contains(tmp))
         {
