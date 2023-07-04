@@ -64,6 +64,18 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private ResourceEntry _yearlyAdditionEntry;
 
+    [ObservableProperty] private decimal _monthlySalesEntryInput;
+
+    [ObservableProperty] private string _monthlyNameEntryInput;
+
+    [ObservableProperty] private string _monthlyAdditionEntryInput;
+
+    [ObservableProperty] private decimal _yearlySalesEntryInput;
+
+    [ObservableProperty] private string _yearlyNameEntryInput;
+
+    [ObservableProperty] private string _yearlyAdditionEntryInput;
+
     [ObservableProperty] private ObservableCollection<string> _timeUnits;
 
     [ObservableProperty] private int _selectedTimeUnit;
@@ -120,10 +132,10 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task AddMonthly(CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(MonthlySalesEntry.Text) || string.IsNullOrWhiteSpace(MonthlyNameEntry.Text))
+        if (MonthlySalesEntryInput == 0 || string.IsNullOrWhiteSpace(MonthlyNameEntryInput))
             return;
-        var tmp = ConvertToLabelText(Convert.ToDouble(MonthlySalesEntry.Text), MonthlyNameEntry.Text,
-            MonthlyAdditionEntry.Text);
+        var tmp = ConvertToLabelText(MonthlySalesEntryInput, MonthlyNameEntryInput,
+            MonthlyAdditionEntryInput);
         if (MonthlySales.Contains(tmp))
         {
             await Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, MonthlySalesLbl.Text, tmp))
@@ -132,12 +144,12 @@ public partial class MainViewModel : ObservableObject
         }
 
         _monthlySalesDict[tmp] =
-            _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntry.Text, MonthlyNameEntry.Text,
-                MonthlyAdditionEntry.Text);
+            _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntryInput, MonthlyNameEntryInput,
+                MonthlyAdditionEntryInput);
         MonthlySales.Add(tmp);
-        MonthlySalesEntry.Text = string.Empty;
-        MonthlyNameEntry.Text = string.Empty;
-        MonthlyAdditionEntry.Text = string.Empty;
+        MonthlySalesEntryInput = 0;
+        MonthlyNameEntryInput = string.Empty;
+        MonthlyAdditionEntryInput = string.Empty;
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -145,10 +157,10 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task AddYearly(CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(YearlySalesEntry.Text) || string.IsNullOrWhiteSpace(YearlyNameEntry.Text))
+        if (YearlySalesEntryInput == 0 || string.IsNullOrWhiteSpace(YearlyNameEntryInput))
             return;
-        var tmp = ConvertToLabelText(Convert.ToDouble(YearlySalesEntry.Text), YearlyNameEntry.Text,
-            YearlyAdditionEntry.Text);
+        var tmp = ConvertToLabelText(YearlySalesEntryInput, YearlyNameEntryInput,
+            YearlyAdditionEntryInput);
         if (YearlySales.Contains(tmp))
         {
             await Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, YearlySalesLbl.Text, tmp))
@@ -157,12 +169,12 @@ public partial class MainViewModel : ObservableObject
         }
 
         _yearlySalesDict[tmp] =
-            _financialOverview.YearlySales.Rows.Add(YearlySalesEntry.Text, YearlyNameEntry.Text,
-                YearlyAdditionEntry.Text);
+            _financialOverview.YearlySales.Rows.Add(YearlySalesEntryInput, YearlyNameEntryInput,
+                YearlyAdditionEntryInput);
         YearlySales.Add(tmp);
-        YearlySalesEntry.Text = string.Empty;
-        YearlyNameEntry.Text = string.Empty;
-        YearlyAdditionEntry.Text = string.Empty;
+        YearlySalesEntryInput = 0;
+        YearlyNameEntryInput = string.Empty;
+        YearlyAdditionEntryInput = string.Empty;
         UpdateAllSales();
         DataIsSaved = false;
     }
@@ -278,7 +290,7 @@ public partial class MainViewModel : ObservableObject
         MonthlySales.Clear();
         foreach (DataRow row in _financialOverview.MonthlySales.Rows)
         {
-            var tmp = ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            var tmp = ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
             MonthlySales.Add(tmp);
             _monthlySalesDict[tmp] = row;
         }
@@ -289,7 +301,7 @@ public partial class MainViewModel : ObservableObject
         YearlySales.Clear();
         foreach (DataRow row in _financialOverview.YearlySales.Rows)
         {
-            var tmp = ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
+            var tmp = ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
             YearlySales.Add(tmp);
             _yearlySalesDict[tmp] = row;
         }
@@ -300,12 +312,12 @@ public partial class MainViewModel : ObservableObject
         var tmp = _financialOverview.AllSales.Copy();
         AllSales.Clear();
         foreach (DataRow row in tmp.Rows)
-            AllSales.Add(ConvertToLabelText(Convert.ToDouble(row[0]), Convert.ToString(row[1]),
+            AllSales.Add(ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]),
                 Convert.ToString(row[2])));
         RestMoney = _financialOverview.GetRest();
     }
 
-    private string ConvertToLabelText(double sales, string name, string addition = null)
+    private string ConvertToLabelText(decimal sales, string name, string addition = null)
     {
         return $@"{sales} | {name} {(string.IsNullOrWhiteSpace(addition)
                 ? ""
