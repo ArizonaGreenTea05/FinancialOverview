@@ -84,21 +84,21 @@
                VerticalOptions="Start" />
 
         <Entry Placeholder="{Binding MonthlySalesEntry.Placeholder}"
-               Text="{Binding MonthlySalesEntry.Text}"
+               Text="{Binding MonthlySalesEntryInput}"
                FontSize="{Binding MonthlySalesEntry.FontSize}"
                Grid.Column="54"
                Grid.ColumnSpan="6"
                Grid.Row="2"/>
 
         <Entry Placeholder="{Binding MonthlyNameEntry.Placeholder}"
-               Text="{Binding MonthlyNameEntry.Text}"
+               Text="{Binding MonthlyNameEntryInput}"
                FontSize="{Binding MonthlyNameEntry.FontSize}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="2"/>
 
         <Entry Placeholder="{Binding MonthlyAdditionEntry.Placeholder}"
-               Text="{Binding MonthlyAdditionEntry.Text}"
+               Text="{Binding MonthlyAdditionEntryInput}"
                FontSize="{Binding MonthlyAdditionEntry.FontSize}"
                Grid.Column="71"
                Grid.ColumnSpan="19"
@@ -151,21 +151,21 @@
                VerticalOptions="Start" />
 
         <Entry Placeholder="{Binding YearlySalesEntry.Placeholder}"
-               Text="{Binding YearlySalesEntry.Text}"
+               Text="{Binding YearlySalesEntryInput}"
                FontSize="{Binding YearlySalesEntry.FontSize}"
                Grid.Column="54"
                Grid.ColumnSpan="6"
                Grid.Row="5"/>
 
         <Entry Placeholder="{Binding YearlyNameEntry.Placeholder}"
-               Text="{Binding YearlyNameEntry.Text}"
+               Text="{Binding YearlyNameEntryInput}"
                FontSize="{Binding YearlyNameEntry.FontSize}"
                Grid.Column="60"
                Grid.ColumnSpan="11"
                Grid.Row="5"/>
 
         <Entry Placeholder="{Binding YearlyAdditionEntry.Placeholder}"
-               Text="{Binding YearlyAdditionEntry.Text}"
+               Text="{Binding YearlyAdditionEntryInput}"
                FontSize="{Binding YearlyAdditionEntry.FontSize}"
                Grid.Column="71"
                Grid.ColumnSpan="19"

@@ -55,7 +55,6 @@ public sealed class ResourceEntry : ResourceItem
 {
     public string Name { get; set; }
     public string Placeholder { get; set; }
-    public string Text { get; set; }
     public int FontSize { get; set; }
 
     public ResourceEntry(string name)
@@ -66,7 +65,6 @@ public sealed class ResourceEntry : ResourceItem
 
     public override void LoadResource()
     {
-        Text = LanguageResource.ResourceManager.GetString($"{Name}.{nameof(Text)}") ?? "";
         Placeholder = LanguageResource.ResourceManager.GetString($"{Name}.{nameof(Placeholder)}");
         FontSize = Convert.ToInt32(LanguageResource.ResourceManager.GetString($"{Name}.{nameof(FontSize)}"));
         FontSize = FontSize == 0 ? 24 : FontSize;
