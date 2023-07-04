@@ -37,7 +37,13 @@ namespace BusinessLogic
         {
             return _history[index];
         }
-        
+
+        public void Clear()
+        {
+            _history.Clear();
+            CurrentIndex = 0;
+        }
+
         public IEnumerator GetEnumerator()
         {
             return _history.GetEnumerator();

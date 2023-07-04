@@ -331,6 +331,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string RedoBtn_FontSize {
+            get {
+                return ResourceManager.GetString("RedoBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        internal static string RedoBtn_Text {
+            get {
+                return ResourceManager.GetString("RedoBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 24.
         /// </summary>
         internal static string RestLbl_FontSize {
@@ -408,6 +426,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string SaveFileLbl_Text {
             get {
                 return ResourceManager.GetString("SaveFileLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string UndoBtn_FontSize {
+            get {
+                return ResourceManager.GetString("UndoBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        internal static string UndoBtn_Text {
+            get {
+                return ResourceManager.GetString("UndoBtn.Text", resourceCulture);
             }
         }
         

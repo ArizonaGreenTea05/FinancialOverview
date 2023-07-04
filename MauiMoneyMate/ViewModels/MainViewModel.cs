@@ -46,6 +46,10 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private ResourceButton _filePageBtn;
 
+    [ObservableProperty] private ResourceButton _undoBtn;
+
+    [ObservableProperty] private ResourceButton _redoBtn;
+
     [ObservableProperty] private ResourceButton _yearlyAddBtn;
 
     [ObservableProperty] private ResourceButton _monthlyAddBtn;
@@ -223,6 +227,20 @@ public partial class MainViewModel : ObservableObject
         await Shell.Current.GoToAsync(nameof(FilePage));
     }
 
+    [RelayCommand]
+    private void Undo()
+    {
+        _financialOverview.Undo();
+        UpdateSales();
+    }
+
+    [RelayCommand]
+    private void Redo()
+    {
+        _financialOverview.Redo();
+        UpdateSales();
+    }
+
     #endregion
 
     #region public Methods
@@ -237,6 +255,8 @@ public partial class MainViewModel : ObservableObject
     {
         _financialOverview.LoadData();
         UpdateSales();
+        _financialOverview.ClearHistory();
+        _financialOverview.AddCurrentStateToHistory();
     }
 
     public void TimeUnitChanged()
@@ -338,6 +358,8 @@ public partial class MainViewModel : ObservableObject
         RestMoney = Convert.ToDecimal(RestMoneyLbl.Text);
         MoneyUnitLbl = new ResourceLabel(nameof(MoneyUnitLbl));
         FilePageBtn = new ResourceButton(nameof(FilePageBtn));
+        UndoBtn = new ResourceButton(nameof(UndoBtn));
+        RedoBtn = new ResourceButton(nameof(RedoBtn));
         MonthlyAddBtn = new ResourceButton(nameof(MonthlyAddBtn));
         YearlyAddBtn = new ResourceButton(nameof(YearlyAddBtn));
         DeleteBtn = new ResourceButton(nameof(DeleteBtn));

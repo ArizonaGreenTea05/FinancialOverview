@@ -201,4 +201,16 @@
   <data name="IsNoValidDecimal" xml:space="preserve">
     <value>{0} ist keine valide Dezimalzahl.</value>
   </data>
+  <data name="RedoBtn.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="RedoBtn.Text" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="UndoBtn.FontSize" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="UndoBtn.Text" xml:space="preserve">
+    <value>Rückgängig</value>
+  </data>
 </root>

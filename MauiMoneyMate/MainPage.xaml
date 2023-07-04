@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiMoneyMate.MainPage"
              xmlns:viewmodel="clr-namespace:MauiMoneyMate.ViewModels"
+             xmlns:mauiMoneyMate="using:MauiMoneyMate"
              x:DataType="viewmodel:MainViewModel"
              Title="{Binding FinancialOverviewTitle}"
              Loaded="MainPage_OnLoaded"
@@ -16,11 +17,20 @@
         <HorizontalStackLayout Grid.Column="0"
                                Grid.ColumnSpan="100"
                                Grid.Row="0"
-                               Padding="0,0,0,20">
+                               Padding="0,0,0,20"
+                               Spacing="3">
             <Button Text="{Binding FilePageBtn.Text}"
                     FontSize="{Binding FilePageBtn.FontSize}"
-                    Style="{StaticResource PageSwitcher}"
+                    Style="{StaticResource ToolbarButton}"
                     Command="{Binding SwitchToFilePageCommand}"/>
+            <Button Text="{Binding UndoBtn.Text}"
+                    FontSize="{Binding UndoBtn.FontSize}"
+                    Style="{StaticResource ToolbarButton}"
+                    Command="{Binding UndoCommand}"/>
+            <Button Text="{Binding RedoBtn.Text}"
+                    FontSize="{Binding RedoBtn.FontSize}"
+                    Style="{StaticResource ToolbarButton}"
+                    Command="{Binding RedoCommand}"/>
         </HorizontalStackLayout>
 
         <Frame Grid.Column="32"

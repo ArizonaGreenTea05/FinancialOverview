@@ -92,7 +92,9 @@ namespace BusinessLogic
             _dataSet.Tables.Add(MonthlySales);
             _dataSet.Tables.Add(YearlySales);
             MonthlySales.RowChanged += RowChanged;
+            MonthlySales.RowDeleted += RowChanged;
             YearlySales.RowChanged += RowChanged;
+            YearlySales.RowDeleted += RowChanged;
             _history = new History(new Snapshot(YearlySales, MonthlySales));
         }
 
@@ -136,7 +138,7 @@ namespace BusinessLogic
 
         public void Undo()
         {
-            if(_history.CurrentIndex == 0) return;
+            if(_history.CurrentIndex <= 0) return;
             --_history.CurrentIndex;
             var current = _history.CurrentSnapshot;
             MonthlySales = current.MonthlySales;
@@ -145,21 +147,26 @@ namespace BusinessLogic
 
         public void Redo()
         {
-            if(_history.CurrentIndex == _history.Length - 1) return;
+            if(_history.CurrentIndex >= _history.Length - 1) return;
             ++_history.CurrentIndex;
             var current = _history.CurrentSnapshot;
             MonthlySales = current.MonthlySales;
             YearlySales = current.YearlySales;
         }
-        
-        private void AddSnapshot()
+
+        public void ClearHistory()
+        {
+            _history.Clear();
+        }
+
+        public void AddCurrentStateToHistory()
         {
             _history.Add(new Snapshot(YearlySales, MonthlySales));
         }
 
         private void RowChanged(object obj, DataRowChangeEventArgs eventArgs)
         {
-            AddSnapshot();
+            AddCurrentStateToHistory();
         }
     }
 }

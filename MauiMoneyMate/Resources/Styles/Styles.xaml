@@ -51,7 +51,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PageSwitcher"  TargetType="Button">
+    <Style x:Key="ToolbarButton"  TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark=WhiteSmoke}" />
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark=WhiteSmoke}" />
