@@ -1,5 +1,7 @@
 @echo off
 
+REM Before publishing: Copy this file in the .zip file that contains the MauiMoneyMate_x.x.x.x_x64 folder and rename this file so the version matches
+
 :: BatchGotAdmin
 :-------------------------------------
 REM  --> Check for permissions
@@ -28,10 +30,11 @@ REM --> If error flag set, we do not have admin.
     )
 
 :: Actual script starts here
-
+set "SCRIPT_NAME=%~n0"
+set "SCRIPT_BASENAME=%SCRIPT_NAME:_installer=%"
 set "SCRIPT_DIR=%~dp0"
-set "CERT_FILE=%SCRIPT_DIR%MauiMoneyMate_0.0.0.0_x64\MauiMoneyMate_0.0.0.0_x64.cer"
-set "MSIX_FILE=%SCRIPT_DIR%MauiMoneyMate_0.0.0.0_x64\MauiMoneyMate_0.0.0.0_x64.msix"
+set "CERT_FILE=%SCRIPT_DIR%%SCRIPT_BASENAME%\%SCRIPT_BASENAME%.cer"
+set "MSIX_FILE=%SCRIPT_DIR%%SCRIPT_BASENAME%\%SCRIPT_BASENAME%.msix"
 
 REM Import certificate to "Trusted People" store on local machine
 certutil -addstore "TrustedPeople" "%CERT_FILE%"
