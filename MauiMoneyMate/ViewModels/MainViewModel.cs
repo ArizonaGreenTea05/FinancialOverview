@@ -127,25 +127,25 @@ public partial class MainViewModel : ObservableObject
 
     #endregion
 
-    #region private Relay Commands
+    #region public Relay Commands
 
     [RelayCommand]
-    private async Task AddMonthly(CancellationToken cancellationToken)
+    public void AddMonthly()
     {
         if (string.IsNullOrWhiteSpace(MonthlySalesEntryInput) || string.IsNullOrWhiteSpace(MonthlyNameEntryInput))
             return;
         if (!decimal.TryParse(MonthlySalesEntryInput, out var monthlySalesEntry))
         {
-            await Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, MonthlySalesEntryInput))
-                .Show(cancellationToken);
+            Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, MonthlySalesEntryInput))
+                .Show();
             return;
         }
         var tmp = ConvertToLabelText(monthlySalesEntry, MonthlyNameEntryInput,
             MonthlyAdditionEntryInput);
         if (MonthlySales.Contains(tmp))
         {
-            await Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, MonthlySalesLbl.Text, tmp))
-                .Show(cancellationToken);
+            Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, MonthlySalesLbl.Text, tmp))
+                .Show();
             return;
         }
 
@@ -161,22 +161,22 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task AddYearly(CancellationToken cancellationToken)
+    public void AddYearly()
     {
         if (string.IsNullOrWhiteSpace(YearlySalesEntryInput) || string.IsNullOrWhiteSpace(YearlyNameEntryInput))
             return;
         if (!decimal.TryParse(YearlySalesEntryInput, out var yearlySalesEntry))
         {
-            await Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, MonthlySalesEntryInput))
-                .Show(cancellationToken);
+            Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, MonthlySalesEntryInput))
+                .Show();
             return;
         }
         var tmp = ConvertToLabelText(yearlySalesEntry, YearlyNameEntryInput,
             YearlyAdditionEntryInput);
         if (YearlySales.Contains(tmp))
         {
-            await Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, YearlySalesLbl.Text, tmp))
-                .Show(cancellationToken);
+            Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, YearlySalesLbl.Text, tmp))
+                .Show();
             return;
         }
 
@@ -190,6 +190,10 @@ public partial class MainViewModel : ObservableObject
         UpdateAllSales();
         DataIsSaved = false;
     }
+
+    #endregion
+
+    #region private Relay Commands
 
     [RelayCommand]
     private void DeleteMonthly(string s)

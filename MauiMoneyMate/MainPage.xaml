@@ -86,26 +86,33 @@
         <Entry Placeholder="{Binding MonthlySalesEntry.Placeholder}"
                Text="{Binding MonthlySalesEntryInput}"
                FontSize="{Binding MonthlySalesEntry.FontSize}"
+               x:Name="MonthlySalesEntry"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="2"/>
+               Grid.Row="2"
+               Completed="MonthlySalesEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding MonthlyNameEntry.Placeholder}"
                Text="{Binding MonthlyNameEntryInput}"
                FontSize="{Binding MonthlyNameEntry.FontSize}"
+               x:Name="MonthlyNameEntry"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="2"/>
+               Grid.Row="2"
+               Completed="MonthlyNameEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding MonthlyAdditionEntry.Placeholder}"
                Text="{Binding MonthlyAdditionEntryInput}"
                FontSize="{Binding MonthlyAdditionEntry.FontSize}"
+               x:Name="MonthlyAdditionEntry"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="2"/>
+               Grid.Row="2"
+               Completed="MonthlyAdditionEntry_OnCompleted"/>
 
         <Button Text="{Binding MonthlyAddBtn.Text}"
                 FontSize="{Binding MonthlyAddBtn.FontSize}"
+                x:Name="MonthlyAddBtn"
                 Grid.Column="90"
                 Grid.ColumnSpan="10"
                 Grid.Row="2"
@@ -153,29 +160,36 @@
         <Entry Placeholder="{Binding YearlySalesEntry.Placeholder}"
                Text="{Binding YearlySalesEntryInput}"
                FontSize="{Binding YearlySalesEntry.FontSize}"
+               x:Name="YearlySalesEntry"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="5"/>
+               Grid.Row="5"
+               Completed="YearlySalesEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding YearlyNameEntry.Placeholder}"
                Text="{Binding YearlyNameEntryInput}"
                FontSize="{Binding YearlyNameEntry.FontSize}"
+               x:Name="YearlyNameEntry"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="5"/>
+               Grid.Row="5"
+               Completed="YearlyNameEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding YearlyAdditionEntry.Placeholder}"
                Text="{Binding YearlyAdditionEntryInput}"
                FontSize="{Binding YearlyAdditionEntry.FontSize}"
+               x:Name="YearlyAdditionEntry"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="5"/>
+               Grid.Row="5"
+               Completed="YearlyAdditionEntry_OnCompleted"/>
 
         <Button Grid.Column="90"
                 Grid.ColumnSpan="10"
                 Grid.Row="5"
                 Text="{Binding YearlyAddBtn.Text}"
                 FontSize="{Binding YearlyAddBtn.FontSize}"
+                x:Name="YearlyAddBtn"
                 Scale=".8"
                 Command="{Binding AddYearlyCommand}"/>
 
