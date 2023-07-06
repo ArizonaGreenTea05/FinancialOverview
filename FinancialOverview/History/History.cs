@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace BusinessLogic
+namespace BusinessLogic.History
 {
     public class History : IEnumerable
     {

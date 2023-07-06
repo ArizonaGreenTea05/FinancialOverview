@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
+using BusinessLogic.History;
 using System.IO;
 
 namespace BusinessLogic
@@ -9,7 +9,8 @@ namespace BusinessLogic
     {
         private readonly DataSet _dataSet = new DataSet();
         private DataTable _allSales;
-        private readonly History _history;
+        private readonly History.History _history;
+        private bool _blockRowChangedHandler = false;
 
         public event EventHandler<string> OnDefaultFilePathChanged;
 
@@ -95,7 +96,7 @@ namespace BusinessLogic
             MonthlySales.RowDeleted += RowChanged;
             YearlySales.RowChanged += RowChanged;
             YearlySales.RowDeleted += RowChanged;
-            _history = new History(new Snapshot(YearlySales, MonthlySales));
+            _history = new History.History(new Snapshot(YearlySales, MonthlySales));
         }
 
         public bool LoadData(string path)
@@ -138,20 +139,26 @@ namespace BusinessLogic
 
         public void Undo()
         {
+            _blockRowChangedHandler = true;
             if(_history.CurrentIndex <= 0) return;
             --_history.CurrentIndex;
             var current = _history.CurrentSnapshot;
-            MonthlySales = current.MonthlySales;
-            YearlySales = current.YearlySales;
+            current.TransferTo(YearlySales, MonthlySales);
+            //MonthlySales = current.MonthlySales;
+            //YearlySales = current.YearlySales;
+            _blockRowChangedHandler = false;
         }
 
         public void Redo()
         {
-            if(_history.CurrentIndex >= _history.Length - 1) return;
+            _blockRowChangedHandler = true;
+            if (_history.CurrentIndex >= _history.Length - 1) return;
             ++_history.CurrentIndex;
             var current = _history.CurrentSnapshot;
-            MonthlySales = current.MonthlySales;
-            YearlySales = current.YearlySales;
+            current.TransferTo(YearlySales, MonthlySales);
+            //MonthlySales = current.MonthlySales;
+            //YearlySales = current.YearlySales;
+            _blockRowChangedHandler = false;
         }
 
         public void ClearHistory()
@@ -166,6 +173,7 @@ namespace BusinessLogic
 
         private void RowChanged(object obj, DataRowChangeEventArgs eventArgs)
         {
+            if (_blockRowChangedHandler) return;
             AddCurrentStateToHistory();
         }
     }
