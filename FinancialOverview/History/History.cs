@@ -6,7 +6,11 @@ namespace BusinessLogic.History
 {
     public class History : IEnumerable
     {
-        private List<Snapshot> _history;
+        private readonly List<Snapshot> _history;
+
+        private DataTable YearlySales { get; set; }
+
+        private DataTable MonthlySales { get; set; }
 
         public int CurrentIndex { get; set; } = 0;
 
@@ -19,18 +23,19 @@ namespace BusinessLogic.History
             _history = new List<Snapshot>();
         }
 
-        public History(Snapshot snapshot)
+        public History(DataTable yearlySales, DataTable monthlySales)
         {
-            _history = new List<Snapshot>
-            {
-                snapshot
-            };
+            _history = new List<Snapshot>();
+            YearlySales = yearlySales;
+            MonthlySales = monthlySales;
+            //AddSnapshot();
         }
 
-        public void Add(Snapshot snapshot)
+        public void AddSnapshot()
         {
-            _history.Add(snapshot);
             ++CurrentIndex;
+            if (Length >= CurrentIndex) _history.RemoveRange(CurrentIndex, Length-CurrentIndex);
+            _history.Add(new Snapshot(YearlySales, MonthlySales));
         }
 
         public Snapshot Get(int index)
@@ -42,6 +47,21 @@ namespace BusinessLogic.History
         {
             _history.Clear();
             CurrentIndex = 0;
+            AddSnapshot();
+        }
+
+        public void Undo()
+        {;
+            if (CurrentIndex <= 0) return;
+            --CurrentIndex;
+            CurrentSnapshot.TransferTo(YearlySales, MonthlySales);
+        }
+
+        public void Redo()
+        {
+            if (CurrentIndex >= Length - 1) return;
+            ++CurrentIndex;
+            CurrentSnapshot.TransferTo(YearlySales, MonthlySales);
         }
 
         public IEnumerator GetEnumerator()

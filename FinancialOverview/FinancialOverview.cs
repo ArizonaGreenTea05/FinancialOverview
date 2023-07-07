@@ -96,7 +96,7 @@ namespace BusinessLogic
             MonthlySales.RowDeleted += RowChanged;
             YearlySales.RowChanged += RowChanged;
             YearlySales.RowDeleted += RowChanged;
-            _history = new History.History(new Snapshot(YearlySales, MonthlySales));
+            _history = new History.History(YearlySales, MonthlySales);
         }
 
         public bool LoadData(string path)
@@ -106,6 +106,7 @@ namespace BusinessLogic
             YearlySales.Clear();
             _dataSet.ReadXml(path);
             DefaultFilePath = path;
+            _history.Clear();
             return true;
         }
 
@@ -119,6 +120,7 @@ namespace BusinessLogic
             if (!File.Exists(path)) return false;
             _dataSet.WriteXml(path);
             DefaultFilePath = path;
+            _history.Clear();
             return true;
         }
 
@@ -140,24 +142,14 @@ namespace BusinessLogic
         public void Undo()
         {
             _blockRowChangedHandler = true;
-            if(_history.CurrentIndex <= 0) return;
-            --_history.CurrentIndex;
-            var current = _history.CurrentSnapshot;
-            current.TransferTo(YearlySales, MonthlySales);
-            //MonthlySales = current.MonthlySales;
-            //YearlySales = current.YearlySales;
+            _history.Undo();
             _blockRowChangedHandler = false;
         }
 
         public void Redo()
         {
             _blockRowChangedHandler = true;
-            if (_history.CurrentIndex >= _history.Length - 1) return;
-            ++_history.CurrentIndex;
-            var current = _history.CurrentSnapshot;
-            current.TransferTo(YearlySales, MonthlySales);
-            //MonthlySales = current.MonthlySales;
-            //YearlySales = current.YearlySales;
+            _history.Redo();
             _blockRowChangedHandler = false;
         }
 
@@ -168,7 +160,7 @@ namespace BusinessLogic
 
         public void AddCurrentStateToHistory()
         {
-            _history.Add(new Snapshot(YearlySales, MonthlySales));
+            _history.AddSnapshot();
         }
 
         private void RowChanged(object obj, DataRowChangeEventArgs eventArgs)
