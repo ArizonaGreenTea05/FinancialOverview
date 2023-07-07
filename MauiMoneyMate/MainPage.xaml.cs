@@ -28,5 +28,35 @@ namespace MauiMoneyMate
         {
             _viewModel.OnLoaded();
         }
+
+        private void MonthlySalesEntry_OnCompleted(object sender, EventArgs e)
+        {
+            MonthlyNameEntry.Focus();
+        }
+
+        private void MonthlyNameEntry_OnCompleted(object sender, EventArgs e)
+        {
+            MonthlyAdditionEntry.Focus();
+        }
+
+        private void MonthlyAdditionEntry_OnCompleted(object sender, EventArgs e)
+        {
+            _viewModel.AddMonthly();
+        }
+
+        private void YearlySalesEntry_OnCompleted(object sender, EventArgs e)
+        {
+            YearlyNameEntry.Focus();
+        }
+
+        private void YearlyNameEntry_OnCompleted(object sender, EventArgs e)
+        {
+            YearlyAdditionEntry.Focus();
+        }
+
+        private void YearlyAdditionEntry_OnCompleted(object sender, EventArgs e)
+        {
+            _viewModel.AddYearly();
+        }
     }
 }
