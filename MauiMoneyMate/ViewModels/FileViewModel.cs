@@ -52,6 +52,7 @@ public partial class FileViewModel : ObservableObject
             return;
         }
         _financialOverview.LoadData(path);
+        _financialOverview.ClearHistory();
         DataIsSaved = true;
         Shell.Current.GoToAsync("../../route");
     }

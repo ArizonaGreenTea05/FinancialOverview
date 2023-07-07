@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
+using BusinessLogic.History;
 using System.IO;
 
 namespace BusinessLogic
@@ -9,7 +9,8 @@ namespace BusinessLogic
     {
         private readonly DataSet _dataSet = new DataSet();
         private DataTable _allSales;
-        private readonly History _history;
+        private readonly History.History _history;
+        private bool _blockRowChangedHandler = false;
 
         public event EventHandler<string> OnDefaultFilePathChanged;
 
@@ -92,8 +93,10 @@ namespace BusinessLogic
             _dataSet.Tables.Add(MonthlySales);
             _dataSet.Tables.Add(YearlySales);
             MonthlySales.RowChanged += RowChanged;
+            MonthlySales.RowDeleted += RowChanged;
             YearlySales.RowChanged += RowChanged;
-            _history = new History(new Snapshot(YearlySales, MonthlySales));
+            YearlySales.RowDeleted += RowChanged;
+            _history = new History.History(YearlySales, MonthlySales);
         }
 
         public bool LoadData(string path)
@@ -103,6 +106,7 @@ namespace BusinessLogic
             YearlySales.Clear();
             _dataSet.ReadXml(path);
             DefaultFilePath = path;
+            _history.Clear();
             return true;
         }
 
@@ -116,6 +120,7 @@ namespace BusinessLogic
             if (!File.Exists(path)) return false;
             _dataSet.WriteXml(path);
             DefaultFilePath = path;
+            _history.Clear();
             return true;
         }
 
@@ -136,30 +141,32 @@ namespace BusinessLogic
 
         public void Undo()
         {
-            if(_history.CurrentIndex == 0) return;
-            --_history.CurrentIndex;
-            var current = _history.CurrentSnapshot;
-            MonthlySales = current.MonthlySales;
-            YearlySales = current.YearlySales;
+            _blockRowChangedHandler = true;
+            _history.Undo();
+            _blockRowChangedHandler = false;
         }
 
         public void Redo()
         {
-            if(_history.CurrentIndex == _history.Length - 1) return;
-            ++_history.CurrentIndex;
-            var current = _history.CurrentSnapshot;
-            MonthlySales = current.MonthlySales;
-            YearlySales = current.YearlySales;
+            _blockRowChangedHandler = true;
+            _history.Redo();
+            _blockRowChangedHandler = false;
         }
-        
-        private void AddSnapshot()
+
+        public void ClearHistory()
         {
-            _history.Add(new Snapshot(YearlySales, MonthlySales));
+            _history.Clear();
+        }
+
+        public void AddCurrentStateToHistory()
+        {
+            _history.AddSnapshot();
         }
 
         private void RowChanged(object obj, DataRowChangeEventArgs eventArgs)
         {
-            AddSnapshot();
+            if (_blockRowChangedHandler) return;
+            AddCurrentStateToHistory();
         }
     }
 }

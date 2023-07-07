@@ -104,8 +104,10 @@
 
 	<ItemGroup>
 		<None Remove="Resources\Images\open.png" />
+		<None Remove="Resources\Images\redo.png" />
 		<None Remove="Resources\Images\save.png" />
 		<None Remove="Resources\Images\save_as.png" />
+		<None Remove="Resources\Images\undo.png" />
 	</ItemGroup>
 
 	<ItemGroup>

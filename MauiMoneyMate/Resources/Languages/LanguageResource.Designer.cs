@@ -124,7 +124,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 14.
+        ///   Looks up a localized string similar to 15.
         /// </summary>
         internal static string FilePageBtn_FontSize {
             get {
