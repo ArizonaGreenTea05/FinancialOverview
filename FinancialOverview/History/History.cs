@@ -12,7 +12,7 @@ namespace BusinessLogic.History
 
         private DataTable MonthlySales { get; set; }
 
-        public int CurrentIndex { get; set; } = 0;
+        public int CurrentIndex { get; set; } = -1;
 
         public Snapshot CurrentSnapshot => _history[CurrentIndex];
 
@@ -28,7 +28,6 @@ namespace BusinessLogic.History
             _history = new List<Snapshot>();
             YearlySales = yearlySales;
             MonthlySales = monthlySales;
-            //AddSnapshot();
         }
 
         public void AddSnapshot()
@@ -46,7 +45,7 @@ namespace BusinessLogic.History
         public void Clear()
         {
             _history.Clear();
-            CurrentIndex = 0;
+            CurrentIndex = -1;
             AddSnapshot();
         }
 
