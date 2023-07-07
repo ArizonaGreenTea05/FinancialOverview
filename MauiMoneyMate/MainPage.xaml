@@ -23,14 +23,12 @@
                     FontSize="{Binding FilePageBtn.FontSize}"
                     Style="{StaticResource ToolbarButton}"
                     Command="{Binding SwitchToFilePageCommand}"/>
-            <Button Text="{Binding UndoBtn.Text}"
-                    FontSize="{Binding UndoBtn.FontSize}"
-                    Style="{StaticResource ToolbarButton}"
-                    Command="{Binding UndoCommand}"/>
-            <Button Text="{Binding RedoBtn.Text}"
-                    FontSize="{Binding RedoBtn.FontSize}"
-                    Style="{StaticResource ToolbarButton}"
-                    Command="{Binding RedoCommand}"/>
+            <ImageButton Source="undo.png"
+                         Style="{StaticResource ToolbarImageButton}"
+                         Command="{Binding UndoCommand}"/>
+            <ImageButton Source="redo.png"
+                         Style="{StaticResource ToolbarImageButton}"
+                         Command="{Binding RedoCommand}"/>
         </HorizontalStackLayout>
 
         <Frame Grid.Column="32"

@@ -362,8 +362,6 @@ public partial class MainViewModel : ObservableObject
         RestMoney = Convert.ToDecimal(RestMoneyLbl.Text);
         MoneyUnitLbl = new ResourceLabel(nameof(MoneyUnitLbl));
         FilePageBtn = new ResourceButton(nameof(FilePageBtn));
-        UndoBtn = new ResourceButton(nameof(UndoBtn));
-        RedoBtn = new ResourceButton(nameof(RedoBtn));
         MonthlyAddBtn = new ResourceButton(nameof(MonthlyAddBtn));
         YearlyAddBtn = new ResourceButton(nameof(YearlyAddBtn));
         DeleteBtn = new ResourceButton(nameof(DeleteBtn));
