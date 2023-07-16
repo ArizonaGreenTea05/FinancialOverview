@@ -7,7 +7,7 @@
              x:DataType="viewmodel:MainViewModel"
              Title="{Binding FinancialOverviewTitle}"
              Loaded="MainPage_OnLoaded"
-             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
 
     
     <Grid RowDefinitions="50, 40, Auto, *, Auto, Auto, *, 40"
