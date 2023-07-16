@@ -5,7 +5,7 @@
              x:Class="MauiMoneyMate.FilePage"
              x:DataType="viewModels:FileViewModel"
              Title="{Binding FilePageTitle}"
-             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Tertiary}}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
     <Grid RowDefinitions="40,40,40,40,40,40,40,40,40,40,40,40,40,40,40"
           ColumnDefinitions="40,40,40,40,40,40,40,40,40,40,40,40,40,40,40">
         <ImageButton Grid.Row="2"
