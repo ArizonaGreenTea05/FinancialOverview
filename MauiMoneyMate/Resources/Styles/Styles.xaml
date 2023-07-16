@@ -75,9 +75,9 @@
     </Style>
 
     <Style TargetType="ImageButton">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark=WhiteSmoke}" />
-        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark=WhiteSmoke}" />
-        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ToolbarLight}, Dark={StaticResource ToolbarDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="BorderWidth" Value="1" />
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="VerticalOptions" Value="Center"/>
@@ -258,10 +258,11 @@
     </Style>
 
     <Style x:Key="Label3" TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryLight}, Dark={StaticResource SecondaryDark}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource ToolbarTextLight}, Dark={StaticResource ToolbarTextDark}}" />
         <Setter Property="FontFamily" Value="OpenSansBold"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,10,0,0"/>
         <Setter Property="FontSize" Value="17"/>
         <Setter Property="FontAutoScalingEnabled" Value="True"/>
     </Style>
@@ -460,7 +461,7 @@
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
-        <Setter Property="ForegroundColor" Value="{OnPlatform WinUI={StaticResource PrimaryLight}, Default={StaticResource White}}" />
+        <Setter Property="ForegroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource SecondaryDark}}" />
         <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource SecondaryLight}, Dark={StaticResource SecondaryDark}}" />
         <Setter Property="DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />

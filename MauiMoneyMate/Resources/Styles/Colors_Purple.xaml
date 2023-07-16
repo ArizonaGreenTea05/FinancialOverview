@@ -5,28 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="PrimaryLight">#9f61d6</Color>
-    <Color x:Key="PrimaryDark">WhiteSmoke</Color>
+    <Color x:Key="PrimaryDark">#5b3d7a</Color>
 
     <Color x:Key="SecondaryLight">#f8f1ff</Color>
-    <Color x:Key="SecondaryDark">#9f61d6</Color>
+    <Color x:Key="SecondaryDark">#eed5ff</Color>
 
     <Color x:Key="TertiaryLight">#f8f1ff</Color>
-    <Color x:Key="TertiaryDark">#070021</Color>
+    <Color x:Key="TertiaryDark">#110b17</Color>
 
-    <Color x:Key="ToolbarLight">#E1E1E1</Color>
-    <Color x:Key="ToolbarDark">WhiteSmoke</Color>
+    <Color x:Key="ToolbarLight">#eed5ff</Color>
+    <Color x:Key="ToolbarDark">#eed5ff</Color>
 
-    <Color x:Key="ToolbarBorderLight">#E1E1E1</Color>
-    <Color x:Key="ToolbarBorderDark">WhiteSmoke</Color>
+    <Color x:Key="ToolbarBorderLight">#eed5ff</Color>
+    <Color x:Key="ToolbarBorderDark">#eed5ff</Color>
 
     <Color x:Key="ToolbarTextLight">#070021</Color>
-    <Color x:Key="ToolbarTextDark">#9f61d6</Color>
+    <Color x:Key="ToolbarTextDark">#5b3d7a</Color>
 
     <Color x:Key="DeleteLight">#e14663</Color>
-    <Color x:Key="DeleteDark">Red</Color>
+    <Color x:Key="DeleteDark">#6e0f1a</Color>
 
     <Color x:Key="DeleteTextLight">#f8f1ff</Color>
-    <Color x:Key="DeleteTextDark">#070021</Color>
+    <Color x:Key="DeleteTextDark">#eed5ff</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
