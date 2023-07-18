@@ -92,8 +92,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		  
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -103,6 +101,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Images\logo.png" />
+		<None Remove="Resources\Images\logo_white.png" />
 		<None Remove="Resources\Images\open.png" />
 		<None Remove="Resources\Images\redo.png" />
 		<None Remove="Resources\Images\save.png" />
@@ -151,13 +151,6 @@
 	  <MauiXaml Update="Resources\Styles\Colors_Purple.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="Resources\AppIcon\appicon.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
 	</ItemGroup>
 
 </Project>
