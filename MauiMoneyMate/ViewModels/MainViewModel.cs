@@ -250,9 +250,7 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void ShowHelp()
     {
-        Browser.Default.OpenAsync(
-            "https://github.com/ArizonaGreenTea05/FinancialOverview/issues/new/choose",
-            BrowserLaunchMode.SystemPreferred);
+        Browser.Default.OpenAsync(Constants.REPOSITORY_URL, BrowserLaunchMode.SystemPreferred);
     }
 
     #endregion

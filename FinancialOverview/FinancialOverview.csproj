@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="FinancialOverview.cs" />
     <Compile Include="History\History.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
