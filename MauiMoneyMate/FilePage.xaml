@@ -21,7 +21,7 @@
                Grid.ColumnSpan="3"
                FontSize="{Binding OpenFileLbl.FontSize}"
                Text="{Binding OpenFileLbl.Text}"
-               Style="{StaticResource Label3}"/>
+               Style="{StaticResource LabelToolbar}"/>
 
         <ImageButton Grid.Row="6"
                      Grid.RowSpan="3"
@@ -36,7 +36,7 @@
                Grid.ColumnSpan="3"
                FontSize="{Binding SaveFileLbl.FontSize}"
                Text="{Binding SaveFileLbl.Text}"
-               Style="{StaticResource Label3}"/>
+               Style="{StaticResource LabelToolbar}"/>
 
         <ImageButton Grid.Row="6"
                      Grid.RowSpan="3"
@@ -51,6 +51,6 @@
                Grid.ColumnSpan="3"
                FontSize="{Binding SaveFileAsLbl.FontSize}"
                Text="{Binding SaveFileAsLbl.Text}"
-               Style="{StaticResource Label3}"/>
+               Style="{StaticResource LabelToolbar}"/>
     </Grid>
 </ContentPage>

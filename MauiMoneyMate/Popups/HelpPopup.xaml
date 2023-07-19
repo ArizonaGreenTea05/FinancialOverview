@@ -12,8 +12,7 @@
             Grid.ColumnSpan="12"
             Grid.Row="0"
             VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            Style="{StaticResource Label2}"/>
+            HorizontalOptions="Center"/>
         <Label 
             x:Name="Info"
             Grid.Column="0"
@@ -22,8 +21,7 @@
             Grid.RowSpan="3"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
-            HorizontalTextAlignment="Start"
-            Style="{StaticResource Label2}"/>
+            HorizontalTextAlignment="Start"/>
         <Button
             x:Name="NewIssue" 
             Grid.Column="7"

@@ -50,7 +50,7 @@
                Grid.Row="1"
                Text="{Binding AllSalesLbl.Text}"
                FontSize="{Binding AllSalesLbl.FontSize}"
-               Style="{StaticResource Label1}"
+               Style="{StaticResource LabelPrimary}"
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
 
@@ -80,7 +80,7 @@
                             <Label Text="{Binding}"
                                FontSize="14"
                                LineBreakMode="WordWrap"
-                               Style="{StaticResource Label2}"/>
+                               Style="{StaticResource LabelSecondary}"/>
                         </Frame>
                     </Grid>
                 </DataTemplate>
@@ -92,7 +92,7 @@
                Grid.Row="1"
                Text="{Binding MonthlySalesLbl.Text}"
                FontSize="{Binding MonthlySalesLbl.FontSize}"
-               Style="{StaticResource Label1}"
+               Style="{StaticResource LabelPrimary}"
                VerticalOptions="Start" />
 
         <Entry Placeholder="{Binding MonthlySalesEntry.Placeholder}"
@@ -147,7 +147,7 @@
                             <Label Text="{Binding}"
                                    FontSize="14"
                                    LineBreakMode="WordWrap"
-                                   Style="{StaticResource Label2}"/>
+                                   Style="{StaticResource LabelSecondary}"/>
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
@@ -166,7 +166,7 @@
                Grid.Row="4"
                Text="{Binding YearlySalesLbl.Text}"
                FontSize="{Binding YearlySalesLbl.FontSize}"
-               Style="{StaticResource Label1}"
+               Style="{StaticResource LabelPrimary}"
                VerticalOptions="Start" />
 
         <Entry Placeholder="{Binding YearlySalesEntry.Placeholder}"
@@ -221,7 +221,7 @@
                             <Label Text="{Binding}"
                                    FontSize="14"
                                    LineBreakMode="WordWrap"
-                                   Style="{StaticResource Label2}"/>
+                                   Style="{StaticResource LabelSecondary}"/>
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
@@ -252,7 +252,7 @@
                FontSize="{Binding RestLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalOptions="Start"
-               Style="{StaticResource Label2}"/>
+               Style="{StaticResource LabelSecondary}"/>
 
         <Label Grid.Column="9"
                Grid.ColumnSpan="32"
@@ -262,7 +262,7 @@
                FontSize="{Binding RestMoneyLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
-               Style="{StaticResource Label1}"/>
+               Style="{StaticResource LabelPrimary}"/>
 
         <Label Grid.Column="41"
                Grid.ColumnSpan="2"
@@ -271,6 +271,6 @@
                FontSize="{Binding MoneyUnitLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="Start"
-               Style="{StaticResource Label1}"/>
+               Style="{StaticResource LabelPrimary}"/>
     </Grid>
 </ContentPage>
