@@ -178,6 +178,42 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string HelpInfoLbl_FontSize {
+            get {
+                return ResourceManager.GetString("HelpInfoLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you notice a bug or problem, or simply have a suggestion for improvement, please create a new issue where your describe your problem. The title should start with &quot;MauiMoneyMate:&quot;..
+        /// </summary>
+        internal static string HelpInfoLbl_Text {
+            get {
+                return ResourceManager.GetString("HelpInfoLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        internal static string HelpTitleLbl_FontSize {
+            get {
+                return ResourceManager.GetString("HelpTitleLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MauiMoneyMate Help.
+        /// </summary>
+        internal static string HelpTitleLbl_Text {
+            get {
+                return ResourceManager.GetString("HelpTitleLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is no valid decimal..
         /// </summary>
         internal static string IsNoValidDecimal {
@@ -327,6 +363,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string MonthlySalesLbl_Text {
             get {
                 return ResourceManager.GetString("MonthlySalesLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        internal static string NewIssueBtn_FontSize {
+            get {
+                return ResourceManager.GetString("NewIssueBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Issue.
+        /// </summary>
+        internal static string NewIssueBtn_Text {
+            get {
+                return ResourceManager.GetString("NewIssueBtn.Text", resourceCulture);
             }
         }
         

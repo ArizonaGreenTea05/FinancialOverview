@@ -1,4 +1,6 @@
-﻿using MauiMoneyMate.ViewModels;
+﻿using CommunityToolkit.Maui.Views;
+using MauiMoneyMate.Popups;
+using MauiMoneyMate.ViewModels;
 using Microsoft.Maui.Controls.Internals;
 
 namespace MauiMoneyMate
@@ -57,6 +59,12 @@ namespace MauiMoneyMate
         private void YearlyAdditionEntry_OnCompleted(object sender, EventArgs e)
         {
             _viewModel.AddYearly();
+        }
+
+        private void ShowHelp(object sender, EventArgs e)
+        {
+            var popup = new HelpPopup();
+            this.ShowPopup(popup);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace BusinessLogic
 {
     public static class Constants
     {
-        public const string REPOSITORY_URL = "https://github.com/ArizonaGreenTea05/FinancialOverview/issues/new/choose";
+        public const string REPOSITORY_URL = "https://github.com/ArizonaGreenTea05/FinancialOverview";
+        public const string ISSUES_URL = REPOSITORY_URL + "/issues";
+        public const string NEW_ISSUE_URL = ISSUES_URL + "/new";
     }
 }

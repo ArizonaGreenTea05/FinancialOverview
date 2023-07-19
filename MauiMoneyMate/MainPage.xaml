@@ -32,7 +32,7 @@
             <Button Text="{Binding HelpBtn.Text}"
                     FontSize="{Binding HelpBtn.FontSize}"
                     Style="{StaticResource ToolbarButton}"
-                    Command="{Binding ShowHelpCommand}"/>
+                    Clicked="ShowHelp"/>
         </HorizontalStackLayout>
 
         <Frame Grid.Column="32"

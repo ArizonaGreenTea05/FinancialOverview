@@ -2,9 +2,11 @@
 using System.Data;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Popups;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 
@@ -245,12 +247,6 @@ public partial class MainViewModel : ObservableObject
     {
         _financialOverview.Redo();
         UpdateSales();
-    }
-
-    [RelayCommand]
-    private void ShowHelp()
-    {
-        Browser.Default.OpenAsync(Constants.REPOSITORY_URL, BrowserLaunchMode.SystemPreferred);
     }
 
     #endregion

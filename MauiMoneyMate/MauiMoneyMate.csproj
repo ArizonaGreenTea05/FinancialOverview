@@ -148,6 +148,9 @@
 	  <MauiXaml Update="FilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\HelpPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Colors_Purple.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

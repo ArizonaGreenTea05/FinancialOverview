@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="MauiMoneyMate.Popups.HelpPopup"
+               Color="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <Grid RowDefinitions="Auto,*,*,*"
+          ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
+          Padding="20">
+        <Label 
+            x:Name="Title"
+            Grid.ColumnSpan="12"
+            Grid.Row="0"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Style="{StaticResource Label2}"/>
+        <Label 
+            x:Name="Info"
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Start"
+            Style="{StaticResource Label2}"/>
+        <Button
+            x:Name="NewIssue" 
+            Grid.Column="7"
+            Grid.ColumnSpan="4"
+            Grid.Row="2"
+            Clicked="NewIssue_Clicked"/>
+    </Grid>
+</toolkit:Popup>
