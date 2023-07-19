@@ -214,7 +214,7 @@
     <value>File</value>
   </data>
   <data name="FilePageBtn.FontSize" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="YearlyAddBtn.Text" xml:space="preserve">
     <value>Add</value>
@@ -275,5 +275,11 @@
   </data>
   <data name="IsNoValidDecimal" xml:space="preserve">
     <value>{0} is no valid decimal.</value>
+  </data>
+  <data name="HelpBtn.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="HelpBtn.Text" xml:space="preserve">
+    <value>Help</value>
   </data>
 </root>

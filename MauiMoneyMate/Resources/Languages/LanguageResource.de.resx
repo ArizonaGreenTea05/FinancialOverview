@@ -201,4 +201,7 @@
   <data name="IsNoValidDecimal" xml:space="preserve">
     <value>{0} ist keine valide Dezimalzahl.</value>
   </data>
+  <data name="HelpBtn.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
 </root>

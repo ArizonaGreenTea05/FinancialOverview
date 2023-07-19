@@ -50,6 +50,8 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private ResourceButton _redoBtn;
 
+    [ObservableProperty] private ResourceButton _helpBtn;
+
     [ObservableProperty] private ResourceButton _yearlyAddBtn;
 
     [ObservableProperty] private ResourceButton _monthlyAddBtn;
@@ -245,6 +247,14 @@ public partial class MainViewModel : ObservableObject
         UpdateSales();
     }
 
+    [RelayCommand]
+    private void ShowHelp()
+    {
+        Browser.Default.OpenAsync(
+            "https://github.com/ArizonaGreenTea05/FinancialOverview/issues/new/choose",
+            BrowserLaunchMode.SystemPreferred);
+    }
+
     #endregion
 
     #region public Methods
@@ -362,6 +372,7 @@ public partial class MainViewModel : ObservableObject
         RestMoney = Convert.ToDecimal(RestMoneyLbl.Text);
         MoneyUnitLbl = new ResourceLabel(nameof(MoneyUnitLbl));
         FilePageBtn = new ResourceButton(nameof(FilePageBtn));
+        HelpBtn = new ResourceButton(nameof(HelpBtn));
         MonthlyAddBtn = new ResourceButton(nameof(MonthlyAddBtn));
         YearlyAddBtn = new ResourceButton(nameof(YearlyAddBtn));
         DeleteBtn = new ResourceButton(nameof(DeleteBtn));

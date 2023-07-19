@@ -29,6 +29,10 @@
             <ImageButton Source="redo.png"
                          Style="{StaticResource ToolbarImageButton}"
                          Command="{Binding RedoCommand}"/>
+            <Button Text="{Binding HelpBtn.Text}"
+                    FontSize="{Binding HelpBtn.FontSize}"
+                    Style="{StaticResource ToolbarButton}"
+                    Command="{Binding ShowHelpCommand}"/>
         </HorizontalStackLayout>
 
         <Frame Grid.Column="32"
