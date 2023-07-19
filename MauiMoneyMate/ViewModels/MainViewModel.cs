@@ -2,9 +2,11 @@
 using System.Data;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Popups;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 
@@ -49,6 +51,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private ResourceButton _undoBtn;
 
     [ObservableProperty] private ResourceButton _redoBtn;
+
+    [ObservableProperty] private ResourceButton _helpBtn;
 
     [ObservableProperty] private ResourceButton _yearlyAddBtn;
 
@@ -362,6 +366,7 @@ public partial class MainViewModel : ObservableObject
         RestMoney = Convert.ToDecimal(RestMoneyLbl.Text);
         MoneyUnitLbl = new ResourceLabel(nameof(MoneyUnitLbl));
         FilePageBtn = new ResourceButton(nameof(FilePageBtn));
+        HelpBtn = new ResourceButton(nameof(HelpBtn));
         MonthlyAddBtn = new ResourceButton(nameof(MonthlyAddBtn));
         YearlyAddBtn = new ResourceButton(nameof(YearlyAddBtn));
         DeleteBtn = new ResourceButton(nameof(DeleteBtn));

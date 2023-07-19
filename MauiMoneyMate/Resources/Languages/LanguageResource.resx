@@ -214,7 +214,7 @@
     <value>File</value>
   </data>
   <data name="FilePageBtn.FontSize" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="YearlyAddBtn.Text" xml:space="preserve">
     <value>Add</value>
@@ -275,5 +275,29 @@
   </data>
   <data name="IsNoValidDecimal" xml:space="preserve">
     <value>{0} is no valid decimal.</value>
+  </data>
+  <data name="HelpBtn.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="HelpBtn.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HelpTitleLbl.FontSize" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="HelpTitleLbl.Text" xml:space="preserve">
+    <value>MauiMoneyMate Help</value>
+  </data>
+  <data name="NewIssueBtn.FontSize" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="NewIssueBtn.Text" xml:space="preserve">
+    <value>New Issue</value>
+  </data>
+  <data name="HelpInfoLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="HelpInfoLbl.Text" xml:space="preserve">
+    <value>If you notice a bug or problem, or simply have a suggestion for improvement, please create a new issue where your describe your problem. The title should start with "MauiMoneyMate:".</value>
   </data>
 </root>

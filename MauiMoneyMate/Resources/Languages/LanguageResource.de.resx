@@ -201,4 +201,16 @@
   <data name="IsNoValidDecimal" xml:space="preserve">
     <value>{0} ist keine valide Dezimalzahl.</value>
   </data>
+  <data name="HelpBtn.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="HelpTitleLbl.Text" xml:space="preserve">
+    <value>MauiMoneyMate Hilfe</value>
+  </data>
+  <data name="NewIssueBtn.Text" xml:space="preserve">
+    <value>Neues Issue</value>
+  </data>
+  <data name="HelpInfoLbl.Text" xml:space="preserve">
+    <value>Wenn Sie einen Fehler oder ein Problem bemerken oder einfach einen Verbesserungsvorschlag haben, erstellen Sie bitte einen neues Issue, in dem Sie Ihr Problem beschreiben. Der Titel sollte mit "MauiMoneyMate:" beginnen.</value>
+  </data>
 </root>
