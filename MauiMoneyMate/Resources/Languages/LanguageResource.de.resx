@@ -201,4 +201,7 @@
   <data name="HelpInfoLbl.Text" xml:space="preserve">
     <value>Wenn Sie einen Fehler oder ein Problem bemerken oder einfach einen Verbesserungsvorschlag haben, erstellen Sie bitte einen neues Issue, in dem Sie Ihr Problem beschreiben. Der Titel sollte mit "MauiMoneyMate:" beginnen.</value>
   </data>
+  <data name="HistoryLbl.Text" xml:space="preserve">
+    <value>Verlauf</value>
+  </data>
 </root>

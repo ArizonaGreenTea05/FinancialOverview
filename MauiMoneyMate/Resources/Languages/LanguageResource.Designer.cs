@@ -214,6 +214,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string HistoryLbl_FontSize {
+            get {
+                return ResourceManager.GetString("HistoryLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string HistoryLbl_Text {
+            get {
+                return ResourceManager.GetString("HistoryLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is no valid decimal..
         /// </summary>
         internal static string IsNoValidDecimal {

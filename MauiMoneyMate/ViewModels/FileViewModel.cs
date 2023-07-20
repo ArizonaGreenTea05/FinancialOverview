@@ -14,6 +14,10 @@ public partial class FileViewModel : ObservableObject
 
     [ObservableProperty] private string _filePageTitle;
 
+    [ObservableProperty] private List<string> _fileHistory;
+
+    [ObservableProperty] private ResourceLabel _historyLbl;
+
     [ObservableProperty] private ResourceLabel _openFileLbl;
 
     [ObservableProperty] private ResourceLabel _saveFileLbl;
@@ -87,6 +91,7 @@ public partial class FileViewModel : ObservableObject
     public void OnAppearing()
     {
         DisplaySavingState();
+        FileHistory = _financialOverview.FileHistory;
     }
 
     #endregion
@@ -113,6 +118,7 @@ public partial class FileViewModel : ObservableObject
     private void LoadResources()
     {
         FilePageTitle = LanguageResource.FilePageTitle ?? string.Empty;
+        HistoryLbl = new ResourceLabel(nameof(HistoryLbl));
         OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));
         SaveFileLbl = new ResourceLabel(nameof(SaveFileLbl));
         SaveFileAsLbl = new ResourceLabel(nameof(SaveFileAsLbl));

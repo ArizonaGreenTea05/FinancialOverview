@@ -97,7 +97,6 @@ public partial class MainViewModel : ObservableObject
     private readonly CommonVariables _commonVariables;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
-    private readonly List<string> _fileHistory;
     private readonly string _appDataFilePath = Path.Combine(Environment.GetFolderPath(
         Environment.SpecialFolder.ApplicationData) + @"\MauiMoneyMate", "MauiMoneyMate.AppData");
 
@@ -112,9 +111,9 @@ public partial class MainViewModel : ObservableObject
 
         _commonVariables = commonVariables;
         _financialOverview = financialOverview;
-        _fileHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
-        if (_fileHistory.Count >= 1 && string.IsNullOrEmpty(_fileHistory[^1])) _fileHistory.RemoveAt(_fileHistory.Count-1);
-        _financialOverview.DefaultFilePath = _fileHistory.Count >= 1 ? _fileHistory[^1] : null;
+        var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
+        if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
+        _financialOverview.FileHistory = tmpHistory;
         DataIsSaved = File.Exists(_financialOverview.DefaultFilePath);
         _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
@@ -134,10 +133,7 @@ public partial class MainViewModel : ObservableObject
 
     private void OnDefaultFilePathChanged(object sender, string path)
     {
-        if (_financialOverview.DefaultFilePath == _fileHistory[^1]) return;
-        if(!string.IsNullOrEmpty(_financialOverview.DefaultFilePath))
-            _fileHistory.Add(_financialOverview.DefaultFilePath);
-        SaveListToAppData(_fileHistory);
+        SaveListToAppData(_financialOverview.FileHistory);
     }
 
     #endregion

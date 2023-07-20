@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using BusinessLogic.History;
 using System.IO;
@@ -10,6 +11,7 @@ namespace BusinessLogic
         private readonly DataSet _dataSet = new DataSet();
         private DataTable _allSales;
         private readonly History.History _history;
+        private List<string> _fileHistory = new List<string>();
         private bool _blockRowChangedHandler = false;
 
         public event EventHandler<string> OnDefaultFilePathChanged;
@@ -22,11 +24,25 @@ namespace BusinessLogic
         
         public Unit UnitOfAll { get; set; } = Unit.Monthly;
 
+        public List<string> FileHistory
+        {
+            get => _fileHistory;
+            set
+            {
+                _fileHistory = value;
+                DefaultFilePath = _fileHistory != null && _fileHistory.Count >= 1
+                    ? _fileHistory[0]
+                    : null;
+            }
+        }
+
         public string DefaultFilePath
         {
             set
             {
                 if (string.IsNullOrEmpty(value)) return;
+                if ((value != DefaultFilePath && DefaultFilePath != null) || FileHistory.Count <= 0)
+                    _fileHistory.Insert(0, value);
                 DefaultDirectory = Path.GetDirectoryName(value);
                 DefaultFilename = Path.GetFileName(value);
                 OnDefaultFilePathChanged?.Invoke(this, value);

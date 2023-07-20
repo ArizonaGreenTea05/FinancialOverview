@@ -300,4 +300,10 @@
   <data name="HelpBtn.FontSize" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="HistoryLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="HistoryLbl.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
 </root>
