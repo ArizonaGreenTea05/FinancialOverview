@@ -1,4 +1,6 @@
-﻿namespace MauiMoneyMate
+﻿using MauiMoneyMate.Pages;
+
+namespace MauiMoneyMate
 {
     public partial class AppShell : Shell
     {

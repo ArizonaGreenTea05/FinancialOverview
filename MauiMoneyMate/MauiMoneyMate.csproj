@@ -101,6 +101,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Fonts\Arial-Rounded.ttf" />
+		<None Remove="Resources\Fonts\Arial-RoundedBold.ttf" />
 		<None Remove="Resources\Images\logo.png" />
 		<None Remove="Resources\Images\logo_white.png" />
 		<None Remove="Resources\Images\open.png" />
@@ -127,7 +129,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="FilePage.xaml.cs">
+	  <Compile Update="Pages\FilePage.xaml.cs">
 	    <DependentUpon>FilePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Resources\Languages\LanguageResource.Designer.cs">
@@ -145,7 +147,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="FilePage.xaml">
+	  <MauiXaml Update="Pages\FilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\HelpPopup.xaml">

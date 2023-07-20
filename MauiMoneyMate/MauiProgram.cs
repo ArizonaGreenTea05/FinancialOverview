@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using MauiMoneyMate.Pages;
 using MauiMoneyMate.Popups;
 using MauiMoneyMate.ViewModels;
 
@@ -13,8 +14,8 @@ namespace MauiMoneyMate
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Arial-Rounded.ttf", "ArialRounded");
+                    fonts.AddFont("Arial-RoundedBold.ttf", "ArialRoundedBold");
                 }).UseMauiCommunityToolkit();
 
             var financialOverview = new BusinessLogic.FinancialOverview();

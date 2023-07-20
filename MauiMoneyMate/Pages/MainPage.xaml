@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiMoneyMate.MainPage"
+             x:Class="MauiMoneyMate.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:MauiMoneyMate.ViewModels"
              xmlns:mauiMoneyMate="using:MauiMoneyMate"
              x:DataType="viewmodel:MainViewModel"
@@ -17,7 +17,7 @@
         <HorizontalStackLayout Grid.Column="0"
                                Grid.ColumnSpan="100"
                                Grid.Row="0"
-                               Padding="0,0,0,20"
+                               Padding="0,0,0,16"
                                Spacing="3">
             <Button Text="{Binding FilePageBtn.Text}"
                     FontSize="{Binding FilePageBtn.FontSize}"
@@ -59,7 +59,7 @@
                 Grid.Row="1"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
-                FontSize="20"
+                FontSize="23"
                 SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
                 ItemsSource="{Binding TimeUnits}"
                 SelectedIndex="{Binding SelectedTimeUnit}">
@@ -78,7 +78,7 @@
                         <Frame Margin="3"
                                Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
-                               FontSize="14"
+                               FontSize="15"
                                LineBreakMode="WordWrap"
                                Style="{StaticResource LabelSecondary}"/>
                         </Frame>
@@ -145,7 +145,7 @@
                                Margin="3"
                                Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
-                                   FontSize="14"
+                                   FontSize="15"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
@@ -219,7 +219,7 @@
                                Margin="3"
                                Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
-                                   FontSize="14"
+                                   FontSize="15"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>

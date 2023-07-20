@@ -145,7 +145,7 @@
     <value>Rest:</value>
   </data>
   <data name="MonthlyAddBtn.FontSize" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="MonthlyAdditionEntry.Placeholder" xml:space="preserve">
     <value>Comment</value>
@@ -169,13 +169,13 @@
     <value>Save File As</value>
   </data>
   <data name="OpenFileLbl.FontSize" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="SaveFileLbl.FontSize" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="AlreadyContainsEntry" xml:space="preserve">
     <value>{0} already contains the entry {1}</value>
@@ -213,14 +213,11 @@
   <data name="FilePageBtn.Text" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="FilePageBtn.FontSize" xml:space="preserve">
-    <value>14</value>
-  </data>
   <data name="YearlyAddBtn.Text" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="YearlyAddBtn.FontSize" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="DeleteBtn.FontSize" xml:space="preserve">
     <value>14</value>
@@ -229,13 +226,13 @@
     <value>0,00</value>
   </data>
   <data name="MonthlySalesEntry.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="MonthlySalesEntry.Text" xml:space="preserve">
     <value />
   </data>
   <data name="YearlySalesEntry.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="YearlySalesEntry.Text" xml:space="preserve">
     <value />
@@ -244,7 +241,7 @@
     <value>0,00</value>
   </data>
   <data name="MonthlyNameEntry.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="MonthlyNameEntry.Text" xml:space="preserve">
     <value />
@@ -253,7 +250,7 @@
     <value />
   </data>
   <data name="MonthlyAdditionEntry.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="YearlyNameEntry.Text" xml:space="preserve">
     <value />
@@ -262,22 +259,19 @@
     <value>Name</value>
   </data>
   <data name="YearlyNameEntry.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="YearlyAdditionEntry.Text" xml:space="preserve">
     <value />
   </data>
   <data name="YearlyAdditionEntry.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
     <value>Comment</value>
   </data>
   <data name="IsNoValidDecimal" xml:space="preserve">
     <value>{0} is no valid decimal.</value>
-  </data>
-  <data name="HelpBtn.FontSize" xml:space="preserve">
-    <value>14</value>
   </data>
   <data name="HelpBtn.Text" xml:space="preserve">
     <value>Help</value>
@@ -289,7 +283,7 @@
     <value>MauiMoneyMate Help</value>
   </data>
   <data name="NewIssueBtn.FontSize" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="NewIssueBtn.Text" xml:space="preserve">
     <value>New Issue</value>
@@ -299,5 +293,11 @@
   </data>
   <data name="HelpInfoLbl.Text" xml:space="preserve">
     <value>If you notice a bug or problem, or simply have a suggestion for improvement, please create a new issue where your describe your problem. The title should start with "MauiMoneyMate:".</value>
+  </data>
+  <data name="FilePageBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="HelpBtn.FontSize" xml:space="preserve">
+    <value>15</value>
   </data>
 </root>
