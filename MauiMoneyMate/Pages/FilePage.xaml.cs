@@ -1,7 +1,6 @@
-using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.ViewModels;
 
-namespace MauiMoneyMate;
+namespace MauiMoneyMate.Pages;
 
 public partial class FilePage : ContentPage
 {

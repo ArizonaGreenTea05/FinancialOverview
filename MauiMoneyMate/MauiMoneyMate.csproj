@@ -127,7 +127,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="FilePage.xaml.cs">
+	  <Compile Update="Pages\FilePage.xaml.cs">
 	    <DependentUpon>FilePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Resources\Languages\LanguageResource.Designer.cs">
@@ -145,7 +145,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="FilePage.xaml">
+	  <MauiXaml Update="Pages\FilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\HelpPopup.xaml">

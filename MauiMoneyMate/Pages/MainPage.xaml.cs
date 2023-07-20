@@ -1,9 +1,8 @@
 ﻿using CommunityToolkit.Maui.Views;
 using MauiMoneyMate.Popups;
 using MauiMoneyMate.ViewModels;
-using Microsoft.Maui.Controls.Internals;
 
-namespace MauiMoneyMate
+namespace MauiMoneyMate.Pages
 {
     public partial class MainPage : ContentPage
     {
