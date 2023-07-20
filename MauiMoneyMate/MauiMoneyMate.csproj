@@ -101,6 +101,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Fonts\Arial-Rounded.ttf" />
+		<None Remove="Resources\Fonts\Arial-RoundedBold.ttf" />
 		<None Remove="Resources\Images\logo.png" />
 		<None Remove="Resources\Images\logo_white.png" />
 		<None Remove="Resources\Images\open.png" />

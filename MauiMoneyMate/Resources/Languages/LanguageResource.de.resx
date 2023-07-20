@@ -141,9 +141,6 @@
   <data name="YearlySalesLbl.Text" xml:space="preserve">
     <value>Umsatz (Jährlich)</value>
   </data>
-  <data name="MonthlyAddBtn.FontSize" xml:space="preserve">
-    <value>15</value>
-  </data>
   <data name="MonthlyAdditionEntry.Placeholder" xml:space="preserve">
     <value>Kommentar</value>
   </data>
@@ -165,12 +162,6 @@
   <data name="SaveFileAsLbl.Text" xml:space="preserve">
     <value>Datei speichern als</value>
   </data>
-  <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="SaveFileLbl.FontSize" xml:space="preserve">
-    <value>16</value>
-  </data>
   <data name="AlreadyContainsEntry" xml:space="preserve">
     <value>{0} enthält bereits den Eintrag {1}</value>
   </data>
@@ -188,9 +179,6 @@
   </data>
   <data name="YearlyAddBtn.Text" xml:space="preserve">
     <value>Hinzufügen</value>
-  </data>
-  <data name="YearlyAddBtn.FontSize" xml:space="preserve">
-    <value>15</value>
   </data>
   <data name="YearlyNameEntry.Placeholder" xml:space="preserve">
     <value>Bezeichnung</value>
