@@ -59,7 +59,7 @@
                 Grid.Row="1"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
-                FontSize="23"
+                FontSize="22"
                 SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
                 ItemsSource="{Binding TimeUnits}"
                 SelectedIndex="{Binding SelectedTimeUnit}">
