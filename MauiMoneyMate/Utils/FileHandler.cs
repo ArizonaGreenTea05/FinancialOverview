@@ -66,7 +66,11 @@ public class FileHandler
     {
         try
         {
-            var folderPickerResult = await FilePicker.PickAsync(PickOptions.Default);
+            var folderPickerResult = await FilePicker.PickAsync(new PickOptions
+            {
+                FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                    { { DevicePlatform.WinUI, new[] { ".xml" } } })
+            });
             return folderPickerResult?.FullPath;
         }
         catch (Exception)
