@@ -41,8 +41,8 @@ namespace BusinessLogic
             set
             {
                 if (string.IsNullOrEmpty(value)) return;
-                if ((value != DefaultFilePath && DefaultFilePath != null) || FileHistory.Count <= 0)
-                    _fileHistory.Insert(0, value);
+                FileHistory.RemoveAll(value.Equals);
+                _fileHistory.Insert(0, value);
                 DefaultDirectory = Path.GetDirectoryName(value);
                 DefaultFilename = Path.GetFileName(value);
                 OnDefaultFilePathChanged?.Invoke(this, value);
