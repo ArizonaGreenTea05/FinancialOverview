@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MauiMoneyMate.ViewModels"
+             xmlns:generic="using:System.Collections.Generic"
              x:Class="MauiMoneyMate.Pages.FilePage"
              x:DataType="viewModels:FileViewModel"
              Title="{Binding FilePageTitle}"
@@ -83,15 +84,41 @@
                         ItemsSource="{Binding FileHistory}">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
-                    <Grid>
+                <DataTemplate x:DataType="{x:Type viewModels:FileViewModel+FileHistoryElement}">
+                    <Grid RowDefinitions="Auto,Auto"
+                          ColumnDefinitions="*, Auto">
                         <Frame Margin="3"
+                               Grid.RowSpan="2"
                                Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
-                                   FontSize="15"
-                                   LineBreakMode="WordWrap"
-                                   Style="{StaticResource LabelSecondary}"/>
+                            <VerticalStackLayout>
+                                <Label FontSize="17"
+                                       Text="{Binding Filename}"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}">
+                                </Label>
+                                <Label FontSize="14"
+                                       Text="{Binding FullPath}"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}">
+                                </Label>
+                            </VerticalStackLayout>
+                            
                         </Frame>
+                        <Button Grid.Column="1"
+                                Margin="4,4,4,2"
+                                Style="{StaticResource PositiveBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryOpenBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryOpenBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=OpenFileFromHistoryCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="4,2,4,4"
+                                Style="{StaticResource NegativeBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryDeleteBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryDeleteBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=DeleteFileFromHistoryCommand}"
+                                CommandParameter="{Binding}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

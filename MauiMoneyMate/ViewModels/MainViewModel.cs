@@ -97,8 +97,6 @@ public partial class MainViewModel : ObservableObject
     private readonly CommonVariables _commonVariables;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
-    private readonly string _appDataFilePath = Path.Combine(Environment.GetFolderPath(
-        Environment.SpecialFolder.ApplicationData) + @"\MauiMoneyMate", "MauiMoneyMate.AppData");
 
     #endregion
 
@@ -282,13 +280,13 @@ public partial class MainViewModel : ObservableObject
 
     private void SaveListToAppData(List<string> content)
     {
-        if (!FileHandler.WriteTextToFile(content, _appDataFilePath))
+        if (!FileHandler.WriteTextToFile(content, CommonConstants.AppDataFilePath))
             return;
     }
 
     private string LoadStringFromAppData()
     {
-        var text = FileHandler.ReadTextFile(_appDataFilePath);
+        var text = FileHandler.ReadTextFile(CommonConstants.AppDataFilePath);
         return text ?? string.Empty;
     }
 

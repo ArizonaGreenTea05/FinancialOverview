@@ -204,4 +204,10 @@
   <data name="HistoryLbl.Text" xml:space="preserve">
     <value>Verlauf</value>
   </data>
+  <data name="FileHistoryDeleteBtn.Text" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="FileHistoryOpenBtn.Text" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
 </root>
