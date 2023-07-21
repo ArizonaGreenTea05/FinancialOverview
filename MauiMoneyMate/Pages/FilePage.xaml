@@ -2,51 +2,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MauiMoneyMate.ViewModels"
+             xmlns:generic="using:System.Collections.Generic"
              x:Class="MauiMoneyMate.Pages.FilePage"
              x:DataType="viewModels:FileViewModel"
              Title="{Binding FilePageTitle}"
              BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
-    <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*"
-          ColumnDefinitions="60,60,60,60,60,*">
-        <ImageButton Grid.Row="1"
-                     Grid.RowSpan="3"
+    <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+          ColumnDefinitions="60,60,60,60,60,10,*,30,*,60">
+        <ImageButton Grid.Row="2"
+                     Grid.RowSpan="6"
                      Grid.Column="1"
                      Grid.ColumnSpan="3"
                      Source="open.png"
                      Command="{Binding OpenFileDialogCommand}"/>
 
-        <Label Grid.Row="3"
-               Grid.RowSpan="1"
+        <Label Grid.Row="6"
+               Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
                FontSize="{Binding OpenFileLbl.FontSize}"
                Text="{Binding OpenFileLbl.Text}"
                Style="{StaticResource LabelToolbar}"/>
 
-        <ImageButton Grid.Row="5"
-                     Grid.RowSpan="3"
+        <ImageButton Grid.Row="10"
+                     Grid.RowSpan="6"
                      Grid.Column="1"
                      Grid.ColumnSpan="3"
                      Source="save.png"
                      Command="{Binding SaveFileCommand}"/>
 
-        <Label Grid.Row="7"
-               Grid.RowSpan="1"
+        <Label Grid.Row="14"
+               Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
                FontSize="{Binding SaveFileLbl.FontSize}"
                Text="{Binding SaveFileLbl.Text}"
                Style="{StaticResource LabelToolbar}"/>
 
-        <ImageButton Grid.Row="9"
-                     Grid.RowSpan="3"
+        <ImageButton Grid.Row="18"
+                     Grid.RowSpan="6"
                      Grid.Column="1"
                      Grid.ColumnSpan="3"
                      Source="save_as.png"
                      Command="{Binding SaveFileDialogCommand}"/>
 
-        <Label Grid.Row="11"
-               Grid.RowSpan="1"
+        <Label Grid.Row="22"
+               Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
                FontSize="{Binding SaveFileAsLbl.FontSize}"
@@ -54,9 +55,73 @@
                Style="{StaticResource LabelToolbar}"/>
 
         <Image Source="logo.png" 
-               Grid.Column="4"
+               Grid.Column="5"
+               Grid.ColumnSpan="4"
+               Grid.Row="2"
+               Grid.RowSpan="4"/>
+
+        <Frame Grid.Column="5"
                Grid.ColumnSpan="2"
-               Grid.Row="1"
-               Grid.RowSpan="2"/>
+               Grid.Row="8"
+               Grid.RowSpan="2"
+               Style="{StaticResource Frame1}"/>
+
+        <Label Grid.Column="6"
+               Grid.ColumnSpan="1"
+               Grid.Row="8"
+               Grid.RowSpan="2"
+               Text="{Binding HistoryLbl.Text}"
+               FontSize="{Binding HistoryLbl.FontSize}"
+               Style="{StaticResource LabelPrimary}"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"/>
+
+        <CollectionView Grid.Column="5"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="11"
+                        Grid.RowSpan="14"
+                        VerticalOptions="Start"
+                        ItemsSource="{Binding FileHistory}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type viewModels:FileViewModel+FileHistoryElement}">
+                    <Grid RowDefinitions="Auto,Auto"
+                          ColumnDefinitions="*, Auto">
+                        <Frame Margin="3"
+                               Grid.RowSpan="2"
+                               Style="{StaticResource Frame2}">
+                            <VerticalStackLayout>
+                                <Label FontSize="17"
+                                       Text="{Binding Filename}"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}">
+                                </Label>
+                                <Label FontSize="14"
+                                       Text="{Binding FullPath}"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}">
+                                </Label>
+                            </VerticalStackLayout>
+                            
+                        </Frame>
+                        <Button Grid.Column="1"
+                                Margin="4,4,4,2"
+                                Style="{StaticResource PositiveBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryOpenBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryOpenBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=OpenFileFromHistoryCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="4,2,4,4"
+                                Style="{StaticResource NegativeBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryDeleteBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=FileHistoryDeleteBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FileViewModel}}, Path=DeleteFileFromHistoryCommand}"
+                                CommandParameter="{Binding}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

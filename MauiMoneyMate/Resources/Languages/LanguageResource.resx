@@ -300,4 +300,22 @@
   <data name="HelpBtn.FontSize" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="HistoryLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="HistoryLbl.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="FileHistoryDeleteBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="FileHistoryDeleteBtn.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="FileHistoryOpenBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="FileHistoryOpenBtn.Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
 </root>

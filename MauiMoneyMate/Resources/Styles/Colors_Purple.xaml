@@ -22,11 +22,17 @@
     <Color x:Key="ToolbarTextLight">#070021</Color>
     <Color x:Key="ToolbarTextDark">#5b3d7a</Color>
 
-    <Color x:Key="DeleteLight">#e14663</Color>
-    <Color x:Key="DeleteDark">#6e0f1a</Color>
+    <Color x:Key="NegativeLight">#e14663</Color>
+    <Color x:Key="NegativeDark">#6e0f1a</Color>
 
-    <Color x:Key="DeleteTextLight">#f8f1ff</Color>
-    <Color x:Key="DeleteTextDark">#eed5ff</Color>
+    <Color x:Key="NegativeTextLight">#f8f1ff</Color>
+    <Color x:Key="NegativeTextDark">#eed5ff</Color>
+
+    <Color x:Key="PositiveLight">#46ff63</Color>
+    <Color x:Key="PositiveDark">#0f6e1a</Color>
+
+    <Color x:Key="PositiveTextLight">#f8f1ff</Color>
+    <Color x:Key="PositiveTextDark">#eed5ff</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

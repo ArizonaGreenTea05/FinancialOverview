@@ -83,9 +83,31 @@
         <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
 
-    <Style x:Key="DeleteBtn"  TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DeleteTextLight}, Dark={StaticResource DeleteTextDark}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource DeleteLight}, Dark={StaticResource DeleteDark}}" />
+    <Style x:Key="PositiveBtn"  TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PositiveTextLight}, Dark={StaticResource PositiveTextDark}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PositiveLight}, Dark={StaticResource PositiveDark}}" />
+        <Setter Property="FontFamily" Value="ArialRounded"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="14,10"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NegativeBtn"  TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource NegativeTextLight}, Dark={StaticResource NegativeTextDark}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource NegativeLight}, Dark={StaticResource NegativeDark}}" />
         <Setter Property="FontFamily" Value="ArialRounded"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="CornerRadius" Value="8"/>

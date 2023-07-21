@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using System.Collections.ObjectModel;
+using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -10,15 +11,39 @@ namespace MauiMoneyMate.ViewModels;
 
 public partial class FileViewModel : ObservableObject
 {
+    #region public Structures
+
+    public struct FileHistoryElement
+    {
+        public FileHistoryElement(string fullPath)
+        {
+            Filename = Path.GetFileName(fullPath);
+            FullPath = fullPath;
+        }
+
+        public string Filename { get; set; }
+        public string FullPath { get; set; }
+    }
+
+    #endregion
+
     #region private Observable Properties
 
     [ObservableProperty] private string _filePageTitle;
+
+    [ObservableProperty] private ObservableCollection<FileHistoryElement> _fileHistory;
+
+    [ObservableProperty] private ResourceLabel _historyLbl;
 
     [ObservableProperty] private ResourceLabel _openFileLbl;
 
     [ObservableProperty] private ResourceLabel _saveFileLbl;
 
     [ObservableProperty] private ResourceLabel _saveFileAsLbl;
+
+    [ObservableProperty] private ResourceButton _fileHistoryDeleteBtn;
+
+    [ObservableProperty] private ResourceButton _fileHistoryOpenBtn;
 
     #endregion
 
@@ -80,6 +105,28 @@ public partial class FileViewModel : ObservableObject
         Shell.Current.GoToAsync("../../route");
     }
 
+    [RelayCommand]
+    private void OpenFileFromHistory(FileHistoryElement fhe)
+    {
+        if (!_financialOverview.LoadData(fhe.FullPath))
+        {
+            Toast.Make(LanguageResource.CouldNotOpenFile).Show();
+            return;
+        }
+        _financialOverview.ClearHistory();
+        DataIsSaved = true;
+        Shell.Current.GoToAsync("../../route");
+    }
+
+    [RelayCommand]
+    private void DeleteFileFromHistory(FileHistoryElement fhe)
+    {
+        FileHistory.Remove(fhe);
+        _financialOverview.FileHistory.Remove(fhe.FullPath);
+        if (_financialOverview.FileHistory.Count <= 0) _financialOverview.DefaultFilePath = fhe.FullPath;
+        FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonConstants.AppDataFilePath);
+    }
+
     #endregion
 
     #region public Methods
@@ -87,6 +134,9 @@ public partial class FileViewModel : ObservableObject
     public void OnAppearing()
     {
         DisplaySavingState();
+        FileHistory = new ObservableCollection<FileHistoryElement>();
+        foreach (var item in _financialOverview.FileHistory)
+            FileHistory.Add(new FileHistoryElement(item));
     }
 
     #endregion
@@ -113,9 +163,12 @@ public partial class FileViewModel : ObservableObject
     private void LoadResources()
     {
         FilePageTitle = LanguageResource.FilePageTitle ?? string.Empty;
+        HistoryLbl = new ResourceLabel(nameof(HistoryLbl));
         OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));
         SaveFileLbl = new ResourceLabel(nameof(SaveFileLbl));
         SaveFileAsLbl = new ResourceLabel(nameof(SaveFileAsLbl));
+        FileHistoryDeleteBtn = new ResourceButton(nameof(FileHistoryDeleteBtn));
+        FileHistoryOpenBtn = new ResourceButton(nameof(FileHistoryOpenBtn));
     }
 
     #endregion

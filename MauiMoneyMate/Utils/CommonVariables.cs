@@ -1,4 +1,4 @@
-﻿namespace MauiMoneyMate
+﻿namespace MauiMoneyMate.Utils
 {
     public class CommonVariables
     {

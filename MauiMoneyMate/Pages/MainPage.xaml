@@ -59,7 +59,7 @@
                 Grid.Row="1"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
-                FontSize="23"
+                FontSize="22"
                 SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
                 ItemsSource="{Binding TimeUnits}"
                 SelectedIndex="{Binding SelectedTimeUnit}">
@@ -151,7 +151,7 @@
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
-                                Style="{StaticResource DeleteBtn}"
+                                Style="{StaticResource NegativeBtn}"
                                 FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
                                 Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteMonthlyCommand}"
@@ -225,7 +225,7 @@
                         </Frame>
                         <Button Grid.Column="1"
                                 Margin="4"
-                                Style="{StaticResource DeleteBtn}"
+                                Style="{StaticResource NegativeBtn}"
                                 FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
                                 Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteYearlyCommand}"

@@ -97,8 +97,6 @@ public partial class MainViewModel : ObservableObject
     private readonly CommonVariables _commonVariables;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
-    private readonly string _appDataFilePath = Path.Combine(Environment.GetFolderPath(
-        Environment.SpecialFolder.ApplicationData) + @"\MauiMoneyMate", "MauiMoneyMate.AppData");
 
     #endregion
 
@@ -111,7 +109,9 @@ public partial class MainViewModel : ObservableObject
 
         _commonVariables = commonVariables;
         _financialOverview = financialOverview;
-        _financialOverview.DefaultFilePath = LoadStringFromAppData().Split("\r\n")[0];
+        var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
+        if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
+        _financialOverview.FileHistory = tmpHistory;
         DataIsSaved = File.Exists(_financialOverview.DefaultFilePath);
         _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
@@ -131,7 +131,7 @@ public partial class MainViewModel : ObservableObject
 
     private void OnDefaultFilePathChanged(object sender, string path)
     {
-        SaveStringToAppData(path);
+        SaveListToAppData(_financialOverview.FileHistory);
     }
 
     #endregion
@@ -278,15 +278,15 @@ public partial class MainViewModel : ObservableObject
 
     #region private Methods
 
-    private void SaveStringToAppData(string s)
+    private void SaveListToAppData(List<string> content)
     {
-        if (!FileHandler.WriteTextToFile(s, _appDataFilePath))
+        if (!FileHandler.WriteTextToFile(content, CommonConstants.AppDataFilePath))
             return;
     }
 
     private string LoadStringFromAppData()
     {
-        var text = FileHandler.ReadTextFile(_appDataFilePath);
+        var text = FileHandler.ReadTextFile(CommonConstants.AppDataFilePath);
         return text ?? string.Empty;
     }
 
