@@ -13,10 +13,10 @@
     <Color x:Key="TertiaryLight">#f8f1ff</Color>
     <Color x:Key="TertiaryDark">#110b17</Color>
 
-    <Color x:Key="ToolbarLight">#eed5ff</Color>
+    <Color x:Key="ToolbarLight">#f3e3ff</Color>
     <Color x:Key="ToolbarDark">#eed5ff</Color>
 
-    <Color x:Key="ToolbarBorderLight">#eed5ff</Color>
+    <Color x:Key="ToolbarBorderLight">#f3e3ff</Color>
     <Color x:Key="ToolbarBorderDark">#eed5ff</Color>
 
     <Color x:Key="ToolbarTextLight">#070021</Color>
@@ -28,7 +28,7 @@
     <Color x:Key="NegativeTextLight">#f8f1ff</Color>
     <Color x:Key="NegativeTextDark">#eed5ff</Color>
 
-    <Color x:Key="PositiveLight">#46ff63</Color>
+    <Color x:Key="PositiveLight">#3cde54</Color>
     <Color x:Key="PositiveDark">#0f6e1a</Color>
 
     <Color x:Key="PositiveTextLight">#f8f1ff</Color>

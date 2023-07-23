@@ -20,9 +20,11 @@
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
+               Padding="0,15,0,0"
                FontSize="{Binding OpenFileLbl.FontSize}"
                Text="{Binding OpenFileLbl.Text}"
-               Style="{StaticResource LabelToolbar}"/>
+               Style="{StaticResource LabelToolbar}"
+               VerticalOptions="Start"/>
 
         <ImageButton Grid.Row="10"
                      Grid.RowSpan="6"
@@ -35,9 +37,11 @@
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
+               Padding="0,15,0,0"
                FontSize="{Binding SaveFileLbl.FontSize}"
                Text="{Binding SaveFileLbl.Text}"
-               Style="{StaticResource LabelToolbar}"/>
+               Style="{StaticResource LabelToolbar}"
+               VerticalOptions="Start"/>
 
         <ImageButton Grid.Row="18"
                      Grid.RowSpan="6"
@@ -50,9 +54,11 @@
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
+               Padding="0,15,0,0"
                FontSize="{Binding SaveFileAsLbl.FontSize}"
                Text="{Binding SaveFileAsLbl.Text}"
-               Style="{StaticResource LabelToolbar}"/>
+               Style="{StaticResource LabelToolbar}"
+               VerticalOptions="Start"/>
 
         <Image Source="logo.png" 
                Grid.Column="5"

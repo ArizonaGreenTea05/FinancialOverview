@@ -68,10 +68,11 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ToolbarLight}, Dark={StaticResource ToolbarDark}}" />
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource ToolbarBorderLight}, Dark={StaticResource ToolbarBorderDark}}" />
         <Setter Property="BorderWidth" Value="5" />
-        <Setter Property="CornerRadius" Value="1"/>
+        <Setter Property="CornerRadius" Value="2"/>
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="Padding" Value="15,3"/>
+        <Setter Property="Margin" Value="0,0.5"/>
     </Style>
 
     <Style TargetType="ImageButton">
