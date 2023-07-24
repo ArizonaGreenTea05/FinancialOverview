@@ -2,12 +2,10 @@
 using System.Data;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Pages;
 using MauiMoneyMate.Resources.Languages;
-using MauiMoneyMate.Popups;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 
@@ -60,6 +58,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private ResourceButton _monthlyAddBtn;
 
     [ObservableProperty] private ResourceButton _deleteBtn;
+
+    [ObservableProperty] private ResourceButton _editBtn;
 
     [ObservableProperty] private ResourceEntry _monthlySalesEntry;
 
@@ -205,6 +205,17 @@ public partial class MainViewModel : ObservableObject
     #region private Relay Commands
 
     [RelayCommand]
+    private void EditMonthly(string s)
+    {
+        if (!MonthlySales.Contains(s)) return;
+        var tmp = s.Split('|');
+        MonthlySalesEntryInput = tmp[0].Trim();
+        MonthlyNameEntryInput = tmp[1].Trim();
+        if (tmp.Length > 2) MonthlyAdditionEntryInput = tmp[2].Trim();
+        DeleteMonthly(s);
+    }
+
+    [RelayCommand]
     private void DeleteMonthly(string s)
     {
         if (MonthlySales.Contains(s))
@@ -215,6 +226,17 @@ public partial class MainViewModel : ObservableObject
 
         UpdateAllSales();
         DataIsSaved = false;
+    }
+
+    [RelayCommand]
+    private void EditYearly(string s)
+    {
+        if (!YearlySales.Contains(s)) return;
+        var tmp = s.Split('|');
+        YearlySalesEntryInput = tmp[0].Trim();
+        YearlyNameEntryInput = tmp[1].Trim();
+        if (tmp.Length > 2) YearlyAdditionEntryInput = tmp[2].Trim();
+        DeleteYearly(s);
     }
 
     [RelayCommand]
@@ -371,6 +393,7 @@ public partial class MainViewModel : ObservableObject
         MonthlyAddBtn = new ResourceButton(nameof(MonthlyAddBtn));
         YearlyAddBtn = new ResourceButton(nameof(YearlyAddBtn));
         DeleteBtn = new ResourceButton(nameof(DeleteBtn));
+        EditBtn = new ResourceButton(nameof(EditBtn));
         MonthlySalesEntry = new ResourceEntry(nameof(MonthlySalesEntry));
         MonthlyNameEntry = new ResourceEntry(nameof(MonthlyNameEntry));
         MonthlyAdditionEntry = new ResourceEntry(nameof(MonthlyAdditionEntry));

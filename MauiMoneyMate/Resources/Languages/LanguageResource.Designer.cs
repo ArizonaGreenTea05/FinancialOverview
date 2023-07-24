@@ -124,6 +124,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string EditBtn_FontSize {
+            get {
+                return ResourceManager.GetString("EditBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string EditBtn_Text {
+            get {
+                return ResourceManager.GetString("EditBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 15.
         /// </summary>
         internal static string FileHistoryDeleteBtn_FontSize {

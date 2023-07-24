@@ -210,4 +210,7 @@
   <data name="FileHistoryOpenBtn.Text" xml:space="preserve">
     <value>Öffnen</value>
   </data>
+  <data name="EditBtn.Text" xml:space="preserve">
+    <value>Bearb.</value>
+  </data>
 </root>

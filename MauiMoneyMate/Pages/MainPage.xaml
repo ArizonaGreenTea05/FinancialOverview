@@ -140,7 +140,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type x:String}">
                     <Grid RowDefinitions="Auto"
-                          ColumnDefinitions="*, Auto">
+                          ColumnDefinitions="*, Auto, Auto">
                         <Frame Grid.Column="0"
                                Margin="3"
                                Style="{StaticResource Frame2}">
@@ -150,7 +150,14 @@
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
                         <Button Grid.Column="1"
-                                Margin="4"
+                                Margin="2,4,2,4"
+                                Style="{StaticResource PositiveBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditMonthlyCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="2"
+                                Margin="2,4,2,4"
                                 Style="{StaticResource NegativeBtn}"
                                 FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
                                 Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
@@ -214,7 +221,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type x:String}">
                     <Grid RowDefinitions="Auto"
-                          ColumnDefinitions="*, Auto">
+                          ColumnDefinitions="*, Auto, Auto">
                         <Frame Grid.Column="0"
                                Margin="3"
                                Style="{StaticResource Frame2}">
@@ -224,7 +231,14 @@
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
                         <Button Grid.Column="1"
-                                Margin="4"
+                                Margin="2,4,2,4"
+                                Style="{StaticResource PositiveBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditYearlyCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="2"
+                                Margin="2,4,2,4"
                                 Style="{StaticResource NegativeBtn}"
                                 FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
                                 Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
