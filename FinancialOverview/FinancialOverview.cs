@@ -150,9 +150,9 @@ namespace BusinessLogic
         {
             if (AllSales.Rows.Count <= 0) return 0;
             var rest = Convert.ToDecimal(AllSales.Rows[0][0]);
-            for (int i = 1; i < AllSales.Rows.Count; ++i)
+            for (var i = 1; i < AllSales.Rows.Count; ++i)
                 rest += Convert.ToDecimal(AllSales.Rows[i][0]);
-            return rest;
+            return Math.Round(rest, 2);
         }
 
         public void Undo()
