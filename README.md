@@ -12,13 +12,13 @@ to save multiple financial files for multiple people, for example.
 
 <details>
 	<summary>Dark Mode</summary>
-	<img src="MauiMoneyMate/Resources/Images/Screenshot_Main_Dark.png" alt="drawing" width="700"/>
-	<img src="MauiMoneyMate/Resources/Images/Screenshot_File_Dark.png" alt="drawing" width="700"/>
+	<img src="MauiMoneyMate/Resources/Images/screenshot_main_dark.png" alt="drawing" width="700"/>
+	<img src="MauiMoneyMate/Resources/Images/screenshot_file_dark.png" alt="drawing" width="700"/>
 </details>
 <details>
 	<summary>Light Mode</summary>
-	<img src="MauiMoneyMate/Resources/Images/Screenshot_Main_Light.png" alt="drawing" width="700"/>
-	<img src="MauiMoneyMate/Resources/Images/Screenshot_File_Light.png" alt="drawing" width="700"/>
+	<img src="MauiMoneyMate/Resources/Images/screenshot_main_light.png" alt="drawing" width="700"/>
+	<img src="MauiMoneyMate/Resources/Images/screenshot_file_light.png" alt="drawing" width="700"/>
 </details>
 
 ## WinFormsFinance
