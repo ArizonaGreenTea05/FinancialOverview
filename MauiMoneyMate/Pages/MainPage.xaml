@@ -14,6 +14,12 @@
           ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           Padding="20">
 
+        <Frame Grid.Column="0"
+            Grid.ColumnSpan="100"
+            Grid.Row="0"
+            Padding="0,0,0,16"
+            Style="{StaticResource Toolbar}"/>
+
         <HorizontalStackLayout Grid.Column="0"
                                Grid.ColumnSpan="100"
                                Grid.Row="0"
