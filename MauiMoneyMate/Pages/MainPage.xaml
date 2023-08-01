@@ -68,7 +68,7 @@
                 Grid.Row="10"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
-                FontSize="22"
+                FontSize="20"
                 SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
                 ItemsSource="{Binding TimeUnits}"
                 SelectedIndex="{Binding SelectedTimeUnit}">
@@ -87,9 +87,8 @@
                         <Frame Margin="3"
                                Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
-                               FontSize="15"
-                               LineBreakMode="WordWrap"
-                               Style="{StaticResource LabelSecondary}"/>
+                                   LineBreakMode="WordWrap"
+                                   Style="{StaticResource LabelSecondary}"/>
                         </Frame>
                     </Grid>
                 </DataTemplate>
@@ -154,7 +153,6 @@
                                Margin="3"
                                Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
-                                   FontSize="15"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
@@ -235,7 +233,6 @@
                                Margin="3"
                                Style="{StaticResource Frame2}">
                             <Label Text="{Binding}"
-                                   FontSize="15"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>

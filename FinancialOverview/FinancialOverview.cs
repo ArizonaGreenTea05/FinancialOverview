@@ -9,11 +9,12 @@ namespace BusinessLogic
     public class FinancialOverview
     {
         private readonly DataSet _dataSet = new DataSet();
-        private DataTable _allSales;
+        private readonly DataTable _allSales = new DataTable();
         private readonly History.History _history;
         private List<string> _fileHistory = new List<string>();
         private bool _blockRowChangedHandler = false;
 
+        public const string DefaultFilename = "FinancialOverview.xml";
         public event EventHandler<string> OnDefaultFilePathChanged;
 
         public enum Unit
@@ -30,32 +31,36 @@ namespace BusinessLogic
             set
             {
                 _fileHistory = value;
-                DefaultFilePath = _fileHistory != null && _fileHistory.Count >= 1
+                FilePath = _fileHistory != null && _fileHistory.Count >= 1
                     ? _fileHistory[0]
                     : null;
             }
         }
 
-        public string DefaultFilePath
+        public string FilePath
         {
             set
             {
-                if (string.IsNullOrEmpty(value)) return;
+                if (string.IsNullOrEmpty(value))
+                {
+                    FileDirectory = Filename = value;
+                    return;
+                }
                 FileHistory.RemoveAll(value.Equals);
                 _fileHistory.Insert(0, value);
-                DefaultDirectory = Path.GetDirectoryName(value);
-                DefaultFilename = Path.GetFileName(value);
+                FileDirectory = Path.GetDirectoryName(value);
+                Filename = Path.GetFileName(value);
                 OnDefaultFilePathChanged?.Invoke(this, value);
             }
-            get => string.IsNullOrEmpty(DefaultDirectory) || string.IsNullOrEmpty(DefaultFilename)
+            get => string.IsNullOrEmpty(FileDirectory) || string.IsNullOrEmpty(Filename)
                 ? null
-                : $@"{DefaultDirectory.Replace('/', '\\')}\{DefaultFilename.Replace('/', '\\')}";
+                : $@"{FileDirectory.Replace('/', '\\')}\{Filename.Replace('/', '\\')}";
         }
 
-        public string DefaultDirectory { get; set; } = null;
+        public string FileDirectory { get; set; } = null;
 
-        public string DefaultFilename { get; set; } = "FinancialOverview.xml";
-        
+        public string Filename { get; set; } = DefaultFilename;
+
         public DataTable MonthlySales { get; set; }
         public DataTable YearlySales { get; set; }
 
@@ -63,7 +68,8 @@ namespace BusinessLogic
         {
             get
             {
-                var isMonthly = UnitOfAll == Unit.Monthly;_allSales.Rows.Clear();
+                var isMonthly = UnitOfAll == Unit.Monthly;
+                _allSales.Rows.Clear();
                 foreach (DataRow row in MonthlySales.Rows)
                 {
                     var newRow = new object[3];
@@ -82,7 +88,6 @@ namespace BusinessLogic
                 }
                 return _allSales;
             }
-            private set => _allSales = value;
         }
 
         public FinancialOverview()
@@ -99,7 +104,6 @@ namespace BusinessLogic
             YearlySales.Columns.Add(new DataColumn("Sales"));
             YearlySales.Columns.Add(new DataColumn("Name"));
             YearlySales.Columns.Add(new DataColumn("Addition"));
-            AllSales = new DataTable();
             AllSales.TableName = nameof(AllSales);
             AllSales.Columns.Clear();
             AllSales.Columns.Add(new DataColumn("Sales"));
@@ -121,28 +125,28 @@ namespace BusinessLogic
             MonthlySales.Clear();
             YearlySales.Clear();
             _dataSet.ReadXml(path);
-            DefaultFilePath = path;
+            FilePath = path;
             _history.Clear();
             return true;
         }
 
         public bool LoadData()
         {
-            return LoadData(DefaultFilePath);
+            return LoadData(FilePath);
         }
 
         public bool SaveData(string path)
         {
             if (!File.Exists(path)) return false;
             _dataSet.WriteXml(path);
-            DefaultFilePath = path;
+            FilePath = path;
             _history.Clear();
             return true;
         }
 
         public bool SaveData()
         {
-            return SaveData(DefaultFilePath);
+            return SaveData(FilePath);
         }
 
 
@@ -167,6 +171,12 @@ namespace BusinessLogic
             _blockRowChangedHandler = true;
             _history.Redo();
             _blockRowChangedHandler = false;
+        }
+
+        public void ClearSales()
+        {
+            MonthlySales.Clear();
+            YearlySales.Clear();
         }
 
         public void ClearHistory()

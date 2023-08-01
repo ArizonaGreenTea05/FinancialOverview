@@ -61,7 +61,25 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 30.
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        internal static string AddNewLbl_FontSize {
+            get {
+                return ResourceManager.GetString("AddNewLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        internal static string AddNewLbl_Text {
+            get {
+                return ResourceManager.GetString("AddNewLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 28.
         /// </summary>
         internal static string AllSalesLbl_FontSize {
             get {
@@ -106,7 +124,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 14.
+        ///   Looks up a localized string similar to 12.
         /// </summary>
         internal static string DeleteBtn_FontSize {
             get {
@@ -124,7 +142,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 14.
+        ///   Looks up a localized string similar to 12.
         /// </summary>
         internal static string EditBtn_FontSize {
             get {
@@ -142,7 +160,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15.
+        ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string FileHistoryDeleteBtn_FontSize {
             get {
@@ -160,7 +178,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15.
+        ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string FileHistoryOpenBtn_FontSize {
             get {
@@ -178,7 +196,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15.
+        ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string FilePageBtn_FontSize {
             get {
@@ -214,7 +232,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15.
+        ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string HelpBtn_FontSize {
             get {
@@ -232,7 +250,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 14.
+        ///   Looks up a localized string similar to 12.
         /// </summary>
         internal static string HelpInfoLbl_FontSize {
             get {
@@ -250,7 +268,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 16.
+        ///   Looks up a localized string similar to 14.
         /// </summary>
         internal static string HelpTitleLbl_FontSize {
             get {
@@ -268,7 +286,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 30.
+        ///   Looks up a localized string similar to 28.
         /// </summary>
         internal static string HistoryLbl_FontSize {
             get {
@@ -295,7 +313,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 24.
+        ///   Looks up a localized string similar to 22.
         /// </summary>
         internal static string MoneyUnitLbl_FontSize {
             get {
@@ -322,7 +340,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 18.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string MonthlyAddBtn_FontSize {
             get {
@@ -340,7 +358,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13.
+        ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string MonthlyAdditionEntry_FontSize {
             get {
@@ -367,7 +385,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13.
+        ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string MonthlyNameEntry_FontSize {
             get {
@@ -394,7 +412,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13.
+        ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string MonthlySalesEntry_FontSize {
             get {
@@ -439,7 +457,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 18.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string NewIssueBtn_FontSize {
             get {
@@ -457,7 +475,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 18.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string OpenFileLbl_FontSize {
             get {
@@ -475,7 +493,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 24.
+        ///   Looks up a localized string similar to 22.
         /// </summary>
         internal static string RestLbl_FontSize {
             get {
@@ -493,7 +511,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 24.
+        ///   Looks up a localized string similar to 22.
         /// </summary>
         internal static string RestMoneyLbl_FontSize {
             get {
@@ -520,7 +538,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 18.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string SaveFileAsLbl_FontSize {
             get {
@@ -538,7 +556,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 18.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string SaveFileLbl_FontSize {
             get {
@@ -565,7 +583,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 18.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string YearlyAddBtn_FontSize {
             get {
@@ -583,7 +601,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13.
+        ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string YearlyAdditionEntry_FontSize {
             get {
@@ -610,7 +628,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13.
+        ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string YearlyNameEntry_FontSize {
             get {
@@ -637,7 +655,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13.
+        ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string YearlySalesEntry_FontSize {
             get {
@@ -664,7 +682,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 30.
+        ///   Looks up a localized string similar to 28.
         /// </summary>
         internal static string YearlySalesLbl_FontSize {
             get {
