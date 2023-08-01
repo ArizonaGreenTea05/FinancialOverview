@@ -9,19 +9,27 @@
              Loaded="MainPage_OnLoaded"
              BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
 
-    
-    <Grid RowDefinitions="50, 40, Auto, *, Auto, Auto, *, 40"
+
+    <Grid RowDefinitions="5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 40, Auto, *, Auto, Auto, *, 40"
           ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
-          Padding="20">
+          Padding="15">
+
+        <Frame Grid.Column="0"
+            Grid.ColumnSpan="97"
+            Grid.Row="0"
+            Grid.RowSpan="9"
+            Padding="0,0,0,0"
+            Style="{StaticResource Toolbar}"/>
 
         <HorizontalStackLayout Grid.Column="0"
-                               Grid.ColumnSpan="100"
+                               Grid.ColumnSpan="97"
                                Grid.Row="0"
-                               Padding="0,0,0,16"
-                               Spacing="3">
+                               Grid.RowSpan="8"
+                               Padding="7,8,0,0"
+                               Spacing="2">
             <Button Text="{Binding FilePageBtn.Text}"
                     FontSize="{Binding FilePageBtn.FontSize}"
-                    Style="{StaticResource ToolbarButton}"
+                    Style="{StaticResource ToolbarButtonSelected}"
                     Command="{Binding SwitchToFilePageCommand}"/>
             <ImageButton Source="undo.png"
                          Style="{StaticResource ToolbarImageButton}"
@@ -29,7 +37,8 @@
             <ImageButton Source="redo.png"
                          Style="{StaticResource ToolbarImageButton}"
                          Command="{Binding RedoCommand}"/>
-            <Button Text="{Binding HelpBtn.Text}"
+            <Button x:Name="HelpBtn"
+                    Text="{Binding HelpBtn.Text}"
                     FontSize="{Binding HelpBtn.FontSize}"
                     Style="{StaticResource ToolbarButton}"
                     Clicked="ShowHelp"/>
@@ -37,17 +46,17 @@
 
         <Frame Grid.Column="32"
                Grid.ColumnSpan="12"
-               Grid.Row="1"
+               Grid.Row="10"
                Style="{StaticResource Frame2}"/>
 
         <Frame Grid.Column="0"
                Grid.ColumnSpan="33"
-               Grid.Row="1"
+               Grid.Row="10"
                Style="{StaticResource Frame1}"/>
 
         <Label Grid.Column="1"
                Grid.ColumnSpan="25"
-               Grid.Row="1"
+               Grid.Row="10"
                Text="{Binding AllSalesLbl.Text}"
                FontSize="{Binding AllSalesLbl.FontSize}"
                Style="{StaticResource LabelPrimary}"
@@ -56,7 +65,7 @@
 
         <Picker Grid.Column="33"
                 Grid.ColumnSpan="10"
-                Grid.Row="1"
+                Grid.Row="10"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="End"
                 FontSize="22"
@@ -67,7 +76,7 @@
 
         <CollectionView Grid.Column="0"
                         Grid.ColumnSpan="44"
-                        Grid.Row="3"
+                        Grid.Row="12"
                         Grid.RowSpan="4"
                         VerticalOptions="Start"
                         ItemsSource="{Binding AllSales}">
@@ -89,7 +98,7 @@
 
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
-               Grid.Row="1"
+               Grid.Row="10"
                Text="{Binding MonthlySalesLbl.Text}"
                FontSize="{Binding MonthlySalesLbl.FontSize}"
                Style="{StaticResource LabelPrimary}"
@@ -101,7 +110,7 @@
                x:Name="MonthlySalesEntry"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="2"
+               Grid.Row="11"
                Completed="MonthlySalesEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding MonthlyNameEntry.Placeholder}"
@@ -110,7 +119,7 @@
                x:Name="MonthlyNameEntry"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="2"
+               Grid.Row="11"
                Completed="MonthlyNameEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding MonthlyAdditionEntry.Placeholder}"
@@ -119,7 +128,7 @@
                x:Name="MonthlyAdditionEntry"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="2"
+               Grid.Row="11"
                Completed="MonthlyAdditionEntry_OnCompleted"/>
 
         <Button Text="{Binding MonthlyAddBtn.Text}"
@@ -127,13 +136,13 @@
                 x:Name="MonthlyAddBtn"
                 Grid.Column="90"
                 Grid.ColumnSpan="10"
-                Grid.Row="2"
+                Grid.Row="11"
                 Scale=".8"
                 Command="{Binding AddMonthlyCommand}"/>
 
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
-                        Grid.Row="3"
+                        Grid.Row="12"
                         VerticalOptions="Start"
                         ItemsSource="{Binding MonthlySales}">
                 
@@ -170,7 +179,7 @@
 
         <Label Grid.Column="54"
                Grid.ColumnSpan="45"
-               Grid.Row="4"
+               Grid.Row="13"
                Text="{Binding YearlySalesLbl.Text}"
                FontSize="{Binding YearlySalesLbl.FontSize}"
                Style="{StaticResource LabelPrimary}"
@@ -182,7 +191,7 @@
                x:Name="YearlySalesEntry"
                Grid.Column="54"
                Grid.ColumnSpan="6"
-               Grid.Row="5"
+               Grid.Row="14"
                Completed="YearlySalesEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding YearlyNameEntry.Placeholder}"
@@ -191,7 +200,7 @@
                x:Name="YearlyNameEntry"
                Grid.Column="60"
                Grid.ColumnSpan="11"
-               Grid.Row="5"
+               Grid.Row="14"
                Completed="YearlyNameEntry_OnCompleted"/>
 
         <Entry Placeholder="{Binding YearlyAdditionEntry.Placeholder}"
@@ -200,12 +209,12 @@
                x:Name="YearlyAdditionEntry"
                Grid.Column="71"
                Grid.ColumnSpan="19"
-               Grid.Row="5"
+               Grid.Row="14"
                Completed="YearlyAdditionEntry_OnCompleted"/>
 
         <Button Grid.Column="90"
                 Grid.ColumnSpan="10"
-                Grid.Row="5"
+                Grid.Row="14"
                 Text="{Binding YearlyAddBtn.Text}"
                 FontSize="{Binding YearlyAddBtn.FontSize}"
                 x:Name="YearlyAddBtn"
@@ -214,7 +223,7 @@
 
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
-                        Grid.Row="6 "
+                        Grid.Row="15 "
                         VerticalOptions="Start"
                         ItemsSource="{Binding YearlySales}">
 
@@ -251,17 +260,17 @@
 
         <Frame Grid.Column="0"
                  Grid.ColumnSpan="12"
-                 Grid.Row="7"
+                 Grid.Row="16"
                  Style="{StaticResource Frame2}"/>
 
         <Frame Grid.Column="10"
                Grid.ColumnSpan="34"
-               Grid.Row="7"
+               Grid.Row="16"
                Style="{StaticResource Frame1}"/>
 
         <Label Grid.Column="1"
                Grid.ColumnSpan="9"
-               Grid.Row="7"
+               Grid.Row="16"
                Text="{Binding RestLbl.Text}"
                FontSize="{Binding RestLbl.FontSize}"
                VerticalTextAlignment="Center"
@@ -270,7 +279,7 @@
 
         <Label Grid.Column="9"
                Grid.ColumnSpan="32"
-               Grid.Row="7"
+               Grid.Row="16"
                Padding="0,0,6,0"
                Text="{Binding RestMoney}"
                FontSize="{Binding RestMoneyLbl.FontSize}"
@@ -280,7 +289,7 @@
 
         <Label Grid.Column="41"
                Grid.ColumnSpan="2"
-               Grid.Row="7"
+               Grid.Row="16"
                Text="{Binding MoneyUnitLbl.Text}"
                FontSize="{Binding MoneyUnitLbl.FontSize}"
                VerticalTextAlignment="Center"
