@@ -213,13 +213,7 @@
   <data name="EditBtn.Text" xml:space="preserve">
     <value>Bearb.</value>
   </data>
-  <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="OpenFileLbl.FontSize" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="SaveFileLbl.FontSize" xml:space="preserve">
-    <value>17</value>
+  <data name="AddNewLbl.Text" xml:space="preserve">
+    <value>Neues Dokument erstellen</value>
   </data>
 </root>

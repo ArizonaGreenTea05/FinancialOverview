@@ -7,16 +7,34 @@
              x:DataType="viewModels:FileViewModel"
              Title="{Binding FilePageTitle}"
              BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
-    <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+    <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           ColumnDefinitions="60,60,60,60,60,10,*,30,*,60">
+
         <ImageButton Grid.Row="2"
+                     Grid.RowSpan="6"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="3"
+                     Source="add_new.png"
+                     Command="{Binding AddNewDocumentCommand}"/>
+
+        <Label Grid.Row="6"
+               Grid.RowSpan="2"
+               Grid.Column="1"
+               Grid.ColumnSpan="3"
+               Padding="0,15,0,0"
+               FontSize="{Binding AddNewLbl.FontSize}"
+               Text="{Binding AddNewLbl.Text}"
+               Style="{StaticResource LabelToolbar}"
+               VerticalOptions="Start"/>
+
+        <ImageButton Grid.Row="9"
                      Grid.RowSpan="6"
                      Grid.Column="1"
                      Grid.ColumnSpan="3"
                      Source="open.png"
                      Command="{Binding OpenFileDialogCommand}"/>
 
-        <Label Grid.Row="6"
+        <Label Grid.Row="13"
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
@@ -26,14 +44,14 @@
                Style="{StaticResource LabelToolbar}"
                VerticalOptions="Start"/>
 
-        <ImageButton Grid.Row="10"
+        <ImageButton Grid.Row="16"
                      Grid.RowSpan="6"
                      Grid.Column="1"
                      Grid.ColumnSpan="3"
                      Source="save.png"
                      Command="{Binding SaveFileCommand}"/>
 
-        <Label Grid.Row="14"
+        <Label Grid.Row="20"
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
@@ -43,14 +61,14 @@
                Style="{StaticResource LabelToolbar}"
                VerticalOptions="Start"/>
 
-        <ImageButton Grid.Row="18"
+        <ImageButton Grid.Row="23"
                      Grid.RowSpan="6"
                      Grid.Column="1"
                      Grid.ColumnSpan="3"
                      Source="save_as.png"
                      Command="{Binding SaveFileDialogCommand}"/>
 
-        <Label Grid.Row="22"
+        <Label Grid.Row="27"
                Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
@@ -85,7 +103,7 @@
         <CollectionView Grid.Column="5"
                         Grid.ColumnSpan="2"
                         Grid.Row="11"
-                        Grid.RowSpan="14"
+                        Grid.RowSpan="18"
                         VerticalOptions="Start"
                         ItemsSource="{Binding FileHistory}">
 
@@ -102,7 +120,7 @@
                                        LineBreakMode="WordWrap"
                                        Style="{StaticResource LabelSecondary}">
                                 </Label>
-                                <Label FontSize="14"
+                                <Label FontSize="13"
                                        Text="{Binding FullPath}"
                                        LineBreakMode="WordWrap"
                                        Style="{StaticResource LabelSecondary}">

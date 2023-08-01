@@ -85,7 +85,7 @@
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="Padding" Value="20,6"/>
-        <Setter Property="Margin" Value="0,0.8"/>
+        <Setter Property="Margin" Value="0,1.4"/>
     </Style>
 
     <Style x:Key="ToolbarImageButtonSelected"  TargetType="ImageButton">
@@ -96,7 +96,7 @@
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="Padding" Value="20,6"/>
-        <Setter Property="Margin" Value="0,0.8"/>
+        <Setter Property="Margin" Value="0,1.4"/>
     </Style>
 
     <Style TargetType="ImageButton">
@@ -276,8 +276,9 @@
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}" />
         <Setter Property="FontFamily" Value="ArialRounded"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
+                <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
@@ -294,6 +295,7 @@
     <Style x:Key="LabelPrimary" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark={StaticResource PrimaryDark}}" />
         <Setter Property="FontFamily" Value="ArialRounded"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -312,6 +314,7 @@
     <Style x:Key="LabelSecondary" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryLight}, Dark={StaticResource SecondaryDark}}" />
         <Setter Property="FontFamily" Value="ArialRounded"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -330,6 +333,7 @@
     <Style x:Key="LabelTertiary" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}" />
         <Setter Property="FontFamily" Value="ArialRounded"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">

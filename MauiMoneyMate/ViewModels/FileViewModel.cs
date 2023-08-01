@@ -41,6 +41,8 @@ public partial class FileViewModel : ObservableObject
 
     [ObservableProperty] private ResourceLabel _saveFileAsLbl;
 
+    [ObservableProperty] private ResourceLabel _addNewLbl;
+
     [ObservableProperty] private ResourceButton _fileHistoryDeleteBtn;
 
     [ObservableProperty] private ResourceButton _fileHistoryOpenBtn;
@@ -68,6 +70,16 @@ public partial class FileViewModel : ObservableObject
     #region private Relay Commands
 
     [RelayCommand]
+    private void AddNewDocument()
+    {
+        _financialOverview.ClearSales();
+        _financialOverview.FilePath = null;
+        _financialOverview.ClearHistory();
+        DataIsSaved = false;
+        Shell.Current.GoToAsync("../../route");
+    }
+
+    [RelayCommand]
     private void OpenFileDialog()
     {
         var path = FileHandler.OpenFileDialog();
@@ -93,7 +105,8 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void SaveFileDialog()
     {
-        var path = FileHandler.SaveFileDialog(_financialOverview.DefaultDirectory, _financialOverview.DefaultFilename);
+        var path = FileHandler.SaveFileDialog(_financialOverview.FileDirectory,
+            _financialOverview.Filename ?? FinancialOverview.DefaultFilename);
         if (null == path)
         {
             Toast.Make(LanguageResource.CouldNotSaveFile).Show();
@@ -123,7 +136,7 @@ public partial class FileViewModel : ObservableObject
     {
         FileHistory.Remove(fhe);
         _financialOverview.FileHistory.Remove(fhe.FullPath);
-        if (_financialOverview.FileHistory.Count <= 0) _financialOverview.DefaultFilePath = fhe.FullPath;
+        if (_financialOverview.FileHistory.Count <= 0) _financialOverview.FilePath = fhe.FullPath;
         FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonConstants.AppDataFilePath);
     }
 
@@ -167,6 +180,7 @@ public partial class FileViewModel : ObservableObject
         OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));
         SaveFileLbl = new ResourceLabel(nameof(SaveFileLbl));
         SaveFileAsLbl = new ResourceLabel(nameof(SaveFileAsLbl));
+        AddNewLbl = new ResourceLabel(nameof(AddNewLbl));
         FileHistoryDeleteBtn = new ResourceButton(nameof(FileHistoryDeleteBtn));
         FileHistoryOpenBtn = new ResourceButton(nameof(FileHistoryOpenBtn));
     }

@@ -112,7 +112,7 @@ public partial class MainViewModel : ObservableObject
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
         if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
         _financialOverview.FileHistory = tmpHistory;
-        DataIsSaved = File.Exists(_financialOverview.DefaultFilePath);
+        DataIsSaved = File.Exists(_financialOverview.FilePath);
         _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
         _monthlySalesDict = new Dictionary<string, DataRow>();
@@ -329,7 +329,7 @@ public partial class MainViewModel : ObservableObject
             FinancialOverviewTitle += '*';
         if (App.Window == null) return;
         App.Window.Title = App.Window.Title?.Split('-')[0].TrimEnd();
-        App.Window.Title += $" - {_financialOverview.DefaultFilePath ?? "none"}";
+        App.Window.Title += $" - {_financialOverview.FilePath ?? "none"}";
     }
 
     private void UpdateSales()
