@@ -125,6 +125,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Common\CommonLibrary.csproj" />
 	  <ProjectReference Include="..\FinancialOverview\FinancialOverview.csproj" />
 	</ItemGroup>
 

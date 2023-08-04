@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
 using BusinessLogic;
+using CommonLibrary;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -94,7 +95,7 @@ public partial class MainViewModel : ObservableObject
     #region private Members
 
     private readonly FinancialOverview _financialOverview;
-    private readonly CommonVariables _commonVariables;
+    private readonly CommonVariables _cv;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
 
@@ -107,7 +108,7 @@ public partial class MainViewModel : ObservableObject
         TimeUnits = new ObservableCollection<string>();
         LoadResources();
 
-        _commonVariables = commonVariables;
+        _cv = commonVariables;
         _financialOverview = financialOverview;
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
         if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
@@ -288,6 +289,17 @@ public partial class MainViewModel : ObservableObject
         UpdateSales();
         _financialOverview.ClearHistory();
         _financialOverview.AddCurrentStateToHistory();
+        CheckForUpdates();
+    }
+
+    private void CheckForUpdates()
+    {
+        _cv.LatestRelease = _cv.GitHubAssetDownloader.GetLatestReleaseInfo(CommonConstants.RepositoryOwner, CommonConstants.RepositoryName);
+        if (_cv.LatestRelease.VersionId != CommonConstants.CurrentVersion.Id)
+        {
+            // show popup
+            _cv.GitHubAssetDownloader.DownloadReleaseAsset(_cv.LatestRelease, CommonConstants.GeneralAssetName, CommonConstants.UpdateDirectory);
+        }
     }
 
     public void TimeUnitChanged()
@@ -316,10 +328,10 @@ public partial class MainViewModel : ObservableObject
     {
         set
         {
-            _commonVariables.DataIsSaved = value;
+            _cv.DataIsSaved = value;
             DisplaySavingState();
         }
-        get => _commonVariables.DataIsSaved;
+        get => _cv.DataIsSaved;
     }
 
     private void DisplaySavingState()
