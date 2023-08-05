@@ -8,7 +8,7 @@
     public class GitHubAccessor
     {
         private const string GitHubApiBaseUrl = "https://api.github.com";
-        private const string BaseDownloadUrl = "https://github.com/{0}/{1}/releases/download/{2}/{3}";
+        public const string BaseDownloadUrl = "https://github.com/{0}/{1}/releases/download/{2}/{3}";
 
         public static bool DownloadReleaseAsset(ReleaseInfo release, string generalAssetName, string targetDirectory)
         {
@@ -81,6 +81,24 @@
             }
         }
         public string VersionId { get; private set; } = string.Empty;
+
+        public ReleaseInfo()
+        {
+
+        }
+
+        public ReleaseInfo(Version version, string assetName, string owner, string repo)
+        {
+            Assets = new List<ReleaseAsset>
+            {
+                new()
+                {
+                    Name = assetName,
+                    DownloadUrl = string.Format(GitHubAccessor.BaseDownloadUrl, owner, repo, version.Tag, assetName)
+                }
+            };
+            Tag = version.Tag;
+        }
     }
 
     public class ReleaseAsset

@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils
 {
     internal class VersionInfos
     {
-        internal static class CurrentVersion
+        internal static Version CurrentVersion = new()
         {
-            internal const int MainVersion = 0;
-            internal const int SubVersion = 2;
-            internal const int SubSubVersion = 1;
-            internal const string Suffix = "-beta";
-            internal static string Name => $"MMM-v{MainVersion}.{SubVersion}.{SubSubVersion}{Suffix}";
-            internal static string Id => $"{MainVersion}.{SubVersion}.{SubSubVersion}";
-        }
+            MainVersion = 0,
+            SubVersion = 2,
+            SubSubVersion = 1,
+            Suffix = "-beta"
+        };
     }
 }

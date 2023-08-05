@@ -9,9 +9,12 @@ internal static class CommonFunctions
 {
     public static bool CheckForUpdates()
     {
-        CommonProperties.LatestRelease =
-            GitHubAccessor.GetLatestReleaseInfo(CommonProperties.RepositoryOwner,
-                CommonProperties.RepositoryName);
+        var tmp = GitHubAccessor.GetLatestReleaseInfo(CommonProperties.RepositoryOwner,
+            CommonProperties.RepositoryName);
+        CommonProperties.LatestRelease = tmp.Tag != tmp.Tag.Replace("MMM", "")
+            ? tmp // new MMM release available
+            : new ReleaseInfo(VersionInfos.CurrentVersion, CommonProperties.AssetNameOfLatestRelease,
+                CommonProperties.RepositoryOwner, CommonProperties.RepositoryName); // latest release is not an MMM, so it won't be recognized as new release
         return CommonProperties.LatestRelease.VersionId != VersionInfos.CurrentVersion.Id;
     }
 
