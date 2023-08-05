@@ -133,6 +133,9 @@
 	  <Compile Update="Pages\FilePage.xaml.cs">
 	    <DependentUpon>FilePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Popups\UpdatePopup.xaml.cs">
+	    <DependentUpon>UpdatePopup.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Languages\LanguageResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -149,6 +152,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\FilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\UpdatePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\HelpPopup.xaml">

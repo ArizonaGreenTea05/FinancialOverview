@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ProjectProperties=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ProjectProperties=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MonthlyAddBtn.Text" xml:space="preserve">
     <value>Add</value>
@@ -277,7 +277,7 @@
     <value>Help</value>
   </data>
   <data name="HelpTitleLbl.FontSize" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="HelpTitleLbl.Text" xml:space="preserve">
     <value>MauiMoneyMate Help</value>
@@ -289,7 +289,7 @@
     <value>New Issue</value>
   </data>
   <data name="HelpInfoLbl.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="HelpInfoLbl.Text" xml:space="preserve">
     <value>If you notice a bug or problem, or simply have a suggestion for improvement, please create a new issue where your describe your problem. The title should start with "MauiMoneyMate:".</value>
@@ -329,5 +329,47 @@
   </data>
   <data name="AddNewLbl.Text" xml:space="preserve">
     <value>Add New</value>
+  </data>
+  <data name="CouldNotDownloadUpdate" xml:space="preserve">
+    <value>Could not download update.</value>
+  </data>
+  <data name="PleaseCheckYourInternetConnectionAndTryAgainLater" xml:space="preserve">
+    <value>Please check your internet connection and try again later.</value>
+  </data>
+  <data name="DownloadingNewestVersion" xml:space="preserve">
+    <value>Downloading newest version</value>
+  </data>
+  <data name="InstallingNewVersion" xml:space="preserve">
+    <value>Installing new version</value>
+  </data>
+  <data name="CouldNotInstallUpdate" xml:space="preserve">
+    <value>Could not install update</value>
+  </data>
+  <data name="InstallationComplete" xml:space="preserve">
+    <value>Installation complete</value>
+  </data>
+  <data name="NewAppVersionDetected" xml:space="preserve">
+    <value>New app version detected</value>
+  </data>
+  <data name="UpdateWillBeInstalledOnClosingTheApplication" xml:space="preserve">
+    <value>Update will be installed on closing the application</value>
+  </data>
+  <data name="UpdateBtn.FontSize" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="UpdateBtn.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateInfoLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="UpdateInfoLbl.Text" xml:space="preserve">
+    <value>A new app version was detected. Do you want to install it? The app needs to be restarted.</value>
+  </data>
+  <data name="UpdateTitleLbl.FontSize" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="UpdateTitleLbl.Text" xml:space="preserve">
+    <value>New app version detected</value>
   </data>
 </root>

@@ -106,6 +106,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not download update..
+        /// </summary>
+        internal static string CouldNotDownloadUpdate {
+            get {
+                return ResourceManager.GetString("CouldNotDownloadUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not install update.
+        /// </summary>
+        internal static string CouldNotInstallUpdate {
+            get {
+                return ResourceManager.GetString("CouldNotInstallUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File could not be opened.
         /// </summary>
         internal static string CouldNotOpenFile {
@@ -138,6 +156,15 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string DeleteBtn_Text {
             get {
                 return ResourceManager.GetString("DeleteBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading newest version.
+        /// </summary>
+        internal static string DownloadingNewestVersion {
+            get {
+                return ResourceManager.GetString("DownloadingNewestVersion", resourceCulture);
             }
         }
         
@@ -250,7 +277,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12.
+        ///   Looks up a localized string similar to 14.
         /// </summary>
         internal static string HelpInfoLbl_FontSize {
             get {
@@ -268,7 +295,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 14.
+        ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string HelpTitleLbl_FontSize {
             get {
@@ -300,6 +327,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string HistoryLbl_Text {
             get {
                 return ResourceManager.GetString("HistoryLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation complete.
+        /// </summary>
+        internal static string InstallationComplete {
+            get {
+                return ResourceManager.GetString("InstallationComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing new version.
+        /// </summary>
+        internal static string InstallingNewVersion {
+            get {
+                return ResourceManager.GetString("InstallingNewVersion", resourceCulture);
             }
         }
         
@@ -457,6 +502,15 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New app version detected.
+        /// </summary>
+        internal static string NewAppVersionDetected {
+            get {
+                return ResourceManager.GetString("NewAppVersionDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string NewIssueBtn_FontSize {
@@ -489,6 +543,15 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string OpenFileLbl_Text {
             get {
                 return ResourceManager.GetString("OpenFileLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please check your internet connection and try again later..
+        /// </summary>
+        internal static string PleaseCheckYourInternetConnectionAndTryAgainLater {
+            get {
+                return ResourceManager.GetString("PleaseCheckYourInternetConnectionAndTryAgainLater", resourceCulture);
             }
         }
         
@@ -570,6 +633,69 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string SaveFileLbl_Text {
             get {
                 return ResourceManager.GetString("SaveFileLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20.
+        /// </summary>
+        internal static string UpdateBtn_FontSize {
+            get {
+                return ResourceManager.GetString("UpdateBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string UpdateBtn_Text {
+            get {
+                return ResourceManager.GetString("UpdateBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string UpdateInfoLbl_FontSize {
+            get {
+                return ResourceManager.GetString("UpdateInfoLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new app version was detected. Do you want to install it? The app needs to be restarted..
+        /// </summary>
+        internal static string UpdateInfoLbl_Text {
+            get {
+                return ResourceManager.GetString("UpdateInfoLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        internal static string UpdateTitleLbl_FontSize {
+            get {
+                return ResourceManager.GetString("UpdateTitleLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New app version detected.
+        /// </summary>
+        internal static string UpdateTitleLbl_Text {
+            get {
+                return ResourceManager.GetString("UpdateTitleLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update will be installed on closing the application.
+        /// </summary>
+        internal static string UpdateWillBeInstalledOnClosingTheApplication {
+            get {
+                return ResourceManager.GetString("UpdateWillBeInstalledOnClosingTheApplication", resourceCulture);
             }
         }
         

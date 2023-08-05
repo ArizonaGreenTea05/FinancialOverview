@@ -6,7 +6,7 @@ using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate.Pages
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage
     {
         private readonly MainViewModel _viewModel;
 
@@ -30,6 +30,9 @@ namespace MauiMoneyMate.Pages
         private void MainPage_OnLoaded(object sender, EventArgs e)
         {
             _viewModel.OnLoaded();
+            if (!_viewModel.ShowUpdatePopup) return;
+            this.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease,
+                CommonFunctions.InstallDownloadedRelease));
         }
 
         private void MonthlySalesEntry_OnCompleted(object sender, EventArgs e)

@@ -1,4 +1,6 @@
-﻿namespace MauiMoneyMate
+﻿using MauiMoneyMate.Utils;
+
+namespace MauiMoneyMate
 {
     public partial class App : Application
     {
