@@ -21,6 +21,9 @@
                 }
 
                 var assetName = string.Format(generalAssetName, release.VersionId);
+
+                if (File.Exists(Path.Join(targetDirectory, assetName))) return true;
+
                 var targetAsset = release.Assets.Find(asset =>
                     asset.Name.Equals(assetName, StringComparison.OrdinalIgnoreCase));
                 if (null == targetAsset)

@@ -27,7 +27,6 @@ internal static class CommonFunctions
         {
             var zipFile = Path.Combine(CommonProperties.UpdateDirectory, CommonProperties.AssetNameOfLatestRelease);
             ZipFile.ExtractToDirectory(zipFile, CommonProperties.UpdateDirectory, true);
-            if (File.Exists(zipFile)) File.Delete(zipFile);
             var startInfo = new ProcessStartInfo
             {
                 CreateNoWindow = false,
@@ -42,6 +41,28 @@ internal static class CommonFunctions
         {
             Toast.Make(Convert.ToString(ex) ?? ex.Message).Show();
             return false;
+        }
+    }
+
+    public static void RemoveNonZipFiles(string directoryPath)
+    {
+        try
+        {
+            if (!Directory.Exists(directoryPath))
+            {
+                Console.WriteLine("Directory not found.");
+                return;
+            }
+
+            var directory = new DirectoryInfo(directoryPath);
+            foreach (var file in directory.GetFiles())
+                if (!file.Extension.Equals(".zip", StringComparison.OrdinalIgnoreCase))
+                    file.Delete();
+            foreach (var subDirectory in directory.GetDirectories()) subDirectory.Delete(true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error occurred: {ex.Message}");
         }
     }
 }
