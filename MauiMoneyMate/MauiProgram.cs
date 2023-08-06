@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using CommonLibrary;
+using CommunityToolkit.Maui;
 using MauiMoneyMate.Pages;
 using MauiMoneyMate.Popups;
 using MauiMoneyMate.Utils;
@@ -20,13 +21,12 @@ namespace MauiMoneyMate
                 }).UseMauiCommunityToolkit();
 
             var financialOverview = new BusinessLogic.FinancialOverview();
-            var commonVariables = new CommonVariables();
 
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton(new MainViewModel(financialOverview, commonVariables));
+            builder.Services.AddSingleton(new MainViewModel(financialOverview));
 
             builder.Services.AddTransient<FilePage>();
-            builder.Services.AddSingleton(new FileViewModel(financialOverview, commonVariables));
+            builder.Services.AddSingleton(new FileViewModel(financialOverview));
 
             return builder.Build();
         }

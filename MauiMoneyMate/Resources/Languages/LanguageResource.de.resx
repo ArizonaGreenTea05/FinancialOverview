@@ -216,4 +216,37 @@
   <data name="AddNewLbl.Text" xml:space="preserve">
     <value>Neues Dokument erstellen</value>
   </data>
+  <data name="CouldNotDownloadUpdate" xml:space="preserve">
+    <value>Update konnte nicht heruntergeladen werden.</value>
+  </data>
+  <data name="PleaseCheckYourInternetConnectionAndTryAgainLater" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es später erneut.</value>
+  </data>
+  <data name="DownloadingNewestVersion" xml:space="preserve">
+    <value>Neueste Version herunterladen</value>
+  </data>
+  <data name="InstallingNewVersion" xml:space="preserve">
+    <value>Neue Version installieren</value>
+  </data>
+  <data name="CouldNotInstallUpdate" xml:space="preserve">
+    <value>Update konnten nicht installiert werden</value>
+  </data>
+  <data name="InstallationComplete" xml:space="preserve">
+    <value>Installation komplett</value>
+  </data>
+  <data name="NewAppVersionDetected" xml:space="preserve">
+    <value>Neue Appversion gefunden</value>
+  </data>
+  <data name="UpdateWillBeInstalledOnClosingTheApplication" xml:space="preserve">
+    <value>Update wird beim Schließen der App installiert</value>
+  </data>
+  <data name="UpdateBtn.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateInfoLbl.Text" xml:space="preserve">
+    <value>Eine neue Appversion wurde entdeckt. Möchten Sie diese installieren? Die App muss neu gestartet werden.</value>
+  </data>
+  <data name="UpdateTitleLbl.Text" xml:space="preserve">
+    <value>Neue Appversion gefunden</value>
+  </data>
 </root>

@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
 using BusinessLogic;
+using CommonLibrary;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Pages;
+using MauiMoneyMate.Popups;
 using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
@@ -94,7 +96,6 @@ public partial class MainViewModel : ObservableObject
     #region private Members
 
     private readonly FinancialOverview _financialOverview;
-    private readonly CommonVariables _commonVariables;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
 
@@ -102,12 +103,11 @@ public partial class MainViewModel : ObservableObject
 
     #region public Constructors
 
-    public MainViewModel(FinancialOverview financialOverview, CommonVariables commonVariables)
+    public MainViewModel(FinancialOverview financialOverview)
     {
         TimeUnits = new ObservableCollection<string>();
         LoadResources();
-
-        _commonVariables = commonVariables;
+        
         _financialOverview = financialOverview;
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
         if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
@@ -288,6 +288,15 @@ public partial class MainViewModel : ObservableObject
         UpdateSales();
         _financialOverview.ClearHistory();
         _financialOverview.AddCurrentStateToHistory();
+
+        if (CommonProperties.CheckForUpdatesOnStart || CommonProperties.DownloadUpdatesAutomatically)
+            CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
+        if (!CommonProperties.UpdateAvailable) return;
+        ShowUpdatePopup = !CommonProperties.DownloadUpdatesAutomatically;
+        if (CommonProperties.DownloadUpdatesAutomatically)
+            Toast.Make(
+                    $"{LanguageResource.NewAppVersionDetected}\n{LanguageResource.UpdateWillBeInstalledOnClosingTheApplication}")
+                .Show();
     }
 
     public void TimeUnitChanged()
@@ -302,13 +311,13 @@ public partial class MainViewModel : ObservableObject
 
     private void SaveListToAppData(List<string> content)
     {
-        if (!FileHandler.WriteTextToFile(content, CommonConstants.AppDataFilePath))
+        if (!FileHandler.WriteTextToFile(content, CommonProperties.AppDataFilePath))
             return;
     }
 
     private string LoadStringFromAppData()
     {
-        var text = FileHandler.ReadTextFile(CommonConstants.AppDataFilePath);
+        var text = FileHandler.ReadTextFile(CommonProperties.AppDataFilePath);
         return text ?? string.Empty;
     }
 
@@ -316,11 +325,13 @@ public partial class MainViewModel : ObservableObject
     {
         set
         {
-            _commonVariables.DataIsSaved = value;
+            CommonProperties.DataIsSaved = value;
             DisplaySavingState();
         }
-        get => _commonVariables.DataIsSaved;
+        get => CommonProperties.DataIsSaved;
     }
+
+    public bool ShowUpdatePopup { get; private set; }
 
     private void DisplaySavingState()
     {

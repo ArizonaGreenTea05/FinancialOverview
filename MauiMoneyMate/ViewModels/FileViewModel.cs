@@ -52,15 +52,13 @@ public partial class FileViewModel : ObservableObject
     #region private Members
 
     private readonly FinancialOverview _financialOverview;
-    private readonly CommonVariables _commonVariables;
 
     #endregion
 
     #region public Constructors
 
-    public FileViewModel(FinancialOverview financialOverview, CommonVariables commonVariables)
+    public FileViewModel(FinancialOverview financialOverview)
     {
-        _commonVariables = commonVariables;
         _financialOverview = financialOverview;
         LoadResources();
     }
@@ -137,7 +135,7 @@ public partial class FileViewModel : ObservableObject
         FileHistory.Remove(fhe);
         _financialOverview.FileHistory.Remove(fhe.FullPath);
         if (_financialOverview.FileHistory.Count <= 0) _financialOverview.FilePath = fhe.FullPath;
-        FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonConstants.AppDataFilePath);
+        FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonProperties.AppDataFilePath);
     }
 
     #endregion
@@ -160,10 +158,10 @@ public partial class FileViewModel : ObservableObject
     {
         set
         {
-            _commonVariables.DataIsSaved = value;
+            CommonProperties.DataIsSaved = value;
             DisplaySavingState();
         }
-        get => _commonVariables.DataIsSaved;
+        get => CommonProperties.DataIsSaved;
     }
 
     private void DisplaySavingState()
