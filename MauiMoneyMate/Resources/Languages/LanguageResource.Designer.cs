@@ -106,6 +106,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string CheckForUpdatesOnStartLbl_FontSize {
+            get {
+                return ResourceManager.GetString("CheckForUpdatesOnStartLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for updates at startup.
+        /// </summary>
+        internal static string CheckForUpdatesOnStartLbl_Text {
+            get {
+                return ResourceManager.GetString("CheckForUpdatesOnStartLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not download update..
         /// </summary>
         internal static string CouldNotDownloadUpdate {
@@ -165,6 +183,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string DownloadingNewestVersion {
             get {
                 return ResourceManager.GetString("DownloadingNewestVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string DownloadUpdatesAutomaticallyLbl_FontSize {
+            get {
+                return ResourceManager.GetString("DownloadUpdatesAutomaticallyLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download and install updates automatically.
+        /// </summary>
+        internal static string DownloadUpdatesAutomaticallyLbl_Text {
+            get {
+                return ResourceManager.GetString("DownloadUpdatesAutomaticallyLbl.Text", resourceCulture);
             }
         }
         
@@ -633,6 +669,33 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string SaveFileLbl_Text {
             get {
                 return ResourceManager.GetString("SaveFileLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string SettingsPageBtn_FontSize {
+            get {
+                return ResourceManager.GetString("SettingsPageBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string SettingsPageBtn_Text {
+            get {
+                return ResourceManager.GetString("SettingsPageBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string SettingsPageTitle {
+            get {
+                return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
             }
         }
         

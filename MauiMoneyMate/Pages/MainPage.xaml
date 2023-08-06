@@ -37,6 +37,10 @@
             <ImageButton Source="redo.png"
                          Style="{StaticResource ToolbarImageButton}"
                          Command="{Binding RedoCommand}"/>
+            <Button Text="{Binding SettingsPageBtn.Text}"
+                    FontSize="{Binding SettingsPageBtn.FontSize}"
+                    Style="{StaticResource ToolbarButton}"
+                    Command="{Binding SwitchToSettingsPageCommand}"/>
             <Button x:Name="HelpBtn"
                     Text="{Binding HelpBtn.Text}"
                     FontSize="{Binding HelpBtn.FontSize}"

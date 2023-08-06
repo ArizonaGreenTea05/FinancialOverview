@@ -1,12 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
 using BusinessLogic;
-using CommonLibrary;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Pages;
-using MauiMoneyMate.Popups;
 using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
@@ -52,6 +50,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private ResourceButton _undoBtn;
 
     [ObservableProperty] private ResourceButton _redoBtn;
+
+    [ObservableProperty] private ResourceButton _settingsPageBtn;
 
     [ObservableProperty] private ResourceButton _helpBtn;
 
@@ -259,6 +259,12 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private async Task SwitchToSettingsPage()
+    {
+        await Shell.Current.GoToAsync(nameof(SettingsPage));
+    }
+
+    [RelayCommand]
     private void Undo()
     {
         _financialOverview.Undo();
@@ -311,13 +317,15 @@ public partial class MainViewModel : ObservableObject
 
     private void SaveListToAppData(List<string> content)
     {
-        if (!FileHandler.WriteTextToFile(content, CommonProperties.AppDataFilePath))
+        if (!FileHandler.WriteTextToFile(content, CommonProperties.FileHistoryFilePath))
             return;
     }
 
     private string LoadStringFromAppData()
     {
-        var text = FileHandler.ReadTextFile(CommonProperties.AppDataFilePath);
+        var text = FileHandler.ReadTextFile(File.Exists(CommonProperties.FileHistoryFilePath)
+            ? CommonProperties.FileHistoryFilePath
+            : CommonProperties.FileHistoryFilePath.Replace("FileHistory", "AppData"));
         return text ?? string.Empty;
     }
 
@@ -402,6 +410,7 @@ public partial class MainViewModel : ObservableObject
         RestMoney = Convert.ToDecimal(RestMoneyLbl.Text);
         MoneyUnitLbl = new ResourceLabel(nameof(MoneyUnitLbl));
         FilePageBtn = new ResourceButton(nameof(FilePageBtn));
+        SettingsPageBtn = new ResourceButton(nameof(SettingsPageBtn));
         HelpBtn = new ResourceButton(nameof(HelpBtn));
         MonthlyAddBtn = new ResourceButton(nameof(MonthlyAddBtn));
         YearlyAddBtn = new ResourceButton(nameof(YearlyAddBtn));

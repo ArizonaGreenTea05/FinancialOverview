@@ -249,4 +249,16 @@
   <data name="UpdateTitleLbl.Text" xml:space="preserve">
     <value>Neue Appversion gefunden</value>
   </data>
+  <data name="SettingsPageBtn.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="CheckForUpdatesOnStartLbl.Text" xml:space="preserve">
+    <value>Beim Start nach Aktualisierungen suchen</value>
+  </data>
+  <data name="DownloadUpdatesAutomaticallyLbl.Text" xml:space="preserve">
+    <value>Updates automatisch herunterladen und installieren</value>
+  </data>
 </root>

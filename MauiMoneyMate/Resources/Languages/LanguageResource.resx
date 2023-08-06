@@ -372,4 +372,25 @@
   <data name="UpdateTitleLbl.Text" xml:space="preserve">
     <value>New app version detected</value>
   </data>
+  <data name="SettingsPageBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="SettingsPageBtn.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="CheckForUpdatesOnStartLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="CheckForUpdatesOnStartLbl.Text" xml:space="preserve">
+    <value>Check for updates at startup</value>
+  </data>
+  <data name="DownloadUpdatesAutomaticallyLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="DownloadUpdatesAutomaticallyLbl.Text" xml:space="preserve">
+    <value>Download and install updates automatically</value>
+  </data>
 </root>

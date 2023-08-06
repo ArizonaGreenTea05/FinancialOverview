@@ -28,6 +28,9 @@ namespace MauiMoneyMate
             builder.Services.AddTransient<FilePage>();
             builder.Services.AddSingleton(new FileViewModel(financialOverview));
 
+            builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddSingleton(new SettingsViewModel(financialOverview));
+
             return builder.Build();
         }
     }

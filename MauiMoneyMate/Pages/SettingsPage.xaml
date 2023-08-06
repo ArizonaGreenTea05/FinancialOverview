@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiMoneyMate.ViewModels"
+             x:Class="MauiMoneyMate.Pages.SettingsPage"
+             x:DataType="viewModels:SettingsViewModel"
+             Title="{Binding SettingsPageTitle}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <Grid RowDefinitions="Auto,*"
+          ColumnDefinitions="180,*">
+
+        <ScrollView Grid.Row="1"
+                    Grid.Column="1">
+            <VerticalStackLayout Spacing="5">
+                <HorizontalStackLayout Spacing="5">
+                    <CheckBox IsChecked="{Binding CheckForUpdatesOnStart}"
+                              VerticalOptions="Center"
+                              CheckedChanged="CheckForUpdatesOnStartChk_OnCheckedChanged"/>
+                    <Label Text="{Binding CheckForUpdatesOnStartLbl.Text}"
+                           FontSize="{Binding CheckForUpdatesOnStartLbl.FontSize}"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <CheckBox IsChecked="{Binding DownloadUpdatesAutomatically}"
+                              VerticalOptions="Center"
+                              CheckedChanged="DownloadUpdatesAutomaticallyChk_OnCheckedChanged"/>
+                    <Label Text="{Binding DownloadUpdatesAutomaticallyLbl.Text}"
+                           FontSize="{Binding DownloadUpdatesAutomaticallyLbl.FontSize}"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        
+    </Grid>
+</ContentPage>

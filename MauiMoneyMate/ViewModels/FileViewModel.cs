@@ -135,7 +135,7 @@ public partial class FileViewModel : ObservableObject
         FileHistory.Remove(fhe);
         _financialOverview.FileHistory.Remove(fhe.FullPath);
         if (_financialOverview.FileHistory.Count <= 0) _financialOverview.FilePath = fhe.FullPath;
-        FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonProperties.AppDataFilePath);
+        FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonProperties.FileHistoryFilePath);
     }
 
     #endregion
