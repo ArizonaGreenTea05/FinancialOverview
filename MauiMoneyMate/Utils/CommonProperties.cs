@@ -1,7 +1,5 @@
 ﻿using System.Data;
-using ABI.Microsoft.UI.Composition.Interactions;
 using CommonLibrary;
-using MauiMoneyMate.Popups;
 using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
@@ -10,6 +8,7 @@ internal static class CommonProperties
 {
     internal static Version CurrentVersion => new()
     {
+        Prefix = "MMM-",
         MainVersion = 0,
         SubVersion = 2,
         SubSubVersion = 1,
@@ -40,8 +39,7 @@ internal static class CommonProperties
     internal static string InstallerNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
     internal static string InstallerPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
     internal static string AssetNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}.zip";
-    internal static string StartupSettingsTableName => "Startup";
-    private static readonly DataTable StartupSettings = new(StartupSettingsTableName)
+    private static readonly DataTable StartupSettings = new(nameof(StartupSettings))
     {
         Columns = { nameof(CheckForUpdatesOnStart), nameof(DownloadUpdatesAutomatically) },
         Rows = { new object[] { "True", "False" } }
@@ -71,7 +69,12 @@ internal static class CommonProperties
 
     internal static bool CheckForUpdatesOnStart
     {
-        get => Convert.ToBoolean(Settings.Tables[StartupSettingsTableName]!.Rows[0][nameof(CheckForUpdatesOnStart)]);
+        get
+        {
+            if (Settings.Tables[nameof(StartupSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(StartupSettings)]!.Rows.Add("False", "False");
+            return Convert.ToBoolean(Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(CheckForUpdatesOnStart)]);
+        }
         set
         {
             if (value) DownloadUpdatesAutomatically = false;
@@ -81,7 +84,12 @@ internal static class CommonProperties
 
     internal static bool DownloadUpdatesAutomatically
     {
-        get => Convert.ToBoolean(Settings.Tables[StartupSettingsTableName]!.Rows[0][nameof(DownloadUpdatesAutomatically)]);
+        get
+        {
+            if (Settings.Tables[nameof(StartupSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(StartupSettings)]!.Rows.Add("False", "False");
+            return Convert.ToBoolean(Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(DownloadUpdatesAutomatically)]);
+        }
         set
         {
             if (value) CheckForUpdatesOnStart = false;

@@ -295,6 +295,12 @@ public partial class MainViewModel : ObservableObject
         _financialOverview.ClearHistory();
         _financialOverview.AddCurrentStateToHistory();
 
+        Application.Current!.MainPage!.Window.Destroying += (sender, args) =>
+        {
+            if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically)
+                new Thread(UpdateProgram).Start();
+        };
+
         if (CommonProperties.CheckForUpdatesOnStart || CommonProperties.DownloadUpdatesAutomatically)
             CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
         if (!CommonProperties.UpdateAvailable) return;
@@ -314,6 +320,35 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private static void UpdateProgram()
+    {
+        Toast.Make($"{LanguageResource.DownloadingNewestVersion}").Show();
+        if (!CommonFunctions.DownloadLatestRelease())
+        {
+            Toast.Make(
+                    $"{LanguageResource.CouldNotDownloadUpdate}\n{LanguageResource.PleaseCheckYourInternetConnectionAndTryAgainLater}")
+                .Show();
+            return;
+        }
+
+        if (!CommonFunctions.InstallDownloadedRelease())
+        {
+            Toast.Make(LanguageResource.CouldNotInstallUpdate).Show();
+            if (!CommonFunctions.DownloadLatestRelease())
+            {
+                Toast.Make(
+                        $"{LanguageResource.CouldNotDownloadUpdate}\n{LanguageResource.PleaseCheckYourInternetConnectionAndTryAgainLater}")
+                    .Show();
+                return;
+            }
+
+            if (!CommonFunctions.InstallDownloadedRelease())
+                Toast.Make(LanguageResource.CouldNotInstallUpdate).Show();
+        }
+
+        Toast.Make(LanguageResource.InstallationComplete).Show();
+    }
 
     private void SaveListToAppData(List<string> content)
     {
