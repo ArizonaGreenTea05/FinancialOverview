@@ -338,9 +338,11 @@ public partial class MainViewModel : ObservableObject
         FinancialOverviewTitle = FinancialOverviewTitle.TrimEnd('*');
         if (!DataIsSaved)
             FinancialOverviewTitle += '*';
-        if (App.Window == null) return;
-        App.Window.Title = App.Window.Title?.Split('-')[0].TrimEnd();
-        App.Window.Title += $" - {_financialOverview.FilePath ?? "none"}";
+        if (Application.Current == null) return;
+        if (Application.Current.MainPage == null) return;
+        var window = Application.Current.MainPage.Window;
+        window.Title = window.Title?.Split('-')[0].TrimEnd();
+        window.Title += $" - {_financialOverview.FilePath ?? "none"}";
     }
 
     private void UpdateSales()
