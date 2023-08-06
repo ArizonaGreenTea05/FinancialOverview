@@ -565,6 +565,15 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No updates available.
+        /// </summary>
+        internal static string NoUpdatesAvailable {
+            get {
+                return ResourceManager.GetString("NoUpdatesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 16.
         /// </summary>
         internal static string OpenFileLbl_FontSize {
@@ -673,6 +682,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 15.
+        /// </summary>
+        internal static string SearchForUpdateBtn_FontSize {
+            get {
+                return ResourceManager.GetString("SearchForUpdateBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search for updates now.
+        /// </summary>
+        internal static string SearchForUpdateBtn_Text {
+            get {
+                return ResourceManager.GetString("SearchForUpdateBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string SettingsPageBtn_FontSize {
@@ -696,6 +723,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string SettingsPageTitle {
             get {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string StartupLbl_FontSize {
+            get {
+                return ResourceManager.GetString("StartupLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Startup.
+        /// </summary>
+        internal static string StartupLbl_Text {
+            get {
+                return ResourceManager.GetString("StartupLbl.Text", resourceCulture);
             }
         }
         

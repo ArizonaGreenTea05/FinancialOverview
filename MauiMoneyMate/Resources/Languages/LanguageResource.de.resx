@@ -261,4 +261,13 @@
   <data name="DownloadUpdatesAutomaticallyLbl.Text" xml:space="preserve">
     <value>Updates automatisch herunterladen und installieren</value>
   </data>
+  <data name="StartupLbl.Text" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="SearchForUpdateBtn.Text" xml:space="preserve">
+    <value>Jetzt nach Updates suchen</value>
+  </data>
+  <data name="NoUpdatesAvailable" xml:space="preserve">
+    <value>Keine Updates verfügbar</value>
+  </data>
 </root>

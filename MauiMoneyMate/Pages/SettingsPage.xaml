@@ -10,8 +10,12 @@
           ColumnDefinitions="180,*">
 
         <ScrollView Grid.Row="1"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    Margin="0,25,0,25">
             <VerticalStackLayout Spacing="5">
+                <Label Text="{Binding StartupLbl.Text}"
+                       FontSize="{Binding StartupLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"/>
                 <HorizontalStackLayout Spacing="5">
                     <CheckBox IsChecked="{Binding CheckForUpdatesOnStart}"
                               VerticalOptions="Center"
@@ -28,6 +32,12 @@
                            FontSize="{Binding DownloadUpdatesAutomaticallyLbl.FontSize}"
                            VerticalOptions="Center"/>
                 </HorizontalStackLayout>
+                    <Button Text="{Binding SearchForUpdateBtn.Text}"
+                            FontSize="{Binding SearchForUpdateBtn.FontSize}"
+                            Clicked="SearchForUpdateBtn_OnClicked"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            Margin="5,5,5,5"/>
             </VerticalStackLayout>
         </ScrollView>
         

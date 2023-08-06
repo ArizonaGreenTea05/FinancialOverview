@@ -1,3 +1,7 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
+using MauiMoneyMate.Popups;
+using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.ViewModels;
 
@@ -38,5 +42,16 @@ public partial class SettingsPage : ContentPage
         if (!PageLoaded) return;
         CommonProperties.DownloadUpdatesAutomatically = _viewModel.DownloadUpdatesAutomatically;
         _viewModel.LoadSettings();
+    }
+
+    private void SearchForUpdateBtn_OnClicked(object sender, EventArgs e)
+    {
+        CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
+        if (!CommonProperties.UpdateAvailable)
+        {
+            Toast.Make(LanguageResource.NoUpdatesAvailable).Show();
+            return;
+        }
+        this.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease, CommonFunctions.InstallDownloadedRelease));
     }
 }

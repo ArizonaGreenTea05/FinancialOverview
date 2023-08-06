@@ -3,6 +3,7 @@ using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MauiMoneyMate.Popups;
 using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
@@ -23,6 +24,10 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private bool _downloadUpdatesAutomatically;
 
     [ObservableProperty] private ResourceLabel _downloadUpdatesAutomaticallyLbl;
+
+    [ObservableProperty] private ResourceLabel _startupLbl;
+
+    [ObservableProperty] private ResourceButton _searchForUpdateBtn;
 
     #endregion
 
@@ -68,8 +73,10 @@ public partial class SettingsViewModel : ObservableObject
     private void LoadResources()
     {
         SettingsPageTitle = LanguageResource.SettingsPageTitle ?? string.Empty;
+        StartupLbl = new ResourceLabel(nameof(StartupLbl));
         CheckForUpdatesOnStartLbl = new ResourceLabel(nameof(CheckForUpdatesOnStartLbl));
         DownloadUpdatesAutomaticallyLbl = new ResourceLabel(nameof(DownloadUpdatesAutomaticallyLbl));
+        SearchForUpdateBtn = new ResourceButton(nameof(SearchForUpdateBtn));
     }
 
     #endregion
