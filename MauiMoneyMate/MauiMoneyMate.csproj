@@ -136,6 +136,9 @@
 	  <Compile Update="Pages\FilePage.xaml.cs">
 	    <DependentUpon>FilePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Popups\ContinueWithoutSavingPopup.xaml.cs">
+	    <DependentUpon>ContinueWithoutSavingPopup.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Popups\UpdatePopup.xaml.cs">
 	    <DependentUpon>UpdatePopup.xaml</DependentUpon>
 	  </Compile>
@@ -158,6 +161,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\FilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\ContinueWithoutSavingPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\UpdatePopup.xaml">
