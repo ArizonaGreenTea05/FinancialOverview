@@ -32,12 +32,12 @@
                            FontSize="{Binding DownloadUpdatesAutomaticallyLbl.FontSize}"
                            VerticalOptions="Center"/>
                 </HorizontalStackLayout>
-                    <Button Text="{Binding SearchForUpdateBtn.Text}"
-                            FontSize="{Binding SearchForUpdateBtn.FontSize}"
-                            Clicked="SearchForUpdateBtn_OnClicked"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            Margin="5,5,5,5"/>
+                <Button Text="{Binding SearchForUpdateBtn.Text}"
+                        FontSize="{Binding SearchForUpdateBtn.FontSize}"
+                        Clicked="SearchForUpdateBtn_OnClicked"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Margin="5,5,5,5"/>
                 <Label Text="{Binding DesignLbl.Text}"
                        FontSize="{Binding DesignLbl.FontSize}"
                        Style="{StaticResource LabelPrimary}"
@@ -49,6 +49,19 @@
                     <Label Text="{Binding ShowFilePathInTitleBarLbl.Text}"
                            FontSize="{Binding ShowFilePathInTitleBarLbl.FontSize}"
                            VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5"
+                                       Padding="10,0,0,0">
+                    <Label Text="{Binding ThemeLbl.Text}"
+                           FontSize="{Binding ThemeLbl.FontSize}"
+                           VerticalOptions="Center"/>
+                    <Picker VerticalTextAlignment="Center"
+                            HorizontalOptions="End"
+                            FontSize="{Binding ThemeLbl.FontSize}"
+                            SelectedIndexChanged="ThemePkr_OnSelectedIndexChanged"
+                            ItemsSource="{Binding Themes}"
+                            SelectedIndex="{Binding CurrentTheme}">
+                    </Picker>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

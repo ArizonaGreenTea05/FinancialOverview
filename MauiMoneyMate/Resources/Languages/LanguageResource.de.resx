@@ -276,4 +276,16 @@
   <data name="ShowFilePathInTitleBarLbl.Text" xml:space="preserve">
     <value>Dateipfad im App-Titel anzeigen</value>
   </data>
+  <data name="ThemeLbl.Text" xml:space="preserve">
+    <value>App-Thema</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="UseSystemTheme" xml:space="preserve">
+    <value>Systemthema verwenden</value>
+  </data>
 </root>

@@ -42,8 +42,8 @@ internal static class CommonProperties
     };
     private static readonly DataTable DesignSettings = new(nameof(DesignSettings))
     {
-        Columns = { nameof(ShowFilePathInTitleBar)},
-        Rows = { new object[] { "True" } }
+        Columns = { nameof(ShowFilePathInTitleBar), nameof(CurrentAppTheme)},
+        Rows = { new object[] { "True", "0" } }
     };
 
     private static DataSet _settings;
@@ -104,11 +104,33 @@ internal static class CommonProperties
         get
         {
             if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
-                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True");
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0");
             return Convert.ToBoolean(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(ShowFilePathInTitleBar)]);
         }
         set => UpdateSettings(DesignSettings, nameof(ShowFilePathInTitleBar), Convert.ToString(value));
     }
+
+    public static int CurrentAppTheme
+    {
+        get
+        {
+            if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0");
+            return Convert.ToInt32(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(CurrentAppTheme)]);
+        }
+        set
+        {
+            CommonFunctions.UpdateAppTheme(value);
+            UpdateSettings(DesignSettings, nameof(CurrentAppTheme), Convert.ToString(value));
+        }
+    }
+
+    public static Dictionary<int, AppTheme> ThemeDict { get; } = new()
+    {
+        {0, AppTheme.Unspecified},
+        {1, AppTheme.Light},
+        {2, AppTheme.Dark},
+    };
 
     internal static bool UpdateAvailable { get; set; } = false;
 

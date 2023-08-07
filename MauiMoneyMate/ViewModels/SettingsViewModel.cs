@@ -35,6 +35,12 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty] private ResourceLabel _showFilePathInTitleBarLbl;
 
+    [ObservableProperty] private ResourceLabel _themeLbl;
+
+    [ObservableProperty] private ObservableCollection<string> _themes;
+
+    [ObservableProperty] private int _currentTheme;
+
     #endregion
 
     #region private Members
@@ -64,6 +70,7 @@ public partial class SettingsViewModel : ObservableObject
         CheckForUpdatesOnStart = CommonProperties.CheckForUpdatesOnStart;
         DownloadUpdatesAutomatically = CommonProperties.DownloadUpdatesAutomatically;
         ShowFilePathInTitleBar = CommonProperties.ShowFilePathInTitleBar;
+        CurrentTheme = CommonProperties.CurrentAppTheme;
     }
 
     #endregion
@@ -85,6 +92,13 @@ public partial class SettingsViewModel : ObservableObject
         SearchForUpdateBtn = new ResourceButton(nameof(SearchForUpdateBtn));
         DesignLbl = new ResourceLabel(nameof(DesignLbl));
         ShowFilePathInTitleBarLbl = new ResourceLabel(nameof(ShowFilePathInTitleBarLbl));
+        ThemeLbl = new ResourceLabel(nameof(ThemeLbl));
+        Themes = new ObservableCollection<string>
+        {
+            LanguageResource.UseSystemTheme,
+            LanguageResource.Light,
+            LanguageResource.Dark
+        };
     }
 
     #endregion

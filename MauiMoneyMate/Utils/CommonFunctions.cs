@@ -90,4 +90,12 @@ internal static class CommonFunctions
         if (!CommonProperties.ShowFilePathInTitleBar) return;
         window.Title += $" - {CommonProperties.FinancialOverview.FilePath ?? "none"}";
     }
+
+    public static void UpdateAppTheme(int value)
+    {
+        if (Application.Current == null) return;
+        Application.Current.UserAppTheme = CommonProperties.ThemeDict.TryGetValue(value, out var theme)
+            ? theme
+            : Application.Current.UserAppTheme;
+    }
 }

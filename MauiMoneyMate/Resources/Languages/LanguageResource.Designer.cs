@@ -160,6 +160,15 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12.
         /// </summary>
         internal static string DeleteBtn_FontSize {
@@ -408,6 +417,15 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string IsNoValidDecimal {
             get {
                 return ResourceManager.GetString("IsNoValidDecimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string Light {
+            get {
+                return ResourceManager.GetString("Light", resourceCulture);
             }
         }
         
@@ -781,6 +799,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string ThemeLbl_FontSize {
+            get {
+                return ResourceManager.GetString("ThemeLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App theme:.
+        /// </summary>
+        internal static string ThemeLbl_Text {
+            get {
+                return ResourceManager.GetString("ThemeLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 20.
         /// </summary>
         internal static string UpdateBtn_FontSize {
@@ -840,6 +876,15 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string UpdateWillBeInstalledOnClosingTheApplication {
             get {
                 return ResourceManager.GetString("UpdateWillBeInstalledOnClosingTheApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use system theme.
+        /// </summary>
+        internal static string UseSystemTheme {
+            get {
+                return ResourceManager.GetString("UseSystemTheme", resourceCulture);
             }
         }
         

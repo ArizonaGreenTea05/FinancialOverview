@@ -420,4 +420,19 @@
   <data name="ShowFilePathInTitleBarLbl.Text" xml:space="preserve">
     <value>Show file path in title bar</value>
   </data>
+  <data name="ThemeLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ThemeLbl.Text" xml:space="preserve">
+    <value>App theme:</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="UseSystemTheme" xml:space="preserve">
+    <value>Use system theme</value>
+  </data>
 </root>

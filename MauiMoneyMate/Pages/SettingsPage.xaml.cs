@@ -63,4 +63,10 @@ public partial class SettingsPage : ContentPage
         _viewModel.LoadSettings();
         CommonFunctions.DisplayFilePathInTitleBar();
     }
+
+    private void ThemePkr_OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.CurrentAppTheme = ((Picker)sender).SelectedIndex;
+    }
 }
