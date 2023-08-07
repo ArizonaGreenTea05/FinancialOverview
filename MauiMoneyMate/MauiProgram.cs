@@ -20,13 +20,14 @@ namespace MauiMoneyMate
                     fonts.AddFont("Arial-RoundedBold.ttf", "ArialRoundedBold");
                 }).UseMauiCommunityToolkit();
 
-            var financialOverview = new BusinessLogic.FinancialOverview();
-
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton(new MainViewModel(financialOverview));
+            builder.Services.AddSingleton(new MainViewModel());
 
             builder.Services.AddTransient<FilePage>();
-            builder.Services.AddSingleton(new FileViewModel(financialOverview));
+            builder.Services.AddSingleton(new FileViewModel());
+
+            builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddSingleton(new SettingsViewModel());
 
             return builder.Build();
         }

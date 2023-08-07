@@ -14,6 +14,7 @@ namespace MauiMoneyMate.Pages
         {
             InitializeComponent();
             BindingContext = _viewModel = viewModel;
+            CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
         }
 
         protected override void OnAppearing()

@@ -372,4 +372,85 @@
   <data name="UpdateTitleLbl.Text" xml:space="preserve">
     <value>New app version detected</value>
   </data>
+  <data name="SettingsPageBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="SettingsPageBtn.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="CheckForUpdatesOnStartLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="CheckForUpdatesOnStartLbl.Text" xml:space="preserve">
+    <value>Check for updates at startup</value>
+  </data>
+  <data name="DownloadUpdatesAutomaticallyLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="DownloadUpdatesAutomaticallyLbl.Text" xml:space="preserve">
+    <value>Download and install updates automatically</value>
+  </data>
+  <data name="StartupLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="StartupLbl.Text" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="SearchForUpdateBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="SearchForUpdateBtn.Text" xml:space="preserve">
+    <value>Search for updates now</value>
+  </data>
+  <data name="NoUpdatesAvailable" xml:space="preserve">
+    <value>No updates available</value>
+  </data>
+  <data name="DesignLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="DesignLbl.Text" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="ShowFilePathInTitleBarLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ShowFilePathInTitleBarLbl.Text" xml:space="preserve">
+    <value>Show file path in title bar</value>
+  </data>
+  <data name="ThemeLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ThemeLbl.Text" xml:space="preserve">
+    <value>App theme:</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="UseSystemTheme" xml:space="preserve">
+    <value>Use system theme</value>
+  </data>
+  <data name="ElseLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="ElseLbl.Text" xml:space="preserve">
+    <value>Else</value>
+  </data>
+  <data name="ExportSettings.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Export settings</value>
+  </data>
+  <data name="ImportSettings.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ImportSettings.Text" xml:space="preserve">
+    <value>Import settings</value>
+  </data>
 </root>

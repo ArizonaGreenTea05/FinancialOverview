@@ -1,19 +1,16 @@
-﻿using CommonLibrary;
-using MauiMoneyMate.Popups;
+﻿using System.Data;
+using System.Security.Cryptography;
+using BusinessLogic;
+using CommonLibrary;
+using Newtonsoft.Json.Linq;
 using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
 
 internal static class CommonProperties
 {
-    internal static Version CurrentVersion => new()
-    {
-        MainVersion = 0,
-        SubVersion = 2,
-        SubSubVersion = 1,
-        Suffix = "-beta"
-    };
-
+    internal static FinancialOverview FinancialOverview = new ();
+    internal static Version CurrentVersion { get; } = GetCurrentVersion();
     internal static string RepositoryOwner => "ArizonaGreenTea05";
     internal static string RepositoryName => "FinancialOverview";
     internal static ReleaseInfo LatestRelease { get; set; } = null;
@@ -25,20 +22,140 @@ internal static class CommonProperties
     internal static string AppDataDirectory =>
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MauiMoneyMate";
 
-    internal static string AppDataFilePath => Path.Combine(AppDataDirectory, "MauiMoneyMate.AppData");
+    internal static string FileHistoryFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.FileHistory");
+    public static string AppSettingsFileEnding { get; } = "AppSettings";
+
+    internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, $"MauiMoneyMate.{AppSettingsFileEnding}");
 
     internal static string UpdateDirectory =>
         Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\MauiMoneyMate\\Update";
 
-    internal static string GeneralInstallerName => $"{GeneralInstallationFolderName}_Installer.cmd";
-    internal static string GeneralInstallerPath => Path.Combine(UpdateDirectory, GeneralInstallerName);
-    internal static string GeneralAssetName => $"{GeneralInstallationFolderName}.zip";
-    internal static string InstallerNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
-    internal static string InstallerPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
-    internal static string AssetNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}.zip";
+    internal static string GeneralInstallerName { get; } = $"{GeneralInstallationFolderName}_Installer.cmd";
+    internal static string GeneralInstallerPath { get; } = Path.Combine(UpdateDirectory, GeneralInstallerName);
+    internal static string GeneralAssetName { get; } = $"{GeneralInstallationFolderName}.zip";
+    internal static string InstallerNameOfLatestRelease { get; } = $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
+    internal static string InstallerPathOfLatestRelease { get; } = Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
+    internal static string AssetNameOfLatestRelease { get; } = $"{InstallationFolderNameOfLatestRelease}.zip";
+    private static readonly DataTable StartupSettings = new(nameof(StartupSettings))
+    {
+        Columns = { nameof(CheckForUpdatesOnStart), nameof(DownloadUpdatesAutomatically) },
+        Rows = { new object[] { "True", "False" } }
+    };
+    private static readonly DataTable DesignSettings = new(nameof(DesignSettings))
+    {
+        Columns = { nameof(ShowFilePathInTitleBar), nameof(CurrentAppTheme)},
+        Rows = { new object[] { "True", "0" } }
+    };
+
+    private static DataSet _settings;
+    internal static DataSet Settings
+    {
+        get
+        {
+            if (_settings != null) return _settings;
+            _settings = new DataSet();
+            _settings.DataSetName = "SettingsSet";
+            _settings.Tables.Add(StartupSettings);
+            _settings.Tables.Add(DesignSettings);
+            if (!File.Exists(SettingsFilePath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(SettingsFilePath));
+                return _settings;
+            }
+            _settings.Clear();
+            _settings.ReadXml(SettingsFilePath);
+            return _settings;
+        }
+    }
     internal static bool DataIsSaved { get; set; } = true;
     internal static GitHubAccessor GitHubAccessor { get; set; } = new();
-    internal static bool CheckForUpdatesOnStart { get; set; } = true;
-    internal static bool DownloadUpdatesAutomatically { get; set; } = false;
+
+    internal static bool CheckForUpdatesOnStart
+    {
+        get
+        {
+            if (Settings.Tables[nameof(StartupSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(StartupSettings)]!.Rows.Add("False", "False");
+            return Convert.ToBoolean(Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(CheckForUpdatesOnStart)]);
+        }
+        set
+        {
+            if (value) DownloadUpdatesAutomatically = false;
+            UpdateSettings(StartupSettings, nameof(CheckForUpdatesOnStart), Convert.ToString(value));
+        }
+    }
+
+    internal static bool DownloadUpdatesAutomatically
+    {
+        get
+        {
+            if (Settings.Tables[nameof(StartupSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(StartupSettings)]!.Rows.Add("False", "False");
+            return Convert.ToBoolean(Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(DownloadUpdatesAutomatically)]);
+        }
+        set
+        {
+            if (value) CheckForUpdatesOnStart = false;
+            UpdateSettings(StartupSettings, nameof(DownloadUpdatesAutomatically), Convert.ToString(value));
+        }
+    }
+
+    internal static bool ShowFilePathInTitleBar
+    {
+        get
+        {
+            if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0");
+            return Convert.ToBoolean(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(ShowFilePathInTitleBar)]);
+        }
+        set => UpdateSettings(DesignSettings, nameof(ShowFilePathInTitleBar), Convert.ToString(value));
+    }
+
+    public static int CurrentAppTheme
+    {
+        get
+        {
+            if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0");
+            return Convert.ToInt32(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(CurrentAppTheme)]);
+        }
+        set
+        {
+            CommonFunctions.UpdateAppTheme(value);
+            UpdateSettings(DesignSettings, nameof(CurrentAppTheme), Convert.ToString(value));
+        }
+    }
+
+    public static Dictionary<int, AppTheme> ThemeDict { get; } = new()
+    {
+        {0, AppTheme.Unspecified},
+        {1, AppTheme.Light},
+        {2, AppTheme.Dark},
+    };
+
     internal static bool UpdateAvailable { get; set; } = false;
+
+    #region helper methods
+
+    private static void UpdateSettings(DataTable settings, string columnName, string value)
+    {
+        settings.Rows[0][columnName] = value;
+        settings.AcceptChanges();
+        Settings.WriteXml(SettingsFilePath);
+    }
+
+    private static Version GetCurrentVersion()
+    {
+        var currentVersion = AppInfo.Current.VersionString.Split('.');
+        return new Version()
+        {
+            Prefix = "MMM-",
+            Major = Convert.ToInt32(currentVersion[0]),
+            Minor = Convert.ToInt32(currentVersion[1]),
+            Build = Convert.ToInt32(currentVersion[2]),
+            Suffix = "-beta",
+        };
+    }
+
+    #endregion
 }

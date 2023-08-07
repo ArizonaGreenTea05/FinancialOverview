@@ -249,4 +249,52 @@
   <data name="UpdateTitleLbl.Text" xml:space="preserve">
     <value>Neue Appversion gefunden</value>
   </data>
+  <data name="SettingsPageBtn.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="CheckForUpdatesOnStartLbl.Text" xml:space="preserve">
+    <value>Beim Start nach Aktualisierungen suchen</value>
+  </data>
+  <data name="DownloadUpdatesAutomaticallyLbl.Text" xml:space="preserve">
+    <value>Updates automatisch herunterladen und installieren</value>
+  </data>
+  <data name="StartupLbl.Text" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="SearchForUpdateBtn.Text" xml:space="preserve">
+    <value>Jetzt nach Updates suchen</value>
+  </data>
+  <data name="NoUpdatesAvailable" xml:space="preserve">
+    <value>Keine Updates verfügbar</value>
+  </data>
+  <data name="DesignLbl.Text" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="ShowFilePathInTitleBarLbl.Text" xml:space="preserve">
+    <value>Dateipfad im App-Titel anzeigen</value>
+  </data>
+  <data name="ThemeLbl.Text" xml:space="preserve">
+    <value>App-Thema</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="UseSystemTheme" xml:space="preserve">
+    <value>Systemthema verwenden</value>
+  </data>
+  <data name="ElseLbl.Text" xml:space="preserve">
+    <value>Sonstiges</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Einstellungen exportieren</value>
+  </data>
+  <data name="ImportSettings.Text" xml:space="preserve">
+    <value>Einstellungen importieren</value>
+  </data>
 </root>

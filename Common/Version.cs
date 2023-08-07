@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommonLibrary
+﻿namespace CommonLibrary
 {
     public class Version
     {
-        public int MainVersion;
-        public int SubVersion;
-        public int SubSubVersion;
+        public string Prefix = string.Empty;
+        public int Major;
+        public int Minor;
+        public int Build;
         public string Suffix = string.Empty;
-        public string Tag => $"MMM-v{MainVersion}.{SubVersion}{(SubSubVersion > 0 ? $".{SubSubVersion}" : string.Empty)}{Suffix}";
-        public string Id => $"{MainVersion}.{SubVersion}.{SubSubVersion}";
+        public string Tag => $"{Prefix}v{Major}.{Minor}{(Build > 0 ? $".{Build}" : string.Empty)}{Suffix}";
+        public string Id => $"{Major}.{Minor}.{Build}";
     }
 }
