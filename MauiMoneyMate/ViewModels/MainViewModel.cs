@@ -98,6 +98,7 @@ public partial class MainViewModel : ObservableObject
     private readonly FinancialOverview _financialOverview;
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
+    private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
 
     #endregion
 
@@ -306,9 +307,13 @@ public partial class MainViewModel : ObservableObject
         if (!CommonProperties.UpdateAvailable) return;
         ShowUpdatePopup = !CommonProperties.DownloadUpdatesAutomatically;
         if (CommonProperties.DownloadUpdatesAutomatically)
+        {
             Toast.Make(
                     $"{LanguageResource.NewAppVersionDetected}\n{LanguageResource.UpdateWillBeInstalledOnClosingTheApplication}")
                 .Show();
+            Toast.Make($"{LanguageResource.DownloadingNewestVersion}").Show();
+            DownloadThread.Start();
+        }
     }
 
     public void TimeUnitChanged()
@@ -323,7 +328,7 @@ public partial class MainViewModel : ObservableObject
 
     private static void UpdateProgram()
     {
-        Toast.Make($"{LanguageResource.DownloadingNewestVersion}").Show();
+        if (DownloadThread.IsAlive) DownloadThread.Join();
         if (!CommonFunctions.DownloadLatestRelease())
         {
             Toast.Make(
