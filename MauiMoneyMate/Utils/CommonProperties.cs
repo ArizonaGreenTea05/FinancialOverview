@@ -6,15 +6,7 @@ namespace MauiMoneyMate.Utils;
 
 internal static class CommonProperties
 {
-    internal static Version CurrentVersion => new()
-    {
-        Prefix = "MMM-",
-        MainVersion = 0,
-        SubVersion = 2,
-        SubSubVersion = 1,
-        Suffix = "-beta"
-    };
-
+    internal static Version CurrentVersion { get; } = GetCurrentVersion();
     internal static string RepositoryOwner => "ArizonaGreenTea05";
     internal static string RepositoryName => "FinancialOverview";
     internal static ReleaseInfo LatestRelease { get; set; } = null;
@@ -106,6 +98,19 @@ internal static class CommonProperties
         settings.Rows[0][columnName] = value;
         settings.AcceptChanges();
         Settings.WriteXml(SettingsFilePath);
+    }
+
+    private static Version GetCurrentVersion()
+    {
+        var currentVersion = AppInfo.Current.VersionString.Split('.');
+        return new Version()
+        {
+            Prefix = "MMM-",
+            Major = Convert.ToInt32(currentVersion[0]),
+            Minor = Convert.ToInt32(currentVersion[1]),
+            Build = Convert.ToInt32(currentVersion[2]),
+            Suffix = "-beta",
+        };
     }
 
     #endregion
