@@ -288,4 +288,13 @@
   <data name="UseSystemTheme" xml:space="preserve">
     <value>Systemthema verwenden</value>
   </data>
+  <data name="ElseLbl.Text" xml:space="preserve">
+    <value>Sonstiges</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Einstellungen exportieren</value>
+  </data>
+  <data name="ImportSettings.Text" xml:space="preserve">
+    <value>Einstellungen importieren</value>
+  </data>
 </root>

@@ -69,4 +69,18 @@ public partial class SettingsPage : ContentPage
         if (!PageLoaded) return;
         CommonProperties.CurrentAppTheme = ((Picker)sender).SelectedIndex;
     }
+
+    private void ExportSettingsBtn_OnClicked(object sender, EventArgs e)
+    {
+        if(CommonFunctions.ExportSettings()) return;
+    }
+
+    private void ImportSettingsBtn_OnClicked(object sender, EventArgs e)
+    {
+        if (CommonFunctions.ImportSettings())
+        {
+            _viewModel.LoadSettings();
+            return;
+        }
+    }
 }

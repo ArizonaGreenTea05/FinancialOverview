@@ -14,7 +14,13 @@ public class FileHandler
 
     public static string OpenFileDialog()
     {
-        return Task.Run(OpenFileDialogTask, new CancellationToken()).Result;
+        return OpenFileDialog(new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+            { { DevicePlatform.WinUI, new[] { ".xml" } } }));
+    }
+
+    public static string OpenFileDialog(FilePickerFileType fileTypes)
+    {
+        return Task.Run(() => OpenFileDialogTask(fileTypes), new CancellationToken()).Result;
     }
 
     public static string ReadTextFile(string targetFile)
@@ -62,14 +68,13 @@ public class FileHandler
         }
     }
 
-    private static async Task<string> OpenFileDialogTask()
+    private static async Task<string> OpenFileDialogTask(FilePickerFileType fileTypes)
     {
         try
         {
             var folderPickerResult = await FilePicker.PickAsync(new PickOptions
             {
-                FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-                    { { DevicePlatform.WinUI, new[] { ".xml" } } })
+                FileTypes = fileTypes
             });
             return folderPickerResult?.FullPath;
         }

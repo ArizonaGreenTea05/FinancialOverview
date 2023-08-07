@@ -41,6 +41,12 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty] private int _currentTheme;
 
+    [ObservableProperty] private ResourceLabel _elseLbl;
+
+    [ObservableProperty] private ResourceButton _exportSettings;
+
+    [ObservableProperty] private ResourceButton _importSettings;
+
     #endregion
 
     #region private Members
@@ -99,6 +105,9 @@ public partial class SettingsViewModel : ObservableObject
             LanguageResource.Light,
             LanguageResource.Dark
         };
+        ElseLbl = new ResourceLabel(nameof(ElseLbl));
+        ExportSettings = new ResourceButton(nameof(ExportSettings));
+        ImportSettings = new ResourceButton(nameof(ImportSettings));
     }
 
     #endregion

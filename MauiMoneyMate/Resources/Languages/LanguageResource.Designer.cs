@@ -250,6 +250,42 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string ElseLbl_FontSize {
+            get {
+                return ResourceManager.GetString("ElseLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Else.
+        /// </summary>
+        internal static string ElseLbl_Text {
+            get {
+                return ResourceManager.GetString("ElseLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string ExportSettings_FontSize {
+            get {
+                return ResourceManager.GetString("ExportSettings.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export settings.
+        /// </summary>
+        internal static string ExportSettings_Text {
+            get {
+                return ResourceManager.GetString("ExportSettings.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string FileHistoryDeleteBtn_FontSize {
@@ -390,6 +426,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string HistoryLbl_Text {
             get {
                 return ResourceManager.GetString("HistoryLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string ImportSettings_FontSize {
+            get {
+                return ResourceManager.GetString("ImportSettings.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import settings.
+        /// </summary>
+        internal static string ImportSettings_Text {
+            get {
+                return ResourceManager.GetString("ImportSettings.Text", resourceCulture);
             }
         }
         
@@ -718,7 +772,7 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15.
+        ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string SearchForUpdateBtn_FontSize {
             get {

@@ -400,7 +400,7 @@
     <value>Startup</value>
   </data>
   <data name="SearchForUpdateBtn.FontSize" xml:space="preserve">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="SearchForUpdateBtn.Text" xml:space="preserve">
     <value>Search for updates now</value>
@@ -434,5 +434,23 @@
   </data>
   <data name="UseSystemTheme" xml:space="preserve">
     <value>Use system theme</value>
+  </data>
+  <data name="ElseLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="ElseLbl.Text" xml:space="preserve">
+    <value>Else</value>
+  </data>
+  <data name="ExportSettings.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Export settings</value>
+  </data>
+  <data name="ImportSettings.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ImportSettings.Text" xml:space="preserve">
+    <value>Import settings</value>
   </data>
 </root>

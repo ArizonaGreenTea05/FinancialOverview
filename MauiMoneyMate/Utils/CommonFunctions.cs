@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO.Compression;
 using BusinessLogic;
 using CommonLibrary;
@@ -97,5 +98,26 @@ internal static class CommonFunctions
         Application.Current.UserAppTheme = CommonProperties.ThemeDict.TryGetValue(value, out var theme)
             ? theme
             : Application.Current.UserAppTheme;
+    }
+
+    public static bool ExportSettings()
+    {
+        if (!File.Exists(CommonProperties.SettingsFilePath)) return false;
+        var result = FileHandler.SaveFileDialog(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            $"MauiMoneyMate_{DateTime.Now:yyyyMMddHHmmss}.{CommonProperties.AppSettingsFileEnding}");
+        if (null == result) return false;
+        CommonProperties.Settings.WriteXml(result);
+        return true;
+    }
+
+    public static bool ImportSettings()
+    {
+        var result = FileHandler.OpenFileDialog(new FilePickerFileType(
+            new Dictionary<DevicePlatform, IEnumerable<string>>
+                { { DevicePlatform.WinUI, new[] { $".{CommonProperties.AppSettingsFileEnding}" } } }));
+        if (null == result) return false;
+        CommonProperties.Settings.Clear();
+        CommonProperties.Settings.ReadXml(result);
+        return true;
     }
 }

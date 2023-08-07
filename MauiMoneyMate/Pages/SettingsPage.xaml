@@ -37,6 +37,7 @@
                         Clicked="SearchForUpdateBtn_OnClicked"
                         VerticalOptions="Center"
                         HorizontalOptions="Start"
+                        Padding="9"
                         Margin="5,5,5,5"/>
                 <Label Text="{Binding DesignLbl.Text}"
                        FontSize="{Binding DesignLbl.FontSize}"
@@ -62,6 +63,27 @@
                             ItemsSource="{Binding Themes}"
                             SelectedIndex="{Binding CurrentTheme}">
                     </Picker>
+                </HorizontalStackLayout>
+                <Label Text="{Binding ElseLbl.Text}"
+                       FontSize="{Binding ElseLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"
+                       Padding="0,40,0,0"/>
+                <HorizontalStackLayout Spacing="0"
+                                       Padding="0">
+                <Button Text="{Binding ExportSettings.Text}"
+                        FontSize="{Binding ExportSettings.FontSize}"
+                        Clicked="ExportSettingsBtn_OnClicked"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Padding="9"
+                        Margin="5,5,5,5"/>
+                <Button Text="{Binding ImportSettings.Text}"
+                        FontSize="{Binding ImportSettings.FontSize}"
+                        Clicked="ImportSettingsBtn_OnClicked"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Padding="9"
+                        Margin="5,5,5,5"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

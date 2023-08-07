@@ -23,8 +23,9 @@ internal static class CommonProperties
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MauiMoneyMate";
 
     internal static string FileHistoryFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.FileHistory");
+    public static string AppSettingsFileEnding { get; } = "AppSettings";
 
-    internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.AppSettings");
+    internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, $"MauiMoneyMate.{AppSettingsFileEnding}");
 
     internal static string UpdateDirectory =>
         Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\MauiMoneyMate\\Update";
