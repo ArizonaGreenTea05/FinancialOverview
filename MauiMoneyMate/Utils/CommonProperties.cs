@@ -13,6 +13,7 @@ internal static class CommonProperties
     internal static Version CurrentVersion { get; } = GetCurrentVersion();
     internal static string RepositoryOwner => "ArizonaGreenTea05";
     internal static string RepositoryName => "FinancialOverview";
+
     internal static ReleaseInfo LatestRelease { get; set; } = null;
     internal static string GeneralInstallationFolderName => "MauiMoneyMate_{0}.0_x64";
 
@@ -33,9 +34,9 @@ internal static class CommonProperties
     internal static string GeneralInstallerName { get; } = $"{GeneralInstallationFolderName}_Installer.cmd";
     internal static string GeneralInstallerPath { get; } = Path.Combine(UpdateDirectory, GeneralInstallerName);
     internal static string GeneralAssetName { get; } = $"{GeneralInstallationFolderName}.zip";
-    internal static string InstallerNameOfLatestRelease { get; } = $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
-    internal static string InstallerPathOfLatestRelease { get; } = Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
-    internal static string AssetNameOfLatestRelease { get; } = $"{InstallationFolderNameOfLatestRelease}.zip";
+    internal static string InstallerNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
+    internal static string InstallerPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
+    internal static string AssetNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}.zip";
     private static readonly DataTable StartupSettings = new(nameof(StartupSettings))
     {
         Columns = { nameof(CheckForUpdatesOnStart), nameof(DownloadUpdatesAutomatically) },
