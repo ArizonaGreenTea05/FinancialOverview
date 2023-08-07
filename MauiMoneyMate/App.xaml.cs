@@ -15,10 +15,6 @@ public partial class App : Application
         var window = base.CreateWindow(activationState);
         window.Title = nameof(MauiMoneyMate);
         CommonFunctions.RemoveNonZipFiles(CommonProperties.UpdateDirectory);
-        window.Destroying += (sender, args) =>
-        {
-            Console.WriteLine("destroying");
-        };
         return window;
     }
 }

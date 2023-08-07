@@ -15,6 +15,10 @@ namespace MauiMoneyMate.Pages
             InitializeComponent();
             BindingContext = _viewModel = viewModel;
             CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
+            Application.Current!.MainPage!.Window.Destroying += (sender, args) =>
+            {
+                this.ShowPopup(new ContinueWithoutSavingPopup());
+            };
         }
 
         protected override void OnAppearing()

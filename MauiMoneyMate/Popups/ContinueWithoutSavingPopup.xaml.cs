@@ -8,13 +8,11 @@ using ABI.Windows.Media.Control;
 
 namespace MauiMoneyMate.Popups;
 
-public partial class ContinueWithoutSaving : Popup
+public partial class ContinueWithoutSavingPopup : Popup
 {
     private ResourceLabel UpdateTitleLbl;
-    private ResourceLabel UpdateInfoLbl;
-    private ResourceButton UpdateBtn;
 
-    public ContinueWithoutSaving()
+    public ContinueWithoutSavingPopup()
     {
         InitializeComponent();
         UpdateTitleLbl = new ResourceLabel(nameof(UpdateTitleLbl), Title);
