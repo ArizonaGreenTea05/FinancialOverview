@@ -1,3 +1,4 @@
+using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using MauiMoneyMate.Popups;
@@ -53,5 +54,13 @@ public partial class SettingsPage : ContentPage
             return;
         }
         this.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease, CommonFunctions.InstallDownloadedRelease));
+    }
+
+    private void ShowFilePathInTitleBarChk_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.ShowFilePathInTitleBar = _viewModel.ShowFilePathInTitleBar;
+        _viewModel.LoadSettings();
+        CommonFunctions.DisplayFilePathInTitleBar();
     }
 }

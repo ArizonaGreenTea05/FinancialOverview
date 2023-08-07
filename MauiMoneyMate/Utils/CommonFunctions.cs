@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Diagnostics;
 using System.IO.Compression;
+using BusinessLogic;
 using CommonLibrary;
 using CommunityToolkit.Maui.Alerts;
 using Newtonsoft.Json.Linq;
@@ -78,5 +79,15 @@ internal static class CommonFunctions
         {
             Console.WriteLine($"Error occurred: {ex.Message}");
         }
+    }
+
+    public static void DisplayFilePathInTitleBar()
+    {
+        if (Application.Current == null) return;
+        if (Application.Current.MainPage == null) return;
+        var window = Application.Current.MainPage.Window;
+        window.Title = window.Title?.Split('-')[0].TrimEnd();
+        if (!CommonProperties.ShowFilePathInTitleBar) return;
+        window.Title += $" - {CommonProperties.FinancialOverview.FilePath ?? "none"}";
     }
 }

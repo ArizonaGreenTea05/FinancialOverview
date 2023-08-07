@@ -49,17 +49,10 @@ public partial class FileViewModel : ObservableObject
 
     #endregion
 
-    #region private Members
-
-    private readonly FinancialOverview _financialOverview;
-
-    #endregion
-
     #region public Constructors
 
-    public FileViewModel(FinancialOverview financialOverview)
+    public FileViewModel()
     {
-        _financialOverview = financialOverview;
         LoadResources();
     }
 
@@ -70,9 +63,9 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void AddNewDocument()
     {
-        _financialOverview.ClearSales();
-        _financialOverview.FilePath = null;
-        _financialOverview.ClearHistory();
+        CommonProperties.FinancialOverview.ClearSales();
+        CommonProperties.FinancialOverview.FilePath = null;
+        CommonProperties.FinancialOverview.ClearHistory();
         DataIsSaved = false;
         Shell.Current.GoToAsync("../../route");
     }
@@ -86,8 +79,8 @@ public partial class FileViewModel : ObservableObject
             Toast.Make(LanguageResource.CouldNotOpenFile).Show();
             return;
         }
-        _financialOverview.LoadData(path);
-        _financialOverview.ClearHistory();
+        CommonProperties.FinancialOverview.LoadData(path);
+        CommonProperties.FinancialOverview.ClearHistory();
         DataIsSaved = true;
         Shell.Current.GoToAsync("../../route");
     }
@@ -95,7 +88,7 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void SaveFile()
     {
-        DataIsSaved = _financialOverview.SaveData();
+        DataIsSaved = CommonProperties.FinancialOverview.SaveData();
         if (!DataIsSaved) SaveFileDialog();
         Shell.Current.GoToAsync("../../route");
     }
@@ -103,14 +96,14 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void SaveFileDialog()
     {
-        var path = FileHandler.SaveFileDialog(_financialOverview.FileDirectory,
-            _financialOverview.Filename ?? FinancialOverview.DefaultFilename);
+        var path = FileHandler.SaveFileDialog(CommonProperties.FinancialOverview.FileDirectory,
+            CommonProperties.FinancialOverview.Filename ?? FinancialOverview.DefaultFilename);
         if (null == path)
         {
             Toast.Make(LanguageResource.CouldNotSaveFile).Show();
             return;
         }
-        _financialOverview.SaveData(path);
+        CommonProperties.FinancialOverview.SaveData(path);
         Toast.Make(string.Format(LanguageResource.SavedFile, path)).Show();
         DataIsSaved = true;
         Shell.Current.GoToAsync("../../route");
@@ -119,12 +112,12 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void OpenFileFromHistory(FileHistoryElement fhe)
     {
-        if (!_financialOverview.LoadData(fhe.FullPath))
+        if (!CommonProperties.FinancialOverview.LoadData(fhe.FullPath))
         {
             Toast.Make(LanguageResource.CouldNotOpenFile).Show();
             return;
         }
-        _financialOverview.ClearHistory();
+        CommonProperties.FinancialOverview.ClearHistory();
         DataIsSaved = true;
         Shell.Current.GoToAsync("../../route");
     }
@@ -133,9 +126,9 @@ public partial class FileViewModel : ObservableObject
     private void DeleteFileFromHistory(FileHistoryElement fhe)
     {
         FileHistory.Remove(fhe);
-        _financialOverview.FileHistory.Remove(fhe.FullPath);
-        if (_financialOverview.FileHistory.Count <= 0) _financialOverview.FilePath = fhe.FullPath;
-        FileHandler.WriteTextToFile(_financialOverview.FileHistory, CommonProperties.FileHistoryFilePath);
+        CommonProperties.FinancialOverview.FileHistory.Remove(fhe.FullPath);
+        if (CommonProperties.FinancialOverview.FileHistory.Count <= 0) CommonProperties.FinancialOverview.FilePath = fhe.FullPath;
+        FileHandler.WriteTextToFile(CommonProperties.FinancialOverview.FileHistory, CommonProperties.FileHistoryFilePath);
     }
 
     #endregion
@@ -146,7 +139,7 @@ public partial class FileViewModel : ObservableObject
     {
         DisplaySavingState();
         FileHistory = new ObservableCollection<FileHistoryElement>();
-        foreach (var item in _financialOverview.FileHistory)
+        foreach (var item in CommonProperties.FinancialOverview.FileHistory)
             FileHistory.Add(new FileHistoryElement(item));
     }
 

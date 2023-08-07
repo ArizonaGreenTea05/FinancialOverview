@@ -17,6 +17,8 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty] private string _settingsPageTitle;
 
+    [ObservableProperty] private ResourceLabel _startupLbl;
+
     [ObservableProperty] private bool _checkForUpdatesOnStart;
 
     [ObservableProperty] private ResourceLabel _checkForUpdatesOnStartLbl;
@@ -25,9 +27,13 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty] private ResourceLabel _downloadUpdatesAutomaticallyLbl;
 
-    [ObservableProperty] private ResourceLabel _startupLbl;
-
     [ObservableProperty] private ResourceButton _searchForUpdateBtn;
+
+    [ObservableProperty] private ResourceLabel _designLbl;
+
+    [ObservableProperty] private bool _showFilePathInTitleBar;
+
+    [ObservableProperty] private ResourceLabel _showFilePathInTitleBarLbl;
 
     #endregion
 
@@ -39,9 +45,8 @@ public partial class SettingsViewModel : ObservableObject
 
     #region public Constructors
 
-    public SettingsViewModel(FinancialOverview financialOverview)
+    public SettingsViewModel()
     {
-        _financialOverview = financialOverview;
         LoadResources();
     }
 
@@ -58,6 +63,7 @@ public partial class SettingsViewModel : ObservableObject
     {
         CheckForUpdatesOnStart = CommonProperties.CheckForUpdatesOnStart;
         DownloadUpdatesAutomatically = CommonProperties.DownloadUpdatesAutomatically;
+        ShowFilePathInTitleBar = CommonProperties.ShowFilePathInTitleBar;
     }
 
     #endregion
@@ -77,6 +83,8 @@ public partial class SettingsViewModel : ObservableObject
         CheckForUpdatesOnStartLbl = new ResourceLabel(nameof(CheckForUpdatesOnStartLbl));
         DownloadUpdatesAutomaticallyLbl = new ResourceLabel(nameof(DownloadUpdatesAutomaticallyLbl));
         SearchForUpdateBtn = new ResourceButton(nameof(SearchForUpdateBtn));
+        DesignLbl = new ResourceLabel(nameof(DesignLbl));
+        ShowFilePathInTitleBarLbl = new ResourceLabel(nameof(ShowFilePathInTitleBarLbl));
     }
 
     #endregion

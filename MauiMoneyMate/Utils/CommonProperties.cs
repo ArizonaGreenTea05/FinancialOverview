@@ -1,11 +1,15 @@
 ﻿using System.Data;
+using System.Security.Cryptography;
+using BusinessLogic;
 using CommonLibrary;
+using Newtonsoft.Json.Linq;
 using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
 
 internal static class CommonProperties
 {
+    internal static FinancialOverview FinancialOverview = new ();
     internal static Version CurrentVersion { get; } = GetCurrentVersion();
     internal static string RepositoryOwner => "ArizonaGreenTea05";
     internal static string RepositoryName => "FinancialOverview";
@@ -36,6 +40,11 @@ internal static class CommonProperties
         Columns = { nameof(CheckForUpdatesOnStart), nameof(DownloadUpdatesAutomatically) },
         Rows = { new object[] { "True", "False" } }
     };
+    private static readonly DataTable DesignSettings = new(nameof(DesignSettings))
+    {
+        Columns = { nameof(ShowFilePathInTitleBar)},
+        Rows = { new object[] { "True" } }
+    };
 
     private static DataSet _settings;
     internal static DataSet Settings
@@ -46,6 +55,7 @@ internal static class CommonProperties
             _settings = new DataSet();
             _settings.DataSetName = "SettingsSet";
             _settings.Tables.Add(StartupSettings);
+            _settings.Tables.Add(DesignSettings);
             if (!File.Exists(SettingsFilePath))
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(SettingsFilePath));
@@ -87,6 +97,17 @@ internal static class CommonProperties
             if (value) CheckForUpdatesOnStart = false;
             UpdateSettings(StartupSettings, nameof(DownloadUpdatesAutomatically), Convert.ToString(value));
         }
+    }
+
+    internal static bool ShowFilePathInTitleBar
+    {
+        get
+        {
+            if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True");
+            return Convert.ToBoolean(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(ShowFilePathInTitleBar)]);
+        }
+        set => UpdateSettings(DesignSettings, nameof(ShowFilePathInTitleBar), Convert.ToString(value));
     }
 
     internal static bool UpdateAvailable { get; set; } = false;

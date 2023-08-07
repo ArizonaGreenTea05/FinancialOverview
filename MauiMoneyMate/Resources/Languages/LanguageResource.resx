@@ -408,4 +408,16 @@
   <data name="NoUpdatesAvailable" xml:space="preserve">
     <value>No updates available</value>
   </data>
+  <data name="DesignLbl.FontSize" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="DesignLbl.Text" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="ShowFilePathInTitleBarLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ShowFilePathInTitleBarLbl.Text" xml:space="preserve">
+    <value>Show file path in title bar</value>
+  </data>
 </root>

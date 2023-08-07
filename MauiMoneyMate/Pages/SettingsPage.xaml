@@ -38,6 +38,18 @@
                             VerticalOptions="Center"
                             HorizontalOptions="Start"
                             Margin="5,5,5,5"/>
+                <Label Text="{Binding DesignLbl.Text}"
+                       FontSize="{Binding DesignLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"
+                       Padding="0,40,0,0"/>
+                <HorizontalStackLayout Spacing="5">
+                    <CheckBox IsChecked="{Binding ShowFilePathInTitleBar}"
+                              VerticalOptions="Center"
+                              CheckedChanged="ShowFilePathInTitleBarChk_OnCheckedChanged"/>
+                    <Label Text="{Binding ShowFilePathInTitleBarLbl.Text}"
+                           FontSize="{Binding ShowFilePathInTitleBarLbl.FontSize}"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
         

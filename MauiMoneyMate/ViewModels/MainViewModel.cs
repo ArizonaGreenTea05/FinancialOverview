@@ -94,8 +94,7 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Members
-
-    private readonly FinancialOverview _financialOverview;
+    
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
     private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
@@ -104,17 +103,16 @@ public partial class MainViewModel : ObservableObject
 
     #region public Constructors
 
-    public MainViewModel(FinancialOverview financialOverview)
+    public MainViewModel()
     {
         TimeUnits = new ObservableCollection<string>();
         LoadResources();
         
-        _financialOverview = financialOverview;
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
         if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
-        _financialOverview.FileHistory = tmpHistory;
-        DataIsSaved = File.Exists(_financialOverview.FilePath);
-        _financialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
+        CommonProperties.FinancialOverview.FileHistory = tmpHistory;
+        DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
+        CommonProperties.FinancialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
         _monthlySalesDict = new Dictionary<string, DataRow>();
         _yearlySalesDict = new Dictionary<string, DataRow>();
@@ -123,7 +121,7 @@ public partial class MainViewModel : ObservableObject
         YearlySales = new ObservableCollection<string>();
         AllSales = new ObservableCollection<string>();
 
-        SelectedTimeUnit = (int)_financialOverview.UnitOfAll;
+        SelectedTimeUnit = (int)CommonProperties.FinancialOverview.UnitOfAll;
     }
 
     #endregion
@@ -132,7 +130,7 @@ public partial class MainViewModel : ObservableObject
 
     private void OnDefaultFilePathChanged(object sender, string path)
     {
-        SaveListToAppData(_financialOverview.FileHistory);
+        SaveListToAppData(CommonProperties.FinancialOverview.FileHistory);
     }
 
     #endregion
@@ -160,7 +158,7 @@ public partial class MainViewModel : ObservableObject
         }
 
         _monthlySalesDict[tmp] =
-            _financialOverview.MonthlySales.Rows.Add(MonthlySalesEntryInput, MonthlyNameEntryInput,
+            CommonProperties.FinancialOverview.MonthlySales.Rows.Add(MonthlySalesEntryInput, MonthlyNameEntryInput,
                 MonthlyAdditionEntryInput);
         MonthlySales.Add(tmp);
         MonthlySalesEntryInput = string.Empty;
@@ -191,7 +189,7 @@ public partial class MainViewModel : ObservableObject
         }
 
         _yearlySalesDict[tmp] =
-            _financialOverview.YearlySales.Rows.Add(YearlySalesEntryInput, YearlyNameEntryInput,
+            CommonProperties.FinancialOverview.YearlySales.Rows.Add(YearlySalesEntryInput, YearlyNameEntryInput,
                 YearlyAdditionEntryInput);
         YearlySales.Add(tmp);
         YearlySalesEntryInput = string.Empty;
@@ -268,14 +266,14 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void Undo()
     {
-        _financialOverview.Undo();
+        CommonProperties.FinancialOverview.Undo();
         UpdateSales();
     }
 
     [RelayCommand]
     private void Redo()
     {
-        _financialOverview.Redo();
+        CommonProperties.FinancialOverview.Redo();
         UpdateSales();
     }
 
@@ -291,10 +289,10 @@ public partial class MainViewModel : ObservableObject
 
     public void OnLoaded()
     {
-        _financialOverview.LoadData();
+        CommonProperties.FinancialOverview.LoadData();
         UpdateSales();
-        _financialOverview.ClearHistory();
-        _financialOverview.AddCurrentStateToHistory();
+        CommonProperties.FinancialOverview.ClearHistory();
+        CommonProperties.FinancialOverview.AddCurrentStateToHistory();
 
         Application.Current!.MainPage!.Window.Destroying += (sender, args) =>
         {
@@ -318,7 +316,7 @@ public partial class MainViewModel : ObservableObject
 
     public void TimeUnitChanged()
     {
-        _financialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
+        CommonProperties.FinancialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
         UpdateAllSales();
     }
 
@@ -386,11 +384,7 @@ public partial class MainViewModel : ObservableObject
         FinancialOverviewTitle = FinancialOverviewTitle.TrimEnd('*');
         if (!DataIsSaved)
             FinancialOverviewTitle += '*';
-        if (Application.Current == null) return;
-        if (Application.Current.MainPage == null) return;
-        var window = Application.Current.MainPage.Window;
-        window.Title = window.Title?.Split('-')[0].TrimEnd();
-        window.Title += $" - {_financialOverview.FilePath ?? "none"}";
+        CommonFunctions.DisplayFilePathInTitleBar();
     }
 
     private void UpdateSales()
@@ -403,7 +397,7 @@ public partial class MainViewModel : ObservableObject
     private void UpdateMonthlySales()
     {
         MonthlySales.Clear();
-        foreach (DataRow row in _financialOverview.MonthlySales.Rows)
+        foreach (DataRow row in CommonProperties.FinancialOverview.MonthlySales.Rows)
         {
             var tmp = ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
             MonthlySales.Add(tmp);
@@ -414,7 +408,7 @@ public partial class MainViewModel : ObservableObject
     private void UpdateYearlySales()
     {
         YearlySales.Clear();
-        foreach (DataRow row in _financialOverview.YearlySales.Rows)
+        foreach (DataRow row in CommonProperties.FinancialOverview.YearlySales.Rows)
         {
             var tmp = ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
             YearlySales.Add(tmp);
@@ -424,12 +418,12 @@ public partial class MainViewModel : ObservableObject
 
     private void UpdateAllSales()
     {
-        var tmp = _financialOverview.AllSales.Copy();
+        var tmp = CommonProperties.FinancialOverview.AllSales.Copy();
         AllSales.Clear();
         foreach (DataRow row in tmp.Rows)
             AllSales.Add(ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]),
                 Convert.ToString(row[2])));
-        RestMoney = _financialOverview.GetRest();
+        RestMoney = CommonProperties.FinancialOverview.GetRest();
     }
 
     private string ConvertToLabelText(decimal sales, string name, string addition = null)

@@ -270,4 +270,10 @@
   <data name="NoUpdatesAvailable" xml:space="preserve">
     <value>Keine Updates verfügbar</value>
   </data>
+  <data name="DesignLbl.Text" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="ShowFilePathInTitleBarLbl.Text" xml:space="preserve">
+    <value>Dateipfad im App-Titel anzeigen</value>
+  </data>
 </root>

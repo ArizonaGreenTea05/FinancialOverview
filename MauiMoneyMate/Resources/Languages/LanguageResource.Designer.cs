@@ -178,6 +178,24 @@ namespace MauiMoneyMate.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string DesignLbl_FontSize {
+            get {
+                return ResourceManager.GetString("DesignLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        internal static string DesignLbl_Text {
+            get {
+                return ResourceManager.GetString("DesignLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloading newest version.
         /// </summary>
         internal static string DownloadingNewestVersion {
@@ -723,6 +741,24 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static string SettingsPageTitle {
             get {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string ShowFilePathInTitleBarLbl_FontSize {
+            get {
+                return ResourceManager.GetString("ShowFilePathInTitleBarLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show file path in title bar.
+        /// </summary>
+        internal static string ShowFilePathInTitleBarLbl_Text {
+            get {
+                return ResourceManager.GetString("ShowFilePathInTitleBarLbl.Text", resourceCulture);
             }
         }
         
