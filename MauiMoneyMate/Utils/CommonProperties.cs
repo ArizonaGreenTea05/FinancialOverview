@@ -18,19 +18,19 @@ internal static class CommonProperties
     internal static string AppDataDirectory =>
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MauiMoneyMate";
 
-    internal static string FileHistoryFilePath => Path.Combine(AppDataDirectory, "MauiMoneyMate.FileHistory");
+    internal static string FileHistoryFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.FileHistory");
 
-    internal static string SettingsFilePath => Path.Combine(AppDataDirectory, "MauiMoneyMate.AppSettings");
+    internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.AppSettings");
 
     internal static string UpdateDirectory =>
         Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\MauiMoneyMate\\Update";
 
-    internal static string GeneralInstallerName => $"{GeneralInstallationFolderName}_Installer.cmd";
-    internal static string GeneralInstallerPath => Path.Combine(UpdateDirectory, GeneralInstallerName);
-    internal static string GeneralAssetName => $"{GeneralInstallationFolderName}.zip";
-    internal static string InstallerNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
-    internal static string InstallerPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
-    internal static string AssetNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}.zip";
+    internal static string GeneralInstallerName { get; } = $"{GeneralInstallationFolderName}_Installer.cmd";
+    internal static string GeneralInstallerPath { get; } = Path.Combine(UpdateDirectory, GeneralInstallerName);
+    internal static string GeneralAssetName { get; } = $"{GeneralInstallationFolderName}.zip";
+    internal static string InstallerNameOfLatestRelease { get; } = $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
+    internal static string InstallerPathOfLatestRelease { get; } = Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
+    internal static string AssetNameOfLatestRelease { get; } = $"{InstallationFolderNameOfLatestRelease}.zip";
     private static readonly DataTable StartupSettings = new(nameof(StartupSettings))
     {
         Columns = { nameof(CheckForUpdatesOnStart), nameof(DownloadUpdatesAutomatically) },
