@@ -8,6 +8,6 @@
         public int Build;
         public string Suffix = string.Empty;
         public string Tag => $"{Prefix}v{Major}.{Minor}{(Build > 0 ? $".{Build}" : string.Empty)}{Suffix}";
-        public string Id => $"{Major}.{Minor}.{Build}";
+        public string Id => $"{Major}.{Minor}{(Build > 0 ? $".{Build}" : string.Empty)}";
     }
 }
