@@ -1,6 +1,6 @@
 @echo off
 
-REM Before publishing: Copy this file in the .zip file that contains the MauiMoneyMate_x.x.x.x_x64 folder and rename this file so the version matches
+REM Before publishing: Copy this file into the .zip file that contains the MauiMoneyMate_x.x.x.x_x64 folder and rename this file so the version matches
 
 :: BatchGotAdmin
 :-------------------------------------
@@ -13,7 +13,6 @@ REM  --> Check for permissions
 
 REM --> If error flag set, we do not have admin.
     IF '%errorlevel%' NEQ '0' (
-        echo Requesting administrative privileges...
         goto UACPrompt
     ) ELSE ( goto gotAdmin )
 
@@ -41,5 +40,3 @@ certutil -addstore "TrustedPeople" "%CERT_FILE%"
 
 REM Run the .msix file
 start "" "%MSIX_FILE%"
-
-echo Installation completed.
