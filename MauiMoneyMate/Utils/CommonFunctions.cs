@@ -40,7 +40,7 @@ internal static class CommonFunctions
             {
                 CreateNoWindow = false,
                 UseShellExecute = false,
-                FileName = File.Exists(CommonProperties.InstallerPathOfLatestRelease) ? CommonProperties.InstallerPathOfLatestRelease : CommonProperties.InstallerPathOfLatestRelease.Replace(".cmd", ".bat"),
+                FileName = GetFileToUpdateTheApp(),
                 WindowStyle = ProcessWindowStyle.Normal
             };
             Process.Start(startInfo)!.WaitForExit();
@@ -51,6 +51,15 @@ internal static class CommonFunctions
             CleanUpAfterFailedInstallation();
             return false;
         }
+    }
+
+    private static string GetFileToUpdateTheApp()
+    {
+        var filename = CommonProperties.UpdaterPathOfLatestRelease;
+        if (File.Exists(filename)) return filename;
+        filename = filename.Replace(".cmd", ".bat");
+        if (File.Exists(filename)) return filename;
+        return CommonProperties.InstallerPathOfLatestRelease; // has no updater, so the installer will be used
     }
 
     private static void CleanUpAfterFailedInstallation()

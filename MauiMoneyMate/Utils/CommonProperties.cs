@@ -29,13 +29,12 @@ internal static class CommonProperties
     internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, $"MauiMoneyMate.{AppSettingsFileEnding}");
 
     internal static string UpdateDirectory =>
-        Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\MauiMoneyMate\\Update";
-
-    internal static string GeneralInstallerName { get; } = $"{GeneralInstallationFolderName}_Installer.cmd";
-    internal static string GeneralInstallerPath { get; } = Path.Combine(UpdateDirectory, GeneralInstallerName);
+        Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MauiMoneyMate\Update";
     internal static string GeneralAssetName { get; } = $"{GeneralInstallationFolderName}.zip";
     internal static string InstallerNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
     internal static string InstallerPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
+    internal static string UpdaterNameOfLatestRelease => $@"{InstallationFolderNameOfLatestRelease}_Updater.cmd";
+    internal static string UpdaterPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallationFolderNameOfLatestRelease, UpdaterNameOfLatestRelease);
     internal static string AssetNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}.zip";
     private static readonly DataTable StartupSettings = new(nameof(StartupSettings))
     {
