@@ -1,17 +1,12 @@
-﻿using System.Data;
-using System.Diagnostics;
-using System.Globalization;
+﻿using System.Diagnostics;
 using System.IO.Compression;
-using BusinessLogic;
 using CommonLibrary;
-using CommunityToolkit.Maui.Alerts;
-using Newtonsoft.Json.Linq;
 
 namespace MauiMoneyMate.Utils;
 
 internal static class CommonFunctions
 {
-    public static bool CheckForUpdates()
+    internal static bool CheckForUpdates()
     {
         var tmp = GitHubAccessor.GetLatestReleaseInfo(CommonProperties.RepositoryOwner,
             CommonProperties.RepositoryName);
@@ -22,7 +17,7 @@ internal static class CommonFunctions
         return CommonProperties.LatestRelease.VersionId != CommonProperties.CurrentVersion.Id;
     }
 
-    public static bool DownloadLatestRelease()
+    internal static bool DownloadLatestRelease()
     {
         if (GitHubAccessor.DownloadReleaseAsset(CommonProperties.LatestRelease, CommonProperties.GeneralAssetName,
                 CommonProperties.UpdateDirectory)) return true;
@@ -30,7 +25,7 @@ internal static class CommonFunctions
         return false;
     }
 
-    public static bool InstallDownloadedRelease()
+    internal static bool InstallDownloadedRelease()
     {
         try
         {
@@ -62,14 +57,14 @@ internal static class CommonFunctions
         return CommonProperties.InstallerPathOfLatestRelease; // has no updater, so the installer will be used
     }
 
-    private static void CleanUpAfterFailedInstallation()
+    internal static void CleanUpAfterFailedInstallation()
     {
         var zipFilePath = Path.Combine(CommonProperties.UpdateDirectory, CommonProperties.AssetNameOfLatestRelease);
         if (File.Exists(zipFilePath)) File.Delete(zipFilePath);
         RemoveNonZipFiles(CommonProperties.UpdateDirectory);
     }
 
-    public static void RemoveNonZipFiles(string directoryPath)
+    internal static void RemoveNonZipFiles(string directoryPath)
     {
         try
         {
@@ -91,7 +86,7 @@ internal static class CommonFunctions
         }
     }
 
-    public static void DisplayFilePathInTitleBar()
+    internal static void DisplayFilePathInTitleBar()
     {
         if (Application.Current == null) return;
         if (Application.Current.MainPage == null) return;
@@ -101,15 +96,14 @@ internal static class CommonFunctions
         window.Title += $" - {CommonProperties.FinancialOverview.FilePath ?? "none"}";
     }
 
-    public static void UpdateAppTheme(int value)
+    internal static void UpdateAppTheme(int value)
     {
         if (Application.Current == null) return;
-        Application.Current.UserAppTheme = CommonProperties.ThemeDict.TryGetValue(value, out var theme)
-            ? theme
-            : Application.Current.UserAppTheme;
+        if (value >= Enum.GetValues(typeof(AppTheme)).Length) return;
+        Application.Current.UserAppTheme = (AppTheme)value;
     }
 
-    public static bool ExportSettings()
+    internal static bool ExportSettings()
     {
         if (!File.Exists(CommonProperties.SettingsFilePath)) return false;
         var result = FileHandler.SaveFileDialog(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -119,7 +113,7 @@ internal static class CommonFunctions
         return true;
     }
 
-    public static bool ImportSettings()
+    internal static bool ImportSettings()
     {
         var result = FileHandler.OpenFileDialog(new FilePickerFileType(
             new Dictionary<DevicePlatform, IEnumerable<string>>

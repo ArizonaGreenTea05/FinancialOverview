@@ -2,9 +2,11 @@
 using System.Data;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Pages;
+using MauiMoneyMate.Popups;
 using MauiMoneyMate.Resources.Languages;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
@@ -93,11 +95,22 @@ public partial class MainViewModel : ObservableObject
 
     #endregion
 
+    #region private Properties
+
+    private MainPage MainPage
+    {
+        get => _mainPage;
+        set => _mainPage ??= value;
+    }
+
+    #endregion
+
     #region private Members
-    
+
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
     private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
+    private MainPage _mainPage;
 
     #endregion
 
@@ -107,9 +120,9 @@ public partial class MainViewModel : ObservableObject
     {
         TimeUnits = new ObservableCollection<string>();
         LoadResources();
-        
+
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
-        if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count-1);
+        if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count - 1);
         CommonProperties.FinancialOverview.FileHistory = tmpHistory;
         DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
         CommonProperties.FinancialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
@@ -122,15 +135,6 @@ public partial class MainViewModel : ObservableObject
         AllSales = new ObservableCollection<string>();
 
         SelectedTimeUnit = (int)CommonProperties.FinancialOverview.UnitOfAll;
-    }
-
-    #endregion
-
-    #region private EventHandlers
-
-    private void OnDefaultFilePathChanged(object sender, string path)
-    {
-        SaveListToAppData(CommonProperties.FinancialOverview.FileHistory);
     }
 
     #endregion
@@ -148,6 +152,7 @@ public partial class MainViewModel : ObservableObject
                 .Show();
             return;
         }
+
         var tmp = ConvertToLabelText(monthlySalesEntry, MonthlyNameEntryInput,
             MonthlyAdditionEntryInput);
         if (MonthlySales.Contains(tmp))
@@ -179,6 +184,7 @@ public partial class MainViewModel : ObservableObject
                 .Show();
             return;
         }
+
         var tmp = ConvertToLabelText(yearlySalesEntry, YearlyNameEntryInput,
             YearlyAdditionEntryInput);
         if (YearlySales.Contains(tmp))
@@ -279,15 +285,25 @@ public partial class MainViewModel : ObservableObject
 
     #endregion
 
-    #region public Methods
+    #region private EventHandlers
 
-    public void OnAppearing()
+    private void OnDefaultFilePathChanged(object sender, string path)
     {
+        SaveListToAppData(CommonProperties.FinancialOverview.FileHistory);
+    }
+
+    #endregion
+
+    #region internal Event Handlers
+
+    internal void OnAppearing()
+    {
+        CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
         UpdateSales();
         DisplaySavingState();
     }
 
-    public void OnLoaded()
+    internal void OnLoaded(object sender, EventArgs e)
     {
         CommonProperties.FinancialOverview.LoadData();
         UpdateSales();
@@ -303,21 +319,42 @@ public partial class MainViewModel : ObservableObject
         if (CommonProperties.CheckForUpdatesOnStart || CommonProperties.DownloadUpdatesAutomatically)
             CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
         if (!CommonProperties.UpdateAvailable) return;
-        ShowUpdatePopup = !CommonProperties.DownloadUpdatesAutomatically;
-        if (CommonProperties.DownloadUpdatesAutomatically)
+        if (!CommonProperties.DownloadUpdatesAutomatically)
         {
-            Toast.Make(
-                    $"{LanguageResource.NewAppVersionDetected}\n{LanguageResource.UpdateWillBeInstalledOnClosingTheApplication}")
-                .Show();
-            Toast.Make($"{LanguageResource.DownloadingNewestVersion}").Show();
-            DownloadThread.Start();
+            MainPage ??= (sender as Element).GetAncestor<MainPage>();
+            MainPage.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease,
+                CommonFunctions.InstallDownloadedRelease));
+            return;
         }
+
+        Toast.Make(
+                $"{LanguageResource.NewAppVersionDetected}\n{LanguageResource.UpdateWillBeInstalledOnClosingTheApplication}")
+            .Show();
+        Toast.Make($"{LanguageResource.DownloadingNewestVersion}").Show();
+        DownloadThread.Start();
     }
 
-    public void TimeUnitChanged()
+    internal void TimeUnitPkr_OnSelectedIndexChanged(object sender, EventArgs e)
     {
         CommonProperties.FinancialOverview.UnitOfAll = (FinancialOverview.Unit)_selectedTimeUnit;
         UpdateAllSales();
+    }
+
+    internal void MonthlyAdditionEntry_OnCompleted(object sender, EventArgs e)
+    {
+        AddMonthly();
+    }
+
+    internal void YearlyAdditionEntry_OnCompleted(object sender, EventArgs e)
+    {
+        AddYearly();
+    }
+
+    internal void HelpBtn_OnClicked(object sender, EventArgs e)
+    {
+        var popup = new HelpPopup();
+        MainPage ??= (sender as Element).GetAncestor<MainPage>();
+        MainPage.ShowPopup(popup);
     }
 
     #endregion
@@ -376,8 +413,6 @@ public partial class MainViewModel : ObservableObject
         }
         get => CommonProperties.DataIsSaved;
     }
-
-    public bool ShowUpdatePopup { get; private set; }
 
     private void DisplaySavingState()
     {

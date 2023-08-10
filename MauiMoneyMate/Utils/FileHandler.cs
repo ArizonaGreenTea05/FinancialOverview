@@ -8,7 +8,7 @@ public class FileHandler
 
     public static string SaveFileDialog(string defaultDirectory, string defaultFilename)
     {
-        return Task.Run(() => SaveFileDialogTask(defaultDirectory, defaultFilename),
+        return Task.Run(() => SaveFileDialogAsync(defaultDirectory, defaultFilename),
             new CancellationToken()).Result;
     }
 
@@ -20,12 +20,17 @@ public class FileHandler
 
     public static string OpenFileDialog(FilePickerFileType fileTypes)
     {
-        return Task.Run(() => OpenFileDialogTask(fileTypes), new CancellationToken()).Result;
+        return Task.Run(() => OpenFileDialogAsync(fileTypes), new CancellationToken()).Result;
     }
 
     public static string ReadTextFile(string targetFile)
     {
-        return Task.Run(() => ReadTextFileTask(targetFile), new CancellationToken()).Result;
+        return Task.Run(() => ReadTextFileAsync(targetFile), new CancellationToken()).Result;
+    }
+
+    public static bool WriteTextToFile(List<string> contents, string targetFile)
+    {
+        return WriteTextToFile(string.Join('\n', contents), targetFile);
     }
 
     public static bool WriteTextToFile(string text, string targetFile)
@@ -36,16 +41,11 @@ public class FileHandler
         return true;
     }
 
-    public static bool WriteTextToFile(List<string> contents, string targetFile)
-    {
-        return WriteTextToFile(string.Join('\n', contents), targetFile);
-    }
-
     #endregion
 
     #region private Methods
 
-    private static async Task<string> ReadTextFileTask(string targetFile)
+    private static async Task<string> ReadTextFileAsync(string targetFile)
     {
         if (!Path.Exists(targetFile)) return null;
         await using var inputStream = File.OpenRead(targetFile);
@@ -53,7 +53,7 @@ public class FileHandler
         return await reader.ReadToEndAsync();
     }
 
-    private static async Task<string> SaveFileDialogTask(string defaultDirectory, string defaultFilename)
+    private static async Task<string> SaveFileDialogAsync(string defaultDirectory, string defaultFilename)
     {
         try
         {
@@ -68,7 +68,7 @@ public class FileHandler
         }
     }
 
-    private static async Task<string> OpenFileDialogTask(FilePickerFileType fileTypes)
+    private static async Task<string> OpenFileDialogAsync(FilePickerFileType fileTypes)
     {
         try
         {

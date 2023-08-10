@@ -133,9 +133,9 @@ public partial class FileViewModel : ObservableObject
 
     #endregion
 
-    #region public Methods
+    #region internal Event Handlers
 
-    public void OnAppearing()
+    internal void OnAppearing()
     {
         DisplaySavingState();
         FileHistory = new ObservableCollection<FileHistoryElement>();

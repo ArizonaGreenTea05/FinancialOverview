@@ -1,20 +1,9 @@
-using BusinessLogic;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Views;
-using MauiMoneyMate.Popups;
-using MauiMoneyMate.Resources.Languages;
-using MauiMoneyMate.Utils;
 using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-    #region private Properties
-
-    private bool PageLoaded { get; set; } = false;
-
-    #endregion
 
     private readonly SettingsViewModel _viewModel;
 
@@ -28,59 +17,26 @@ public partial class SettingsPage : ContentPage
     {
         base.OnAppearing();
         _viewModel.OnAppearing();
-        PageLoaded = true;
     }
 
     private void CheckForUpdatesOnStartChk_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (!PageLoaded) return;
-        CommonProperties.CheckForUpdatesOnStart = _viewModel.CheckForUpdatesOnStart;
-        _viewModel.LoadSettings();
-    }
+        => _viewModel.CheckForUpdatesOnStartChk_OnCheckedChanged(sender, e);
 
     private void DownloadUpdatesAutomaticallyChk_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (!PageLoaded) return;
-        CommonProperties.DownloadUpdatesAutomatically = _viewModel.DownloadUpdatesAutomatically;
-        _viewModel.LoadSettings();
-    }
+        => _viewModel.DownloadUpdatesAutomaticallyChk_OnCheckedChanged(sender, e);
 
     private void SearchForUpdateBtn_OnClicked(object sender, EventArgs e)
-    {
-        CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
-        if (!CommonProperties.UpdateAvailable)
-        {
-            Toast.Make(LanguageResource.NoUpdatesAvailable).Show();
-            return;
-        }
-        this.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease, CommonFunctions.InstallDownloadedRelease));
-    }
+        => _viewModel.SearchForUpdateBtn_OnClicked(sender, e);
 
     private void ShowFilePathInTitleBarChk_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (!PageLoaded) return;
-        CommonProperties.ShowFilePathInTitleBar = _viewModel.ShowFilePathInTitleBar;
-        _viewModel.LoadSettings();
-        CommonFunctions.DisplayFilePathInTitleBar();
-    }
+        => _viewModel.ShowFilePathInTitleBarChk_OnCheckedChanged(sender, e);
 
     private void ThemePkr_OnSelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (!PageLoaded) return;
-        CommonProperties.CurrentAppTheme = ((Picker)sender).SelectedIndex;
-    }
+        => _viewModel.ThemePkr_OnSelectedIndexChanged(sender, e);
 
     private void ExportSettingsBtn_OnClicked(object sender, EventArgs e)
-    {
-        if(CommonFunctions.ExportSettings()) return;
-    }
+        => _viewModel.ExportSettingsBtn_OnClicked(sender, e);
 
     private void ImportSettingsBtn_OnClicked(object sender, EventArgs e)
-    {
-        if (CommonFunctions.ImportSettings())
-        {
-            _viewModel.LoadSettings();
-            return;
-        }
-    }
+        => _viewModel.ImportSettingsBtn_OnClicked(sender, e);
 }

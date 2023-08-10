@@ -1,8 +1,6 @@
 ﻿using System.Data;
-using System.Security.Cryptography;
 using BusinessLogic;
 using CommonLibrary;
-using Newtonsoft.Json.Linq;
 using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
@@ -21,15 +19,17 @@ internal static class CommonProperties
         null == LatestRelease ? CurrentVersion.Id : LatestRelease.VersionId);
 
     internal static string AppDataDirectory =>
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MauiMoneyMate";
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MauiMoneyMate";
+
+    internal static string CommonAppDataDirectory =>
+        Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MauiMoneyMate";
 
     internal static string FileHistoryFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.FileHistory");
-    public static string AppSettingsFileEnding { get; } = "AppSettings";
+    internal static string AppSettingsFileEnding => "AppSettings";
 
     internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, $"MauiMoneyMate.{AppSettingsFileEnding}");
 
-    internal static string UpdateDirectory =>
-        Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MauiMoneyMate\Update";
+    internal static string UpdateDirectory { get; } = CommonAppDataDirectory + @"\Update";
     internal static string GeneralAssetName { get; } = $"{GeneralInstallationFolderName}.zip";
     internal static string InstallerNameOfLatestRelease => $"{InstallationFolderNameOfLatestRelease}_Installer.cmd";
     internal static string InstallerPathOfLatestRelease => Path.Combine(UpdateDirectory, InstallerNameOfLatestRelease);
@@ -59,7 +59,7 @@ internal static class CommonProperties
             _settings.Tables.Add(DesignSettings);
             if (!File.Exists(SettingsFilePath))
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(SettingsFilePath));
+                Directory.CreateDirectory(Path.GetDirectoryName(SettingsFilePath)!);
                 return _settings;
             }
             _settings.Clear();
@@ -68,7 +68,6 @@ internal static class CommonProperties
         }
     }
     internal static bool DataIsSaved { get; set; } = true;
-    internal static GitHubAccessor GitHubAccessor { get; set; } = new();
 
     internal static bool CheckForUpdatesOnStart
     {
@@ -111,7 +110,7 @@ internal static class CommonProperties
         set => UpdateSettings(DesignSettings, nameof(ShowFilePathInTitleBar), Convert.ToString(value));
     }
 
-    public static int CurrentAppTheme
+    internal static int CurrentAppTheme
     {
         get
         {
@@ -125,13 +124,6 @@ internal static class CommonProperties
             UpdateSettings(DesignSettings, nameof(CurrentAppTheme), Convert.ToString(value));
         }
     }
-
-    public static Dictionary<int, AppTheme> ThemeDict { get; } = new()
-    {
-        {0, AppTheme.Unspecified},
-        {1, AppTheme.Light},
-        {2, AppTheme.Dark},
-    };
 
     internal static bool UpdateAvailable { get; set; } = false;
 
