@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MauiMoneyMate.Resources.Languages;
+﻿using MauiMoneyMate.Translations;
 
 namespace MauiMoneyMate.Utils.ResourceItemTemplates;
 
@@ -48,7 +47,6 @@ public sealed class ResourceLabel : ResourceItem
 
 public sealed class ResourceButton : ResourceItem
 {
-    public string Name { get; set; }
     public string Text { get; set; }
     public int FontSize { get; set; }
 
@@ -81,7 +79,6 @@ public sealed class ResourceButton : ResourceItem
 
 public sealed class ResourceEntry : ResourceItem
 {
-    public string Name { get; set; }
     public string Placeholder { get; set; }
     public int FontSize { get; set; }
 

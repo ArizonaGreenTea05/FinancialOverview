@@ -139,7 +139,7 @@
 	  <Compile Update="Popups\UpdatePopup.xaml.cs">
 	    <DependentUpon>UpdatePopup.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Languages\LanguageResource.Designer.cs">
+	  <Compile Update="Translations\LanguageResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>LanguageResource.resx</DependentUpon>
@@ -147,7 +147,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Languages\LanguageResource.resx">
+	  <EmbeddedResource Update="Translations\LanguageResource.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>LanguageResource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>

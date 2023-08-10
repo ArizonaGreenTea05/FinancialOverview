@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MauiMoneyMate.Resources.Languages {
+namespace MauiMoneyMate.Translations {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MauiMoneyMate.Resources.Languages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MauiMoneyMate.Resources.Languages.LanguageResource", typeof(LanguageResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MauiMoneyMate.Translations.LanguageResource", typeof(LanguageResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

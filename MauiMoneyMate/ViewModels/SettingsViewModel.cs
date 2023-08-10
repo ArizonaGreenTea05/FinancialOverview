@@ -1,13 +1,12 @@
 ﻿using System.Collections.ObjectModel;
-using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using MauiMoneyMate.Pages;
 using MauiMoneyMate.Popups;
-using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
-using Newtonsoft.Json.Linq;
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -49,9 +48,21 @@ public partial class SettingsViewModel : ObservableObject
 
     #endregion
 
+    #region private Properties
+
+    private bool PageLoaded { get; set; }
+
+    private SettingsPage SettingsPage
+    {
+        get => _settingsPage;
+        set => _settingsPage ??= value;
+    }
+
+    #endregion
+
     #region private Members
 
-    private readonly FinancialOverview _financialOverview;
+    private SettingsPage _settingsPage;
 
     #endregion
 
@@ -64,12 +75,13 @@ public partial class SettingsViewModel : ObservableObject
 
     #endregion
 
-    #region internal Methods
+    #region internal Event Handlers
 
     internal void OnAppearing()
     {
         DisplaySavingState();
         LoadSettings();
+        PageLoaded = true;
     }
     internal void LoadSettings()
     {
@@ -77,6 +89,62 @@ public partial class SettingsViewModel : ObservableObject
         DownloadUpdatesAutomatically = CommonProperties.DownloadUpdatesAutomatically;
         ShowFilePathInTitleBar = CommonProperties.ShowFilePathInTitleBar;
         CurrentTheme = CommonProperties.CurrentAppTheme;
+    }
+
+    internal void CheckForUpdatesOnStartChk_OnCheckedChanged(object sender, CheckedChangedEventArgs checkedChangedEventArgs)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.CheckForUpdatesOnStart = CheckForUpdatesOnStart;
+        LoadSettings();
+    }
+
+    internal void DownloadUpdatesAutomaticallyChk_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.DownloadUpdatesAutomatically = DownloadUpdatesAutomatically;
+        LoadSettings();
+    }
+
+    internal void SearchForUpdateBtn_OnClicked(object sender, EventArgs e)
+    {
+        CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
+        if (!CommonProperties.UpdateAvailable)
+        {
+            Toast.Make(LanguageResource.NoUpdatesAvailable).Show();
+            return;
+        }
+
+        SettingsPage ??= (sender as Button).GetAncestor<SettingsPage>();
+        SettingsPage?.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease,
+            CommonFunctions.InstallDownloadedRelease));
+    }
+
+    internal void ShowFilePathInTitleBarChk_OnCheckedChanged(object sender, CheckedChangedEventArgs checkedChangedEventArgs)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.ShowFilePathInTitleBar = ShowFilePathInTitleBar;
+        LoadSettings();
+        CommonFunctions.DisplayFilePathInTitleBar();
+    }
+
+    internal void ThemePkr_OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.CurrentAppTheme = ((Picker)sender).SelectedIndex;
+    }
+
+    internal void ExportSettingsBtn_OnClicked(object sender, EventArgs e)
+    {
+        if (CommonFunctions.ExportSettings()) return;
+    }
+
+    internal void ImportSettingsBtn_OnClicked(object sender, EventArgs e)
+    {
+        if (CommonFunctions.ImportSettings())
+        {
+            LoadSettings();
+            return;
+        }
     }
 
     #endregion

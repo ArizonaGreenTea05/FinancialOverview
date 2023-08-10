@@ -1,8 +1,4 @@
-﻿using CommonLibrary;
-using CommunityToolkit.Maui.Views;
-using MauiMoneyMate.Popups;
-using MauiMoneyMate.Utils;
-using MauiMoneyMate.ViewModels;
+﻿using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate.Pages
 {
@@ -14,7 +10,6 @@ namespace MauiMoneyMate.Pages
         {
             InitializeComponent();
             BindingContext = _viewModel = viewModel;
-            CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
         }
 
         protected override void OnAppearing()
@@ -23,18 +18,11 @@ namespace MauiMoneyMate.Pages
             _viewModel.OnAppearing();
         }
 
-        private void TimeUnitPkr_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            _viewModel.TimeUnitChanged();
-        }
+        private void TimeUnitPkr_OnSelectedIndexChanged(object sender, EventArgs e) 
+            => _viewModel.TimeUnitPkr_OnSelectedIndexChanged(sender, e);
 
         private void MainPage_OnLoaded(object sender, EventArgs e)
-        {
-            _viewModel.OnLoaded();
-            if (!_viewModel.ShowUpdatePopup) return;
-            this.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease,
-                CommonFunctions.InstallDownloadedRelease));
-        }
+            => _viewModel.OnLoaded(sender, e);
 
         private void MonthlySalesEntry_OnCompleted(object sender, EventArgs e)
         {
@@ -47,9 +35,7 @@ namespace MauiMoneyMate.Pages
         }
 
         private void MonthlyAdditionEntry_OnCompleted(object sender, EventArgs e)
-        {
-            _viewModel.AddMonthly();
-        }
+            => _viewModel.MonthlyAdditionEntry_OnCompleted(sender, e);
 
         private void YearlySalesEntry_OnCompleted(object sender, EventArgs e)
         {
@@ -62,14 +48,9 @@ namespace MauiMoneyMate.Pages
         }
 
         private void YearlyAdditionEntry_OnCompleted(object sender, EventArgs e)
-        {
-            _viewModel.AddYearly();
-        }
+            => _viewModel.YearlyAdditionEntry_OnCompleted(sender, e);
 
-        private void ShowHelp(object sender, EventArgs e)
-        {
-            var popup = new HelpPopup();
-            this.ShowPopup(popup);
-        }
+        private void HelpBtn_OnClicked(object sender, EventArgs e)
+            => _viewModel.HelpBtn_OnClicked(sender, e);
     }
 }

@@ -45,7 +45,7 @@
                     Text="{Binding HelpBtn.Text}"
                     FontSize="{Binding HelpBtn.FontSize}"
                     Style="{StaticResource ToolbarButton}"
-                    Clicked="ShowHelp"/>
+                    Clicked="HelpBtn_OnClicked"/>
         </HorizontalStackLayout>
 
         <Frame Grid.Column="32"

@@ -3,7 +3,7 @@ using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 
@@ -133,9 +133,9 @@ public partial class FileViewModel : ObservableObject
 
     #endregion
 
-    #region public Methods
+    #region internal Event Handlers
 
-    public void OnAppearing()
+    internal void OnAppearing()
     {
         DisplaySavingState();
         FileHistory = new ObservableCollection<FileHistoryElement>();
