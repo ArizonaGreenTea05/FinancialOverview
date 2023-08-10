@@ -1,10 +1,7 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
-using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
-using ABI.Windows.Media.Control;
 
 namespace MauiMoneyMate.Popups;
 

@@ -3,7 +3,7 @@ using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 

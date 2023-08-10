@@ -1,4 +1,4 @@
-﻿using MauiMoneyMate.Resources.Languages;
+﻿using MauiMoneyMate.Translations;
 
 namespace MauiMoneyMate.Utils.ResourceItemTemplates;
 

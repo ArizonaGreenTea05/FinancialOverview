@@ -4,7 +4,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MauiMoneyMate.Pages;
 using MauiMoneyMate.Popups;
-using MauiMoneyMate.Resources.Languages;
+using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 
