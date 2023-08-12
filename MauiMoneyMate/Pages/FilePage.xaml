@@ -6,6 +6,7 @@
              x:Class="MauiMoneyMate.Pages.FilePage"
              x:DataType="viewModels:FileViewModel"
              Title="{Binding FilePageTitle}"
+             BackgroundImageSource="{AppThemeBinding Light=bg_light.png, Dark=bg_dark.png}"
              BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
     <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           ColumnDefinitions="60,60,60,60,60,10,*,30,*,60">
