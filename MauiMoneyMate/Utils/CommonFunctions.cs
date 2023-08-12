@@ -123,4 +123,22 @@ internal static class CommonFunctions
         CommonProperties.Settings.ReadXml(result);
         return true;
     }
+
+    internal static bool ClearTemporaryFiles()
+    {
+        try
+        {
+            foreach (var directory in CommonProperties.DirectoriesWithTemporaryFiles)
+            {
+                if (!Directory.Exists(directory)) return true;
+                Directory.Delete(directory, true);
+            }
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }

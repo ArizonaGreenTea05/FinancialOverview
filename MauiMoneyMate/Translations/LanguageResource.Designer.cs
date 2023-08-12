@@ -124,6 +124,15 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleanup finished successfully.
+        /// </summary>
+        internal static string CleanupFinishedSuccessfully {
+            get {
+                return ResourceManager.GetString("CleanupFinishedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not download update..
         /// </summary>
         internal static string CouldNotDownloadUpdate {
@@ -183,6 +192,24 @@ namespace MauiMoneyMate.Translations {
         internal static string DeleteBtn_Text {
             get {
                 return ResourceManager.GetString("DeleteBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string DeleteTemporaryFilesBtn_FontSize {
+            get {
+                return ResourceManager.GetString("DeleteTemporaryFilesBtn.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete temporary system files.
+        /// </summary>
+        internal static string DeleteTemporaryFilesBtn_Text {
+            get {
+                return ResourceManager.GetString("DeleteTemporaryFilesBtn.Text", resourceCulture);
             }
         }
         
@@ -250,38 +277,29 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 30.
+        ///   Looks up a localized string similar to Error while deleting temporary files.
         /// </summary>
-        internal static string ElseLbl_FontSize {
+        internal static string ErrorWhileDeletingTemporaryFiles {
             get {
-                return ResourceManager.GetString("ElseLbl.FontSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Else.
-        /// </summary>
-        internal static string ElseLbl_Text {
-            get {
-                return ResourceManager.GetString("ElseLbl.Text", resourceCulture);
+                return ResourceManager.GetString("ErrorWhileDeletingTemporaryFiles", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 13.
         /// </summary>
-        internal static string ExportSettings_FontSize {
+        internal static string ExportSettingsBtn_FontSize {
             get {
-                return ResourceManager.GetString("ExportSettings.FontSize", resourceCulture);
+                return ResourceManager.GetString("ExportSettingsBtn.FontSize", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Export settings.
         /// </summary>
-        internal static string ExportSettings_Text {
+        internal static string ExportSettingsBtn_Text {
             get {
-                return ResourceManager.GetString("ExportSettings.Text", resourceCulture);
+                return ResourceManager.GetString("ExportSettingsBtn.Text", resourceCulture);
             }
         }
         
@@ -432,18 +450,18 @@ namespace MauiMoneyMate.Translations {
         /// <summary>
         ///   Looks up a localized string similar to 13.
         /// </summary>
-        internal static string ImportSettings_FontSize {
+        internal static string ImportSettingsBtn_FontSize {
             get {
-                return ResourceManager.GetString("ImportSettings.FontSize", resourceCulture);
+                return ResourceManager.GetString("ImportSettingsBtn.FontSize", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Import settings.
         /// </summary>
-        internal static string ImportSettings_Text {
+        internal static string ImportSettingsBtn_Text {
             get {
-                return ResourceManager.GetString("ImportSettings.Text", resourceCulture);
+                return ResourceManager.GetString("ImportSettingsBtn.Text", resourceCulture);
             }
         }
         
@@ -849,6 +867,24 @@ namespace MauiMoneyMate.Translations {
         internal static string StartupLbl_Text {
             get {
                 return ResourceManager.GetString("StartupLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string SystemLbl_FontSize {
+            get {
+                return ResourceManager.GetString("SystemLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string SystemLbl_Text {
+            get {
+                return ResourceManager.GetString("SystemLbl.Text", resourceCulture);
             }
         }
         

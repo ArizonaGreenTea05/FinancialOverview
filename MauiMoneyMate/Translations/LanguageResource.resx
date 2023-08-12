@@ -435,22 +435,34 @@
   <data name="UseSystemTheme" xml:space="preserve">
     <value>Use system theme</value>
   </data>
-  <data name="ElseLbl.FontSize" xml:space="preserve">
+  <data name="SystemLbl.FontSize" xml:space="preserve">
     <value>30</value>
   </data>
-  <data name="ElseLbl.Text" xml:space="preserve">
-    <value>Else</value>
+  <data name="SystemLbl.Text" xml:space="preserve">
+    <value>System</value>
   </data>
-  <data name="ExportSettings.FontSize" xml:space="preserve">
+  <data name="ExportSettingsBtn.FontSize" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="ExportSettings.Text" xml:space="preserve">
+  <data name="ExportSettingsBtn.Text" xml:space="preserve">
     <value>Export settings</value>
   </data>
-  <data name="ImportSettings.FontSize" xml:space="preserve">
+  <data name="ImportSettingsBtn.FontSize" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="ImportSettings.Text" xml:space="preserve">
+  <data name="ImportSettingsBtn.Text" xml:space="preserve">
     <value>Import settings</value>
+  </data>
+  <data name="DeleteTemporaryFilesBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="DeleteTemporaryFilesBtn.Text" xml:space="preserve">
+    <value>Delete temporary system files</value>
+  </data>
+  <data name="ErrorWhileDeletingTemporaryFiles" xml:space="preserve">
+    <value>Error while deleting temporary files</value>
+  </data>
+  <data name="CleanupFinishedSuccessfully" xml:space="preserve">
+    <value>Cleanup finished successfully</value>
   </data>
 </root>

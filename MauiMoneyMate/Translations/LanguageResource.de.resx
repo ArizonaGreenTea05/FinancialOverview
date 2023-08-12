@@ -288,13 +288,22 @@
   <data name="UseSystemTheme" xml:space="preserve">
     <value>Systemthema verwenden</value>
   </data>
-  <data name="ElseLbl.Text" xml:space="preserve">
+  <data name="SystemLbl.Text" xml:space="preserve">
     <value>Sonstiges</value>
   </data>
-  <data name="ExportSettings.Text" xml:space="preserve">
+  <data name="ExportSettingsBtn.Text" xml:space="preserve">
     <value>Einstellungen exportieren</value>
   </data>
-  <data name="ImportSettings.Text" xml:space="preserve">
+  <data name="ImportSettingsBtn.Text" xml:space="preserve">
     <value>Einstellungen importieren</value>
+  </data>
+  <data name="DeleteTemporaryFilesBtn.Text" xml:space="preserve">
+    <value>Temporäre Systemdateien löschen</value>
+  </data>
+  <data name="ErrorWhileDeletingTemporaryFiles" xml:space="preserve">
+    <value>Fehler beim Löschen temporärer Systemdateien</value>
+  </data>
+  <data name="CleanupFinishedSuccessfully" xml:space="preserve">
+    <value>Cleanup wurde erfolgreich beendet</value>
   </data>
 </root>

@@ -39,4 +39,7 @@ public partial class SettingsPage : ContentPage
 
     private void ImportSettingsBtn_OnClicked(object sender, EventArgs e)
         => _viewModel.ImportSettingsBtn_OnClicked(sender, e);
+
+    private void DeleteTemporaryFilesBtn_OnClicked(object sender, EventArgs e)
+        => _viewModel.DeleteTemporaryFilesBtn_OnClicked(sender, e);
 }
