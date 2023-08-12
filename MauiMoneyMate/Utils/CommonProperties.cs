@@ -124,6 +124,10 @@ internal static class CommonProperties
             UpdateSettings(DesignSettings, nameof(CurrentAppTheme), Convert.ToString(value));
         }
     }
+    internal static List<string> DirectoriesWithTemporaryFiles { get; } = new()
+    {
+        UpdateDirectory
+    };
 
     internal static bool UpdateAvailable { get; set; } = false;
 

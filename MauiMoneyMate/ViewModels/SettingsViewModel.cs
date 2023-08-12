@@ -40,11 +40,13 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty] private int _currentTheme;
 
-    [ObservableProperty] private ResourceLabel _elseLbl;
+    [ObservableProperty] private ResourceLabel _systemLbl;
 
-    [ObservableProperty] private ResourceButton _exportSettings;
+    [ObservableProperty] private ResourceButton _exportSettingsBtn;
 
-    [ObservableProperty] private ResourceButton _importSettings;
+    [ObservableProperty] private ResourceButton _importSettingsBtn;
+
+    [ObservableProperty] private ResourceButton _deleteTemporaryFilesBtn;
 
     #endregion
 
@@ -147,6 +149,15 @@ public partial class SettingsViewModel : ObservableObject
         }
     }
 
+    internal void DeleteTemporaryFilesBtn_OnClicked(object sender, EventArgs e)
+    {
+        Toast.Make(
+            CommonFunctions.ClearTemporaryFiles()
+                ? LanguageResource.CleanupFinishedSuccessfully
+                : LanguageResource.ErrorWhileDeletingTemporaryFiles
+                ).Show();
+    }
+
     #endregion
 
     #region private Methods
@@ -173,9 +184,10 @@ public partial class SettingsViewModel : ObservableObject
             LanguageResource.Light,
             LanguageResource.Dark
         };
-        ElseLbl = new ResourceLabel(nameof(ElseLbl));
-        ExportSettings = new ResourceButton(nameof(ExportSettings));
-        ImportSettings = new ResourceButton(nameof(ImportSettings));
+        SystemLbl = new ResourceLabel(nameof(SystemLbl));
+        ExportSettingsBtn = new ResourceButton(nameof(ExportSettingsBtn));
+        ImportSettingsBtn = new ResourceButton(nameof(ImportSettingsBtn));
+        DeleteTemporaryFilesBtn = new ResourceButton(nameof(DeleteTemporaryFilesBtn));
     }
 
     #endregion
