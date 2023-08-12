@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
@@ -15,13 +16,58 @@ namespace MauiMoneyMate.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
+    public sealed class SalesItem
+    {
+        public decimal Value { get; }
+        public string Name { get; }
+        public string Comment { get; }
+        public object[] DataRow { get; }
+
+        public SalesItem(DataRow dataRow)
+        {
+            DataRow = dataRow.ItemArray;
+            Value = Convert.ToDecimal(dataRow[0]);
+            Name = Convert.ToString(dataRow[1]);
+            Comment = Convert.ToString(dataRow[2]);
+        }
+
+        public SalesItem(object[] dataRow)
+        {
+            DataRow = dataRow;
+            Value = Convert.ToDecimal(dataRow[0]);
+            Name = Convert.ToString(dataRow[1]);
+            Comment = Convert.ToString(dataRow[2]);
+        }
+
+        public SalesItem(decimal value, string name, string comment)
+        {
+            Value = value;
+            Name = name;
+            Comment = comment;
+            DataRow = new object[] { Value, Name, Comment };
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj.GetType() != typeof(SalesItem)) return false;
+            var si = obj as SalesItem;
+            return Value == si.Value && Name == si.Name && Comment == si.Comment;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(DataRow, Value, Name, Comment);
+        }
+    }
+
     #region private Observable Properties
 
-    [ObservableProperty] private ObservableCollection<string> _monthlySales;
+    [ObservableProperty] private ObservableCollection<SalesItem> _monthlySales;
 
-    [ObservableProperty] private ObservableCollection<string> _yearlySales;
+    [ObservableProperty] private ObservableCollection<SalesItem> _yearlySales;
 
-    [ObservableProperty] private ObservableCollection<string> _allSales;
+    [ObservableProperty] private ObservableCollection<SalesItem> _allSales;
 
     [ObservableProperty] private string _financialOverviewTitle;
 
@@ -106,9 +152,7 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Members
-
-    private readonly Dictionary<string, DataRow> _monthlySalesDict;
-    private readonly Dictionary<string, DataRow> _yearlySalesDict;
+    
     private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
     private MainPage _mainPage;
 
@@ -127,12 +171,9 @@ public partial class MainViewModel : ObservableObject
         DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
         CommonProperties.FinancialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
-        _monthlySalesDict = new Dictionary<string, DataRow>();
-        _yearlySalesDict = new Dictionary<string, DataRow>();
-
-        MonthlySales = new ObservableCollection<string>();
-        YearlySales = new ObservableCollection<string>();
-        AllSales = new ObservableCollection<string>();
+        MonthlySales = new ObservableCollection<SalesItem>();
+        YearlySales = new ObservableCollection<SalesItem>();
+        AllSales = new ObservableCollection<SalesItem>();
 
         SelectedTimeUnit = (int)CommonProperties.FinancialOverview.UnitOfAll;
     }
@@ -153,8 +194,7 @@ public partial class MainViewModel : ObservableObject
             return;
         }
 
-        var tmp = ConvertToLabelText(monthlySalesEntry, MonthlyNameEntryInput,
-            MonthlyAdditionEntryInput);
+        var tmp = new SalesItem(monthlySalesEntry, MonthlyNameEntryInput, MonthlyAdditionEntryInput);
         if (MonthlySales.Contains(tmp))
         {
             Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, MonthlySalesLbl.Text, tmp))
@@ -162,9 +202,7 @@ public partial class MainViewModel : ObservableObject
             return;
         }
 
-        _monthlySalesDict[tmp] =
-            CommonProperties.FinancialOverview.MonthlySales.Rows.Add(MonthlySalesEntryInput, MonthlyNameEntryInput,
-                MonthlyAdditionEntryInput);
+        CommonProperties.FinancialOverview.MonthlySales.Rows.Add(tmp.DataRow);
         MonthlySales.Add(tmp);
         MonthlySalesEntryInput = string.Empty;
         MonthlyNameEntryInput = string.Empty;
@@ -185,8 +223,7 @@ public partial class MainViewModel : ObservableObject
             return;
         }
 
-        var tmp = ConvertToLabelText(yearlySalesEntry, YearlyNameEntryInput,
-            YearlyAdditionEntryInput);
+        var tmp = new SalesItem(yearlySalesEntry, YearlyNameEntryInput, YearlyAdditionEntryInput);
         if (YearlySales.Contains(tmp))
         {
             Toast.Make(string.Format(LanguageResource.AlreadyContainsEntry, YearlySalesLbl.Text, tmp))
@@ -194,9 +231,7 @@ public partial class MainViewModel : ObservableObject
             return;
         }
 
-        _yearlySalesDict[tmp] =
-            CommonProperties.FinancialOverview.YearlySales.Rows.Add(YearlySalesEntryInput, YearlyNameEntryInput,
-                YearlyAdditionEntryInput);
+        CommonProperties.FinancialOverview.YearlySales.Rows.Add(tmp.DataRow);
         YearlySales.Add(tmp);
         YearlySalesEntryInput = string.Empty;
         YearlyNameEntryInput = string.Empty;
@@ -212,49 +247,49 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void EditMonthly(string s)
     {
-        if (!MonthlySales.Contains(s)) return;
+        /*if (!MonthlySales.Contains(s)) return;
         var tmp = s.Split('|');
         MonthlySalesEntryInput = tmp[0].Trim();
         MonthlyNameEntryInput = tmp[1].Trim();
         if (tmp.Length > 2) MonthlyAdditionEntryInput = tmp[2].Trim();
-        DeleteMonthly(s);
+        DeleteMonthly(s);*/
     }
 
     [RelayCommand]
     private void DeleteMonthly(string s)
     {
-        if (MonthlySales.Contains(s))
+        /*if (MonthlySales.Contains(s))
         {
             MonthlySales.Remove(s);
             _monthlySalesDict[s].Delete();
         }
 
         UpdateAllSales();
-        DataIsSaved = false;
+        DataIsSaved = false;*/
     }
 
     [RelayCommand]
     private void EditYearly(string s)
     {
-        if (!YearlySales.Contains(s)) return;
+        /*if (!YearlySales.Contains(s)) return;
         var tmp = s.Split('|');
         YearlySalesEntryInput = tmp[0].Trim();
         YearlyNameEntryInput = tmp[1].Trim();
         if (tmp.Length > 2) YearlyAdditionEntryInput = tmp[2].Trim();
-        DeleteYearly(s);
+        DeleteYearly(s);*/
     }
 
     [RelayCommand]
     private void DeleteYearly(string s)
     {
-        if (YearlySales.Contains(s))
+        /*if (YearlySales.Contains(s))
         {
             YearlySales.Remove(s);
             _yearlySalesDict[s].Delete();
         }
 
         UpdateAllSales();
-        DataIsSaved = false;
+        DataIsSaved = false;*/
     }
 
     [RelayCommand]
@@ -433,40 +468,22 @@ public partial class MainViewModel : ObservableObject
     {
         MonthlySales.Clear();
         foreach (DataRow row in CommonProperties.FinancialOverview.MonthlySales.Rows)
-        {
-            var tmp = ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
-            MonthlySales.Add(tmp);
-            _monthlySalesDict[tmp] = row;
-        }
+            MonthlySales.Add(new SalesItem(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2])));
     }
 
     private void UpdateYearlySales()
     {
         YearlySales.Clear();
         foreach (DataRow row in CommonProperties.FinancialOverview.YearlySales.Rows)
-        {
-            var tmp = ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]));
-            YearlySales.Add(tmp);
-            _yearlySalesDict[tmp] = row;
-        }
+            YearlySales.Add(new SalesItem(row));
     }
 
     private void UpdateAllSales()
     {
-        var tmp = CommonProperties.FinancialOverview.AllSales.Copy();
         AllSales.Clear();
-        foreach (DataRow row in tmp.Rows)
-            AllSales.Add(ConvertToLabelText(Convert.ToDecimal(row[0]), Convert.ToString(row[1]),
-                Convert.ToString(row[2])));
+        foreach (DataRow row in CommonProperties.FinancialOverview.AllSales.Rows)
+            AllSales.Add(new SalesItem(row));
         RestMoney = CommonProperties.FinancialOverview.GetRest();
-    }
-
-    private string ConvertToLabelText(decimal sales, string name, string addition = null)
-    {
-        return $@"{sales} | {name} {(string.IsNullOrWhiteSpace(addition)
-                ? ""
-                : $" | {addition}"
-            )}";
     }
 
     private void LoadResources()

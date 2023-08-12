@@ -86,11 +86,11 @@
                         ItemsSource="{Binding AllSales}">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
+                <DataTemplate>
                     <Grid>
                         <Frame Margin="3"
                                Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
+                            <Label Text="{Binding Name}"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
@@ -136,27 +136,24 @@
 
         <Button Text="{Binding MonthlyAddBtn.Text}"
                 FontSize="{Binding MonthlyAddBtn.FontSize}"
-                x:Name="MonthlyAddBtn"
                 Grid.Column="90"
                 Grid.ColumnSpan="10"
                 Grid.Row="11"
                 Scale=".8"
                 Command="{Binding AddMonthlyCommand}"/>
-
         <CollectionView Grid.Column="54"
                         Grid.ColumnSpan="37"
                         Grid.Row="12"
                         VerticalOptions="Start"
                         ItemsSource="{Binding MonthlySales}">
-                
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
+                <DataTemplate>
                     <Grid RowDefinitions="Auto"
                           ColumnDefinitions="*, Auto, Auto">
                         <Frame Grid.Column="0"
                                Margin="3"
                                Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
+                            <Label Text="{Binding Name}"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
@@ -228,15 +225,14 @@
                         Grid.Row="15 "
                         VerticalOptions="Start"
                         ItemsSource="{Binding YearlySales}">
-
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
+                <DataTemplate>
                     <Grid RowDefinitions="Auto"
                           ColumnDefinitions="*, Auto, Auto">
                         <Frame Grid.Column="0"
                                Margin="3"
                                Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
+                            <Label Text="{Binding Name}"
                                    LineBreakMode="WordWrap"
                                    Style="{StaticResource LabelSecondary}"/>
                         </Frame>
