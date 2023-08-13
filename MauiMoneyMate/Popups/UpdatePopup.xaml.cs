@@ -26,14 +26,15 @@ public partial class UpdatePopup : Popup
         UpdateBtn = new ResourceButton(nameof(UpdateBtn), Update);
     }
 
-    protected override void OnDismissedByTappingOutsideOfPopup()
+    protected override Task OnDismissedByTappingOutsideOfPopup()
     {
         base.OnDismissedByTappingOutsideOfPopup();
-        if (!_updateThread.IsAlive) return;
+        if (!_updateThread.IsAlive) return Task.CompletedTask;
         _updateThread.Join();
-        if (!_updateFinishedSuccessful) return;
+        if (!_updateFinishedSuccessful) return Task.CompletedTask;
         if (Window != null) Application.Current?.CloseWindow(Window);
         Environment.Exit(1);
+        return Task.CompletedTask;
     }
 
     private void Update_Clicked(object sender, EventArgs e)
