@@ -119,12 +119,10 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel()
     {
         TimeUnits = new ObservableCollection<string>();
-        LoadResources();
 
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
         if (tmpHistory.Count >= 1 && string.IsNullOrEmpty(tmpHistory[^1])) tmpHistory.RemoveAt(tmpHistory.Count - 1);
         CommonProperties.FinancialOverview.FileHistory = tmpHistory;
-        DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
         CommonProperties.FinancialOverview.OnDefaultFilePathChanged += OnDefaultFilePathChanged;
 
         _monthlySalesDict = new Dictionary<string, DataRow>();
@@ -134,7 +132,7 @@ public partial class MainViewModel : ObservableObject
         YearlySales = new ObservableCollection<string>();
         AllSales = new ObservableCollection<string>();
 
-        SelectedTimeUnit = (int)CommonProperties.FinancialOverview.UnitOfAll;
+        SelectedTimeUnit = -1;
     }
 
     #endregion
@@ -296,9 +294,15 @@ public partial class MainViewModel : ObservableObject
 
     #region internal Event Handlers
 
+    internal void OnPageInitialized()
+    {
+        LoadSettings();
+        LoadResources();
+        DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
+    }
+
     internal void OnAppearing()
     {
-        CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
         UpdateSales();
         DisplaySavingState();
     }
@@ -360,6 +364,12 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private static void LoadSettings()
+    {
+        CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
+        CommonFunctions.UpdateAppLanguage(CommonProperties.CurrentAppLanguage);
+    }
 
     private static void UpdateProgram()
     {
@@ -495,6 +505,7 @@ public partial class MainViewModel : ObservableObject
         TimeUnits.Clear();
         foreach (var name in Enum.GetNames(typeof(FinancialOverview.Unit)))
             TimeUnits.Add(LanguageResource.ResourceManager.GetString(name) ?? string.Empty);
+        SelectedTimeUnit = (int)CommonProperties.FinancialOverview.UnitOfAll;
     }
 
     #endregion

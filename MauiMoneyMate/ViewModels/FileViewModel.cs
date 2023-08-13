@@ -53,7 +53,6 @@ public partial class FileViewModel : ObservableObject
 
     public FileViewModel()
     {
-        LoadResources();
     }
 
     #endregion
@@ -134,6 +133,11 @@ public partial class FileViewModel : ObservableObject
     #endregion
 
     #region internal Event Handlers
+
+    internal void OnInitialized()
+    {
+        LoadResources();
+    }
 
     internal void OnAppearing()
     {

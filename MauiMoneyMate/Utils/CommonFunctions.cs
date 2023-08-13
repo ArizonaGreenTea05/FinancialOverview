@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 using System.IO.Compression;
+using System.Runtime.InteropServices;
 using CommonLibrary;
+using MauiMoneyMate.Translations;
 
 namespace MauiMoneyMate.Utils;
 
@@ -103,6 +106,13 @@ internal static class CommonFunctions
         Application.Current.UserAppTheme = (AppTheme)value;
     }
 
+    internal static void UpdateAppLanguage(int value)
+    {
+        if (value > CommonProperties.Languages.Count || value < 0) return;
+        if (value == 0) return;
+        Thread.CurrentThread.CurrentUICulture = CommonProperties.Languages[value - 1];
+    }
+
     internal static bool ExportSettings()
     {
         if (!File.Exists(CommonProperties.SettingsFilePath)) return false;
@@ -148,4 +158,7 @@ internal static class CommonFunctions
             return false;
         }
     }
+
+    [DllImport("kernel32.dll")]
+    internal static extern int GetUserDefaultLCID();
 }

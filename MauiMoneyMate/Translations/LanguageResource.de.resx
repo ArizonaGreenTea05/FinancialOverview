@@ -214,7 +214,7 @@
     <value>Bearb.</value>
   </data>
   <data name="AddNewLbl.Text" xml:space="preserve">
-    <value>Neues Dokument erstellen</value>
+    <value>Neues Dokument</value>
   </data>
   <data name="CouldNotDownloadUpdate" xml:space="preserve">
     <value>Update konnte nicht heruntergeladen werden.</value>
@@ -311,5 +311,20 @@
   </data>
   <data name="ImportFinishedSuccessfully" xml:space="preserve">
     <value>Importieren erfolgreich abgeschlossen</value>
+  </data>
+  <data name="LanguageLbl.Text" xml:space="preserve">
+    <value>Sprache:</value>
+  </data>
+  <data name="UseSystemLanguage" xml:space="preserve">
+    <value>Systemsprache verwenden</value>
+  </data>
+  <data name="RestartTheProgramToApplyTheChanges" xml:space="preserve">
+    <value>Starten Sie das Programm neu, um die Änderungen anzuwenden</value>
+  </data>
+  <data name="AddNewLbl.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
+    <value>15</value>
   </data>
 </root>

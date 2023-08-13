@@ -471,4 +471,16 @@
   <data name="ImportFinishedSuccessfully" xml:space="preserve">
     <value>Import finished successfully</value>
   </data>
+  <data name="LanguageLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="LanguageLbl.Text" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="UseSystemLanguage" xml:space="preserve">
+    <value>Use system language</value>
+  </data>
+  <data name="RestartTheProgramToApplyTheChanges" xml:space="preserve">
+    <value>Restart the program to apply the changes</value>
+  </data>
 </root>
