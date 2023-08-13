@@ -119,9 +119,16 @@ internal static class CommonFunctions
             new Dictionary<DevicePlatform, IEnumerable<string>>
                 { { DevicePlatform.WinUI, new[] { $".{CommonProperties.AppSettingsFileEnding}" } } }));
         if (null == result) return false;
-        CommonProperties.Settings.Clear();
-        CommonProperties.Settings.ReadXml(result);
-        return true;
+        try
+        {
+            CommonProperties.Settings.Clear();
+            CommonProperties.Settings.ReadXml(result);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     internal static bool ClearTemporaryFiles()

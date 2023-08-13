@@ -465,4 +465,10 @@
   <data name="CleanupFinishedSuccessfully" xml:space="preserve">
     <value>Cleanup finished successfully</value>
   </data>
+  <data name="ImportFailed" xml:space="preserve">
+    <value>Import failed</value>
+  </data>
+  <data name="ImportFinishedSuccessfully" xml:space="preserve">
+    <value>Import finished successfully</value>
+  </data>
 </root>
