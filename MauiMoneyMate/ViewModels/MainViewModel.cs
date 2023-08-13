@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
@@ -118,6 +119,16 @@ public partial class MainViewModel : ObservableObject
 
     public MainViewModel()
     {
+        var currentProcess = Process.GetCurrentProcess();
+        var processes = Process.GetProcessesByName(currentProcess.ProcessName);
+        if (processes.Length > 1)
+        {
+            Toast.Make(LanguageResource.AnInstanceOfMauiMoneyMateAlreadyExists).Show();
+            CommonFunctions.SetForegroundWindow(processes.Where(p => p.Id != currentProcess.Id)
+                .Select(p => p.MainWindowHandle).ToList()[0]);
+            Environment.Exit(1);
+        }
+
         TimeUnits = new ObservableCollection<string>();
 
         var tmpHistory = LoadStringFromAppData().Replace("\r", "").Split("\n").ToList();
@@ -290,6 +301,12 @@ public partial class MainViewModel : ObservableObject
         SaveListToAppData(CommonProperties.FinancialOverview.FileHistory);
     }
 
+    private void Window_OnDestroying(object sender, EventArgs e)
+    {
+        if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically)
+            UpdateProgram();
+    }
+
     #endregion
 
     #region internal Event Handlers
@@ -314,11 +331,7 @@ public partial class MainViewModel : ObservableObject
         CommonProperties.FinancialOverview.ClearHistory();
         CommonProperties.FinancialOverview.AddCurrentStateToHistory();
 
-        Application.Current!.MainPage!.Window.Destroying += (sender, args) =>
-        {
-            if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically)
-                new Thread(UpdateProgram).Start();
-        };
+        Application.Current!.MainPage!.Window.Destroying += Window_OnDestroying;
 
         if (CommonProperties.CheckForUpdatesOnStart || CommonProperties.DownloadUpdatesAutomatically)
             CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();

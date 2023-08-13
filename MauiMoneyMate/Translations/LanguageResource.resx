@@ -483,4 +483,7 @@
   <data name="RestartTheProgramToApplyTheChanges" xml:space="preserve">
     <value>Restart the program to apply the changes</value>
   </data>
+  <data name="AnInstanceOfMauiMoneyMateAlreadyExists" xml:space="preserve">
+    <value>An instance of MauiMoneyMate already exists</value>
+  </data>
 </root>

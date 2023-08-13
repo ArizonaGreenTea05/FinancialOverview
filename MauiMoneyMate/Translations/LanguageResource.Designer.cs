@@ -106,6 +106,15 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An instance of MauiMoneyMate already exists.
+        /// </summary>
+        internal static string AnInstanceOfMauiMoneyMateAlreadyExists {
+            get {
+                return ResourceManager.GetString("AnInstanceOfMauiMoneyMateAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string CheckForUpdatesOnStartLbl_FontSize {
