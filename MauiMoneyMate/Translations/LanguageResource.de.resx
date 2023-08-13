@@ -327,4 +327,7 @@
   <data name="SaveFileAsLbl.FontSize" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="AnInstanceOfMauiMoneyMateAlreadyExists" xml:space="preserve">
+    <value>Eine Instanz von MauiMoneyMate existiert bereits</value>
+  </data>
 </root>

@@ -9,6 +9,9 @@ namespace MauiMoneyMate.Utils;
 
 internal static class CommonFunctions
 {
+    [DllImport("user32.dll")]
+    internal static extern bool SetForegroundWindow(IntPtr hWnd);
+
     internal static bool CheckForUpdates()
     {
         var tmp = GitHubAccessor.GetLatestReleaseInfo(CommonProperties.RepositoryOwner,
