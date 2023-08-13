@@ -1,3 +1,4 @@
+using MauiMoneyMate.Utils;
 using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate.Pages;
@@ -11,6 +12,7 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = _viewModel = fileViewModel;
+        _viewModel.OnPageInitialized();
     }
 
     protected override void OnAppearing()
@@ -42,4 +44,10 @@ public partial class SettingsPage : ContentPage
 
     private void DeleteTemporaryFilesBtn_OnClicked(object sender, EventArgs e)
         => _viewModel.DeleteTemporaryFilesBtn_OnClicked(sender, e);
+
+    private void LanguagePkr_OnSelectedIndexChanged(object sender, EventArgs e)
+        => _viewModel.LanguagePkr_OnSelectedIndexChanged(sender, e);
+
+    private void SettingsPage_OnDisappearing(object sender, EventArgs e)
+        => _viewModel.SettingsPage_OnDisappearing(sender, e);
 }

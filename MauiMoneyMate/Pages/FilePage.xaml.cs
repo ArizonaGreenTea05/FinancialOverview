@@ -10,6 +10,7 @@ public partial class FilePage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = _viewModel = fileViewModel;
+        _viewModel.OnInitialized();
     }
 
     protected override void OnAppearing()

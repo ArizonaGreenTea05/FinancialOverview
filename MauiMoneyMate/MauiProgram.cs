@@ -1,8 +1,5 @@
-﻿using CommonLibrary;
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 using MauiMoneyMate.Pages;
-using MauiMoneyMate.Popups;
-using MauiMoneyMate.Utils;
 using MauiMoneyMate.ViewModels;
 
 namespace MauiMoneyMate

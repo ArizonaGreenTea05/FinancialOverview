@@ -511,6 +511,24 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string LanguageLbl_FontSize {
+            get {
+                return ResourceManager.GetString("LanguageLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language:.
+        /// </summary>
+        internal static string LanguageLbl_Text {
+            get {
+                return ResourceManager.GetString("LanguageLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
         internal static string Light {
@@ -723,6 +741,15 @@ namespace MauiMoneyMate.Translations {
         internal static string PleaseCheckYourInternetConnectionAndTryAgainLater {
             get {
                 return ResourceManager.GetString("PleaseCheckYourInternetConnectionAndTryAgainLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart the program to apply the changes.
+        /// </summary>
+        internal static string RestartTheProgramToApplyTheChanges {
+            get {
+                return ResourceManager.GetString("RestartTheProgramToApplyTheChanges", resourceCulture);
             }
         }
         
@@ -984,6 +1011,15 @@ namespace MauiMoneyMate.Translations {
         internal static string UpdateWillBeInstalledOnClosingTheApplication {
             get {
                 return ResourceManager.GetString("UpdateWillBeInstalledOnClosingTheApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use system language.
+        /// </summary>
+        internal static string UseSystemLanguage {
+            get {
+                return ResourceManager.GetString("UseSystemLanguage", resourceCulture);
             }
         }
         

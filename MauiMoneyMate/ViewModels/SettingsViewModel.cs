@@ -40,6 +40,12 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty] private int _currentTheme;
 
+    [ObservableProperty] private ResourceLabel _languageLbl;
+
+    [ObservableProperty] private ObservableCollection<string> _languages;
+
+    [ObservableProperty] private int _currentLanguage;
+
     [ObservableProperty] private ResourceLabel _systemLbl;
 
     [ObservableProperty] private ResourceButton _exportSettingsBtn;
@@ -72,25 +78,38 @@ public partial class SettingsViewModel : ObservableObject
 
     public SettingsViewModel()
     {
-        LoadResources();
+        CurrentTheme = -1;
+        CurrentLanguage = -1;
     }
 
     #endregion
 
     #region internal Event Handlers
 
+    internal void OnPageInitialized()
+    {
+        LoadResources();
+        LoadSettings();
+    }
+
     internal void OnAppearing()
     {
         DisplaySavingState();
-        LoadSettings();
         PageLoaded = true;
     }
+
+    internal void SettingsPage_OnDisappearing(object sender, EventArgs eventArgs)
+    {
+        PageLoaded = false;
+    }
+
     internal void LoadSettings()
     {
         CheckForUpdatesOnStart = CommonProperties.CheckForUpdatesOnStart;
         DownloadUpdatesAutomatically = CommonProperties.DownloadUpdatesAutomatically;
         ShowFilePathInTitleBar = CommonProperties.ShowFilePathInTitleBar;
         CurrentTheme = CommonProperties.CurrentAppTheme;
+        CurrentLanguage= CommonProperties.CurrentAppLanguage;
     }
 
     internal void CheckForUpdatesOnStartChk_OnCheckedChanged(object sender, CheckedChangedEventArgs checkedChangedEventArgs)
@@ -133,6 +152,13 @@ public partial class SettingsViewModel : ObservableObject
     {
         if (!PageLoaded) return;
         CommonProperties.CurrentAppTheme = ((Picker)sender).SelectedIndex;
+    }
+
+    public void LanguagePkr_OnSelectedIndexChanged(object sender, EventArgs eventArgs)
+    {
+        if (!PageLoaded) return;
+        CommonProperties.CurrentAppLanguage = ((Picker)sender).SelectedIndex;
+        Toast.Make(LanguageResource.RestartTheProgramToApplyTheChanges).Show();
     }
 
     internal void ExportSettingsBtn_OnClicked(object sender, EventArgs e)
@@ -183,6 +209,13 @@ public partial class SettingsViewModel : ObservableObject
             LanguageResource.Light,
             LanguageResource.Dark
         };
+        LanguageLbl = new ResourceLabel(nameof(LanguageLbl));
+        Languages = new ObservableCollection<string>
+        {
+            LanguageResource.UseSystemLanguage
+        };
+        foreach (var lang in CommonProperties.Languages.Select(item => item.DisplayName))
+            Languages.Add(lang);
         SystemLbl = new ResourceLabel(nameof(SystemLbl));
         ExportSettingsBtn = new ResourceButton(nameof(ExportSettingsBtn));
         ImportSettingsBtn = new ResourceButton(nameof(ImportSettingsBtn));

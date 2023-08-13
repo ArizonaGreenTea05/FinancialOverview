@@ -1,6 +1,8 @@
 ﻿using System.Data;
+using System.Globalization;
 using BusinessLogic;
 using CommonLibrary;
+using MauiMoneyMate.Translations;
 using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
@@ -43,8 +45,8 @@ internal static class CommonProperties
     };
     private static readonly DataTable DesignSettings = new(nameof(DesignSettings))
     {
-        Columns = { nameof(ShowFilePathInTitleBar), nameof(CurrentAppTheme)},
-        Rows = { new object[] { "True", "0" } }
+        Columns = { nameof(ShowFilePathInTitleBar), nameof(CurrentAppTheme), nameof(CurrentAppLanguage) },
+        Rows = { new object[] { "True", "0", "0" } }
     };
 
     private static DataSet _settings;
@@ -75,7 +77,8 @@ internal static class CommonProperties
         {
             if (Settings.Tables[nameof(StartupSettings)]!.Rows.Count <= 0)
                 Settings.Tables[nameof(StartupSettings)]!.Rows.Add("False", "False");
-            return Convert.ToBoolean(Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(CheckForUpdatesOnStart)]);
+            var tmp = Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(CheckForUpdatesOnStart)];
+            return tmp is DBNull || Convert.ToBoolean(tmp);
         }
         set
         {
@@ -90,7 +93,8 @@ internal static class CommonProperties
         {
             if (Settings.Tables[nameof(StartupSettings)]!.Rows.Count <= 0)
                 Settings.Tables[nameof(StartupSettings)]!.Rows.Add("False", "False");
-            return Convert.ToBoolean(Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(DownloadUpdatesAutomatically)]);
+            var tmp = Settings.Tables[nameof(StartupSettings)]!.Rows[0][nameof(DownloadUpdatesAutomatically)];
+            return tmp is DBNull || Convert.ToBoolean(tmp);
         }
         set
         {
@@ -104,8 +108,9 @@ internal static class CommonProperties
         get
         {
             if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
-                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0");
-            return Convert.ToBoolean(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(ShowFilePathInTitleBar)]);
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0", "0");
+            var tmp = Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(ShowFilePathInTitleBar)];
+            return tmp is DBNull || Convert.ToBoolean(tmp);
         }
         set => UpdateSettings(DesignSettings, nameof(ShowFilePathInTitleBar), Convert.ToString(value));
     }
@@ -115,8 +120,9 @@ internal static class CommonProperties
         get
         {
             if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
-                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0");
-            return Convert.ToInt32(Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(CurrentAppTheme)]);
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0", "0");
+            var tmp = Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(CurrentAppTheme)];
+            return tmp is DBNull ? 0 : Convert.ToInt32(tmp);
         }
         set
         {
@@ -124,12 +130,30 @@ internal static class CommonProperties
             UpdateSettings(DesignSettings, nameof(CurrentAppTheme), Convert.ToString(value));
         }
     }
+    public static int CurrentAppLanguage
+    {
+        get
+        {
+            if (Settings.Tables[nameof(DesignSettings)]!.Rows.Count <= 0)
+                Settings.Tables[nameof(DesignSettings)]!.Rows.Add("True", "0", "0");
+            var tmp = Settings.Tables[nameof(DesignSettings)]!.Rows[0][nameof(CurrentAppLanguage)];
+            return tmp is DBNull ? 0 : Convert.ToInt32(tmp);
+        }
+        set
+        {
+            CommonFunctions.UpdateAppLanguage(value);
+            UpdateSettings(DesignSettings, nameof(CurrentAppLanguage), Convert.ToString(value));
+        }
+    }
+
     internal static List<string> DirectoriesWithTemporaryFiles { get; } = new()
     {
         UpdateDirectory
     };
 
     internal static bool UpdateAvailable { get; set; } = false;
+
+    internal static List<CultureInfo> Languages { get; } = LanguageResource.ResourceManager.EnumSatelliteLanguages();
 
     #region helper methods
 

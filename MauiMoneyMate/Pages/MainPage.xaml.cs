@@ -10,6 +10,7 @@ namespace MauiMoneyMate.Pages
         {
             InitializeComponent();
             BindingContext = _viewModel = viewModel;
+            _viewModel.OnPageInitialized();
         }
 
         protected override void OnAppearing()
