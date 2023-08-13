@@ -306,4 +306,10 @@
   <data name="CleanupFinishedSuccessfully" xml:space="preserve">
     <value>Cleanup wurde erfolgreich beendet</value>
   </data>
+  <data name="ImportFailed" xml:space="preserve">
+    <value>Importieren fehlgeschlagen</value>
+  </data>
+  <data name="ImportFinishedSuccessfully" xml:space="preserve">
+    <value>Importieren erfolgreich abgeschlossen</value>
+  </data>
 </root>

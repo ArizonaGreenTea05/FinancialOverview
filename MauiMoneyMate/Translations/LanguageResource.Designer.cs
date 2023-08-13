@@ -448,6 +448,24 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import failed.
+        /// </summary>
+        internal static string ImportFailed {
+            get {
+                return ResourceManager.GetString("ImportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import finished successfully.
+        /// </summary>
+        internal static string ImportFinishedSuccessfully {
+            get {
+                return ResourceManager.GetString("ImportFinishedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 13.
         /// </summary>
         internal static string ImportSettingsBtn_FontSize {

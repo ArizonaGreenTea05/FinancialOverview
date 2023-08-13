@@ -142,11 +142,10 @@ public partial class SettingsViewModel : ObservableObject
 
     internal void ImportSettingsBtn_OnClicked(object sender, EventArgs e)
     {
-        if (CommonFunctions.ImportSettings())
-        {
-            LoadSettings();
-            return;
-        }
+        if (CommonFunctions.ImportSettings()) Toast.Make(LanguageResource.ImportFinishedSuccessfully).Show();
+        else Toast.Make(LanguageResource.ImportFailed).Show();
+        LoadSettings();
+        
     }
 
     internal void DeleteTemporaryFilesBtn_OnClicked(object sender, EventArgs e)
