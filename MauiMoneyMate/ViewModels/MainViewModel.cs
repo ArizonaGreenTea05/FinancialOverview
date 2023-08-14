@@ -1,6 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
 using System.Diagnostics;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using Windows.Graphics;
 using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
@@ -11,6 +15,9 @@ using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -111,6 +118,7 @@ public partial class MainViewModel : ObservableObject
     private readonly Dictionary<string, DataRow> _monthlySalesDict;
     private readonly Dictionary<string, DataRow> _yearlySalesDict;
     private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
+    private static Rect _startUpBounds;
     private MainPage _mainPage;
 
     #endregion
@@ -128,6 +136,8 @@ public partial class MainViewModel : ObservableObject
                 .Select(p => p.MainWindowHandle).ToList()[0]);
             Environment.Exit(1);
         }
+
+        CommonFunctions.RemoveNonZipFiles(CommonProperties.UpdateDirectory);
 
         TimeUnits = new ObservableCollection<string>();
 
@@ -303,6 +313,8 @@ public partial class MainViewModel : ObservableObject
 
     private void Window_OnDestroying(object sender, EventArgs e)
     {
+        SaveWindowState();
+
         if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically)
             UpdateProgram();
     }
@@ -316,6 +328,7 @@ public partial class MainViewModel : ObservableObject
         LoadSettings();
         LoadResources();
         DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
+        RestoreWindowState();
     }
 
     internal void OnAppearing()
@@ -377,6 +390,52 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private void SaveWindowState()
+    {
+        var state = 2;
+#if WINDOWS
+        var nativeWindowHandle = ((MauiWinUIWindow)Application.Current.Windows[0].Handler.PlatformView).WindowHandle;
+        var win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+        if (AppWindow.GetFromWindowId(win32WindowsId).Presenter is OverlappedPresenter p)
+            state = Convert.ToInt32(p.State);
+#endif
+        var isMaximized = state == Convert.ToInt32(OverlappedPresenterState.Maximized);
+        var doc = new XDocument(
+            new XElement("WindowState",
+                new XElement("State", state),
+                new XElement("X", isMaximized ? _startUpBounds.X : Application.Current.MainPage.Window.X),
+                new XElement("Y", isMaximized ? _startUpBounds.Y : Application.Current.MainPage.Window.Y),
+                new XElement("Width", isMaximized ? _startUpBounds.Width : Application.Current.MainPage.Window.Width),
+                new XElement("Height", isMaximized ? _startUpBounds.Height : Application.Current.MainPage.Window.Height)));
+        if (!Directory.Exists(Path.GetDirectoryName(CommonProperties.WindowStateFilePath)))
+            Directory.CreateDirectory(CommonProperties.WindowStateFilePath);
+        doc.Save(CommonProperties.WindowStateFilePath);
+    }
+
+    private void RestoreWindowState()
+    {
+        if (!File.Exists(CommonProperties.WindowStateFilePath)) return;
+        var doc = XDocument.Load(CommonProperties.WindowStateFilePath);
+        var state = Convert.ToInt32(doc.Descendants().Where(x => x.Name.LocalName == "State").ToList()[0].Value
+            .Split('.')[0]);
+        _startUpBounds.X = Application.Current.MainPage.Window.X =
+            Convert.ToDouble(doc.Descendants().Where(x => x.Name.LocalName == "X").ToList()[0].Value.Split('.')[0]);
+        _startUpBounds.Y = Application.Current.MainPage.Window.Y =
+            Convert.ToDouble(doc.Descendants().Where(x => x.Name.LocalName == "Y").ToList()[0].Value.Split('.')[0]);
+        _startUpBounds.Width = Application.Current.MainPage.Window.Width =
+            Convert.ToDouble(
+                doc.Descendants().Where(x => x.Name.LocalName == "Width").ToList()[0].Value.Split('.')[0]);
+        _startUpBounds.Height = Application.Current.MainPage.Window.Height = Convert.ToDouble(
+            doc.Descendants().Where(x => x.Name.LocalName == "Height").ToList()[0].Value.Split('.')[0]);
+
+#if WINDOWS
+        var nativeWindowHandle = ((MauiWinUIWindow)App.Current.Windows[0].Handler.PlatformView).WindowHandle;
+        var win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+        if (AppWindow.GetFromWindowId(win32WindowsId).Presenter is OverlappedPresenter p
+            && state == Convert.ToInt32(OverlappedPresenterState.Maximized)) p.Maximize();
+#endif
+    }
 
     private static void LoadSettings()
     {

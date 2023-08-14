@@ -10,6 +10,13 @@ namespace MauiMoneyMate.Pages
         {
             InitializeComponent();
             BindingContext = _viewModel = viewModel;
+            Application.Current.MainPage.Window.Title = nameof(MauiMoneyMate);
+            Application.Current.MainPage.Window.MinimumWidth = 800;
+            Application.Current.MainPage.Window.MinimumHeight = 450;
+            Application.Current.MainPage.Window.Width = 1600;
+            Application.Current.MainPage.Window.Height = 900;
+            Application.Current.MainPage.Window.X = 50;
+            Application.Current.MainPage.Window.Y = 50;
             _viewModel.OnPageInitialized();
         }
 

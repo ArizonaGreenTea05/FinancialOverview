@@ -1,6 +1,15 @@
 ﻿using CommunityToolkit.Maui;
 using MauiMoneyMate.Pages;
+using MauiMoneyMate.Utils;
 using MauiMoneyMate.ViewModels;
+using Microsoft.Maui.LifecycleEvents;
+
+#if WINDOWS
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using System.Xml.Linq;
+using Windows.Graphics;
+#endif
 
 namespace MauiMoneyMate
 {
