@@ -1,8 +1,10 @@
 ﻿using System.Data;
 using System.Globalization;
+using ABI.Microsoft.UI.Xaml.Shapes;
 using BusinessLogic;
 using CommonLibrary;
 using MauiMoneyMate.Translations;
+using Path = System.IO.Path;
 using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
@@ -27,6 +29,7 @@ internal static class CommonProperties
         Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MauiMoneyMate";
 
     internal static string FileHistoryFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.FileHistory");
+    internal static string WindowStateFilePath { get; } = Path.Combine(AppDataDirectory, "MauiMoneyMate.WindowState");
     internal static string AppSettingsFileEnding => "AppSettings";
 
     internal static string SettingsFilePath { get; } = Path.Combine(AppDataDirectory, $"MauiMoneyMate.{AppSettingsFileEnding}");
@@ -148,7 +151,8 @@ internal static class CommonProperties
 
     internal static List<string> DirectoriesWithTemporaryFiles { get; } = new()
     {
-        UpdateDirectory
+        UpdateDirectory,
+        WindowStateFilePath
     };
 
     internal static bool UpdateAvailable { get; set; } = false;
