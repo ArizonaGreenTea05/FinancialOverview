@@ -126,6 +126,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <Content Include="Website\WinFormsFinance.html" />
+    <Content Include="Website\styles.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FinancialOverview\FinancialOverview.csproj">
