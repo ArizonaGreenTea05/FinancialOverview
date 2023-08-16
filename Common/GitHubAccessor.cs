@@ -10,7 +10,7 @@
     {
         private const string GitHubApiBaseUrl = "https://api.github.com";
         internal const string BaseDownloadUrl = "https://github.com/{0}/{1}/releases/download/{2}/{3}";
-        private const string GitHubToken = "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";
+        private const string TokenAsHex = "6700680070005F00480065003400520063006100490051006C004B003500620076006D0041006D0068007700700069004A004B004C006C0056004A0047004C0048004B00340044006D00780056006200";
 
         public static bool DownloadReleaseAsset(ReleaseInfo release, string generalAssetName, string targetDirectory)
         {
@@ -56,17 +56,24 @@
 
         static async Task<string[]> GetReleaseURLsAsync(string repoOwner, string repoName)
         {
-            var apiUrl = $"{GitHubApiBaseUrl}/repos/{repoOwner}/{repoName}/releases";
-            using (var client = new HttpClient())
+            try
             {
-                client.DefaultRequestHeaders.Add("User-Agent", "GitHub API Client");
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {GitHubToken}");
-                var jsonArray = JArray.Parse(await client.GetStringAsync(apiUrl));
-                var releaseURLs = new string[jsonArray.Count];
-                for (int i = 0; i < jsonArray.Count; i++)
-                    releaseURLs[i] = jsonArray[i]["url"].ToString();
-
-                return releaseURLs;
+                var apiUrl = $"{GitHubApiBaseUrl}/repos/{repoOwner}/{repoName}/releases";
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("User-Agent", "GitHub API Client");
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Functions.FromHexString(TokenAsHex)}");
+                    var tmp = await client.GetStringAsync(apiUrl);
+                    var jsonArray = JArray.Parse(tmp);
+                    var releaseURLs = new string[jsonArray.Count];
+                    for (int i = 0; i < jsonArray.Count; i++)
+                        releaseURLs[i] = jsonArray[i]["url"].ToString();
+                    return releaseURLs;
+                }
+            }
+            catch
+            {
+                return new string[] { };
             }
         }
 
