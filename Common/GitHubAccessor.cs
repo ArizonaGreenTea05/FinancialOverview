@@ -4,11 +4,13 @@
     using System.IO;
     using System.Net;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     public class GitHubAccessor
     {
         private const string GitHubApiBaseUrl = "https://api.github.com";
-        public const string BaseDownloadUrl = "https://github.com/{0}/{1}/releases/download/{2}/{3}";
+        internal const string BaseDownloadUrl = "https://github.com/{0}/{1}/releases/download/{2}/{3}";
+        private const string GitHubToken = "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";
 
         public static bool DownloadReleaseAsset(ReleaseInfo release, string generalAssetName, string targetDirectory)
         {
@@ -41,20 +43,53 @@
             }
         }
 
-        public static ReleaseInfo GetLatestReleaseInfo(string owner, string repo)
+        public static List<ReleaseInfo> GetAllReleaseInfos(string owner, string repo)
         {
-            var apiUrl = $"{GitHubApiBaseUrl}/repos/{owner}/{repo}/releases/latest";
-            var request = (HttpWebRequest)WebRequest.Create(apiUrl);
-            request.UserAgent = "Tinky-Winky, Dipsy, Laa-Laa & Po";
-            var responseJson = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
-            var releaseInfo = JsonConvert.DeserializeObject<ReleaseInfo>(responseJson);
-            if (releaseInfo == null) return null;
-            var releaseUrl = responseJson.Split("html_url\":\"")[1].Split("\"")[0];
-            var splitUrl = releaseUrl.Split("/");
-            releaseInfo.Tag = splitUrl[^1];
-            foreach (var asset in releaseInfo.Assets)
-                asset.DownloadUrl = string.Format(BaseDownloadUrl, owner, repo, releaseInfo.Tag, asset.Name);
-            return releaseInfo;
+            var releaseInfos = new List<ReleaseInfo>();
+            foreach (var url in Task.Run(() => GetReleaseURLsAsync(owner, repo)).Result)
+            {
+                var tmp = GetReleaseInfo(url, owner, repo);
+                if (null != tmp) releaseInfos.Add(tmp);
+            }
+            return releaseInfos;
+        }
+
+        static async Task<string[]> GetReleaseURLsAsync(string repoOwner, string repoName)
+        {
+            var apiUrl = $"{GitHubApiBaseUrl}/repos/{repoOwner}/{repoName}/releases";
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("User-Agent", "GitHub API Client");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {GitHubToken}");
+                var jsonArray = JArray.Parse(await client.GetStringAsync(apiUrl));
+                var releaseURLs = new string[jsonArray.Count];
+                for (int i = 0; i < jsonArray.Count; i++)
+                    releaseURLs[i] = jsonArray[i]["url"].ToString();
+
+                return releaseURLs;
+            }
+        }
+
+        public static ReleaseInfo? GetReleaseInfo(string apiUrl, string owner, string repo)
+        {
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create(apiUrl);
+                request.UserAgent = "Tinky-Winky, Dipsy, Laa-Laa & Po";
+                var responseJson = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
+                var releaseInfo = JsonConvert.DeserializeObject<ReleaseInfo>(responseJson);
+                if (releaseInfo == null) return null;
+                var releaseUrl = responseJson.Split("html_url\":\"")[1].Split("\"")[0];
+                var splitUrl = releaseUrl.Split("/");
+                releaseInfo.Tag = splitUrl[^1];
+                foreach (var asset in releaseInfo.Assets)
+                    asset.DownloadUrl = string.Format(BaseDownloadUrl, owner, repo, releaseInfo.Tag, asset.Name);
+                return releaseInfo;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static bool DownloadAsset(string downloadUrl, string targetDirectory)
@@ -84,20 +119,11 @@
 
         public ReleaseInfo()
         {
-
         }
 
-        public ReleaseInfo(Version version, string assetName, string owner, string repo)
+        public ReleaseInfo(string tag)
         {
-            Assets = new List<ReleaseAsset>
-            {
-                new()
-                {
-                    Name = assetName,
-                    DownloadUrl = string.Format(GitHubAccessor.BaseDownloadUrl, owner, repo, version.Tag, assetName)
-                }
-            };
-            Tag = version.Tag;
+            Tag = tag;
         }
     }
 
