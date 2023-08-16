@@ -101,6 +101,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Website\WinFormsFinance\**" />
+	  <EmbeddedResource Remove="Website\WinFormsFinance\**" />
+	  <MauiCss Remove="Website\WinFormsFinance\**" />
+	  <MauiXaml Remove="Website\WinFormsFinance\**" />
+	  <None Remove="Website\WinFormsFinance\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="Resources\Fonts\Arial-Rounded.ttf" />
 		<None Remove="Resources\Fonts\Arial-RoundedBold.ttf" />
 		<None Remove="Resources\Images\logo.png" />
@@ -169,6 +177,10 @@
 	  <MauiXaml Update="Resources\Styles\Colors_Purple.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Website\WinFormsFinance\**" />
 	</ItemGroup>
 
 </Project>
