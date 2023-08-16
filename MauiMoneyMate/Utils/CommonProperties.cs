@@ -1,18 +1,16 @@
 ﻿using System.Data;
 using System.Globalization;
-using ABI.Microsoft.UI.Xaml.Shapes;
 using BusinessLogic;
 using CommonLibrary;
 using MauiMoneyMate.Translations;
 using Path = System.IO.Path;
-using Version = CommonLibrary.Version;
 
 namespace MauiMoneyMate.Utils;
 
 internal static class CommonProperties
 {
     internal static FinancialOverview FinancialOverview = new ();
-    internal static Version CurrentVersion { get; } = GetCurrentVersion();
+    internal static ReleaseInfo CurrentVersion { get; } = GetCurrentVersion();
     internal static string RepositoryOwner => "ArizonaGreenTea05";
     internal static string RepositoryName => "FinancialOverview";
 
@@ -20,7 +18,7 @@ internal static class CommonProperties
     internal static string GeneralInstallationFolderName => "MauiMoneyMate_{0}.0_x64";
 
     internal static string InstallationFolderNameOfLatestRelease => string.Format(GeneralInstallationFolderName,
-        null == LatestRelease ? CurrentVersion.Id : LatestRelease.VersionId);
+        null == LatestRelease ? CurrentVersion.VersionId : LatestRelease.VersionId);
 
     internal static string AppDataDirectory =>
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MauiMoneyMate";
@@ -168,17 +166,13 @@ internal static class CommonProperties
         Settings.WriteXml(SettingsFilePath);
     }
 
-    private static Version GetCurrentVersion()
+    private static ReleaseInfo GetCurrentVersion()
     {
         var currentVersion = AppInfo.Current.VersionString.Split('.');
-        return new Version()
-        {
-            Prefix = "MMM-",
-            Major = Convert.ToInt32(currentVersion[0]),
-            Minor = Convert.ToInt32(currentVersion[1]),
-            Build = Convert.ToInt32(currentVersion[2]),
-            Suffix = "-beta",
-        };
+        var build = Convert.ToInt32(currentVersion[2]);
+        return new ReleaseInfo(
+            $"MMM-v{Convert.ToInt32(currentVersion[0])}.{Convert.ToInt32(currentVersion[1])}{(build > 0 ? $".{build}" : string.Empty)}-beta"
+            );
     }
 
     #endregion

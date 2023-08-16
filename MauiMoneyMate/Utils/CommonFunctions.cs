@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics;
-using System.Globalization;
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using CommonLibrary;
-using MauiMoneyMate.Translations;
 
 namespace MauiMoneyMate.Utils;
 
@@ -14,13 +12,19 @@ internal static class CommonFunctions
 
     internal static bool CheckForUpdates()
     {
-        var tmp = GitHubAccessor.GetLatestReleaseInfo(CommonProperties.RepositoryOwner,
-            CommonProperties.RepositoryName);
-        CommonProperties.LatestRelease = tmp.Tag != tmp.Tag.Replace("MMM", "")
-            ? tmp // new MMM release available
-            : new ReleaseInfo(CommonProperties.CurrentVersion, CommonProperties.AssetNameOfLatestRelease,
-                CommonProperties.RepositoryOwner, CommonProperties.RepositoryName); // latest release is not an MMM, so it won't be recognized as new release
-        return CommonProperties.LatestRelease.VersionId != CommonProperties.CurrentVersion.Id;
+        var releases = GitHubAccessor.GetAllReleaseInfos(CommonProperties.RepositoryOwner, CommonProperties.RepositoryName);
+        foreach (var releaseInfo in releases)
+        {
+            if (releaseInfo.Tag == releaseInfo.Tag.Replace("MMM", "")) continue;
+            CommonProperties.LatestRelease = releaseInfo;
+            break;
+        }
+        if (null == CommonProperties.LatestRelease)
+        {
+            CommonProperties.LatestRelease = CommonProperties.CurrentVersion;
+            return false;
+        }
+        return CommonProperties.LatestRelease.VersionId != CommonProperties.CurrentVersion.VersionId;
     }
 
     internal static bool DownloadLatestRelease()
