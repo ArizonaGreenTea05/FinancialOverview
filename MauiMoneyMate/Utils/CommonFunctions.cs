@@ -2,6 +2,14 @@
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using CommonLibrary;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
+using FinancialOverview;
+using MauiMoneyMate.Pages;
+using MauiMoneyMate.Popups;
+using MauiMoneyMate.Translations;
+using Microsoft.UI.Windowing;
+using static CommonLibrary.Functions;
 
 namespace MauiMoneyMate.Utils;
 
@@ -9,6 +17,47 @@ internal static class CommonFunctions
 {
     [DllImport("user32.dll")]
     internal static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    internal static void NewDocumentAction()
+    {
+        CommonProperties.FinancialOverview.Sales.Clear();
+        CommonProperties.FinancialOverview.FilePath = null;
+        CommonProperties.FinancialOverview.ClearHistory();
+    }
+
+    internal static bool OpenFileAction()
+    {
+        var path = FileHandler.OpenFileDialog();
+        if (null == path)
+        {
+            Toast.Make(LanguageResource.CouldNotOpenFile).Show();
+            return false;
+        }
+        CommonProperties.FinancialOverview.LoadData(path);
+        CommonProperties.FinancialOverview.ClearHistory();
+        return true;
+    }
+
+    internal static bool SaveFileAction()
+    {
+        if (CommonProperties.FinancialOverview.SaveData() || SaveFileAsAction()) return true;
+        Toast.Make(LanguageResource.CouldNotSaveFile).Show();
+        return false;
+    }
+
+    internal static bool SaveFileAsAction()
+    {
+        var path = FileHandler.SaveFileDialog(CommonProperties.FinancialOverview.FileDirectory,
+            CommonProperties.FinancialOverview.Filename ?? FinancialOverview.FinancialOverview.DefaultFilename);
+        if (null == path)
+        {
+            Toast.Make(LanguageResource.CouldNotSaveFile).Show();
+            return false;
+        }
+        CommonProperties.FinancialOverview.SaveData(path);
+        Toast.Make(string.Format(LanguageResource.SavedFile, path)).Show();
+        return true;
+    }
 
     internal static bool CheckForUpdates()
     {
@@ -166,6 +215,40 @@ internal static class CommonFunctions
         }
     }
 
-    [DllImport("kernel32.dll")]
-    internal static extern int GetUserDefaultLCID();
+    internal static void AppWindow_Closing(AppWindow sender, AppWindowClosingEventArgs args)
+    {
+        args.Cancel = true;
+        ExitAction();
+    }
+
+    internal static void ExitAction(Page page = null)
+    {
+        page ??= Shell.Current.CurrentPage;
+        if (!CommonProperties.DataIsSaved)
+        {
+            page.ShowPopup(new UnsavedChangesPopup(page.Window));
+            return;
+        }
+
+        if (Application.Current != null) Application.Current.CloseWindow(page.Window);
+        Environment.Exit(1);
+    }
+
+    internal static void BubbleSortDescending(IList<SalesObject> collection,
+        Action<SalesObject, ICollection<SalesObject>> moveEntryDown)
+    {
+        for (var i = collection.Count - 1; i > 0; --i)
+        for (var j = 0; j < i; ++j)
+            if (collection[j].Value > collection[j + 1].Value)
+                moveEntryDown(collection[j], collection);
+    }
+
+    internal static void BubbleSortAscending(IList<SalesObject> collection,
+        Action<SalesObject, ICollection<SalesObject>> moveEntryDown)
+    {
+        for (var i = collection.Count - 1; i > 0; --i)
+        for (var j = 0; j < i; ++j)
+            if (collection[j].Value < collection[j + 1].Value)
+                moveEntryDown(collection[j], collection);
+    }
 }

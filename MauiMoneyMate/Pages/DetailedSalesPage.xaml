@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMoneyMate.Pages.DetailedSalesPage"
+             xmlns:viewmodel="clr-namespace:MauiMoneyMate.ViewModels"
+             xmlns:financialOverview="clr-namespace:FinancialOverview;assembly=FinancialOverview"
+             x:DataType="viewmodel:DetailedSalesViewModel"
+             Title="{Binding DetailedSalesTitle}"
+             Loaded="DetailedSalesPage_OnLoaded"
+             BackgroundImageSource="{AppThemeBinding Light=bg_light.png, Dark=bg_dark.png}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem x:Name="FileMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="OpenFilePageMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="OpenFilePageMnuFlt_OnClicked"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem x:Name="NewMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="NewMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="OpenMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="OpenMnuFlt_OnClicked"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem x:Name="SaveMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="SaveMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="SaveAsMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="SaveAsMnuFlt_OnClicked"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem x:Name="BackMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="BackMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="ExitMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="ExitMnuFlt_OnClicked"/>
+        </MenuBarItem>
+        <MenuBarItem x:Name="EditMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="UndoMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="UndoMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="RedoMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="RedoMnuFlt_OnClicked"/>
+        </MenuBarItem>
+        <MenuBarItem x:Name="ViewMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="OverviewMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="OverviewMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="RefreshMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="RefreshMnuFlt_OnClicked"/>
+            <MenuFlyoutSubItem x:Name="AppThemeMnuFlt"
+                               x:FieldModifier="internal">
+                <MenuFlyoutItem x:Name="SystemThemeMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="SystemThemeMnuFlt_OnClicked"/>
+                <MenuFlyoutItem x:Name="LightThemeMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="LightThemeMnuFlt_OnClicked"/>
+                <MenuFlyoutItem x:Name="DarkMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="DarkMnuFlt_OnClicked"/>
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+        <MenuBarItem x:Name="SettingsMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="OpenSettingsMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="OpenSettingsMnuFlt_OnClicked"/>
+        </MenuBarItem>
+        <MenuBarItem x:Name="HelpMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="GoToWebsiteMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="GoToWebsiteMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="WriteTicketMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="WriteTicketMnuFlt_OnClicked"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+
+    <Grid RowDefinitions="45, 20, *, 20, *, 20, 45"
+          ColumnDefinitions="Auto,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+          Padding="15">
+
+        <Frame Grid.Column="8"
+               Grid.ColumnSpan="6"
+               Grid.Row="0"
+               Style="{StaticResource Frame2}"/>
+
+        <Frame Grid.Column="0"
+               Grid.ColumnSpan="10"
+               Grid.Row="0"
+               Style="{StaticResource Frame1}"/>
+
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Grid.Row="0"
+               Padding="10,0,0,0"
+               Text="{Binding SalesLbl.Text}"
+               FontSize="{Binding SalesLbl.FontSize}"
+               Style="{StaticResource LabelPrimary}"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"/>
+
+        <Button Grid.Column="11"
+                Grid.ColumnSpan="3"
+                Text="{Binding NewSalesBtn.Text}"
+                FontSize="{Binding NewSalesBtn.FontSize}"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Command="{Binding AddNewSalesCommand}"
+                LineBreakMode="WordWrap"/>
+
+        <VerticalStackLayout Grid.Column="0"
+                             Grid.Row="2"
+                             Padding="0,0,5,0">
+            <Button Margin="1,2"
+                    Style="{StaticResource ReverseNormalBtn}"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Text="￪"
+                    Command="{Binding SortAscendingCommand}"
+                    CommandParameter="{Binding SalesCollection}"/>
+            <Button Margin="1,2"
+                    Style="{StaticResource ReverseNormalBtn}"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Text="￬"
+                    Command="{Binding SortDescendingCommand}"
+                    CommandParameter="{Binding SalesCollection}"/>
+        </VerticalStackLayout>
+
+        <ScrollView Grid.Column="15"
+                    Grid.ColumnSpan="4"
+                    Grid.Row="2"
+                    Grid.RowSpan="3">
+            <VerticalStackLayout Spacing="5"
+                                 Padding="0,0,5,0">
+                <Frame Style="{StaticResource Frame1}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           Text="{Binding SalesCountLbl.Text}"
+                           Style="{StaticResource LabelPrimary}"
+                           FontSize="{Binding SalesCountLbl.FontSize}"/>
+                        <Label Grid.Column="1"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Text="{Binding SalesCount}"
+                           Style="{StaticResource LabelPrimary}"
+                           FontSize="{Binding SalesCountLbl.FontSize}"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource Frame1}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="{Binding IncomeCountLbl.Text}"
+                               Style="{StaticResource LabelPrimary}"
+                               FontSize="{Binding IncomeCountLbl.FontSize}"/>
+                        <Label Grid.Column="1"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Text="{Binding IncomeCount}"
+                               Style="{StaticResource LabelPrimary}"
+                               FontSize="{Binding SalesCountLbl.FontSize}"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource Frame1}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="{Binding ExpensesCountLbl.Text}"
+                               Style="{StaticResource LabelPrimary}"
+                               FontSize="{Binding ExpensesCountLbl.FontSize}"/>
+                        <Label Grid.Column="1"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Text="{Binding ExpensesCount}"
+                               Style="{StaticResource LabelPrimary}"
+                               FontSize="{Binding SalesCountLbl.FontSize}"/>
+                    </Grid>
+                </Frame>
+                <Grid ColumnDefinitions="*,Auto"
+                      MinimumHeightRequest="30"
+                      Margin="1,0">
+                    <Button Text="{Binding DeleteExpiredSalesBtn.Text}"
+                            FontSize="{Binding DeleteExpiredSalesBtn.FontSize}"
+                            LineBreakMode="WordWrap"
+                            Padding="0"
+                            Margin="0"
+                            Command="{Binding DeleteExpiredSalesCommand}"/>
+                    <DatePicker Grid.Column="1"
+                                Margin="10,0,0,0"
+                                FontSize="{Binding DeleteExpiredSalesBtn.FontSize}"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Fill"
+                                Format="{Binding DeleteDatePattern}"
+                                Date="{Binding SelectedDeleteDate}"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <CollectionView Grid.Column="1"
+                        Grid.ColumnSpan="13"
+                        Grid.Row="2"
+                        Grid.RowSpan="3"
+                        VerticalOptions="Start"
+                        ItemsSource="{Binding SalesCollection}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type financialOverview:SalesObject}">
+                    <Grid RowDefinitions="*,*"
+                          ColumnDefinitions="*, Auto, Auto, Auto, Auto"
+                          MinimumHeightRequest="90"
+                          Padding="0">
+                        <Frame Grid.Column="0"
+                               Grid.RowSpan="2"
+                               Margin="0,2"
+                               CornerRadius="7"
+                               Style="{StaticResource Frame2}">
+                            <Grid RowDefinitions="*,8,*"
+                                  ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+                                  Padding="0"
+                                  VerticalOptions="Center">
+                                <Label Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Grid.RowSpan="3"
+                                       Margin="2,0"
+                                       Text="{Binding ValueAsString}"
+                                       FontSize="15"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="End"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="2"
+                                       Grid.ColumnSpan="6"
+                                       Margin="2,0"
+                                       Text="{Binding Name}"
+                                       FontSize="15"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="8"
+                                       Grid.ColumnSpan="11"
+                                       Margin="2,0,10,0"
+                                       Text="{Binding Addition}"
+                                       FontSize="15"
+                                       LineBreakMode="MiddleTruncation"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="2"
+                                       Grid.ColumnSpan="6"
+                                       Grid.Row="2"
+                                       Margin="2,0"
+                                       LineBreakMode="WordWrap"
+                                       Text="{Binding DateSpanAsString}"
+                                       Style="{StaticResource LabelSecondary}"
+                                       FontSize="15"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="8"
+                                       Grid.ColumnSpan="11"
+                                       Grid.Row="2"
+                                       Margin="2,0"
+                                       LineBreakMode="WordWrap"
+                                       Text="{Binding FullRepeatCycleAsString}"
+                                       Style="{StaticResource LabelSecondary}"
+                                       FontSize="15"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Button Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource ReverseNormalBtn}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Text="￪"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=MoveEntryUpCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource ReverseNormalBtn}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Text="￬"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=MoveEntryDownCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="3"
+                                Grid.ColumnSpan="2"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource NeutralBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=DetailsBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=DetailsBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=ShowDetailsCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="3"
+                                Grid.Row="1"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource PositiveBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=EditBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=EditBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=EditEntryCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="4"
+                                Grid.Row="1"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource NegativeBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=DeleteBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=DeleteBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DetailedSalesViewModel}}, Path=DeleteEntryCommand}"
+                                CommandParameter="{Binding}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

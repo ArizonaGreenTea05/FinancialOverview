@@ -477,3 +477,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/.idea/.idea.MauiMoneyMate/.idea/.gitignore
+/.idea/.idea.MauiMoneyMate/.idea/.name
+/.idea/.idea.MauiMoneyMate/.idea/encodings.xml
+/.idea/.idea.MauiMoneyMate/.idea/indexLayout.xml
+/.idea/.idea.MauiMoneyMate/.idea/vcs.xml

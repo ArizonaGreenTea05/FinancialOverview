@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 
-namespace BusinessLogic.Utils
+namespace FinancialOverview.Utils
 {
     internal static class DataRowExtensions
     {

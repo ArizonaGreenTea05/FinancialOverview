@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Globalization;
-using BusinessLogic;
 using CommonLibrary;
 using MauiMoneyMate.Translations;
 using Path = System.IO.Path;
@@ -9,7 +8,7 @@ namespace MauiMoneyMate.Utils;
 
 internal static class CommonProperties
 {
-    internal static FinancialOverview FinancialOverview = new ();
+    internal static FinancialOverview.FinancialOverview FinancialOverview = new ();
     internal static ReleaseInfo CurrentVersion { get; } = GetCurrentVersion();
     internal static string RepositoryOwner => "ArizonaGreenTea05";
     internal static string RepositoryName => "FinancialOverview";
@@ -156,6 +155,9 @@ internal static class CommonProperties
     internal static bool UpdateAvailable { get; set; } = false;
 
     internal static List<CultureInfo> Languages { get; } = LanguageResource.ResourceManager.EnumSatelliteLanguages();
+    public static string NewIssueUrl => "https://github.com/ArizonaGreenTea05/FinancialOverview/issues/new";
+    public static string WebsiteUrl => "https://arizonagreentea05.github.io/FinancialOverview/MauiMoneyMate/Website/MauiMoneyMate.html";
+    public static string DatePickerFormat { get; } = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.Replace(".", "/");
 
     #region helper methods
 

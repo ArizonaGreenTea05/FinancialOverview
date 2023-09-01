@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="MauiMoneyMate.Popups.DetailsPopup"
+               Color="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <Grid RowDefinitions="Auto,10,*,Auto"
+          ColumnDefinitions="*,50,*"
+          Padding="20">
+
+        <Label 
+            x:Name="Title"
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+
+        <!-- Sale, Name, Addition -->
+        <ScrollView Grid.Column="0"
+                    Grid.Row="2">
+            <VerticalStackLayout Spacing="5">
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="SaleText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="Sale"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="NameText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="Name"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="AdditionText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="Addition"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Dates, Repeat Cycle -->
+        <ScrollView Grid.Column="2"
+                    Grid.Row="2">
+            <VerticalStackLayout Spacing="5">
+
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="StartDateText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="StartDate"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="EndDateText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="EndDate"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="RepeatCycleText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="RepeatCycle"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,*,*">
+                    <Label Grid.Column="0"
+                           Padding="0,5"
+                           x:Name="RepeatCycleMultiplierText"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           Padding="10,5,0,5"
+                           x:Name="RepeatCycleMultiplier"
+                           FontSize="14"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <HorizontalStackLayout Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Grid.Row="3">
+            <Button x:Name="Edit"
+                    Margin="2,4,0,4"
+                    Clicked="EditBtn_Clicked"
+                    Style="{StaticResource PositiveBtn}"/>
+            <Button x:Name="Delete"
+                    Margin="2,4,0,4"
+                    Clicked="DeleteBtn_Clicked"
+                    Style="{StaticResource NegativeBtn}"/>
+        </HorizontalStackLayout>
+    </Grid>
+</toolkit:Popup>

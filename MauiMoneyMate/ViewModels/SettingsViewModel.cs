@@ -86,9 +86,34 @@ public partial class SettingsViewModel : ObservableObject
 
     #region internal Event Handlers
 
-    internal void OnPageInitialized()
+    internal void BackMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
-        LoadResources();
+        Shell.Current.GoToAsync("..");
+    }
+
+    internal void OpenFilePageMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Shell.Current.GoToAsync(nameof(FilePage));
+    }
+
+    internal void ExitMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        CommonFunctions.ExitAction();
+    }
+
+    internal void GoToWebsiteMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Browser.Default.OpenAsync(CommonProperties.WebsiteUrl, BrowserLaunchMode.SystemPreferred);
+    }
+
+    internal void WriteTicketMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Browser.Default.OpenAsync(CommonProperties.NewIssueUrl, BrowserLaunchMode.SystemPreferred);
+    }
+
+    internal void OnPageInitialized(SettingsPage settingsPage)
+    {
+        LoadResources(settingsPage);
         LoadSettings();
     }
 
@@ -193,8 +218,15 @@ public partial class SettingsViewModel : ObservableObject
         if (!CommonProperties.DataIsSaved) SettingsPageTitle += '*';
     }
     
-    private void LoadResources()
+    private void LoadResources(SettingsPage settingsPage)
     {
+        new ResourceMenuBarItem(nameof(settingsPage.FileMnu), settingsPage.FileMnu);
+        new ResourceMenuFlyout(nameof(settingsPage.OpenFilePageMnuFlt), settingsPage.OpenFilePageMnuFlt);
+        new ResourceMenuFlyout(nameof(settingsPage.BackMnuFlt), settingsPage.BackMnuFlt);
+        new ResourceMenuFlyout(nameof(settingsPage.ExitMnuFlt), settingsPage.ExitMnuFlt);
+        new ResourceMenuBarItem(nameof(settingsPage.HelpMnu), settingsPage.HelpMnu);
+        new ResourceMenuFlyout(nameof(settingsPage.GoToWebsiteMnuFlt), settingsPage.GoToWebsiteMnuFlt);
+        new ResourceMenuFlyout(nameof(settingsPage.WriteTicketMnuFlt), settingsPage.WriteTicketMnuFlt);
         SettingsPageTitle = LanguageResource.SettingsPageTitle ?? string.Empty;
         StartupLbl = new ResourceLabel(nameof(StartupLbl));
         CheckForUpdatesOnStartLbl = new ResourceLabel(nameof(CheckForUpdatesOnStartLbl));

@@ -10,7 +10,6 @@
     {
         private const string GitHubApiBaseUrl = "https://api.github.com";
         internal const string BaseDownloadUrl = "https://github.com/{0}/{1}/releases/download/{2}/{3}";
-        private const string TokenAsHex = "6700680070005F00480065003400520063006100490051006C004B003500620076006D0041006D0068007700700069004A004B004C006C0056004A0047004C0048004B00340044006D00780056006200";
 
         public static bool DownloadReleaseAsset(ReleaseInfo release, string generalAssetName, string targetDirectory)
         {
@@ -62,7 +61,7 @@
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("User-Agent", "GitHub API Client");
-                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Functions.FromHexString(TokenAsHex)}");
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Functions.FromHexString(Resources.AccessTokenAsHex)}");
                     var tmp = await client.GetStringAsync(apiUrl);
                     var jsonArray = JArray.Parse(tmp);
                     var releaseURLs = new string[jsonArray.Count];

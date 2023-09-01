@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using BusinessLogic;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MauiMoneyMate.Pages;
 using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
@@ -62,9 +62,7 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void AddNewDocument()
     {
-        CommonProperties.FinancialOverview.ClearSales();
-        CommonProperties.FinancialOverview.FilePath = null;
-        CommonProperties.FinancialOverview.ClearHistory();
+        CommonFunctions.NewDocumentAction();
         DataIsSaved = false;
         Shell.Current.GoToAsync("../../route");
     }
@@ -72,39 +70,21 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void OpenFileDialog()
     {
-        var path = FileHandler.OpenFileDialog();
-        if (null == path)
-        {
-            Toast.Make(LanguageResource.CouldNotOpenFile).Show();
-            return;
-        }
-        CommonProperties.FinancialOverview.LoadData(path);
-        CommonProperties.FinancialOverview.ClearHistory();
-        DataIsSaved = true;
+        DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
         Shell.Current.GoToAsync("../../route");
     }
 
     [RelayCommand]
     private void SaveFile()
     {
-        DataIsSaved = CommonProperties.FinancialOverview.SaveData();
-        if (!DataIsSaved) SaveFileDialog();
+        DataIsSaved = CommonFunctions.SaveFileAction();
         Shell.Current.GoToAsync("../../route");
     }
 
     [RelayCommand]
     private void SaveFileDialog()
     {
-        var path = FileHandler.SaveFileDialog(CommonProperties.FinancialOverview.FileDirectory,
-            CommonProperties.FinancialOverview.Filename ?? FinancialOverview.DefaultFilename);
-        if (null == path)
-        {
-            Toast.Make(LanguageResource.CouldNotSaveFile).Show();
-            return;
-        }
-        CommonProperties.FinancialOverview.SaveData(path);
-        Toast.Make(string.Format(LanguageResource.SavedFile, path)).Show();
-        DataIsSaved = true;
+        DataIsSaved = CommonFunctions.SaveFileAsAction();
         Shell.Current.GoToAsync("../../route");
     }
 
@@ -134,9 +114,29 @@ public partial class FileViewModel : ObservableObject
 
     #region internal Event Handlers
 
-    internal void OnInitialized()
+    public void SystemThemeMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
-        LoadResources();
+        CommonProperties.CurrentAppTheme = (int)AppTheme.Unspecified;
+    }
+
+    public void LightThemeMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        CommonProperties.CurrentAppTheme = (int)AppTheme.Light;
+    }
+
+    public void DarkMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        CommonProperties.CurrentAppTheme = (int)AppTheme.Dark;
+    }
+
+    internal void BackMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Shell.Current.GoToAsync("..");
+    }
+
+    internal void OnInitialized(FilePage filePage)
+    {
+        LoadResources(filePage);
     }
 
     internal void OnAppearing()
@@ -145,6 +145,26 @@ public partial class FileViewModel : ObservableObject
         FileHistory = new ObservableCollection<FileHistoryElement>();
         foreach (var item in CommonProperties.FinancialOverview.FileHistory)
             FileHistory.Add(new FileHistoryElement(item));
+    }
+
+    internal void ExitMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        CommonFunctions.ExitAction();
+    }
+
+    internal void OpenSettingsMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Shell.Current.GoToAsync(nameof(SettingsPage));
+    }
+
+    internal void GoToWebsiteMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Browser.Default.OpenAsync(CommonProperties.WebsiteUrl, BrowserLaunchMode.SystemPreferred);
+    }
+
+    internal void WriteTicketMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        Browser.Default.OpenAsync(CommonProperties.NewIssueUrl, BrowserLaunchMode.SystemPreferred);
     }
 
     #endregion
@@ -168,8 +188,21 @@ public partial class FileViewModel : ObservableObject
             FilePageTitle += '*';
     }
 
-    private void LoadResources()
+    private void LoadResources(FilePage filePage)
     {
+        new ResourceMenuBarItem(nameof(filePage.FileMnu), filePage.FileMnu);
+        new ResourceMenuFlyout(nameof(filePage.BackMnuFlt), filePage.BackMnuFlt);
+        new ResourceMenuFlyout(nameof(filePage.ExitMnuFlt), filePage.ExitMnuFlt);
+        new ResourceMenuBarItem(nameof(filePage.SettingsMnu), filePage.SettingsMnu);
+        new ResourceMenuFlyout(nameof(filePage.OpenSettingsMnuFlt), filePage.OpenSettingsMnuFlt);
+        new ResourceMenuBarItem(nameof(filePage.HelpMnu), filePage.HelpMnu);
+        new ResourceMenuFlyout(nameof(filePage.GoToWebsiteMnuFlt), filePage.GoToWebsiteMnuFlt);
+        new ResourceMenuFlyout(nameof(filePage.WriteTicketMnuFlt), filePage.WriteTicketMnuFlt);
+        new ResourceMenuBarItem(nameof(filePage.ViewMnu), filePage.ViewMnu);
+        new ResourceMenuFlyout(nameof(filePage.AppThemeMnuFlt), filePage.AppThemeMnuFlt);
+        new ResourceMenuFlyout(nameof(filePage.SystemThemeMnuFlt), filePage.SystemThemeMnuFlt);
+        new ResourceMenuFlyout(nameof(filePage.LightThemeMnuFlt), filePage.LightThemeMnuFlt);
+        new ResourceMenuFlyout(nameof(filePage.DarkMnuFlt), filePage.DarkMnuFlt);
         FilePageTitle = LanguageResource.FilePageTitle ?? string.Empty;
         HistoryLbl = new ResourceLabel(nameof(HistoryLbl));
         OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));

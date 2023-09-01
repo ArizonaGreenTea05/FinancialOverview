@@ -1,29 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Data;
-using BusinessLogic.History;
-using System.IO;
+using System.Globalization;
+using System.Xml.Serialization;
+using static FinancialOverview.Enums;
 
-namespace BusinessLogic
+namespace FinancialOverview
 {
     public class FinancialOverview
     {
-        private readonly DataSet _dataSet = new DataSet();
-        private readonly DataTable _allSales = new DataTable();
-        private readonly History.History _history;
-        private List<string> _fileHistory = new List<string>();
-        private bool _blockRowChangedHandler = false;
+        #region private Members
 
-        public const string DefaultFilename = "FinancialOverview.xml";
+        private readonly History.History _history;
+        private List<string> _fileHistory = new();
+        private readonly XmlSerializer _serializer = new(typeof(SaveObject));
+        private int _currentFileVersion = -1;
+        private readonly Dictionary<int, Action<string>> _dataLoadingMethods = new();
+
+        #endregion
+
+        #region public Event Handlers
+
         public event EventHandler<string> OnDefaultFilePathChanged;
 
-        public enum Unit
-        {
-            Monthly,
-            Yearly
-        }
-        
-        public Unit UnitOfAll { get; set; } = Unit.Monthly;
+        #endregion
+
+        #region public Properties
+
+        public static string DefaultFilename { get; } = "FinancialOverview.finance";
+
+        public ObservableCollection<SalesObject> Sales { get; private set; } = new();
 
         public List<string> FileHistory
         {
@@ -61,72 +66,51 @@ namespace BusinessLogic
 
         public string Filename { get; set; } = DefaultFilename;
 
-        public DataTable MonthlySales { get; set; }
-        public DataTable YearlySales { get; set; }
+        #endregion
 
-        public DataTable AllSales
-        {
-            get
-            {
-                var isMonthly = UnitOfAll == Unit.Monthly;
-                _allSales.Rows.Clear();
-                foreach (DataRow row in MonthlySales.Rows)
-                {
-                    var newRow = new object[3];
-                    newRow[0] = isMonthly ? row[0] : Convert.ToDouble(row[0]) * 12;
-                    for (int i = 1; i < _allSales.Columns.Count; ++i)
-                        newRow[i] = row[i];
-                    _allSales.Rows.Add(newRow);
-                }
-                foreach (DataRow row in YearlySales.Rows)
-                {
-                    var newRow = new object[3];
-                    newRow[0] = isMonthly ? Math.Round(Convert.ToDouble(row[0]) / 12, 2) : row[0];
-                    for (int i = 1; i < _allSales.Columns.Count; ++i)
-                        newRow[i] = row[i];
-                    _allSales.Rows.Add(newRow);
-                }
-                return _allSales;
-            }
-        }
+        #region public Constructors
 
         public FinancialOverview()
         {
-            MonthlySales = new DataTable();
-            MonthlySales.TableName = nameof(MonthlySales);
-            MonthlySales.Columns.Clear();
-            MonthlySales.Columns.Add(new DataColumn("Sales"));
-            MonthlySales.Columns.Add(new DataColumn("Name"));
-            MonthlySales.Columns.Add(new DataColumn("Addition"));
-            YearlySales = new DataTable();
-            YearlySales.TableName = nameof(YearlySales);
-            YearlySales.Columns.Clear();
-            YearlySales.Columns.Add(new DataColumn("Sales"));
-            YearlySales.Columns.Add(new DataColumn("Name"));
-            YearlySales.Columns.Add(new DataColumn("Addition"));
-            AllSales.TableName = nameof(AllSales);
-            AllSales.Columns.Clear();
-            AllSales.Columns.Add(new DataColumn("Sales"));
-            AllSales.Columns.Add(new DataColumn("Name"));
-            AllSales.Columns.Add(new DataColumn("Addition"));
-            _dataSet.DataSetName = "FinancialOverview";
-            _dataSet.Tables.Add(MonthlySales);
-            _dataSet.Tables.Add(YearlySales);
-            MonthlySales.RowChanged += RowChanged;
-            MonthlySales.RowDeleted += RowChanged;
-            YearlySales.RowChanged += RowChanged;
-            YearlySales.RowDeleted += RowChanged;
-            _history = new History.History(YearlySales, MonthlySales);
+            _history = new History.History();
+            _dataLoadingMethods.Add(0, LoadDataVersionZero);
+            _dataLoadingMethods.Add(1, LoadDataVersionOne);
+        }
+
+        #endregion
+
+        #region public Methods
+
+        public IEnumerable<SalesObject> GetSales(int year)
+        {
+            return Sales.Select(item => item.GetForRange(year)).Where(item => item != null);
+        }
+
+        public IEnumerable<SalesObject> GetSales(Month month, int year)
+        {
+            return month == Month.WholeYear
+                ? GetSales(year)
+                : Sales.Select(item => item.GetForRange(month, year)).Where(item => item != null);
         }
 
         public bool LoadData(string path)
         {
             if (!File.Exists(path)) return false;
-            MonthlySales.Clear();
-            YearlySales.Clear();
-            _dataSet.ReadXml(path);
+            try
+            {
+                _currentFileVersion = path.Replace(".finance", "") == path
+                    ? 0
+                    : ((SaveObject)_serializer.Deserialize(new FileStream(path, FileMode.Open, FileAccess.Read,
+                        FileShare.Read))).FileVersion;
+                _dataLoadingMethods[_currentFileVersion](path);
+            }
+            catch
+            {
+                return false;
+            }
+            
             FilePath = path;
-            _history.Clear();
+            _history.Clear(Sales);
             return true;
         }
 
@@ -138,9 +122,18 @@ namespace BusinessLogic
         public bool SaveData(string path)
         {
             if (!File.Exists(path)) return false;
-            _dataSet.WriteXml(path);
+            if (_currentFileVersion == 0)
+            {
+                File.Delete(path);
+                path = path.Replace(".xml", ".finance");
+            }
+            _currentFileVersion = 1;
+            var writer = new StreamWriter(path);
+            var tmp = new SaveObject(_currentFileVersion, Sales);
+            _serializer.Serialize(writer, tmp);
+            writer.Close();
+
             FilePath = path;
-            _history.Clear();
             return true;
         }
 
@@ -149,50 +142,70 @@ namespace BusinessLogic
             return SaveData(FilePath);
         }
 
-
-        public decimal GetRest()
+        public string GetRestAsString(Month month, int year)
         {
-            if (AllSales.Rows.Count <= 0) return 0;
-            var rest = Convert.ToDecimal(AllSales.Rows[0][0]);
-            for (var i = 1; i < AllSales.Rows.Count; ++i)
-                rest += Convert.ToDecimal(AllSales.Rows[i][0]);
-            return Math.Round(rest, 2);
+            return string.Format(CultureInfo.CurrentCulture, "{0:#,##0.00}", Math.Round(GetRest(month, year), 2));
         }
 
-        public void Undo()
+        public decimal GetRest(Month month, int year)
         {
-            _blockRowChangedHandler = true;
-            _history.Undo();
-            _blockRowChangedHandler = false;
+            return Math.Round(GetSales(month, year).Sum(item => item.Value), 2);
         }
 
-        public void Redo()
+        public bool Undo()
         {
-            _blockRowChangedHandler = true;
-            _history.Redo();
-            _blockRowChangedHandler = false;
+            return _history.Undo(Sales);
         }
 
-        public void ClearSales()
+        public bool Redo()
         {
-            MonthlySales.Clear();
-            YearlySales.Clear();
+            return _history.Redo(Sales);
         }
 
         public void ClearHistory()
         {
-            _history.Clear();
+            _history.Clear(Sales);
         }
 
         public void AddCurrentStateToHistory()
         {
-            _history.AddSnapshot();
+            _history.AddSnapshot(Sales);
         }
 
-        private void RowChanged(object obj, DataRowChangeEventArgs eventArgs)
+        #endregion
+
+        #region private Methods
+
+        private void LoadDataVersionZero(string path)
         {
-            if (_blockRowChangedHandler) return;
-            AddCurrentStateToHistory();
+            var ds = new DataSet("FinancialOverview");
+            var dt1 = new DataTable("MonthlySales");
+            dt1.Columns.Add(new DataColumn("Sales"));
+            dt1.Columns.Add(new DataColumn("Name"));
+            dt1.Columns.Add(new DataColumn("Addition"));
+            var dt2 = new DataTable("YearlySales");
+            dt2.Columns.Add(new DataColumn("Sales"));
+            dt2.Columns.Add(new DataColumn("Name"));
+            dt2.Columns.Add(new DataColumn("Addition"));
+            ds.Tables.Add(dt1);
+            ds.Tables.Add(dt2);
+            ds.ReadXml(path);
+
+            Sales.Clear();
+            foreach (DataRow row in dt1.Rows)
+                Sales.Add(new SalesObject(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]), DateTime.MinValue, DateTime.MaxValue, SaleRepeatCycle.Monthly, 1));
+
+            foreach (DataRow row in dt2.Rows)
+                Sales.Add(new SalesObject(Convert.ToDecimal(row[0]), Convert.ToString(row[1]), Convert.ToString(row[2]), DateTime.MinValue, DateTime.MaxValue, SaleRepeatCycle.Yearly, 1));
         }
+
+        private void LoadDataVersionOne(string path)
+        {
+           Sales = ((SaveObject)_serializer.Deserialize(
+               new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                ).Sales;
+        }
+
+        #endregion
     }
 }

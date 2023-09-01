@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="MauiMoneyMate.Popups.UnsavedChangesPopup"
+               Color="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <Grid RowDefinitions="Auto,*,Auto"
+          ColumnDefinitions="*,*"
+          Padding="20">
+        <Label x:Name="UnsavedChangesTitle"
+               Grid.ColumnSpan="2"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
+        <Label x:Name="UnsavedChangesTextLbl"
+               Grid.Row="1"
+               Grid.ColumnSpan="2"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
+        <HorizontalStackLayout Grid.Row="2"
+                               HorizontalOptions="Start"
+                               Spacing="5">
+            <Button x:Name="SaveAndCloseBtn"
+                    Style="{StaticResource PositiveBtn}"
+                    Clicked="SaveAndCloseBtn_OnClicked"
+                    HorizontalOptions="Start"/>
+            <Button x:Name="CloseWithoutSavingBtn"
+                    Style="{StaticResource NegativeBtn}"
+                    Clicked="CloseWithoutSavingBtn_OnClicked"
+                    HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="2"
+                               Grid.Column="1"
+                               HorizontalOptions="End"
+                               Spacing="5">
+            <Button x:Name="CancelBtn"
+                    Clicked="CancelBtn_OnClicked"
+                    HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+    </Grid>
+</toolkit:Popup>

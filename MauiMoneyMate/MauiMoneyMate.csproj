@@ -138,11 +138,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\DetailedSalesPage.xaml.cs">
+	    <DependentUpon>DetailedSalesPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\SettingsPage.xaml.cs">
 	    <DependentUpon>SettingsPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\FilePage.xaml.cs">
 	    <DependentUpon>FilePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\DetailsPopup.xaml.cs">
+	    <DependentUpon>DetailsPopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\NewSalePopup.xaml.cs">
+	    <DependentUpon>NewSalePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\UnsavedChangesPopup.xaml.cs">
+	    <DependentUpon>UnsavedChangesPopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\UpdatePopup.xaml.cs">
 	    <DependentUpon>UpdatePopup.xaml</DependentUpon>
@@ -162,16 +174,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\DetailedSalesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\FilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Popups\UpdatePopup.xaml">
+	  <MauiXaml Update="Popups\DetailsPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Popups\HelpPopup.xaml">
+	  <MauiXaml Update="Popups\NewSalePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\UnsavedChangesPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\UpdatePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Colors_Purple.xaml">
