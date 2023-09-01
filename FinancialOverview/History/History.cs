@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Data;
+using System.Collections.ObjectModel;
+using FinancialOverview;
 
-namespace BusinessLogic.History
+namespace FinancialOverview.History
 {
     public class History : IEnumerable
     {
-        private readonly List<Snapshot> _history;
-
-        private DataTable YearlySales { get; set; }
-
-        private DataTable MonthlySales { get; set; }
+        private readonly List<Snapshot> _history = new List<Snapshot>();
 
         public int CurrentIndex { get; set; } = -1;
 
@@ -18,23 +15,17 @@ namespace BusinessLogic.History
 
         public int Length => _history.Count;
 
-        public History()
-        {
-            _history = new List<Snapshot>();
-        }
-
-        public History(DataTable yearlySales, DataTable monthlySales)
-        {
-            _history = new List<Snapshot>();
-            YearlySales = yearlySales;
-            MonthlySales = monthlySales;
-        }
-
-        public void AddSnapshot()
+        public void AddSnapshot(ObservableCollection<SalesObject> salesObjects)
         {
             ++CurrentIndex;
             if (Length >= CurrentIndex) _history.RemoveRange(CurrentIndex, Length-CurrentIndex);
-            _history.Add(new Snapshot(YearlySales, MonthlySales));
+            var tmp = new Snapshot(salesObjects);
+            if (_history.Count > 0 && _history[_history.Count - 1].Equals(tmp))
+            {
+                --CurrentIndex;
+                return;
+            }
+            _history.Add(tmp);
         }
 
         public Snapshot Get(int index)
@@ -42,25 +33,31 @@ namespace BusinessLogic.History
             return _history[index];
         }
 
-        public void Clear()
+        public void Clear(ObservableCollection<SalesObject> salesObjects)
         {
             _history.Clear();
             CurrentIndex = -1;
-            AddSnapshot();
+            AddSnapshot(salesObjects);
         }
 
-        public void Undo()
-        {;
-            if (CurrentIndex <= 0) return;
-            --CurrentIndex;
-            CurrentSnapshot.TransferTo(YearlySales, MonthlySales);
-        }
-
-        public void Redo()
+        public bool Undo(ObservableCollection<SalesObject> salesObjects)
         {
-            if (CurrentIndex >= Length - 1) return;
-            ++CurrentIndex;
-            CurrentSnapshot.TransferTo(YearlySales, MonthlySales);
+            if (CurrentIndex <= 0) return false;
+            var tmp = CurrentSnapshot;
+            while (tmp.Equals(CurrentSnapshot) && CurrentIndex > 0)
+                --CurrentIndex;
+            CurrentSnapshot.TransferTo(salesObjects);
+            return true;
+        }
+
+        public bool Redo(ObservableCollection<SalesObject> salesObjects)
+        {
+            if (CurrentIndex >= Length - 1) return false;
+            var tmp = CurrentSnapshot;
+            while (tmp.Equals(CurrentSnapshot) && CurrentIndex < _history.Count - 1)
+                ++CurrentIndex;
+            CurrentSnapshot.TransferTo(salesObjects);
+            return true;
         }
 
         public IEnumerator GetEnumerator()

@@ -10,6 +10,7 @@ namespace MauiMoneyMate
 
             Routing.RegisterRoute(nameof(FilePage), typeof(FilePage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(DetailedSalesPage), typeof(DetailedSalesPage));
         }
     }
 }

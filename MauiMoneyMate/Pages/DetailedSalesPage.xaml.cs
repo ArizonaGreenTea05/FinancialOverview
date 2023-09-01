@@ -2,41 +2,25 @@
 
 namespace MauiMoneyMate.Pages
 {
-    public partial class MainPage
+    public partial class DetailedSalesPage
     {
-        private readonly MainViewModel _viewModel;
+        private readonly DetailedSalesViewModel _viewModel;
 
-        public MainPage(MainViewModel viewModel)
+        public DetailedSalesPage(DetailedSalesViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = _viewModel = viewModel;
-            Application.Current.MainPage.Window.Title = nameof(MauiMoneyMate);
-            Application.Current.MainPage.Window.MinimumWidth = 1080;
-            Application.Current.MainPage.Window.MinimumHeight = 600;
-            Application.Current.MainPage.Window.Width = 1600;
-            Application.Current.MainPage.Window.Height = 900;
-            Application.Current.MainPage.Window.X = 50;
-            Application.Current.MainPage.Window.Y = 50;
             _viewModel.OnPageInitialized(this);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.OnAppearing(this);
+            _viewModel.OnAppearing();
         }
 
-        private void MonthPkr_OnSelectedIndexChanged(object sender, EventArgs e) 
-            => _viewModel.MonthPkr_OnSelectedIndexChanged(sender, e);
-
-        private void YearPkr_OnSelectedIndexChanged(object sender, EventArgs e)
-            => _viewModel.YearPkr_OnSelectedIndexChanged(sender, e);
-
-        private void MainPage_OnLoaded(object sender, EventArgs e)
-            => _viewModel.OnLoaded(sender, e);
-
-        private void NewSaleBtn_OnClicked(object sender, EventArgs e)
-            => _viewModel.NewSaleBtn_OnClicked(sender, e);
+        private void DetailedSalesPage_OnLoaded(object sender, EventArgs e)
+            => _viewModel.DetailedSalesPage_OnLoaded(sender, e);
 
         private void OpenFilePageMnuFlt_OnClicked(object sender, EventArgs e)
             => _viewModel.OpenFilePageMnuFlt_OnClicked(sender, e);
@@ -71,9 +55,6 @@ namespace MauiMoneyMate.Pages
         private void WriteTicketMnuFlt_OnClicked(object sender, EventArgs e)
             => _viewModel.WriteTicketMnuFlt_OnClicked(sender, e);
 
-        private void DetailedSalesMnuFlt_OnClicked(object sender, EventArgs e)
-            => _viewModel.DetailedSalesMnuFlt_OnClicked(sender, e);
-
         private void SystemThemeMnuFlt_OnClicked(object sender, EventArgs e)
             => _viewModel.SystemThemeMnuFlt_OnClicked(sender, e);
 
@@ -82,6 +63,12 @@ namespace MauiMoneyMate.Pages
 
         private void DarkMnuFlt_OnClicked(object sender, EventArgs e)
             => _viewModel.DarkMnuFlt_OnClicked(sender, e);
+
+        private void OverviewMnuFlt_OnClicked(object sender, EventArgs e)
+            => _viewModel.OverviewMnuFlt_OnClicked(sender, e);
+
+        private void BackMnuFlt_OnClicked(object sender, EventArgs e)
+            => _viewModel.BackMnuFlt_OnClicked(sender, e);
 
         private void RefreshMnuFlt_OnClicked(object sender, EventArgs e)
             => _viewModel.RefreshMnuFlt_OnClicked(sender, e);

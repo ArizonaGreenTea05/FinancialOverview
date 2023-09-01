@@ -1,34 +1,40 @@
-﻿using BusinessLogic.Utils;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO.IsolatedStorage;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using FinancialOverview;
 
-namespace BusinessLogic.History
+namespace FinancialOverview.History
 {
     public class Snapshot
     {
-        private DataTable MonthlySales { get; set; }
-        private DataTable YearlySales { get; set; }
-        
-        public Snapshot(DataTable yearlySales, DataTable monthlySales)
+        private ObservableCollection<SalesObject> SalesObjects { get; }
+
+        public Snapshot(ObservableCollection<SalesObject> salesObjects)
         {
-            YearlySales = new DataTable();
-            foreach (DataColumn column in yearlySales.Columns)
-                YearlySales.Columns.Add(column.ColumnName);
-            yearlySales.Rows.CopyTo(YearlySales.Rows);
-            MonthlySales = new DataTable();
-            foreach (DataColumn column in monthlySales.Columns)
-                MonthlySales.Columns.Add(column.ColumnName);
-            monthlySales.Rows.CopyTo(MonthlySales.Rows);
+            SalesObjects = new ObservableCollection<SalesObject>();
+            foreach (var item in salesObjects) SalesObjects.Add(item.Copy());
         }
 
-        public void TransferTo(DataTable yearlySales, DataTable monthlySales)
+        public override bool Equals(object obj)
         {
-            yearlySales.Rows.Clear();
-            YearlySales.Rows.CopyTo(yearlySales.Rows);
-            monthlySales.Rows.Clear();
-            MonthlySales.Rows.CopyTo(monthlySales.Rows);
+            if (!(obj is Snapshot tmp)) return false;
+            return Equals(tmp);
+        }
+
+        public bool Equals(Snapshot other)
+        {
+            if (SalesObjects.Count != other.SalesObjects.Count) return false;
+            return !SalesObjects.Where((t, i) => !t.Equals(other.SalesObjects[i])).Any();
+        }
+
+        public override int GetHashCode()
+        {
+            return (SalesObjects != null ? SalesObjects.GetHashCode() : 0);
+        }
+
+        public void TransferTo(ObservableCollection<SalesObject> salesObjects)
+        {
+            salesObjects.Clear();
+            foreach (var item in SalesObjects) salesObjects.Add(item);
         }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusinessLogic.Properties {
+namespace CommonLibrary {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BusinessLogic.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BusinessLogic.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CommonLibrary.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace BusinessLogic.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6700680070005F00480065003400520063006100490051006C004B003500620076006D0041006D0068007700700069004A004B004C006C0056004A0047004C0048004B00340044006D00780056006200.
+        /// </summary>
+        internal static string AccessTokenAsHex {
+            get {
+                return ResourceManager.GetString("AccessTokenAsHex", resourceCulture);
             }
         }
     }

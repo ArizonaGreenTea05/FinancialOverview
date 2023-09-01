@@ -117,47 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MonthlyAddBtn.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
   <data name="DeleteBtn.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="Monthly" xml:space="preserve">
-    <value>Monthly</value>
+  <data name="SalesLbl.Text" xml:space="preserve">
+    <value>Sales</value>
   </data>
-  <data name="Yearly" xml:space="preserve">
-    <value>Yearly</value>
-  </data>
-  <data name="AllSalesLbl.Text" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="MonthlySalesLbl.Text" xml:space="preserve">
-    <value>Monthly</value>
-  </data>
-  <data name="YearlySalesLbl.Text" xml:space="preserve">
-    <value>Yearly</value>
-  </data>
-  <data name="MoneyUnitLbl.Text" xml:space="preserve">
-    <value>€</value>
+  <data name="MoneyFormat" xml:space="preserve">
+    <value>{0} €</value>
   </data>
   <data name="RestLbl.Text" xml:space="preserve">
     <value>Rest:</value>
   </data>
-  <data name="MonthlyAddBtn.FontSize" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="MonthlyAdditionEntry.Placeholder" xml:space="preserve">
+  <data name="AdditionEntry.Placeholder" xml:space="preserve">
     <value>Comment</value>
   </data>
-  <data name="MonthlyNameEntry.Placeholder" xml:space="preserve">
+  <data name="NameEntry.Placeholder" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="FilePageTitle" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="FinancialOverviewTitle" xml:space="preserve">
-    <value>Financial Overview</value>
+    <value>Overview</value>
   </data>
   <data name="OpenFileLbl.Text" xml:space="preserve">
     <value>Open File</value>
@@ -177,8 +159,8 @@
   <data name="SaveFileLbl.FontSize" xml:space="preserve">
     <value>16</value>
   </data>
-  <data name="AlreadyContainsEntry" xml:space="preserve">
-    <value>{0} already contains the entry {1}</value>
+  <data name="ThisEntryAlreadyExists" xml:space="preserve">
+    <value>This entry already exists</value>
   </data>
   <data name="CouldNotOpenFile" xml:space="preserve">
     <value>File could not be opened</value>
@@ -189,92 +171,44 @@
   <data name="SavedFile" xml:space="preserve">
     <value>File has been saved: {0}</value>
   </data>
-  <data name="AllSalesLbl.FontSize" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="MonthlySalesLbl.FontSize" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="YearlySalesLbl.FontSize" xml:space="preserve">
-    <value>28</value>
+  <data name="SalesLbl.FontSize" xml:space="preserve">
+    <value>24</value>
   </data>
   <data name="RestLbl.FontSize" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="RestMoneyLbl.Text" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="RestMoneyLbl.FontSize" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="MoneyUnitLbl.FontSize" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="FilePageBtn.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="YearlyAddBtn.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="YearlyAddBtn.FontSize" xml:space="preserve">
-    <value>16</value>
+    <value>24</value>
   </data>
   <data name="DeleteBtn.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
-  <data name="MonthlySalesEntry.Placeholder" xml:space="preserve">
+  <data name="SalesEntry.Placeholder" xml:space="preserve">
     <value>0,00</value>
   </data>
-  <data name="MonthlySalesEntry.FontSize" xml:space="preserve">
-    <value>11</value>
+  <data name="SalesEntry.FontSize" xml:space="preserve">
+    <value>13</value>
   </data>
-  <data name="MonthlySalesEntry.Text" xml:space="preserve">
+  <data name="SalesEntry.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="YearlySalesEntry.FontSize" xml:space="preserve">
-    <value>11</value>
+  <data name="NameEntry.FontSize" xml:space="preserve">
+    <value>13</value>
   </data>
-  <data name="YearlySalesEntry.Text" xml:space="preserve">
+  <data name="NameEntry.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="YearlySalesEntry.Placeholder" xml:space="preserve">
-    <value>0,00</value>
-  </data>
-  <data name="MonthlyNameEntry.FontSize" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="MonthlyNameEntry.Text" xml:space="preserve">
+  <data name="AdditionEntry.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="MonthlyAdditionEntry.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="MonthlyAdditionEntry.FontSize" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="YearlyNameEntry.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="YearlyNameEntry.Placeholder" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="YearlyNameEntry.FontSize" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="YearlyAdditionEntry.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="YearlyAdditionEntry.FontSize" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
-    <value>Comment</value>
+  <data name="AdditionEntry.FontSize" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="IsNoValidDecimal" xml:space="preserve">
-    <value>{0} is no valid decimal.</value>
-  </data>
-  <data name="HelpBtn.Text" xml:space="preserve">
-    <value>Help</value>
+    <value>'{0}' is no valid decimal.</value>
   </data>
   <data name="HelpTitleLbl.FontSize" xml:space="preserve">
     <value>16</value>
@@ -293,12 +227,6 @@
   </data>
   <data name="HelpInfoLbl.Text" xml:space="preserve">
     <value>If you notice a bug or problem, or simply have a suggestion for improvement, please create a new issue where your describe your problem. The title should start with "MauiMoneyMate:".</value>
-  </data>
-  <data name="FilePageBtn.FontSize" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="HelpBtn.FontSize" xml:space="preserve">
-    <value>13</value>
   </data>
   <data name="HistoryLbl.FontSize" xml:space="preserve">
     <value>28</value>
@@ -319,7 +247,7 @@
     <value>Open</value>
   </data>
   <data name="EditBtn.FontSize" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="EditBtn.Text" xml:space="preserve">
     <value>Edit</value>
@@ -371,12 +299,6 @@
   </data>
   <data name="UpdateTitleLbl.Text" xml:space="preserve">
     <value>New app version detected</value>
-  </data>
-  <data name="SettingsPageBtn.FontSize" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="SettingsPageBtn.Text" xml:space="preserve">
-    <value>Settings</value>
   </data>
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Settings</value>
@@ -485,5 +407,257 @@
   </data>
   <data name="AnInstanceOfMauiMoneyMateAlreadyExists" xml:space="preserve">
     <value>An instance of MauiMoneyMate already exists</value>
+  </data>
+  <data name="NewSaleTitleLbl.FontSize" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="NewSaleTitleLbl.Text" xml:space="preserve">
+    <value>Add new sales</value>
+  </data>
+  <data name="SavetBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="SaveBtn.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="IsNoValidName" xml:space="preserve">
+    <value>'{0}' is no valid name</value>
+  </data>
+  <data name="CancelBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="CancelBtn.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SaveBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="NewSalesBtn.FontSize" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="NewSalesBtn.Text" xml:space="preserve">
+    <value>Add new sales</value>
+  </data>
+  <data name="EndDateLbl.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="EndDateLbl.Text" xml:space="preserve">
+    <value>End date:</value>
+  </data>
+  <data name="StartDateLbl.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="StartDateLbl.Text" xml:space="preserve">
+    <value>Start date:</value>
+  </data>
+  <data name="DetailsBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="DetailsBtn.Text" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="AdditionTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="AdditionTextLbl.Text" xml:space="preserve">
+    <value>Addition:</value>
+  </data>
+  <data name="EndDateTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="EndDateTextLbl.Text" xml:space="preserve">
+    <value>End date:</value>
+  </data>
+  <data name="NameTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="NameTextLbl.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="RepeatCycleMultiplierTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="RepeatCycleMultiplierTextLbl.Text" xml:space="preserve">
+    <value>Repeat every:</value>
+  </data>
+  <data name="RepeatCycleTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="RepeatCycleTextLbl.Text" xml:space="preserve">
+    <value>Repeat cycle:</value>
+  </data>
+  <data name="SaleTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="SaleTextLbl.Text" xml:space="preserve">
+    <value>Sale:</value>
+  </data>
+  <data name="StartDateTextLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="StartDateTextLbl.Text" xml:space="preserve">
+    <value>Start date:</value>
+  </data>
+  <data name="RepeatCycleMultiplierEntry.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="RepeatCycleMultiplierEntry.Placeholder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RepeatCycleMultiplierEntry.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ThereCanBeNoNegaticeOrNonExistentNumberOfRepetitions" xml:space="preserve">
+    <value>There can be no negative or non-existent number of repetitions.</value>
+  </data>
+  <data name="IsNoValidInteger" xml:space="preserve">
+    <value>'{0}' is no valid integer</value>
+  </data>
+  <data name="IsOneTimeOrderLbl.FontSize" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="IsOneTimeOrderLbl.Text" xml:space="preserve">
+    <value>One-time order</value>
+  </data>
+  <data name="EditMnu.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ExitMnuFlt.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FileMnu.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="GoToWebsiteMnuFlt.Text" xml:space="preserve">
+    <value>Go to website...</value>
+  </data>
+  <data name="HelpMnu.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="NewMnuFlt.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="OpenFilePageMnuFlt.Text" xml:space="preserve">
+    <value>Open file page...</value>
+  </data>
+  <data name="OpenMnuFlt.Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="OpenSettingsMnuFlt.Text" xml:space="preserve">
+    <value>Open settings...</value>
+  </data>
+  <data name="RedoMnuFlt.Text" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="SaveAsMnuFlt.Text" xml:space="preserve">
+    <value>Save as...</value>
+  </data>
+  <data name="SaveMnuFlt.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SettingsMnu.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="UndoMnuFlt.Text" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="WriteTicketMnuFlt.Text" xml:space="preserve">
+    <value>Write a ticket...</value>
+  </data>
+  <data name="DetailedSalesTitle" xml:space="preserve">
+    <value>Detailed sales</value>
+  </data>
+  <data name="AppThemeMnuFlt.Text" xml:space="preserve">
+    <value>App theme</value>
+  </data>
+  <data name="DarkMnuFlt.Text" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="LightThemeMnuFlt.Text" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SystemThemeMnuFlt.Text" xml:space="preserve">
+    <value>Use system theme</value>
+  </data>
+  <data name="DetailedSalesMnuFlt.Text" xml:space="preserve">
+    <value>Detailed view...</value>
+  </data>
+  <data name="OverviewMnuFlt.Text" xml:space="preserve">
+    <value>Overview...</value>
+  </data>
+  <data name="ViewMnu.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="CloseWithoutSavingBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="CloseWithoutSavingBtn.Text" xml:space="preserve">
+    <value>Close without saving</value>
+  </data>
+  <data name="SaveAndCloseBtn.FontSize" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="SaveAndCloseBtn.Text" xml:space="preserve">
+    <value>Save &amp; close</value>
+  </data>
+  <data name="UnsavedChangesTextLbl.FontSize" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="UnsavedChangesTextLbl.Text" xml:space="preserve">
+    <value>You have unsaved changes. Do you want to continue closing the Application?</value>
+  </data>
+  <data name="UnsavedChangesTitle.FontSize" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="UnsavedChangesTitle.Text" xml:space="preserve">
+    <value>Unsaved changes</value>
+  </data>
+  <data name="OpenFileMnuFlt.Text" xml:space="preserve">
+    <value>Open file...</value>
+  </data>
+  <data name="OpenRecentMnuFlt.Text" xml:space="preserve">
+    <value>Recently opened</value>
+  </data>
+  <data name="IncomeTextLbl.Text" xml:space="preserve">
+    <value>Income</value>
+  </data>
+  <data name="IncomeTextLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ExpensesTextLbl.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ExpensesTextLbl.Text" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+  <data name="BackMnuFlt.Text" xml:space="preserve">
+    <value>Go back</value>
+  </data>
+  <data name="RefreshMnuFlt.Text" xml:space="preserve">
+	  <value>Refresh</value>
+  </data>
+  <data name="SalesCountLbl.Text" xml:space="preserve">
+	  <value>Number of sales: </value>
+  </data>
+  <data name="SalesCountLbl.FontSize" xml:space="preserve">
+	  <value>20</value>
+  </data>
+  <data name="IncomeCountLbl.Text" xml:space="preserve">
+	  <value>Thereof income:</value>
+  </data>
+  <data name="IncomeCountLbl.FontSize" xml:space="preserve">
+	  <value>20</value>
+  </data>
+  <data name="ExpensesCountLbl.Text" xml:space="preserve">
+	  <value>Thereof expenses:</value>
+  </data>
+  <data name="ExpensesCountLbl.FontSize" xml:space="preserve">
+	  <value>20</value>
+  </data>
+  <data name="DeleteExpiredSalesBtn.FontSize" xml:space="preserve">
+	  <value>16</value>
+  </data>
+  <data name="DeleteExpiredSalesBtn.Text" xml:space="preserve">
+	  <value>Delete sales expired at</value>
   </data>
 </root>

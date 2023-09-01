@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="MauiMoneyMate.Popups.NewSalePopup"
+               Color="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <Grid RowDefinitions="Auto,10,Auto,*,Auto,Auto,*,Auto,*,*,*,*,*,*,*,*,*,*,*,*,Auto"
+          ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
+          Padding="20">
+        <Label 
+            x:Name="Title"
+            Grid.ColumnSpan="12"
+            Grid.Row="0"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+        <Entry x:Name="Sales"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Grid.Row="2"/>
+        <Entry x:Name="Name"
+               Grid.Column="2"
+               Grid.ColumnSpan="4"
+               Grid.Row="2"/>
+        <Entry x:Name="Addition"
+               Grid.Column="6"
+               Grid.ColumnSpan="8"
+               Grid.Row="2"/>
+        <HorizontalStackLayout Grid.Column="0"
+                               Grid.ColumnSpan="12"
+                               Grid.Row="4"
+                               Spacing="7"
+                               Padding="10,0">
+            <Label x:Name="IsOneTimeOrderLbl"
+                   VerticalOptions="Center"/>
+            <Switch x:Name="IsOneTimeOrderSwitch"
+                    Toggled="IsOneTimeOrderSwitch_OnToggled"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Grid.Column="0"
+                               Grid.ColumnSpan="12"
+                               Grid.Row="5"
+                               Spacing="7"
+                               Padding="10,0">
+            <Label x:Name="StartDateText"
+                   VerticalOptions="Center"/>
+            <DatePicker x:Name="StartDatePkr"
+                        HorizontalOptions="Start"
+                        DateSelected="StartDatePkr_DateSelected"/>
+            <Label x:Name="EndDateText"
+                   VerticalOptions="Center"/>
+            <DatePicker x:Name="EndDatePkr"
+                        HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Grid.Column="0"
+                               Grid.ColumnSpan="12"
+                               Grid.Row="7"
+                               Spacing="7"
+                               Padding="10,0">
+            <Label x:Name="RepeatCycleText"
+                   VerticalOptions="Center"/>
+            <Picker x:Name="RepeatCyclePkr"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    FontSize="15"/>
+            <Label x:Name="RepeatCycleMultiplierText"
+                   VerticalOptions="Center"/>
+            <Entry x:Name="RepeatCycleMultiplier"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Grid.Column="0"
+                               Grid.ColumnSpan="12"
+                               Grid.Row="20"
+                               Spacing="5"
+                               Padding="5,0,5,5">
+            <Button x:Name="Save"
+                    HorizontalOptions="End"
+                    Margin="0"
+                    Clicked="Save_Clicked"/>
+            <Button x:Name="Cancel"
+                    HorizontalOptions="End"
+                    Margin="0"
+                    Clicked="Cancel_Clicked"/>
+        </HorizontalStackLayout>
+        
+    </Grid>
+</toolkit:Popup>

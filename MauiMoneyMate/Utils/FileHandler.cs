@@ -15,7 +15,7 @@ public class FileHandler
     public static string OpenFileDialog()
     {
         return OpenFileDialog(new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-            { { DevicePlatform.WinUI, new[] { ".xml" } } }));
+            { { DevicePlatform.WinUI, new[] { ".xml", ".finance" } } }));
     }
 
     public static string OpenFileDialog(FilePickerFileType fileTypes)

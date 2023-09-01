@@ -117,41 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MonthlyAddBtn.Text" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
-  <data name="AllSalesLbl.Text" xml:space="preserve">
-    <value>Umsatz (Gesamt)</value>
+  <data name="SalesLbl.Text" xml:space="preserve">
+    <value>Umsatz</value>
   </data>
   <data name="DeleteBtn.Text" xml:space="preserve">
     <value>Löschen</value>
   </data>
-  <data name="Monthly" xml:space="preserve">
-    <value>Monatlich</value>
-  </data>
-  <data name="MonthlySalesLbl.Text" xml:space="preserve">
-    <value>Umsatz (Monatlich)</value>
-  </data>
   <data name="RestLbl.Text" xml:space="preserve">
     <value>Rest:</value>
   </data>
-  <data name="Yearly" xml:space="preserve">
-    <value>Jährlich</value>
-  </data>
-  <data name="YearlySalesLbl.Text" xml:space="preserve">
-    <value>Umsatz (Jährlich)</value>
-  </data>
-  <data name="MonthlyAdditionEntry.Placeholder" xml:space="preserve">
+  <data name="AdditionEntry.Placeholder" xml:space="preserve">
     <value>Kommentar</value>
   </data>
-  <data name="MonthlyNameEntry.Placeholder" xml:space="preserve">
+  <data name="NameEntry.Placeholder" xml:space="preserve">
     <value>Bezeichnung</value>
   </data>
   <data name="FilePageTitle" xml:space="preserve">
     <value>Datei</value>
   </data>
   <data name="FinancialOverviewTitle" xml:space="preserve">
-    <value>Finanzübersicht</value>
+    <value>Übersicht</value>
   </data>
   <data name="OpenFileLbl.Text" xml:space="preserve">
     <value>Datei öffnen</value>
@@ -162,8 +147,8 @@
   <data name="SaveFileAsLbl.Text" xml:space="preserve">
     <value>Datei speichern als</value>
   </data>
-  <data name="AlreadyContainsEntry" xml:space="preserve">
-    <value>{0} enthält bereits den Eintrag {1}</value>
+  <data name="ThisEntryAlreadyExists" xml:space="preserve">
+    <value>Dieser Eintrag existiert bereits</value>
   </data>
   <data name="CouldNotOpenFile" xml:space="preserve">
     <value>Datei konnte nicht geöffnet werden</value>
@@ -174,23 +159,8 @@
   <data name="SavedFile" xml:space="preserve">
     <value>Datei wurde gespeichert: {0}</value>
   </data>
-  <data name="FilePageBtn.Text" xml:space="preserve">
-    <value>Datei</value>
-  </data>
-  <data name="YearlyAddBtn.Text" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
-  <data name="YearlyNameEntry.Placeholder" xml:space="preserve">
-    <value>Bezeichnung</value>
-  </data>
-  <data name="YearlyAdditionEntry.Placeholder" xml:space="preserve">
-    <value>Kommentar</value>
-  </data>
   <data name="IsNoValidDecimal" xml:space="preserve">
-    <value>{0} ist keine valide Dezimalzahl.</value>
-  </data>
-  <data name="HelpBtn.Text" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>'{0}' ist keine valide Dezimalzahl.</value>
   </data>
   <data name="HelpTitleLbl.Text" xml:space="preserve">
     <value>MauiMoneyMate Hilfe</value>
@@ -248,9 +218,6 @@
   </data>
   <data name="UpdateTitleLbl.Text" xml:space="preserve">
     <value>Neue Appversion gefunden</value>
-  </data>
-  <data name="SettingsPageBtn.Text" xml:space="preserve">
-    <value>Einstellungen</value>
   </data>
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Einstellungen</value>
@@ -329,5 +296,182 @@
   </data>
   <data name="AnInstanceOfMauiMoneyMateAlreadyExists" xml:space="preserve">
     <value>Eine Instanz von MauiMoneyMate existiert bereits</value>
+  </data>
+  <data name="IsNoValidName" xml:space="preserve">
+    <value>'{0}' ist kein valider Name</value>
+  </data>
+  <data name="CancelBtn.Text" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="NewSaleTitleLbl.Text" xml:space="preserve">
+    <value>Neuen Umsatz hinzufügen</value>
+  </data>
+  <data name="SaveBtn.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="NewSalesBtn.Text" xml:space="preserve">
+    <value>Neuen Umsatz hinzufügen</value>
+  </data>
+  <data name="EndDateLbl.Text" xml:space="preserve">
+    <value>Enddatum:</value>
+  </data>
+  <data name="StartDateLbl.Text" xml:space="preserve">
+    <value>Anfangsdatum:</value>
+  </data>
+  <data name="DetailsBtn.Text" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="AdditionTextLbl.Text" xml:space="preserve">
+    <value>Kommentar:</value>
+  </data>
+  <data name="EndDateTextLbl.Text" xml:space="preserve">
+    <value>Enddatum:</value>
+  </data>
+  <data name="NameTextLbl.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="RepeatCycleMultiplierTextLbl.Text" xml:space="preserve">
+    <value>Wiederholen alle:</value>
+  </data>
+  <data name="RepeatCycleTextLbl.Text" xml:space="preserve">
+    <value>Wiederholungszyklus:</value>
+  </data>
+  <data name="SaleTextLbl.Text" xml:space="preserve">
+    <value>Umsatz:</value>
+  </data>
+  <data name="StartDateTextLbl.Text" xml:space="preserve">
+    <value>Anfangsdatum:</value>
+  </data>
+  <data name="ThereCanBeNoNegaticeOrNonExistentNumberOfRepetitions" xml:space="preserve">
+    <value>Es kann keine negative oder nicht existierende Anzahl von Wiederholungen geben.</value>
+  </data>
+  <data name="IsNoValidInteger" xml:space="preserve">
+    <value>'{0}' ist keine valide Ganzzahl</value>
+  </data>
+  <data name="IsOneTimeOrderLbl.Text" xml:space="preserve">
+    <value>Einmaliger Auftrag</value>
+  </data>
+  <data name="EditMnu.Text" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="ExitMnuFlt.Text" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="WriteTicketMnuFlt.Text" xml:space="preserve">
+    <value>Ticket schreiben...</value>
+  </data>
+  <data name="UndoMnuFlt.Text" xml:space="preserve">
+    <value>Rückgängig</value>
+  </data>
+  <data name="SettingsMnu.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="SaveMnuFlt.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="SaveAsMnuFlt.Text" xml:space="preserve">
+    <value>Speichern als...</value>
+  </data>
+  <data name="RedoMnuFlt.Text" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="OpenSettingsMnuFlt.Text" xml:space="preserve">
+    <value>Einstellungen öffnen...</value>
+  </data>
+  <data name="OpenMnuFlt.Text" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="OpenFilePageMnuFlt.Text" xml:space="preserve">
+    <value>Datei-Seite öffnen</value>
+  </data>
+  <data name="NewMnuFlt.Text" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="HelpMnu.Text" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="GoToWebsiteMnuFlt.Text" xml:space="preserve">
+    <value>Zur website...</value>
+  </data>
+  <data name="FileMnu.Text" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="AppThemeMnuFlt.Text" xml:space="preserve">
+    <value>App-Thema</value>
+  </data>
+  <data name="DarkMnuFlt.Text" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="LightThemeMnuFlt.Text" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="SystemThemeMnuFlt.Text" xml:space="preserve">
+    <value>Systemthema verwenden</value>
+  </data>
+  <data name="DetailedSalesMnuFlt.Text" xml:space="preserve">
+    <value>Detaillierte Ansicht...</value>
+  </data>
+  <data name="OverviewMnuFlt.Text" xml:space="preserve">
+    <value>Übersicht...</value>
+  </data>
+  <data name="ViewMnu.Text" xml:space="preserve">
+    <value>Ansicht</value>
+  </data>
+  <data name="CloseWithoutSavingBtn.Text" xml:space="preserve">
+    <value>Schließen ohne zu speichern</value>
+  </data>
+  <data name="DetailedSalesTitle" xml:space="preserve">
+    <value>Detaillierte Umsätze</value>
+  </data>
+  <data name="SaveAndCloseBtn.Text" xml:space="preserve">
+    <value>Speichern &amp; schließen</value>
+  </data>
+  <data name="SaveAndCloseBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="CloseWithoutSavingBtn.FontSize" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="UnsavedChangesTextLbl.Text" xml:space="preserve">
+    <value>Sie haben ungespeicherte Änderungen. Möchten Sie die Anwendung dennoch schließen?</value>
+  </data>
+  <data name="UnsavedChangesTitle.Text" xml:space="preserve">
+    <value>Ungespeicherte Änderungen</value>
+  </data>
+  <data name="OpenFileMnuFlt.Text" xml:space="preserve">
+    <value>Datei öffnen...</value>
+  </data>
+  <data name="OpenRecentMnuFlt.Text" xml:space="preserve">
+    <value>Kürzlich geöffnet</value>
+  </data>
+  <data name="IncomeTextLbl.Text" xml:space="preserve">
+	  <value>Einnahmen</value>
+  </data>
+  <data name="ExpensesTextLbl.Text" xml:space="preserve">
+	  <value>Ausgaben</value>
+  </data>
+  <data name="BackMnuFlt.Text" xml:space="preserve">
+	  <value>Zurück</value>
+  </data>
+  <data name="NewSalesBtn.FontSize" xml:space="preserve">
+	  <value>15</value>
+  </data>
+  <data name="RefreshMnuFlt.Text" xml:space="preserve">
+	  <value>Neu laden</value>
+  </data>
+  <data name="SalesCountLbl.Text" xml:space="preserve">
+	  <value>Anzahl Umsätze: </value>
+  </data>
+  <data name="IncomeCountLbl.Text" xml:space="preserve">
+	  <value>Davon Einnahmen:</value>
+  </data>
+  <data name="ExpensesCountLbl.Text" xml:space="preserve">
+	  <value>Davon Ausgaben:</value>
+  </data>
+  <data name="DeleteExpiredSalesBtn.Text" xml:space="preserve">
+	  <value>Umsätze löschen, die abgelaufen sind am</value>
+  </data>
+  <data name="DeleteExpiredSalesBtn.FontSize" xml:space="preserve">
+	  <value>14</value>
   </data>
 </root>

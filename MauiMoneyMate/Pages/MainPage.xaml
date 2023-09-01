@@ -3,256 +3,414 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiMoneyMate.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:MauiMoneyMate.ViewModels"
-             xmlns:mauiMoneyMate="using:MauiMoneyMate"
+             xmlns:financialOverview="clr-namespace:FinancialOverview;assembly=FinancialOverview"
              x:DataType="viewmodel:MainViewModel"
              Title="{Binding FinancialOverviewTitle}"
              Loaded="MainPage_OnLoaded"
              BackgroundImageSource="{AppThemeBinding Light=bg_light.png, Dark=bg_dark.png}"
              BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem x:Name="FileMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="OpenFilePageMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="OpenFilePageMnuFlt_OnClicked"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem x:Name="NewMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="NewMnuFlt_OnClicked"/>
+            <MenuFlyoutSubItem x:Name="OpenMnuFlt"
+                               x:FieldModifier="internal">
+                <MenuFlyoutItem x:Name="OpenFileMnuFlt"
+                                   x:FieldModifier="internal"
+                                   Clicked="OpenMnuFlt_OnClicked"/>
+                <MenuFlyoutSubItem x:Name="OpenRecentMnuFlt"
+                                   x:FieldModifier="internal"/>
+            </MenuFlyoutSubItem>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem x:Name="SaveMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="SaveMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="SaveAsMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="SaveAsMnuFlt_OnClicked"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem x:Name="ExitMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="ExitMnuFlt_OnClicked"/>
+        </MenuBarItem>
+        <MenuBarItem x:Name="EditMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="UndoMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="UndoMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="RedoMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="RedoMnuFlt_OnClicked"/>
+        </MenuBarItem>
+        <MenuBarItem x:Name="ViewMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="DetailedSalesMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="DetailedSalesMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="RefreshMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="RefreshMnuFlt_OnClicked"/>
+            <MenuFlyoutSubItem x:Name="AppThemeMnuFlt"
+                               x:FieldModifier="internal">
+                <MenuFlyoutItem x:Name="SystemThemeMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="SystemThemeMnuFlt_OnClicked"/>
+                <MenuFlyoutItem x:Name="LightThemeMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="LightThemeMnuFlt_OnClicked"/>
+                <MenuFlyoutItem x:Name="DarkMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="DarkMnuFlt_OnClicked"/>
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+        <MenuBarItem x:Name="SettingsMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="OpenSettingsMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="OpenSettingsMnuFlt_OnClicked"/>
+        </MenuBarItem>
+        <MenuBarItem x:Name="HelpMnu"
+                     x:FieldModifier="internal">
+            <MenuFlyoutItem x:Name="GoToWebsiteMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="GoToWebsiteMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="WriteTicketMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="WriteTicketMnuFlt_OnClicked"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
 
-    <Grid RowDefinitions="5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 40, Auto, *, Auto, Auto, *, 40"
-          ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+    <Grid RowDefinitions="45, 20, *, 20, *, 20, 45"
+          ColumnDefinitions="Auto,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           Padding="15">
 
-        <Frame Grid.Column="0"
-            Grid.ColumnSpan="97"
-            Grid.Row="0"
-            Grid.RowSpan="9"
-            Padding="0,0,0,0"
-            Style="{StaticResource Toolbar}"/>
-
-        <HorizontalStackLayout Grid.Column="0"
-                               Grid.ColumnSpan="97"
-                               Grid.Row="0"
-                               Grid.RowSpan="8"
-                               Padding="7,8,0,0"
-                               Spacing="2">
-            <Button Text="{Binding FilePageBtn.Text}"
-                    FontSize="{Binding FilePageBtn.FontSize}"
-                    Style="{StaticResource ToolbarButtonSelected}"
-                    Command="{Binding SwitchToFilePageCommand}"/>
-            <ImageButton Source="undo.png"
-                         Style="{StaticResource ToolbarImageButton}"
-                         Command="{Binding UndoCommand}"/>
-            <ImageButton Source="redo.png"
-                         Style="{StaticResource ToolbarImageButton}"
-                         Command="{Binding RedoCommand}"/>
-            <Button Text="{Binding SettingsPageBtn.Text}"
-                    FontSize="{Binding SettingsPageBtn.FontSize}"
-                    Style="{StaticResource ToolbarButton}"
-                    Command="{Binding SwitchToSettingsPageCommand}"/>
-            <Button x:Name="HelpBtn"
-                    Text="{Binding HelpBtn.Text}"
-                    FontSize="{Binding HelpBtn.FontSize}"
-                    Style="{StaticResource ToolbarButton}"
-                    Clicked="HelpBtn_OnClicked"/>
-        </HorizontalStackLayout>
-
-        <Frame Grid.Column="32"
-               Grid.ColumnSpan="12"
-               Grid.Row="10"
+        <Frame Grid.Column="9"
+               Grid.ColumnSpan="6"
+               Grid.Row="0"
                Style="{StaticResource Frame2}"/>
 
         <Frame Grid.Column="0"
-               Grid.ColumnSpan="33"
-               Grid.Row="10"
+               Grid.ColumnSpan="11"
+               Grid.Row="0"
                Style="{StaticResource Frame1}"/>
 
-        <Label Grid.Column="1"
-               Grid.ColumnSpan="25"
-               Grid.Row="10"
-               Text="{Binding AllSalesLbl.Text}"
-               FontSize="{Binding AllSalesLbl.FontSize}"
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Grid.Row="0"
+               Padding="10,0,0,0"
+               Text="{Binding SalesLbl.Text}"
+               FontSize="{Binding SalesLbl.FontSize}"
                Style="{StaticResource LabelPrimary}"
                HorizontalOptions="Start"
                VerticalOptions="Center"/>
 
-        <Picker Grid.Column="33"
-                Grid.ColumnSpan="10"
-                Grid.Row="10"
-                VerticalTextAlignment="Center"
+        <HorizontalStackLayout Grid.Column="11"
+                Grid.ColumnSpan="4"
+                Grid.Row="0"
+                HorizontalOptions="End">
+            <Picker
+                VerticalOptions="Center"
                 HorizontalOptions="End"
-                FontSize="20"
-                SelectedIndexChanged="TimeUnitPkr_OnSelectedIndexChanged"
-                ItemsSource="{Binding TimeUnits}"
-                SelectedIndex="{Binding SelectedTimeUnit}">
-        </Picker>
+                FontSize="22"
+                SelectedIndexChanged="MonthPkr_OnSelectedIndexChanged"
+                ItemsSource="{Binding MonthsCollection}"
+                SelectedIndex="{Binding SelectedMonth}">
+            </Picker>
+            <Picker
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                FontSize="22"
+                SelectedIndexChanged="YearPkr_OnSelectedIndexChanged"
+                ItemsSource="{Binding YearsCollection}"
+                SelectedIndex="{Binding SelectedYear}">
+            </Picker>
+        </HorizontalStackLayout>
 
-        <CollectionView Grid.Column="0"
-                        Grid.ColumnSpan="44"
-                        Grid.Row="12"
-                        Grid.RowSpan="4"
+        <VerticalStackLayout Grid.Column="0"
+                             Grid.Row="2">
+            <Frame Padding="10"
+                   Margin="0,5,10,0"
+                   Style="{StaticResource Frame1}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Fill">
+                <Label Text="{Binding IncomeTextLbl.Text}"
+                       FontSize="{Binding IncomeTextLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Start"
+                       LineBreakMode="NoWrap"/>
+            </Frame>
+            <Frame Padding="10"
+                   Margin="0,0,10,0"
+                   Style="{StaticResource Frame1}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Fill">
+                <Label Text="{Binding Income}"
+                       FontSize="{Binding IncomeTextLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Start"
+                       LineBreakMode="NoWrap"/>
+            </Frame>
+            <Grid ColumnDefinitions="*,*"
+                  Margin="0,0,10,0"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Fill">
+                <Button Grid.Column="0"
+                        Margin="1,2"
+                        Style="{StaticResource ReverseNormalBtn}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="￬"
+                        Command="{Binding SortDescendingCommand}"
+                        CommandParameter="{Binding IncomeCollection}"/>
+                <Button Grid.Column="1"
+                        Margin="1,2"
+                        Style="{StaticResource ReverseNormalBtn}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="￪"
+                        Command="{Binding SortAscendingCommand}"
+                        CommandParameter="{Binding IncomeCollection}"/>
+            </Grid>
+        </VerticalStackLayout>
+        
+
+            <CollectionView Grid.Column="1"
+                        Grid.ColumnSpan="14"
+                        Grid.Row="2"
                         VerticalOptions="Start"
-                        ItemsSource="{Binding AllSales}">
+                        ItemsSource="{Binding IncomeCollection}">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
-                    <Grid>
-                        <Frame Margin="3"
+                <DataTemplate x:DataType="{x:Type financialOverview:SalesObject}">
+                    <Grid RowDefinitions="*"
+                          ColumnDefinitions="*, Auto, Auto, Auto, Auto, Auto"
+                          MinimumHeightRequest="45"
+                          Padding="0">
+                        <Frame Grid.Column="0"
+                               Margin="0,2"
+                               CornerRadius="7"
                                Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
-                                   LineBreakMode="WordWrap"
-                                   Style="{StaticResource LabelSecondary}"/>
+                            <Grid RowDefinitions="Auto"
+                                  ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+                                  Padding="0"
+                                  VerticalOptions="Center">
+                                <Label Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="2,0"
+                                       Text="{Binding ValueAsString}"
+                                       FontSize="15"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="End"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="2"
+                                       Grid.ColumnSpan="6"
+                                       Margin="2,0"
+                                       Text="{Binding Name}"
+                                       FontSize="15"
+                                       LineBreakMode="TailTruncation"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="8"
+                                       Grid.ColumnSpan="11"
+                                       Margin="2,0,10,0"
+                                       Text="{Binding Addition}"
+                                       FontSize="15"
+                                       LineBreakMode="TailTruncation"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Center"/>
+                            </Grid>
                         </Frame>
+                        <Button Grid.Column="1"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource ReverseNormalBtn}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Text="￬"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=MoveEntryDownCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="2"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource ReverseNormalBtn}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Text="￪"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=MoveEntryUpCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="3"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource NeutralBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DetailsBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DetailsBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=ShowDetailsCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="4"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource PositiveBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditEntryCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="5"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource NegativeBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteEntryCommand}"
+                                CommandParameter="{Binding}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Label Grid.Column="54"
-               Grid.ColumnSpan="45"
-               Grid.Row="10"
-               Text="{Binding MonthlySalesLbl.Text}"
-               FontSize="{Binding MonthlySalesLbl.FontSize}"
-               Style="{StaticResource LabelPrimary}"
-               VerticalOptions="Start" />
+        <VerticalStackLayout Grid.Column="0"
+                             Grid.Row="4">
+            <Frame Padding="10"
+                   Margin="0,5,10,0"
+                   Style="{StaticResource Frame1}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Fill">
+                <Label Text="{Binding ExpensesTextLbl.Text}"
+                       FontSize="{Binding ExpensesTextLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Start"
+                       LineBreakMode="NoWrap"/>
+            </Frame>
+            <Frame Padding="10"
+                   Margin="0,0,10,0"
+                   Style="{StaticResource Frame1}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Fill">
+                <Label Text="{Binding Expenses}"
+                       FontSize="{Binding ExpensesTextLbl.FontSize}"
+                       Style="{StaticResource LabelPrimary}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Start"
+                       LineBreakMode="NoWrap"/>
+            </Frame>
+            <Grid ColumnDefinitions="*,*"
+                  Margin="0,0,10,0"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Fill">
+                <Button Grid.Column="0"
+                        Margin="1,2"
+                        Style="{StaticResource ReverseNormalBtn}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="￬"
+                        Command="{Binding SortAscendingCommand}"
+                        CommandParameter="{Binding ExpensesCollection}"/>
+                <Button Grid.Column="1"
+                        Margin="1,2"
+                        Style="{StaticResource ReverseNormalBtn}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Text="￪"
+                        Command="{Binding SortDescendingCommand}"
+                        CommandParameter="{Binding ExpensesCollection}"/>
+            </Grid>
+        </VerticalStackLayout>
 
-        <Entry Placeholder="{Binding MonthlySalesEntry.Placeholder}"
-               Text="{Binding MonthlySalesEntryInput}"
-               FontSize="{Binding MonthlySalesEntry.FontSize}"
-               x:Name="MonthlySalesEntry"
-               Grid.Column="54"
-               Grid.ColumnSpan="6"
-               Grid.Row="11"
-               Completed="MonthlySalesEntry_OnCompleted"/>
-
-        <Entry Placeholder="{Binding MonthlyNameEntry.Placeholder}"
-               Text="{Binding MonthlyNameEntryInput}"
-               FontSize="{Binding MonthlyNameEntry.FontSize}"
-               x:Name="MonthlyNameEntry"
-               Grid.Column="60"
-               Grid.ColumnSpan="11"
-               Grid.Row="11"
-               Completed="MonthlyNameEntry_OnCompleted"/>
-
-        <Entry Placeholder="{Binding MonthlyAdditionEntry.Placeholder}"
-               Text="{Binding MonthlyAdditionEntryInput}"
-               FontSize="{Binding MonthlyAdditionEntry.FontSize}"
-               x:Name="MonthlyAdditionEntry"
-               Grid.Column="71"
-               Grid.ColumnSpan="19"
-               Grid.Row="11"
-               Completed="MonthlyAdditionEntry_OnCompleted"/>
-
-        <Button Text="{Binding MonthlyAddBtn.Text}"
-                FontSize="{Binding MonthlyAddBtn.FontSize}"
-                x:Name="MonthlyAddBtn"
-                Grid.Column="90"
-                Grid.ColumnSpan="10"
-                Grid.Row="11"
-                Scale=".8"
-                Command="{Binding AddMonthlyCommand}"/>
-
-        <CollectionView Grid.Column="54"
-                        Grid.ColumnSpan="37"
-                        Grid.Row="12"
+        <CollectionView Grid.Column="1"
+                        Grid.ColumnSpan="14"
+                        Grid.Row="4"
                         VerticalOptions="Start"
-                        ItemsSource="{Binding MonthlySales}">
-                
+                        ItemsSource="{Binding ExpensesCollection}">
+
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
-                    <Grid RowDefinitions="Auto"
-                          ColumnDefinitions="*, Auto, Auto">
+                <DataTemplate x:DataType="{x:Type financialOverview:SalesObject}">
+                    <Grid RowDefinitions="*"
+                          ColumnDefinitions="*, Auto, Auto, Auto, Auto, Auto"
+                          MinimumHeightRequest="45"
+                          Padding="0">
                         <Frame Grid.Column="0"
-                               Margin="3"
+                               Margin="0,2"
+                               CornerRadius="7"
                                Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
-                                   LineBreakMode="WordWrap"
-                                   Style="{StaticResource LabelSecondary}"/>
+                            <Grid RowDefinitions="Auto"
+                                  ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+                                  Padding="0"
+                                  VerticalOptions="Center">
+                                <Label Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="2,0"
+                                       Text="{Binding ValueAsString}"
+                                       FontSize="15"
+                                       LineBreakMode="WordWrap"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="End"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="2"
+                                       Grid.ColumnSpan="6"
+                                       Margin="2,0"
+                                       Text="{Binding Name}"
+                                       FontSize="15"
+                                       LineBreakMode="TailTruncation"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Column="8"
+                                       Grid.ColumnSpan="11"
+                                       Margin="2,0,10,0"
+                                       Text="{Binding Addition}"
+                                       FontSize="15"
+                                       LineBreakMode="TailTruncation"
+                                       Style="{StaticResource LabelSecondary}"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Center"/>
+                            </Grid>
                         </Frame>
                         <Button Grid.Column="1"
-                                Margin="2,4,2,4"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource ReverseNormalBtn}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Text="￬"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=MoveEntryDownCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="2"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource ReverseNormalBtn}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Text="￪"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=MoveEntryUpCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="3"
+                                Margin="2,2,0,2"
+                                Style="{StaticResource NeutralBtn}"
+                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DetailsBtn.FontSize}"
+                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DetailsBtn.Text}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=ShowDetailsCommand}"
+                                CommandParameter="{Binding}"/>
+                        <Button Grid.Column="4"
+                                Margin="2,2,0,2"
                                 Style="{StaticResource PositiveBtn}"
                                 FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.FontSize}"
                                 Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.Text}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditMonthlyCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditEntryCommand}"
                                 CommandParameter="{Binding}"/>
-                        <Button Grid.Column="2"
-                                Margin="2,4,2,4"
+                        <Button Grid.Column="5"
+                                Margin="2,2,0,2"
                                 Style="{StaticResource NegativeBtn}"
                                 FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
                                 Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteMonthlyCommand}"
-                                CommandParameter="{Binding}"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        <Label Grid.Column="54"
-               Grid.ColumnSpan="45"
-               Grid.Row="13"
-               Text="{Binding YearlySalesLbl.Text}"
-               FontSize="{Binding YearlySalesLbl.FontSize}"
-               Style="{StaticResource LabelPrimary}"
-               VerticalOptions="Start" />
-
-        <Entry Placeholder="{Binding YearlySalesEntry.Placeholder}"
-               Text="{Binding YearlySalesEntryInput}"
-               FontSize="{Binding YearlySalesEntry.FontSize}"
-               x:Name="YearlySalesEntry"
-               Grid.Column="54"
-               Grid.ColumnSpan="6"
-               Grid.Row="14"
-               Completed="YearlySalesEntry_OnCompleted"/>
-
-        <Entry Placeholder="{Binding YearlyNameEntry.Placeholder}"
-               Text="{Binding YearlyNameEntryInput}"
-               FontSize="{Binding YearlyNameEntry.FontSize}"
-               x:Name="YearlyNameEntry"
-               Grid.Column="60"
-               Grid.ColumnSpan="11"
-               Grid.Row="14"
-               Completed="YearlyNameEntry_OnCompleted"/>
-
-        <Entry Placeholder="{Binding YearlyAdditionEntry.Placeholder}"
-               Text="{Binding YearlyAdditionEntryInput}"
-               FontSize="{Binding YearlyAdditionEntry.FontSize}"
-               x:Name="YearlyAdditionEntry"
-               Grid.Column="71"
-               Grid.ColumnSpan="19"
-               Grid.Row="14"
-               Completed="YearlyAdditionEntry_OnCompleted"/>
-
-        <Button Grid.Column="90"
-                Grid.ColumnSpan="10"
-                Grid.Row="14"
-                Text="{Binding YearlyAddBtn.Text}"
-                FontSize="{Binding YearlyAddBtn.FontSize}"
-                x:Name="YearlyAddBtn"
-                Scale=".8"
-                Command="{Binding AddYearlyCommand}"/>
-
-        <CollectionView Grid.Column="54"
-                        Grid.ColumnSpan="37"
-                        Grid.Row="15 "
-                        VerticalOptions="Start"
-                        ItemsSource="{Binding YearlySales}">
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
-                    <Grid RowDefinitions="Auto"
-                          ColumnDefinitions="*, Auto, Auto">
-                        <Frame Grid.Column="0"
-                               Margin="3"
-                               Style="{StaticResource Frame2}">
-                            <Label Text="{Binding}"
-                                   LineBreakMode="WordWrap"
-                                   Style="{StaticResource LabelSecondary}"/>
-                        </Frame>
-                        <Button Grid.Column="1"
-                                Margin="2,4,2,4"
-                                Style="{StaticResource PositiveBtn}"
-                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.FontSize}"
-                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditBtn.Text}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=EditYearlyCommand}"
-                                CommandParameter="{Binding}"/>
-                        <Button Grid.Column="2"
-                                Margin="2,4,2,4"
-                                Style="{StaticResource NegativeBtn}"
-                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.FontSize}"
-                                Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteBtn.Text}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteYearlyCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteEntryCommand}"
                                 CommandParameter="{Binding}"/>
                     </Grid>
                 </DataTemplate>
@@ -260,18 +418,19 @@
         </CollectionView>
 
         <Frame Grid.Column="0"
-                 Grid.ColumnSpan="12"
-                 Grid.Row="16"
-                 Style="{StaticResource Frame2}"/>
+               Grid.ColumnSpan="6"
+               Grid.Row="7"
+               Style="{StaticResource Frame2}"/>
 
-        <Frame Grid.Column="10"
-               Grid.ColumnSpan="34"
-               Grid.Row="16"
+        <Frame Grid.Column="4"
+               Grid.ColumnSpan="11"
+               Grid.Row="7"
                Style="{StaticResource Frame1}"/>
 
-        <Label Grid.Column="1"
-               Grid.ColumnSpan="9"
-               Grid.Row="16"
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Grid.Row="7"
+               Padding="10,0,0,0"
                Text="{Binding RestLbl.Text}"
                FontSize="{Binding RestLbl.FontSize}"
                VerticalTextAlignment="Center"
@@ -279,22 +438,24 @@
                Style="{StaticResource LabelSecondary}"/>
 
         <Label Grid.Column="9"
-               Grid.ColumnSpan="32"
-               Grid.Row="16"
-               Padding="0,0,6,0"
+               Grid.ColumnSpan="6"
+               Grid.Row="7"
+               Padding="0,0,10,0"
                Text="{Binding RestMoney}"
                FontSize="{Binding RestMoneyLbl.FontSize}"
                VerticalTextAlignment="Center"
                HorizontalTextAlignment="End"
                Style="{StaticResource LabelPrimary}"/>
 
-        <Label Grid.Column="41"
-               Grid.ColumnSpan="2"
-               Grid.Row="16"
-               Text="{Binding MoneyUnitLbl.Text}"
-               FontSize="{Binding MoneyUnitLbl.FontSize}"
-               VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Start"
-               Style="{StaticResource LabelPrimary}"/>
+        <VerticalStackLayout Grid.Column="16"
+                             Grid.ColumnSpan="3"
+                             Grid.Row="0"
+                             Grid.RowSpan="7">
+            <Button Text="{Binding NewSalesBtn.Text}"
+                    FontSize="{Binding NewSalesBtn.FontSize}"
+                    HorizontalOptions="End"
+                    Clicked="NewSaleBtn_OnClicked"
+                    LineBreakMode="WordWrap"/>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

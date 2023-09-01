@@ -1,15 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using MauiMoneyMate.Pages;
-using MauiMoneyMate.Utils;
 using MauiMoneyMate.ViewModels;
-using Microsoft.Maui.LifecycleEvents;
-
-#if WINDOWS
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using System.Xml.Linq;
-using Windows.Graphics;
-#endif
 
 namespace MauiMoneyMate
 {
@@ -29,11 +20,14 @@ namespace MauiMoneyMate
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton(new MainViewModel());
 
-            builder.Services.AddTransient<FilePage>();
+            builder.Services.AddSingleton<FilePage>();
             builder.Services.AddSingleton(new FileViewModel());
 
-            builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddSingleton<SettingsPage>();
             builder.Services.AddSingleton(new SettingsViewModel());
+
+            builder.Services.AddSingleton<DetailedSalesPage>();
+            builder.Services.AddSingleton(new DetailedSalesViewModel());
 
             return builder.Build();
         }
