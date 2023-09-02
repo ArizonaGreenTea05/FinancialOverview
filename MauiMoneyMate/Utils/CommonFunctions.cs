@@ -5,18 +5,17 @@ using CommonLibrary;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using FinancialOverview;
-using MauiMoneyMate.Pages;
 using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
-using Microsoft.UI.Windowing;
-using static CommonLibrary.Functions;
 
 namespace MauiMoneyMate.Utils;
 
 internal static class CommonFunctions
 {
+#if WINDOWS
     [DllImport("user32.dll")]
     internal static extern bool SetForegroundWindow(IntPtr hWnd);
+#endif
 
     internal static void NewDocumentAction()
     {
@@ -213,12 +212,6 @@ internal static class CommonFunctions
         {
             return false;
         }
-    }
-
-    internal static void AppWindow_Closing(AppWindow sender, AppWindowClosingEventArgs args)
-    {
-        args.Cancel = true;
-        ExitAction();
     }
 
     internal static void ExitAction(Page page = null)
