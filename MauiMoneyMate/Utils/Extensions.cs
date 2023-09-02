@@ -1,8 +1,5 @@
 ﻿using System.Globalization;
-using ABI.Microsoft.Windows.ApplicationModel.Resources;
-using System.Resources;
 using ResourceManager = System.Resources.ResourceManager;
-using System.Runtime.InteropServices;
 
 namespace MauiMoneyMate.Utils
 {

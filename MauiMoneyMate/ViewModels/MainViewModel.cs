@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Input;
 using System.Xml.Linq;
@@ -13,10 +12,11 @@ using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
+#if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
+#endif
 using static CommonLibrary.Functions;
-using Microsoft.VisualBasic;
 
 namespace MauiMoneyMate.ViewModels;
 
@@ -94,16 +94,6 @@ public partial class MainViewModel : ObservableObject
 
     public MainViewModel()
     {
-        var currentProcess = Process.GetCurrentProcess();
-        var processes = Process.GetProcessesByName(currentProcess.ProcessName);
-        if (processes.Length > 1)
-        {
-            Toast.Make(LanguageResource.AnInstanceOfMauiMoneyMateAlreadyExists).Show();
-            CommonFunctions.SetForegroundWindow(processes.Where(p => p.Id != currentProcess.Id)
-                .Select(p => p.MainWindowHandle).ToList()[0]);
-            Environment.Exit(1);
-        }
-
         CommonFunctions.RemoveNonZipFiles(CommonProperties.UpdateDirectory);
 
         MonthsCollection = new ObservableCollection<string>();
@@ -203,7 +193,9 @@ public partial class MainViewModel : ObservableObject
 
     private void Window_OnDestroying(object sender, EventArgs e)
     {
+#if WINDOWS
         SaveWindowState();
+#endif
         if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically)
             UpdateProgram();
     }
@@ -303,7 +295,9 @@ public partial class MainViewModel : ObservableObject
         LoadSettings();
         LoadResources(mainPage);
         DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
+#if WINDOWS
         RestoreWindowState();
+#endif
     }
 
     internal void OnAppearing(MainPage mainPage)
@@ -430,15 +424,14 @@ public partial class MainViewModel : ObservableObject
         MainPage.ShowPopup(newSalePopup);
     }
 
+#if WINDOWS
     private void SaveWindowState()
     {
         var state = 2;
-#if WINDOWS
         var nativeWindowHandle = ((MauiWinUIWindow)Application.Current.Windows[0].Handler.PlatformView).WindowHandle;
         var win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
         if (AppWindow.GetFromWindowId(win32WindowsId).Presenter is OverlappedPresenter p)
             state = Convert.ToInt32(p.State);
-#endif
         var isMaximized = state == Convert.ToInt32(OverlappedPresenterState.Maximized);
         var doc = new XDocument(
             new XElement("WindowState",
@@ -467,14 +460,12 @@ public partial class MainViewModel : ObservableObject
                 doc.Descendants().Where(x => x.Name.LocalName == "Width").ToList()[0].Value.Split('.')[0]);
         _startUpBounds.Height = Application.Current.MainPage.Window.Height = Convert.ToDouble(
             doc.Descendants().Where(x => x.Name.LocalName == "Height").ToList()[0].Value.Split('.')[0]);
-
-#if WINDOWS
         var nativeWindowHandle = ((MauiWinUIWindow)App.Current.Windows[0].Handler.PlatformView).WindowHandle;
         var win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
         if (AppWindow.GetFromWindowId(win32WindowsId).Presenter is OverlappedPresenter p
             && state == Convert.ToInt32(OverlappedPresenterState.Maximized)) p.Maximize();
-#endif
     }
+#endif
 
     private static void LoadSettings()
     {
