@@ -1,7 +1,7 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using MauiMoneyMate.Translations;
-using MauiMoneyMate.Utils.ResourceItemTemplates;
+using MauiMoneyMate.Utils;
 
 namespace MauiMoneyMate.Popups;
 
@@ -9,9 +9,6 @@ public partial class UpdatePopup : Popup
 {
     private readonly Func<bool> _downloadFunction;
     private readonly Func<bool> _installFunction;
-    private ResourceLabel UpdateTitleLbl;
-    private ResourceLabel UpdateInfoLbl;
-    private ResourceButton UpdateBtn;
     private readonly Thread _updateThread;
     private bool _updateFinishedSuccessful = false;
 
@@ -21,9 +18,9 @@ public partial class UpdatePopup : Popup
         _downloadFunction = downloadFunction;
         _installFunction = installFunction;
         InitializeComponent();
-        UpdateTitleLbl = new ResourceLabel(nameof(UpdateTitleLbl), Title);
-        UpdateInfoLbl = new ResourceLabel(nameof(UpdateInfoLbl), Info);
-        UpdateBtn = new ResourceButton(nameof(UpdateBtn), Update);
+        UpdateTitleLbl.LoadFromResource(nameof(UpdateTitleLbl));
+        UpdateInfoLbl.LoadFromResource(nameof(UpdateInfoLbl));
+        UpdateBtn.LoadFromResource(nameof(UpdateBtn));
     }
 
     protected override Task OnDismissedByTappingOutsideOfPopup()
@@ -39,7 +36,7 @@ public partial class UpdatePopup : Popup
 
     private void Update_Clicked(object sender, EventArgs e)
     {
-        Update.IsEnabled = false;
+        UpdateBtn.IsEnabled = false;
         ActivityIndicator.IsRunning = true;
         _updateThread.Start();
     }

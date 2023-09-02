@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="MauiMoneyMate.Popups.AppInfoPopup"
+               Color="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
+    <Grid RowDefinitions="Auto,20,*"
+          ColumnDefinitions="*,*"
+          Padding="20">
+        <Image Grid.ColumnSpan="2"
+               Grid.Row="0"
+               Source="logo.png"
+               WidthRequest="300"
+               VerticalOptions="Center" 
+               HorizontalOptions="Start" />
+        <VerticalStackLayout Grid.Row="2"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Start"
+                             Spacing="5">
+            <Label x:Name="ApplicationNameLbl"/>
+            <Label x:Name="VersionLbl"/>
+            <Label x:Name="CopyrightLbl"/>
+            <Label x:Name="RightsReservedLbl"/>
+        </VerticalStackLayout>
+    </Grid>
+</toolkit:Popup>

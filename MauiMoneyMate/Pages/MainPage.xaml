@@ -83,6 +83,9 @@
             <MenuFlyoutItem x:Name="WriteTicketMnuFlt"
                             x:FieldModifier="internal"
                             Clicked="WriteTicketMnuFlt_OnClicked"/>
+            <MenuFlyoutItem x:Name="AppInfoMnuFlt"
+                            x:FieldModifier="internal"
+                            Clicked="AppInfoMnuFlt_OnClicked"/>
         </MenuBarItem>
     </ContentPage.MenuBarItems>
 

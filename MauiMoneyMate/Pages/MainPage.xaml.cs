@@ -85,5 +85,8 @@ namespace MauiMoneyMate.Pages
 
         private void RefreshMnuFlt_OnClicked(object sender, EventArgs e)
             => _viewModel.RefreshMnuFlt_OnClicked(sender, e);
+
+        private void AppInfoMnuFlt_OnClicked(object sender, EventArgs e)
+            => _viewModel.AppInfoMnuFlt_OnClicked(sender, e);
     }
 }

@@ -204,6 +204,11 @@ public partial class MainViewModel : ObservableObject
 
     #region internal Event Handlers
 
+    internal void AppInfoMnuFlt_OnClicked(object sender, EventArgs e)
+    {
+        MainPage.ShowPopup(new AppInfoPopup());
+    }
+
     internal void RefreshMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
         UpdateSales();
@@ -553,30 +558,31 @@ public partial class MainViewModel : ObservableObject
 
     private void LoadResources(MainPage mainPage)
     {
-        new ResourceMenuBarItem(nameof(mainPage.FileMnu), mainPage.FileMnu);
-        new ResourceMenuFlyout(nameof(mainPage.OpenFilePageMnuFlt), mainPage.OpenFilePageMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.NewMnuFlt), mainPage.NewMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.OpenMnuFlt), mainPage.OpenMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.OpenFileMnuFlt), mainPage.OpenFileMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.OpenRecentMnuFlt), mainPage.OpenRecentMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.SaveMnuFlt), mainPage.SaveMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.SaveAsMnuFlt), mainPage.SaveAsMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.ExitMnuFlt), mainPage.ExitMnuFlt);
-        new ResourceMenuBarItem(nameof(mainPage.SettingsMnu), mainPage.SettingsMnu);
-        new ResourceMenuFlyout(nameof(mainPage.OpenSettingsMnuFlt), mainPage.OpenSettingsMnuFlt);
-        new ResourceMenuBarItem(nameof(mainPage.EditMnu), mainPage.EditMnu);
-        new ResourceMenuFlyout(nameof(mainPage.UndoMnuFlt), mainPage.UndoMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.RedoMnuFlt), mainPage.RedoMnuFlt);
-        new ResourceMenuBarItem(nameof(mainPage.HelpMnu), mainPage.HelpMnu);
-        new ResourceMenuFlyout(nameof(mainPage.GoToWebsiteMnuFlt), mainPage.GoToWebsiteMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.WriteTicketMnuFlt), mainPage.WriteTicketMnuFlt);
-        new ResourceMenuBarItem(nameof(mainPage.ViewMnu), mainPage.ViewMnu);
-        new ResourceMenuFlyout(nameof(mainPage.DetailedSalesMnuFlt), mainPage.DetailedSalesMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.RefreshMnuFlt), mainPage.RefreshMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.AppThemeMnuFlt), mainPage.AppThemeMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.SystemThemeMnuFlt), mainPage.SystemThemeMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.LightThemeMnuFlt), mainPage.LightThemeMnuFlt);
-        new ResourceMenuFlyout(nameof(mainPage.DarkMnuFlt), mainPage.DarkMnuFlt);
+        mainPage.FileMnu.LoadFromResource(nameof(mainPage.FileMnu));
+        mainPage.OpenFilePageMnuFlt.LoadFromResource(nameof(mainPage.OpenFilePageMnuFlt));
+        mainPage.NewMnuFlt.LoadFromResource(nameof(mainPage.NewMnuFlt));
+        mainPage.OpenMnuFlt.LoadFromResource(nameof(mainPage.OpenMnuFlt));
+        mainPage.OpenFileMnuFlt.LoadFromResource(nameof(mainPage.OpenFileMnuFlt));
+        mainPage.OpenRecentMnuFlt.LoadFromResource(nameof(mainPage.OpenRecentMnuFlt));
+        mainPage.SaveMnuFlt.LoadFromResource(nameof(mainPage.SaveMnuFlt));
+        mainPage.SaveAsMnuFlt.LoadFromResource(nameof(mainPage.SaveAsMnuFlt));
+        mainPage.ExitMnuFlt.LoadFromResource(nameof(mainPage.ExitMnuFlt));
+        mainPage.SettingsMnu.LoadFromResource(nameof(mainPage.SettingsMnu));
+        mainPage.OpenSettingsMnuFlt.LoadFromResource(nameof(mainPage.OpenSettingsMnuFlt));
+        mainPage.EditMnu.LoadFromResource(nameof(mainPage.EditMnu));
+        mainPage.UndoMnuFlt.LoadFromResource(nameof(mainPage.UndoMnuFlt));
+        mainPage.RedoMnuFlt.LoadFromResource(nameof(mainPage.RedoMnuFlt));
+        mainPage.HelpMnu.LoadFromResource(nameof(mainPage.HelpMnu));
+        mainPage.GoToWebsiteMnuFlt.LoadFromResource(nameof(mainPage.GoToWebsiteMnuFlt));
+        mainPage.WriteTicketMnuFlt.LoadFromResource(nameof(mainPage.WriteTicketMnuFlt));
+        mainPage.AppInfoMnuFlt.LoadFromResource(nameof(mainPage.AppInfoMnuFlt));
+        mainPage.ViewMnu.LoadFromResource(nameof(mainPage.ViewMnu));
+        mainPage.DetailedSalesMnuFlt.LoadFromResource(nameof(mainPage.DetailedSalesMnuFlt));
+        mainPage.RefreshMnuFlt.LoadFromResource(nameof(mainPage.RefreshMnuFlt));
+        mainPage.AppThemeMnuFlt.LoadFromResource(nameof(mainPage.AppThemeMnuFlt));
+        mainPage.SystemThemeMnuFlt.LoadFromResource(nameof(mainPage.SystemThemeMnuFlt));
+        mainPage.LightThemeMnuFlt.LoadFromResource(nameof(mainPage.LightThemeMnuFlt));
+        mainPage.DarkMnuFlt.LoadFromResource(nameof(mainPage.DarkMnuFlt));
         IncomeTextLbl = new ResourceLabel(nameof(IncomeTextLbl));
         ExpensesTextLbl = new ResourceLabel(nameof(ExpensesTextLbl));
         SalesLbl = new ResourceLabel(nameof(SalesLbl));

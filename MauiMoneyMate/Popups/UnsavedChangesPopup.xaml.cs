@@ -1,6 +1,5 @@
 using CommunityToolkit.Maui.Views;
 using MauiMoneyMate.Utils;
-using MauiMoneyMate.Utils.ResourceItemTemplates;
 
 namespace MauiMoneyMate.Popups;
 
@@ -13,11 +12,11 @@ public partial class UnsavedChangesPopup : Popup
         _window = window;
         InitializeComponent();
         CanBeDismissedByTappingOutsideOfPopup = false;
-        new ResourceLabel(nameof(UnsavedChangesTitle), UnsavedChangesTitle);
-        new ResourceLabel(nameof(UnsavedChangesTextLbl), UnsavedChangesTextLbl);
-        new ResourceButton(nameof(SaveAndCloseBtn), SaveAndCloseBtn);
-        new ResourceButton(nameof(CloseWithoutSavingBtn), CloseWithoutSavingBtn);
-        new ResourceButton(nameof(CancelBtn), CancelBtn);
+        UnsavedChangesTitle.LoadFromResource(nameof(UnsavedChangesTitle));
+        UnsavedChangesTextLbl.LoadFromResource(nameof(UnsavedChangesTextLbl));
+        SaveAndCloseBtn.LoadFromResource(nameof(SaveAndCloseBtn));
+        CloseWithoutSavingBtn.LoadFromResource(nameof(CloseWithoutSavingBtn));
+        CancelBtn.LoadFromResource(nameof(CancelBtn));
     }
 
     private void CloseApplication()
