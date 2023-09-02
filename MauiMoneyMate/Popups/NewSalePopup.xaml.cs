@@ -12,17 +12,6 @@ namespace MauiMoneyMate.Popups;
 
 public partial class NewSalePopup : Popup
 {
-    private ResourceLabel NewSaleTitleLbl;
-    private ResourceButton CancelBtn;
-    private ResourceButton SaveBtn;
-    private ResourceEntry SalesEntry;
-    private ResourceEntry NameEntry;
-    private ResourceEntry AdditionEntry;
-    private ResourceLabel StartDateLbl;
-    private ResourceLabel EndDateLbl;
-    private ResourceLabel RepeatCycleTextLbl;
-    private ResourceLabel RepeatCycleMultiplierTextLbl;
-    private ResourceEntry RepeatCycleMultiplierEntry;
     private SalesObject _salesObject;
     private readonly int _indexOfObject;
 
@@ -34,51 +23,51 @@ public partial class NewSalePopup : Popup
         HorizontalOptions = Microsoft.Maui.Primitives.LayoutAlignment.End;
         VerticalOptions = Microsoft.Maui.Primitives.LayoutAlignment.End;
         CanBeDismissedByTappingOutsideOfPopup = false;
-        NewSaleTitleLbl = new ResourceLabel(nameof(NewSaleTitleLbl), Title);
-        CancelBtn = new ResourceButton(nameof(CancelBtn), Cancel);
-        SaveBtn = new ResourceButton(nameof(SaveBtn), Save);
-        SalesEntry = new ResourceEntry(nameof(SalesEntry), Sales);
-        NameEntry = new ResourceEntry(nameof(NameEntry), Name);
-        AdditionEntry = new ResourceEntry(nameof(AdditionEntry), Addition);
-        new ResourceLabel(nameof(IsOneTimeOrderLbl), IsOneTimeOrderLbl);
+        NewSaleTitleLbl.LoadFromResource(nameof(NewSaleTitleLbl));
+        CancelBtn.LoadFromResource(nameof(CancelBtn));
+        SaveBtn.LoadFromResource(nameof(SaveBtn));
+        SalesEntry.LoadFromResource(nameof(SalesEntry));
+        NameEntry.LoadFromResource(nameof(NameEntry));
+        AdditionEntry.LoadFromResource(nameof(AdditionEntry));
+        IsOneTimeOrderLbl.LoadFromResource(nameof(IsOneTimeOrderLbl));
         IsOneTimeOrderSwitch.IsToggled = false;
-        StartDateLbl = new ResourceLabel(nameof(StartDateLbl), StartDateText);
+        StartDateLbl.LoadFromResource(nameof(StartDateLbl));
         StartDatePkr.Format = CommonProperties.DatePickerFormat;
         EndDatePkr.Format = CommonProperties.DatePickerFormat;
-        EndDateLbl = new ResourceLabel(nameof(EndDateLbl), EndDateText);
-        RepeatCycleTextLbl = new ResourceLabel(nameof(RepeatCycleTextLbl), RepeatCycleText);
+        EndDateLbl.LoadFromResource(nameof(EndDateLbl));
+        RepeatCycleTextLbl.LoadFromResource(nameof(RepeatCycleTextLbl));
         RepeatCyclePkr.Items.Clear();
         foreach (var item in GetLocalizedList(typeof(SaleRepeatCycle)))
             RepeatCyclePkr.Items.Add(item);
         RepeatCyclePkr.SelectedIndex = 2;
-        RepeatCycleMultiplierTextLbl = new ResourceLabel(nameof(RepeatCycleMultiplierTextLbl), RepeatCycleMultiplierText);
-        RepeatCycleMultiplierEntry = new ResourceEntry(nameof(RepeatCycleMultiplierEntry), RepeatCycleMultiplier);
-        RepeatCycleMultiplier.Text = "1";
+        RepeatCycleMultiplierTextLbl.LoadFromResource(nameof(RepeatCycleMultiplierTextLbl));
+        RepeatCycleMultiplierEntry.LoadFromResource(nameof(RepeatCycleMultiplierEntry));
+        RepeatCycleMultiplierEntry.Text = "1";
 
         if (_salesObject == null) return;
-        Sales.Text = _salesObject.Value.ToString(CultureInfo.CurrentCulture);
-        Name.Text = _salesObject.Name;
-        Addition.Text = _salesObject.Addition;
+        SalesEntry.Text = _salesObject.Value.ToString(CultureInfo.CurrentCulture);
+        NameEntry.Text = _salesObject.Name;
+        AdditionEntry.Text = _salesObject.Addition;
         IsOneTimeOrderSwitch.IsToggled = _salesObject.StartDate ==  _salesObject.EndDate;
         StartDatePkr.Date = _salesObject.StartDate;
         EndDatePkr.Date = _salesObject.EndDate;
         RepeatCyclePkr.SelectedIndex = (int)_salesObject.RepeatCycle;
-        RepeatCycleMultiplier.Text = _salesObject.RepeatCycleMultiplier.ToString();
+        RepeatCycleMultiplierEntry.Text = _salesObject.RepeatCycleMultiplier.ToString();
     }
 
     private void IsOneTimeOrderSwitch_OnToggled(object sender, ToggledEventArgs e)
     {
-        EndDatePkr.IsEnabled = RepeatCyclePkr.IsEnabled = RepeatCycleMultiplier.IsEnabled = !e.Value;
+        EndDatePkr.IsEnabled = RepeatCyclePkr.IsEnabled = RepeatCycleMultiplierEntry.IsEnabled = !e.Value;
         EndDatePkr.Date = StartDatePkr.Date;
         if (e.Value)
         {
             RepeatCyclePkr.SelectedIndex = 0;
-            RepeatCycleMultiplier.Text = "0";
+            RepeatCycleMultiplierEntry.Text = "0";
         }
         else
         {
             RepeatCyclePkr.SelectedIndex = 2;
-            RepeatCycleMultiplier.Text = "1";
+            RepeatCycleMultiplierEntry.Text = "1";
         }
     }
 
@@ -94,22 +83,22 @@ public partial class NewSalePopup : Popup
 
     private void Save_Clicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(Name.Text))
+        if (string.IsNullOrWhiteSpace(NameEntry.Text))
         {
-            Toast.Make(string.Format(LanguageResource.IsNoValidName, Name.Text)).Show();
+            Toast.Make(string.Format(LanguageResource.IsNoValidName, NameEntry.Text)).Show();
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(Sales.Text) || !decimal.TryParse(Sales.Text, out var tmpSales))
+        if (string.IsNullOrWhiteSpace(SalesEntry.Text) || !decimal.TryParse(SalesEntry.Text, out var tmpSales))
         {
-            Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, Sales.Text)).Show();
+            Toast.Make(string.Format(LanguageResource.IsNoValidDecimal, SalesEntry.Text)).Show();
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(RepeatCycleMultiplier.Text) ||
-            !int.TryParse(RepeatCycleMultiplier.Text, out var tmpRepeatCycleMultiplier))
+        if (string.IsNullOrWhiteSpace(RepeatCycleMultiplierEntry.Text) ||
+            !int.TryParse(RepeatCycleMultiplierEntry.Text, out var tmpRepeatCycleMultiplier))
         {
-            Toast.Make(string.Format(LanguageResource.IsNoValidInteger, RepeatCycleMultiplier.Text)).Show();
+            Toast.Make(string.Format(LanguageResource.IsNoValidInteger, RepeatCycleMultiplierEntry.Text)).Show();
             return;
         }
 
@@ -123,7 +112,7 @@ public partial class NewSalePopup : Popup
 
         var isEdit = _salesObject != null;
 
-        _salesObject = new SalesObject(tmpSales, Name.Text, Addition.Text, StartDatePkr.Date, EndDatePkr.Date,
+        _salesObject = new SalesObject(tmpSales, NameEntry.Text, AdditionEntry.Text, StartDatePkr.Date, EndDatePkr.Date,
             (SaleRepeatCycle)RepeatCyclePkr.SelectedIndex, tmpRepeatCycleMultiplier);
 
         if (!isEdit && CommonProperties.FinancialOverview.Sales.Any(item => item.Name == _salesObject.Name && item.Value == _salesObject.Value))

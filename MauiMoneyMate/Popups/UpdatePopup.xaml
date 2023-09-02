@@ -9,13 +9,13 @@
           Padding="20">
         <ActivityIndicator x:Name="ActivityIndicator"/>
         <Label 
-            x:Name="Title"
+            x:Name="UpdateTitleLbl"
             Grid.ColumnSpan="12"
             Grid.Row="0"
             VerticalOptions="Center" 
             HorizontalOptions="Center"/>
         <Label 
-            x:Name="Info"
+            x:Name="UpdateInfoLbl"
             Grid.Column="0"
             Grid.ColumnSpan="6"
             Grid.Row="1"
@@ -24,7 +24,7 @@
             HorizontalOptions="Center"
             HorizontalTextAlignment="Start"/>
         <Button
-            x:Name="Update" 
+            x:Name="UpdateBtn" 
             Grid.Column="7"
             Grid.ColumnSpan="4"
             Grid.Row="2"

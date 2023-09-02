@@ -474,4 +474,10 @@
   <data name="DeleteExpiredSalesBtn.FontSize" xml:space="preserve">
 	  <value>14</value>
   </data>
+  <data name="AppInfoMnuFlt.Text" xml:space="preserve">
+	  <value>Über MauiMoneyMate</value>
+  </data>
+  <data name="VersionLbl.Text" xml:space="preserve">
+	  <value>Version {0}</value>
+  </data>
 </root>

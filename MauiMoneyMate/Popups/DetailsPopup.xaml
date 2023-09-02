@@ -23,7 +23,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="SaleText"
+                           x:Name="SaleTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -38,7 +38,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="NameText"
+                           x:Name="NameTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -53,7 +53,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="AdditionText"
+                           x:Name="AdditionTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -76,7 +76,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="StartDateText"
+                           x:Name="StartDateTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -91,7 +91,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="EndDateText"
+                           x:Name="EndDateTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -106,7 +106,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="RepeatCycleText"
+                           x:Name="RepeatCycleTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -121,7 +121,7 @@
                 <Grid ColumnDefinitions="*,*,*">
                     <Label Grid.Column="0"
                            Padding="0,5"
-                           x:Name="RepeatCycleMultiplierText"
+                           x:Name="RepeatCycleMultiplierTextLbl"
                            VerticalOptions="Start" 
                            HorizontalOptions="Start"/>
                     <Label Grid.Column="1"
@@ -139,11 +139,11 @@
         <HorizontalStackLayout Grid.Column="0"
                                Grid.ColumnSpan="3"
                                Grid.Row="3">
-            <Button x:Name="Edit"
+            <Button x:Name="EditBtn"
                     Margin="2,4,0,4"
                     Clicked="EditBtn_Clicked"
                     Style="{StaticResource PositiveBtn}"/>
-            <Button x:Name="Delete"
+            <Button x:Name="DeleteBtn"
                     Margin="2,4,0,4"
                     Clicked="DeleteBtn_Clicked"
                     Style="{StaticResource NegativeBtn}"/>

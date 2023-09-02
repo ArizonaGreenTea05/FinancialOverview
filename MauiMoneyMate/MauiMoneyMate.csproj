@@ -160,6 +160,9 @@
 	  <Compile Update="Popups\UnsavedChangesPopup.xaml.cs">
 	    <DependentUpon>UnsavedChangesPopup.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Popups\AppInfoPopup.xaml.cs">
+	    <DependentUpon>AppInfoPopup.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Popups\UpdatePopup.xaml.cs">
 	    <DependentUpon>UpdatePopup.xaml</DependentUpon>
 	  </Compile>
@@ -194,6 +197,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\UnsavedChangesPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\AppInfoPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\UpdatePopup.xaml">

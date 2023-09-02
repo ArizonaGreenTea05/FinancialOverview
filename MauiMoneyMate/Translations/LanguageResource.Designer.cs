@@ -133,6 +133,33 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About MauiMoneyMate.
+        /// </summary>
+        internal static string AppInfoMnuFlt_Text {
+            get {
+                return ResourceManager.GetString("AppInfoMnuFlt.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string ApplicationNameLbl_FontSize {
+            get {
+                return ResourceManager.GetString("ApplicationNameLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MauiMoneyMate.
+        /// </summary>
+        internal static string ApplicationNameLbl_Text {
+            get {
+                return ResourceManager.GetString("ApplicationNameLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to App theme.
         /// </summary>
         internal static string AppThemeMnuFlt_Text {
@@ -210,6 +237,24 @@ namespace MauiMoneyMate.Translations {
         internal static string CloseWithoutSavingBtn_Text {
             get {
                 return ResourceManager.GetString("CloseWithoutSavingBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string CopyrightLbl_FontSize {
+            get {
+                return ResourceManager.GetString("CopyrightLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to © 2023 Tobias Schälte.
+        /// </summary>
+        internal static string CopyrightLbl_Text {
+            get {
+                return ResourceManager.GetString("CopyrightLbl.Text", resourceCulture);
             }
         }
         
@@ -1186,6 +1231,24 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string RightsReservedLbl_FontSize {
+            get {
+                return ResourceManager.GetString("RightsReservedLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All rights reserved..
+        /// </summary>
+        internal static string RightsReservedLbl_Text {
+            get {
+                return ResourceManager.GetString("RightsReservedLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 20.
         /// </summary>
         internal static string SalesCountLbl_FontSize {
@@ -1668,6 +1731,24 @@ namespace MauiMoneyMate.Translations {
         internal static string UseSystemTheme {
             get {
                 return ResourceManager.GetString("UseSystemTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string VersionLbl_FontSize {
+            get {
+                return ResourceManager.GetString("VersionLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string VersionLbl_Text {
+            get {
+                return ResourceManager.GetString("VersionLbl.Text", resourceCulture);
             }
         }
         

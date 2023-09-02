@@ -3,21 +3,12 @@ using CommunityToolkit.Maui.Views;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
 using System.ComponentModel;
 using System.Globalization;
+using MauiMoneyMate.Utils;
 
 namespace MauiMoneyMate.Popups;
 
 public partial class DetailsPopup : Popup
 {
-    private ResourceLabel SaleTextLbl;
-    private ResourceLabel NameTextLbl;
-    private ResourceLabel AdditionTextLbl;
-    private ResourceLabel StartDateTextLbl;
-    private ResourceLabel EndDateTextLbl;
-    private ResourceLabel RepeatCycleTextLbl;
-    private ResourceLabel RepeatCycleMultiplierTextLbl;
-    private ResourceButton EditBtn;
-    private ResourceButton DeleteBtn;
-
     private readonly SalesObject _salesObject;
     private readonly Action<SalesObject> _editAction;
     private readonly Action<SalesObject> _deleteAction;
@@ -46,15 +37,15 @@ public partial class DetailsPopup : Popup
 
     private void LoadResources()
     {
-        SaleTextLbl = new ResourceLabel(nameof(SaleTextLbl), SaleText);
-        NameTextLbl = new ResourceLabel(nameof(NameTextLbl), NameText);
-        AdditionTextLbl = new ResourceLabel(nameof(AdditionTextLbl), AdditionText);
-        StartDateTextLbl = new ResourceLabel(nameof(StartDateTextLbl), StartDateText);
-        EndDateTextLbl = new ResourceLabel(nameof(EndDateTextLbl), EndDateText);
-        RepeatCycleTextLbl = new ResourceLabel(nameof(RepeatCycleTextLbl), RepeatCycleText);
-        RepeatCycleMultiplierTextLbl = new ResourceLabel(nameof(RepeatCycleMultiplierTextLbl), RepeatCycleMultiplierText);
-        EditBtn = new ResourceButton(nameof(EditBtn), Edit);
-        DeleteBtn = new ResourceButton(nameof(DeleteBtn), Delete);
+        SaleTextLbl.LoadFromResource(nameof(SaleTextLbl));
+        NameTextLbl.LoadFromResource(nameof(NameTextLbl));
+        AdditionTextLbl.LoadFromResource(nameof(AdditionTextLbl));
+        StartDateTextLbl.LoadFromResource(nameof(StartDateTextLbl));
+        EndDateTextLbl.LoadFromResource(nameof(EndDateTextLbl));
+        RepeatCycleTextLbl.LoadFromResource(nameof(RepeatCycleTextLbl));
+        RepeatCycleMultiplierTextLbl.LoadFromResource(nameof(RepeatCycleMultiplierTextLbl));
+        EditBtn.LoadFromResource(nameof(EditBtn));
+        DeleteBtn.LoadFromResource(nameof(DeleteBtn));
     }
 
     private void LoadValues()

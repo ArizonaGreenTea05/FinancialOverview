@@ -660,4 +660,31 @@
   <data name="DeleteExpiredSalesBtn.Text" xml:space="preserve">
 	  <value>Delete sales expired at</value>
   </data>
+  <data name="AppInfoMnuFlt.Text" xml:space="preserve">
+	  <value>About MauiMoneyMate</value>
+  </data>
+  <data name="ApplicationNameLbl.Text" xml:space="preserve">
+	  <value>MauiMoneyMate</value>
+  </data>
+  <data name="ApplicationNameLbl.FontSize" xml:space="preserve">
+	  <value>14</value>
+  </data>
+  <data name="VersionLbl.Text" xml:space="preserve">
+	  <value>Version {0}</value>
+  </data>
+  <data name="VersionLbl.FontSize" xml:space="preserve">
+	  <value>14</value>
+  </data>
+  <data name="CopyrightLbl.Text" xml:space="preserve">
+	  <value>© 2023 Tobias Schälte</value>
+  </data>
+  <data name="CopyrightLbl.FontSize" xml:space="preserve">
+	  <value>14</value>
+  </data>
+  <data name="RightsReservedLbl.Text" xml:space="preserve">
+	  <value>All rights reserved.</value>
+  </data>
+  <data name="RightsReservedLbl.FontSize" xml:space="preserve">
+	  <value>14</value>
+  </data>
 </root>

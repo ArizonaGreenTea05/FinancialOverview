@@ -190,19 +190,19 @@ public partial class FileViewModel : ObservableObject
 
     private void LoadResources(FilePage filePage)
     {
-        new ResourceMenuBarItem(nameof(filePage.FileMnu), filePage.FileMnu);
-        new ResourceMenuFlyout(nameof(filePage.BackMnuFlt), filePage.BackMnuFlt);
-        new ResourceMenuFlyout(nameof(filePage.ExitMnuFlt), filePage.ExitMnuFlt);
-        new ResourceMenuBarItem(nameof(filePage.SettingsMnu), filePage.SettingsMnu);
-        new ResourceMenuFlyout(nameof(filePage.OpenSettingsMnuFlt), filePage.OpenSettingsMnuFlt);
-        new ResourceMenuBarItem(nameof(filePage.HelpMnu), filePage.HelpMnu);
-        new ResourceMenuFlyout(nameof(filePage.GoToWebsiteMnuFlt), filePage.GoToWebsiteMnuFlt);
-        new ResourceMenuFlyout(nameof(filePage.WriteTicketMnuFlt), filePage.WriteTicketMnuFlt);
-        new ResourceMenuBarItem(nameof(filePage.ViewMnu), filePage.ViewMnu);
-        new ResourceMenuFlyout(nameof(filePage.AppThemeMnuFlt), filePage.AppThemeMnuFlt);
-        new ResourceMenuFlyout(nameof(filePage.SystemThemeMnuFlt), filePage.SystemThemeMnuFlt);
-        new ResourceMenuFlyout(nameof(filePage.LightThemeMnuFlt), filePage.LightThemeMnuFlt);
-        new ResourceMenuFlyout(nameof(filePage.DarkMnuFlt), filePage.DarkMnuFlt);
+        filePage.FileMnu.LoadFromResource(nameof(filePage.FileMnu));
+        filePage.BackMnuFlt.LoadFromResource(nameof(filePage.BackMnuFlt));
+        filePage.ExitMnuFlt.LoadFromResource(nameof(filePage.ExitMnuFlt));
+        filePage.SettingsMnu.LoadFromResource(nameof(filePage.SettingsMnu));
+        filePage.OpenSettingsMnuFlt.LoadFromResource(nameof(filePage.OpenSettingsMnuFlt));
+        filePage.HelpMnu.LoadFromResource(nameof(filePage.HelpMnu));
+        filePage.GoToWebsiteMnuFlt.LoadFromResource(nameof(filePage.GoToWebsiteMnuFlt));
+        filePage.WriteTicketMnuFlt.LoadFromResource(nameof(filePage.WriteTicketMnuFlt));
+        filePage.ViewMnu.LoadFromResource(nameof(filePage.ViewMnu));
+        filePage.AppThemeMnuFlt.LoadFromResource(nameof(filePage.AppThemeMnuFlt));
+        filePage.SystemThemeMnuFlt.LoadFromResource(nameof(filePage.SystemThemeMnuFlt));
+        filePage.LightThemeMnuFlt.LoadFromResource(nameof(filePage.LightThemeMnuFlt));
+        filePage.DarkMnuFlt.LoadFromResource(nameof(filePage.DarkMnuFlt));
         FilePageTitle = LanguageResource.FilePageTitle ?? string.Empty;
         HistoryLbl = new ResourceLabel(nameof(HistoryLbl));
         OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));

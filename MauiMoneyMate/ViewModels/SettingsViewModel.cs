@@ -220,13 +220,13 @@ public partial class SettingsViewModel : ObservableObject
     
     private void LoadResources(SettingsPage settingsPage)
     {
-        new ResourceMenuBarItem(nameof(settingsPage.FileMnu), settingsPage.FileMnu);
-        new ResourceMenuFlyout(nameof(settingsPage.OpenFilePageMnuFlt), settingsPage.OpenFilePageMnuFlt);
-        new ResourceMenuFlyout(nameof(settingsPage.BackMnuFlt), settingsPage.BackMnuFlt);
-        new ResourceMenuFlyout(nameof(settingsPage.ExitMnuFlt), settingsPage.ExitMnuFlt);
-        new ResourceMenuBarItem(nameof(settingsPage.HelpMnu), settingsPage.HelpMnu);
-        new ResourceMenuFlyout(nameof(settingsPage.GoToWebsiteMnuFlt), settingsPage.GoToWebsiteMnuFlt);
-        new ResourceMenuFlyout(nameof(settingsPage.WriteTicketMnuFlt), settingsPage.WriteTicketMnuFlt);
+        settingsPage.FileMnu.LoadFromResource(nameof(settingsPage.FileMnu));
+        settingsPage.OpenFilePageMnuFlt.LoadFromResource(nameof(settingsPage.OpenFilePageMnuFlt));
+        settingsPage.BackMnuFlt.LoadFromResource(nameof(settingsPage.BackMnuFlt));
+        settingsPage.ExitMnuFlt.LoadFromResource(nameof(settingsPage.ExitMnuFlt));
+        settingsPage.HelpMnu.LoadFromResource(nameof(settingsPage.HelpMnu));
+        settingsPage.GoToWebsiteMnuFlt.LoadFromResource(nameof(settingsPage.GoToWebsiteMnuFlt));
+        settingsPage.WriteTicketMnuFlt.LoadFromResource(nameof(settingsPage.WriteTicketMnuFlt));
         SettingsPageTitle = LanguageResource.SettingsPageTitle ?? string.Empty;
         StartupLbl = new ResourceLabel(nameof(StartupLbl));
         CheckForUpdatesOnStartLbl = new ResourceLabel(nameof(CheckForUpdatesOnStartLbl));
