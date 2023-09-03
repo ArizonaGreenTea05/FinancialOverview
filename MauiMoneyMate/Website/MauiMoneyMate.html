@@ -20,7 +20,7 @@
     <section class="hero">
         <h1>Manage Your Finances<br>with MauiMoneyMate</h1>
         <p>A powerful finance app to track your income and expenses.</p>
-        <a href="#download" class="cta-button">Download Now</a>
+        <button id="downloadButton1" class="cta-button">Download Now</button>
     </section>
     <section id="features" class="features">
         <div class="feature">
@@ -54,7 +54,27 @@
     <section id="download" class="download">
         <h2>Download MauiMoneyMate Today</h2>
         <p>Start managing your finances the smart way.</p>
-        <a href="https://github.com/ArizonaGreenTea05/FinancialOverview/releases/latest" class="cta-button">Download Now</a>
+        <button id="downloadButton2" class="cta-button">Download Now</button>
+        <script>
+            function goToDownloadPage() {
+                fetch("https://api.github.com/repos/ArizonaGreenTea05/FinancialOverview/releases")
+                    .then(response => response.json())
+                    .then(releases => {
+                        const latestMMMRelease = releases.find(release => release.tag_name.startsWith("MMM"));
+
+                        if (latestMMMRelease) {
+                            window.location.href = latestMMMRelease.html_url;
+                        } else {
+                            alert("No release found.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching release data:", error);
+                    });
+            }
+            document.getElementById("downloadButton1").addEventListener("click", goToDownloadPage);
+            document.getElementById("downloadButton2").addEventListener("click", goToDownloadPage);
+        </script>
     </section>
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
