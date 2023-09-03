@@ -45,7 +45,7 @@
 		<Authors>Tobias Schälte</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/ArizonaGreenTea05/FinancialOverview</RepositoryUrl>
-		<NeutralLanguage>en-001</NeutralLanguage>
+		<NeutralLanguage>en</NeutralLanguage>
 		<IncludeSymbols>False</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
