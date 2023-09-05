@@ -51,6 +51,12 @@ public partial class FileViewModel : ObservableObject
 
     #endregion
 
+    #region private Members
+
+    private readonly MenuBarItems _menuBarItems = new();
+
+    #endregion
+
     #region public Constructors
 
     public FileViewModel()
@@ -136,29 +142,10 @@ public partial class FileViewModel : ObservableObject
 
     #region internal Event Handlers
 
-    public void SystemThemeMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonProperties.CurrentAppTheme = (int)AppTheme.Unspecified;
-    }
-
-    public void LightThemeMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonProperties.CurrentAppTheme = (int)AppTheme.Light;
-    }
-
-    public void DarkMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonProperties.CurrentAppTheme = (int)AppTheme.Dark;
-    }
-
-    internal void BackMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync("..");
-    }
-
     internal void OnInitialized(FilePage filePage)
     {
-        LoadResources(filePage);
+        InitMenuBar(filePage);
+        LoadResources();
     }
 
     internal void OnAppearing()
@@ -167,26 +154,6 @@ public partial class FileViewModel : ObservableObject
         FileHistory = new ObservableCollection<FileHistoryElement>();
         foreach (var item in CommonProperties.FinancialOverview.FileHistory)
             FileHistory.Add(new FileHistoryElement(item));
-    }
-
-    internal void ExitMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonFunctions.ExitAction();
-    }
-
-    internal void OpenSettingsMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync(nameof(SettingsPage));
-    }
-
-    internal void GoToWebsiteMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Browser.Default.OpenAsync(CommonProperties.WebsiteUrl, BrowserLaunchMode.SystemPreferred);
-    }
-
-    internal void WriteTicketMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Browser.Default.OpenAsync(CommonProperties.NewIssueUrl, BrowserLaunchMode.SystemPreferred);
     }
 
     #endregion
@@ -210,21 +177,16 @@ public partial class FileViewModel : ObservableObject
             FilePageTitle += '*';
     }
 
-    private void LoadResources(FilePage filePage)
+    private void InitMenuBar(Page page)
     {
-        filePage.FileMnu.LoadFromResource(nameof(filePage.FileMnu));
-        filePage.BackMnuFlt.LoadFromResource(nameof(filePage.BackMnuFlt));
-        filePage.ExitMnuFlt.LoadFromResource(nameof(filePage.ExitMnuFlt));
-        filePage.SettingsMnu.LoadFromResource(nameof(filePage.SettingsMnu));
-        filePage.OpenSettingsMnuFlt.LoadFromResource(nameof(filePage.OpenSettingsMnuFlt));
-        filePage.HelpMnu.LoadFromResource(nameof(filePage.HelpMnu));
-        filePage.GoToWebsiteMnuFlt.LoadFromResource(nameof(filePage.GoToWebsiteMnuFlt));
-        filePage.WriteTicketMnuFlt.LoadFromResource(nameof(filePage.WriteTicketMnuFlt));
-        filePage.ViewMnu.LoadFromResource(nameof(filePage.ViewMnu));
-        filePage.AppThemeMnuFlt.LoadFromResource(nameof(filePage.AppThemeMnuFlt));
-        filePage.SystemThemeMnuFlt.LoadFromResource(nameof(filePage.SystemThemeMnuFlt));
-        filePage.LightThemeMnuFlt.LoadFromResource(nameof(filePage.LightThemeMnuFlt));
-        filePage.DarkMnuFlt.LoadFromResource(nameof(filePage.DarkMnuFlt));
+        page.MenuBarItems.Add(_menuBarItems.FileSmall);
+        page.MenuBarItems.Add(_menuBarItems.View);
+        page.MenuBarItems.Add(_menuBarItems.Settings);
+        page.MenuBarItems.Add(_menuBarItems.Help);
+    }
+
+    private void LoadResources()
+    {
         FilePageTitle = LanguageResource.FilePageTitle ?? string.Empty;
         HistoryLbl = new ResourceLabel(nameof(HistoryLbl));
         OpenFileLbl = new ResourceLabel(nameof(OpenFileLbl));

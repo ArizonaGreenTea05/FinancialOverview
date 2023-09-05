@@ -8,49 +8,6 @@
              Title="{Binding FilePageTitle}"
              BackgroundImageSource="{AppThemeBinding Light=bg_light.png, Dark=bg_dark.png}"
              BackgroundColor="{AppThemeBinding Light={StaticResource TertiaryLight}, Dark={StaticResource TertiaryDark}}">
-    <ContentPage.MenuBarItems>
-        <MenuBarItem x:Name="FileMnu"
-                 x:FieldModifier="internal">
-            <MenuFlyoutItem x:Name="BackMnuFlt"
-                            x:FieldModifier="internal"
-                            Clicked="BackMnuFlt_OnClicked"/>
-            <MenuFlyoutItem x:Name="ExitMnuFlt"
-                            x:FieldModifier="internal"
-                            Clicked="ExitMnuFlt_OnClicked"/>
-        </MenuBarItem>
-        <MenuBarItem x:Name="ViewMnu"
-                     Text="View"
-                     x:FieldModifier="internal">
-            <MenuFlyoutSubItem x:Name="AppThemeMnuFlt"
-                               x:FieldModifier="internal">
-                <MenuFlyoutItem x:Name="SystemThemeMnuFlt"
-                                x:FieldModifier="internal"
-                                Clicked="SystemThemeMnuFlt_OnClicked"/>
-                <MenuFlyoutItem x:Name="LightThemeMnuFlt"
-                                x:FieldModifier="internal"
-                                Clicked="LightThemeMnuFlt_OnClicked"/>
-                <MenuFlyoutItem x:Name="DarkMnuFlt"
-                                x:FieldModifier="internal"
-                                Clicked="DarkMnuFlt_OnClicked"/>
-            </MenuFlyoutSubItem>
-        </MenuBarItem>
-        <MenuBarItem x:Name="SettingsMnu"
-                     x:FieldModifier="internal">
-            <MenuFlyoutItem x:Name="OpenSettingsMnuFlt"
-                            x:FieldModifier="internal"
-                            Clicked="OpenSettingsMnuFlt_OnClicked"/>
-        </MenuBarItem>
-        <MenuBarItem x:Name="HelpMnu"
-                 x:FieldModifier="internal">
-            <MenuFlyoutItem x:Name="GoToWebsiteMnuFlt"
-                        x:FieldModifier="internal"
-                        Clicked="GoToWebsiteMnuFlt_OnClicked"/>
-            <MenuFlyoutItem x:Name="WriteTicketMnuFlt"
-                        x:FieldModifier="internal"
-                        Clicked="WriteTicketMnuFlt_OnClicked"/>
-        </MenuBarItem>
-    </ContentPage.MenuBarItems>
-
     <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
           ColumnDefinitions="60,60,60,60,60,10,*,30,*,60">
 
