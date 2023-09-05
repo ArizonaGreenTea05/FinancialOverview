@@ -71,6 +71,7 @@ public partial class SettingsViewModel : ObservableObject
     #region private Members
 
     private SettingsPage _settingsPage;
+    private readonly MenuBarItems _menuBarItems = new();
 
     #endregion
 
@@ -86,34 +87,10 @@ public partial class SettingsViewModel : ObservableObject
 
     #region internal Event Handlers
 
-    internal void BackMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync("..");
-    }
-
-    internal void OpenFilePageMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync(nameof(FilePage));
-    }
-
-    internal void ExitMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonFunctions.ExitAction();
-    }
-
-    internal void GoToWebsiteMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Browser.Default.OpenAsync(CommonProperties.WebsiteUrl, BrowserLaunchMode.SystemPreferred);
-    }
-
-    internal void WriteTicketMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Browser.Default.OpenAsync(CommonProperties.NewIssueUrl, BrowserLaunchMode.SystemPreferred);
-    }
-
     internal void OnPageInitialized(SettingsPage settingsPage)
     {
-        LoadResources(settingsPage);
+        InitMenuBar(settingsPage);
+        LoadResources();
         LoadSettings();
     }
 
@@ -126,15 +103,6 @@ public partial class SettingsViewModel : ObservableObject
     internal void SettingsPage_OnDisappearing(object sender, EventArgs eventArgs)
     {
         PageLoaded = false;
-    }
-
-    internal void LoadSettings()
-    {
-        CheckForUpdatesOnStart = CommonProperties.CheckForUpdatesOnStart;
-        DownloadUpdatesAutomatically = CommonProperties.DownloadUpdatesAutomatically;
-        ShowFilePathInTitleBar = CommonProperties.ShowFilePathInTitleBar;
-        CurrentTheme = CommonProperties.CurrentAppTheme;
-        CurrentLanguage= CommonProperties.CurrentAppLanguage;
     }
 
     internal void CheckForUpdatesOnStartChk_OnCheckedChanged(object sender, CheckedChangedEventArgs checkedChangedEventArgs)
@@ -212,21 +180,30 @@ public partial class SettingsViewModel : ObservableObject
 
     #region private Methods
 
+    internal void LoadSettings()
+    {
+        CheckForUpdatesOnStart = CommonProperties.CheckForUpdatesOnStart;
+        DownloadUpdatesAutomatically = CommonProperties.DownloadUpdatesAutomatically;
+        ShowFilePathInTitleBar = CommonProperties.ShowFilePathInTitleBar;
+        CurrentTheme = CommonProperties.CurrentAppTheme;
+        CurrentLanguage = CommonProperties.CurrentAppLanguage;
+    }
+
     private void DisplaySavingState()
     {
         SettingsPageTitle = SettingsPageTitle.TrimEnd('*');
         if (!CommonProperties.DataIsSaved) SettingsPageTitle += '*';
     }
-    
-    private void LoadResources(SettingsPage settingsPage)
+
+    private void InitMenuBar(Page page)
     {
-        settingsPage.FileMnu.LoadFromResource(nameof(settingsPage.FileMnu));
-        settingsPage.OpenFilePageMnuFlt.LoadFromResource(nameof(settingsPage.OpenFilePageMnuFlt));
-        settingsPage.BackMnuFlt.LoadFromResource(nameof(settingsPage.BackMnuFlt));
-        settingsPage.ExitMnuFlt.LoadFromResource(nameof(settingsPage.ExitMnuFlt));
-        settingsPage.HelpMnu.LoadFromResource(nameof(settingsPage.HelpMnu));
-        settingsPage.GoToWebsiteMnuFlt.LoadFromResource(nameof(settingsPage.GoToWebsiteMnuFlt));
-        settingsPage.WriteTicketMnuFlt.LoadFromResource(nameof(settingsPage.WriteTicketMnuFlt));
+        page.MenuBarItems.Add(_menuBarItems.FileSmall);
+        page.MenuBarItems.Add(_menuBarItems.Help);
+    }
+
+
+    private void LoadResources()
+    {
         SettingsPageTitle = LanguageResource.SettingsPageTitle ?? string.Empty;
         StartupLbl = new ResourceLabel(nameof(StartupLbl));
         CheckForUpdatesOnStartLbl = new ResourceLabel(nameof(CheckForUpdatesOnStartLbl));

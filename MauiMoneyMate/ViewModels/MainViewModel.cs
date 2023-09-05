@@ -80,6 +80,16 @@ public partial class MainViewModel : ObservableObject
     private Enums.Month CurrentMonth { get; set; } = Enums.Month.WholeYear;
     private int CurrentYear { get; set; } = DateTime.Now.Year;
 
+    private bool DataIsSaved
+    {
+        set
+        {
+            CommonProperties.DataIsSaved = value;
+            DisplaySavingState();
+        }
+        get => CommonProperties.DataIsSaved;
+    }
+
     #endregion
 
     #region private Members
@@ -87,6 +97,7 @@ public partial class MainViewModel : ObservableObject
     private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
     private static Rect _startUpBounds;
     private MainPage _mainPage;
+    private readonly MenuBarItems _menuBarItems = new();
 
     #endregion
 
@@ -168,17 +179,53 @@ public partial class MainViewModel : ObservableObject
 
     #region private Event Handlers
 
-    private ICommand OpenRecentMnuFlt_OnClicked(MainPage mainPage, string path)
+    private void RefreshMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
-        return new Command(a =>
+        UpdateSales();
+    }
+
+    private void NewMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        CommonFunctions.NewDocumentAction();
+        DataIsSaved = false;
+        UpdateSales();
+    }
+
+    private void OpenMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        if (!CommonProperties.DataIsSaved)
         {
-            if (!CommonProperties.DataIsSaved)
+            MainPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ =>
             {
-                MainPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ => OpenRecent(mainPage, path)));
-                return;
-            }
-            OpenRecent(mainPage, path);
-        });
+                DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
+                UpdateSales();
+            }));
+            return;
+        }
+        DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
+        UpdateSales();
+    }
+
+    private void SaveMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        DataIsSaved = CommonFunctions.SaveFileAction() || DataIsSaved;
+    }
+
+    private void SaveAsMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        DataIsSaved = CommonFunctions.SaveFileAsAction() || DataIsSaved;
+    }
+
+    private void UndoMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        DataIsSaved = !CommonProperties.FinancialOverview.Undo();
+        UpdateSales();
+    }
+
+    private void RedoMnuFlt_OnClicked(object sender, EventArgs eventArgs)
+    {
+        DataIsSaved = !CommonProperties.FinancialOverview.Redo();
+        UpdateSales();
     }
 
     private void OnDefaultFilePathChanged(object sender, string path)
@@ -200,110 +247,11 @@ public partial class MainViewModel : ObservableObject
 
     #region internal Event Handlers
 
-    internal void AppInfoMnuFlt_OnClicked(object sender, EventArgs e)
-    {
-        MainPage.ShowPopup(new AppInfoPopup());
-    }
-
-    internal void RefreshMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        UpdateSales();
-    }
-
-    public void SystemThemeMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonProperties.CurrentAppTheme = (int)AppTheme.Unspecified;
-    }
-
-    public void LightThemeMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonProperties.CurrentAppTheme = (int)AppTheme.Light;
-    }
-
-    public void DarkMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonProperties.CurrentAppTheme = (int)AppTheme.Dark;
-    }
-
-    internal void OpenFilePageMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync(nameof(FilePage));
-    }
-
-    internal void DetailedSalesMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync(nameof(DetailedSalesPage));
-    }
-
-    internal void NewMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        CommonFunctions.NewDocumentAction();
-        DataIsSaved = false;
-        UpdateSales();
-    }
-
-    internal void OpenMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        if (!CommonProperties.DataIsSaved)
-        {
-            MainPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ =>
-            {
-                DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
-                UpdateSales();
-            }));
-            return;
-        }
-        DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
-        UpdateSales();
-    }
-
-    internal void SaveMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        DataIsSaved = CommonFunctions.SaveFileAction();
-    }
-
-    internal void SaveAsMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        DataIsSaved = CommonFunctions.SaveFileAsAction();
-    }
-
-    internal void ExitMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-
-        CommonFunctions.ExitAction();
-    }
-
-    internal void OpenSettingsMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Shell.Current.GoToAsync(nameof(SettingsPage));
-    }
-
-    internal void UndoMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        DataIsSaved = !CommonProperties.FinancialOverview.Undo();
-        UpdateSales();
-    }
-
-    internal void RedoMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        DataIsSaved = !CommonProperties.FinancialOverview.Redo();
-        UpdateSales();
-    }
-
-    internal void GoToWebsiteMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Browser.Default.OpenAsync(CommonProperties.WebsiteUrl, BrowserLaunchMode.SystemPreferred);
-    }
-
-    internal void WriteTicketMnuFlt_OnClicked(object sender, EventArgs eventArgs)
-    {
-        Browser.Default.OpenAsync(CommonProperties.NewIssueUrl, BrowserLaunchMode.SystemPreferred);
-    }
-
     internal void OnPageInitialized(MainPage mainPage)
     {
         LoadSettings();
-        LoadResources(mainPage);
+        InitMenuBar(mainPage);
+        LoadResources();
         DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
 #if WINDOWS
         RestoreWindowState();
@@ -315,15 +263,6 @@ public partial class MainViewModel : ObservableObject
         UpdateSales();
         DisplaySavingState();
         UpdateRecentlyOpenedFiles(mainPage);
-    }
-
-    private void UpdateRecentlyOpenedFiles(MainPage mainPage)
-    {
-        mainPage.OpenRecentMnuFlt.Clear();
-        mainPage.OpenRecentMnuFlt.IsEnabled = CommonProperties.FinancialOverview.FileHistory.Count != 0;
-        foreach (var item in CommonProperties.FinancialOverview.FileHistory)
-            mainPage.OpenRecentMnuFlt.Add(new MenuFlyoutItem
-                { Text = Path.GetFileName(item), Command = OpenRecentMnuFlt_OnClicked(mainPage, item) });
     }
 
     internal void OnLoaded(object sender, EventArgs e)
@@ -380,6 +319,28 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private void UpdateRecentlyOpenedFiles(MainPage mainPage)
+    {
+        _menuBarItems.OpenRecent.Clear();
+        _menuBarItems.OpenRecent.IsEnabled = CommonProperties.FinancialOverview.FileHistory.Count != 0;
+        foreach (var item in CommonProperties.FinancialOverview.FileHistory)
+            _menuBarItems.OpenRecent.Add(new MenuFlyoutItem
+                { Text = Path.GetFileName(item), Command = OpenRecentCommand(mainPage, item) });
+    }
+
+    private ICommand OpenRecentCommand(MainPage mainPage, string path)
+    {
+        return new Command(a =>
+        {
+            if (!CommonProperties.DataIsSaved)
+            {
+                MainPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ => OpenRecent(mainPage, path)));
+                return;
+            }
+            OpenRecent(mainPage, path);
+        });
+    }
 
     private void OpenRecent(MainPage mainPage, string path)
     {
@@ -540,16 +501,6 @@ public partial class MainViewModel : ObservableObject
         return text ?? string.Empty;
     }
 
-    private bool DataIsSaved
-    {
-        set
-        {
-            CommonProperties.DataIsSaved = value;
-            DisplaySavingState();
-        }
-        get => CommonProperties.DataIsSaved;
-    }
-
     private void DisplaySavingState()
     {
         FinancialOverviewTitle = FinancialOverviewTitle.TrimEnd('*');
@@ -575,33 +526,24 @@ public partial class MainViewModel : ObservableObject
                 Math.Round(ExpensesCollection.Sum(item => item.Value), 2)));
     }
 
-    private void LoadResources(MainPage mainPage)
+    private void InitMenuBar(Page mainPage)
     {
-        mainPage.FileMnu.LoadFromResource(nameof(mainPage.FileMnu));
-        mainPage.OpenFilePageMnuFlt.LoadFromResource(nameof(mainPage.OpenFilePageMnuFlt));
-        mainPage.NewMnuFlt.LoadFromResource(nameof(mainPage.NewMnuFlt));
-        mainPage.OpenMnuFlt.LoadFromResource(nameof(mainPage.OpenMnuFlt));
-        mainPage.OpenFileMnuFlt.LoadFromResource(nameof(mainPage.OpenFileMnuFlt));
-        mainPage.OpenRecentMnuFlt.LoadFromResource(nameof(mainPage.OpenRecentMnuFlt));
-        mainPage.SaveMnuFlt.LoadFromResource(nameof(mainPage.SaveMnuFlt));
-        mainPage.SaveAsMnuFlt.LoadFromResource(nameof(mainPage.SaveAsMnuFlt));
-        mainPage.ExitMnuFlt.LoadFromResource(nameof(mainPage.ExitMnuFlt));
-        mainPage.SettingsMnu.LoadFromResource(nameof(mainPage.SettingsMnu));
-        mainPage.OpenSettingsMnuFlt.LoadFromResource(nameof(mainPage.OpenSettingsMnuFlt));
-        mainPage.EditMnu.LoadFromResource(nameof(mainPage.EditMnu));
-        mainPage.UndoMnuFlt.LoadFromResource(nameof(mainPage.UndoMnuFlt));
-        mainPage.RedoMnuFlt.LoadFromResource(nameof(mainPage.RedoMnuFlt));
-        mainPage.HelpMnu.LoadFromResource(nameof(mainPage.HelpMnu));
-        mainPage.GoToWebsiteMnuFlt.LoadFromResource(nameof(mainPage.GoToWebsiteMnuFlt));
-        mainPage.WriteTicketMnuFlt.LoadFromResource(nameof(mainPage.WriteTicketMnuFlt));
-        mainPage.AppInfoMnuFlt.LoadFromResource(nameof(mainPage.AppInfoMnuFlt));
-        mainPage.ViewMnu.LoadFromResource(nameof(mainPage.ViewMnu));
-        mainPage.DetailedSalesMnuFlt.LoadFromResource(nameof(mainPage.DetailedSalesMnuFlt));
-        mainPage.RefreshMnuFlt.LoadFromResource(nameof(mainPage.RefreshMnuFlt));
-        mainPage.AppThemeMnuFlt.LoadFromResource(nameof(mainPage.AppThemeMnuFlt));
-        mainPage.SystemThemeMnuFlt.LoadFromResource(nameof(mainPage.SystemThemeMnuFlt));
-        mainPage.LightThemeMnuFlt.LoadFromResource(nameof(mainPage.LightThemeMnuFlt));
-        mainPage.DarkMnuFlt.LoadFromResource(nameof(mainPage.DarkMnuFlt));
+        _menuBarItems.New.Clicked += NewMnuFlt_OnClicked;
+        _menuBarItems.Save.Clicked += SaveMnuFlt_OnClicked;
+        _menuBarItems.SaveAs.Clicked += SaveAsMnuFlt_OnClicked;
+        _menuBarItems.OpenFile.Clicked += OpenMnuFlt_OnClicked;
+        mainPage.MenuBarItems.Add(_menuBarItems.FileCompleteWithoutBack);
+        _menuBarItems.Undo.Clicked += UndoMnuFlt_OnClicked;
+        _menuBarItems.Redo.Clicked += RedoMnuFlt_OnClicked;
+        mainPage.MenuBarItems.Add(_menuBarItems.Edit);
+        _menuBarItems.Refresh.Clicked += RefreshMnuFlt_OnClicked;
+        mainPage.MenuBarItems.Add(_menuBarItems.ViewFromMainPage);
+        mainPage.MenuBarItems.Add(_menuBarItems.Settings);
+        mainPage.MenuBarItems.Add(_menuBarItems.Help);
+    }
+
+    private void LoadResources()
+    {
         IncomeTextLbl = new ResourceLabel(nameof(IncomeTextLbl));
         ExpensesTextLbl = new ResourceLabel(nameof(ExpensesTextLbl));
         SalesLbl = new ResourceLabel(nameof(SalesLbl));
