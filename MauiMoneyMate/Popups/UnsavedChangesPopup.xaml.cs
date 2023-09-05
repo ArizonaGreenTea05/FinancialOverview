@@ -5,34 +5,31 @@ namespace MauiMoneyMate.Popups;
 
 public partial class UnsavedChangesPopup : Popup
 {
-    private Window _window;
+    private readonly Action<object> _actionAfterConfirmation;
 
-    public UnsavedChangesPopup(Window window)
+    public UnsavedChangesPopup(string unsavedChangesTextAddition, Action<object> actionAfterConfirmation)
     {
-        _window = window;
+        _actionAfterConfirmation = actionAfterConfirmation;
         InitializeComponent();
         CanBeDismissedByTappingOutsideOfPopup = false;
         UnsavedChangesTitle.LoadFromResource(nameof(UnsavedChangesTitle));
         UnsavedChangesTextLbl.LoadFromResource(nameof(UnsavedChangesTextLbl));
-        SaveAndCloseBtn.LoadFromResource(nameof(SaveAndCloseBtn));
-        CloseWithoutSavingBtn.LoadFromResource(nameof(CloseWithoutSavingBtn));
+        UnsavedChangesTextLbl.Text += $" {unsavedChangesTextAddition}";
+        SaveAndContinueBtn.LoadFromResource(nameof(SaveAndContinueBtn));
+        ContinueWithoutSavingBtn.LoadFromResource(nameof(ContinueWithoutSavingBtn));
         CancelBtn.LoadFromResource(nameof(CancelBtn));
     }
 
-    private void CloseApplication()
+    private void SaveAndContinueBtn_OnClicked(object sender, EventArgs e)
     {
-        Application.Current.CloseWindow(_window);
-        Environment.Exit(1);
+        if (CommonFunctions.SaveFileAction()) _actionAfterConfirmation.Invoke(null);
+        Close();
     }
 
-    private void SaveAndCloseBtn_OnClicked(object sender, EventArgs e)
+    private void ContinueWithoutSavingBtn_OnClicked(object sender, EventArgs e)
     {
-        if (CommonFunctions.SaveFileAction()) CloseApplication();
-    }
-
-    private void CloseWithoutSavingBtn_OnClicked(object sender, EventArgs e)
-    {
-        CloseApplication();
+        _actionAfterConfirmation.Invoke(null);
+        Close();
     }
 
     private void CancelBtn_OnClicked(object sender, EventArgs e)

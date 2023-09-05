@@ -19,13 +19,13 @@
         <HorizontalStackLayout Grid.Row="2"
                                HorizontalOptions="Start"
                                Spacing="5">
-            <Button x:Name="SaveAndCloseBtn"
+            <Button x:Name="SaveAndContinueBtn"
                     Style="{StaticResource PositiveBtn}"
-                    Clicked="SaveAndCloseBtn_OnClicked"
+                    Clicked="SaveAndContinueBtn_OnClicked"
                     HorizontalOptions="Start"/>
-            <Button x:Name="CloseWithoutSavingBtn"
+            <Button x:Name="ContinueWithoutSavingBtn"
                     Style="{StaticResource NegativeBtn}"
-                    Clicked="CloseWithoutSavingBtn_OnClicked"
+                    Clicked="ContinueWithoutSavingBtn_OnClicked"
                     HorizontalOptions="Start"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Grid.Row="2"

@@ -172,16 +172,12 @@ public partial class MainViewModel : ObservableObject
     {
         return new Command(a =>
         {
-            if (!CommonProperties.FinancialOverview.LoadData(path))
+            if (!CommonProperties.DataIsSaved)
             {
-                Toast.Make(LanguageResource.CouldNotOpenFile).Show();
+                MainPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ => OpenRecent(mainPage, path)));
                 return;
             }
-
-            CommonProperties.FinancialOverview.ClearHistory();
-            DataIsSaved = true;
-            UpdateSales();
-            UpdateRecentlyOpenedFiles(mainPage);
+            OpenRecent(mainPage, path);
         });
     }
 
@@ -248,6 +244,15 @@ public partial class MainViewModel : ObservableObject
 
     internal void OpenMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
+        if (!CommonProperties.DataIsSaved)
+        {
+            MainPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ =>
+            {
+                DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
+                UpdateSales();
+            }));
+            return;
+        }
         DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
         UpdateSales();
     }
@@ -375,6 +380,20 @@ public partial class MainViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private void OpenRecent(MainPage mainPage, string path)
+    {
+        if (!CommonProperties.FinancialOverview.LoadData(path))
+        {
+            Toast.Make(LanguageResource.CouldNotOpenFile).Show();
+            return;
+        }
+
+        CommonProperties.FinancialOverview.ClearHistory();
+        DataIsSaved = true;
+        UpdateSales();
+        UpdateRecentlyOpenedFiles(mainPage);
+    }
 
     private void MoveEntryDown(SalesObject so, ICollection<SalesObject> collection)
     {

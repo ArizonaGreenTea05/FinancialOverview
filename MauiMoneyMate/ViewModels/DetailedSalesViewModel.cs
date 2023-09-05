@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using CommunityToolkit.Maui.Alerts;
 using FinancialOverview;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -152,6 +154,19 @@ public partial class DetailedSalesViewModel : ObservableObject
 
     #region internal Event Handlers
 
+    private ICommand OpenRecentMnuFlt_OnClicked(DetailedSalesPage page, string path)
+    {
+        return new Command(a =>
+        {
+            if (!CommonProperties.DataIsSaved)
+            {
+                page.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ => OpenRecent(page, path)));
+                return;
+            }
+            OpenRecent(page, path);
+        });
+    }
+
     internal void RefreshMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
         UpdateSales();
@@ -196,6 +211,15 @@ public partial class DetailedSalesViewModel : ObservableObject
 
     internal void OpenMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
+        if (!CommonProperties.DataIsSaved)
+        {
+            DetailedSalesPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ =>
+            {
+                DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
+                UpdateSales();
+            }));
+            return;
+        }
         DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
         UpdateSales();
     }
@@ -249,10 +273,11 @@ public partial class DetailedSalesViewModel : ObservableObject
         LoadResources(detailedSalesPage);
     }
 
-    internal void OnAppearing()
+    internal void OnAppearing(DetailedSalesPage page)
     {
         DisplaySavingState();
         UpdateSales();
+        UpdateRecentlyOpenedFiles(page);
         SelectedDeleteDate = DateTime.Now.AddYears(-15);
         DeleteDatePattern = CommonProperties.DatePickerFormat;
     }
@@ -265,6 +290,29 @@ public partial class DetailedSalesViewModel : ObservableObject
     #endregion
 
     #region private Methods
+
+    private void OpenRecent(DetailedSalesPage page, string path)
+    {
+        if (!CommonProperties.FinancialOverview.LoadData(path))
+        {
+            Toast.Make(LanguageResource.CouldNotOpenFile).Show();
+            return;
+        }
+
+        CommonProperties.FinancialOverview.ClearHistory();
+        DataIsSaved = true;
+        UpdateSales();
+        UpdateRecentlyOpenedFiles(page);
+    }
+
+    private void UpdateRecentlyOpenedFiles(DetailedSalesPage mainPage)
+    {
+        mainPage.OpenRecentMnuFlt.Clear();
+        mainPage.OpenRecentMnuFlt.IsEnabled = CommonProperties.FinancialOverview.FileHistory.Count != 0;
+        foreach (var item in CommonProperties.FinancialOverview.FileHistory)
+            mainPage.OpenRecentMnuFlt.Add(new MenuFlyoutItem
+                { Text = Path.GetFileName(item), Command = OpenRecentMnuFlt_OnClicked(mainPage, item) });
+    }
 
     private void OpenNewSalesPopup(SalesObject salesObject = null)
     {
@@ -343,6 +391,8 @@ public partial class DetailedSalesViewModel : ObservableObject
         detailedSalesPage.NewMnuFlt.LoadFromResource(nameof(detailedSalesPage.NewMnuFlt));
         detailedSalesPage.BackMnuFlt.LoadFromResource(nameof(detailedSalesPage.BackMnuFlt));
         detailedSalesPage.OpenMnuFlt.LoadFromResource(nameof(detailedSalesPage.OpenMnuFlt));
+        detailedSalesPage.OpenFileMnuFlt.LoadFromResource(nameof(detailedSalesPage.OpenFileMnuFlt));
+        detailedSalesPage.OpenRecentMnuFlt.LoadFromResource(nameof(detailedSalesPage.OpenRecentMnuFlt));
         detailedSalesPage.SaveMnuFlt.LoadFromResource(nameof(detailedSalesPage.SaveMnuFlt));
         detailedSalesPage.SaveAsMnuFlt.LoadFromResource(nameof(detailedSalesPage.SaveAsMnuFlt));
         detailedSalesPage.ExitMnuFlt.LoadFromResource(nameof(detailedSalesPage.ExitMnuFlt));

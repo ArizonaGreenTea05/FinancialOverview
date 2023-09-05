@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiMoneyMate.Pages;
+using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
@@ -70,6 +72,15 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void OpenFileDialog()
     {
+        if (!CommonProperties.DataIsSaved)
+        {
+            Shell.Current.CurrentPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ =>
+            {
+                DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
+                Shell.Current.GoToAsync("../../route");
+            }));
+            return;
+        }
         DataIsSaved = CommonFunctions.OpenFileAction() || DataIsSaved;
         Shell.Current.GoToAsync("../../route");
     }
@@ -91,7 +102,18 @@ public partial class FileViewModel : ObservableObject
     [RelayCommand]
     private void OpenFileFromHistory(FileHistoryElement fhe)
     {
-        if (!CommonProperties.FinancialOverview.LoadData(fhe.FullPath))
+        if (!CommonProperties.DataIsSaved)
+        {
+            Shell.Current.CurrentPage.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueOpeningAnotherFile, _ => OpenRecent(fhe.FullPath)));
+            return;
+        }
+
+        OpenRecent(fhe.FullPath);
+    }
+
+    private void OpenRecent(string path)
+    {
+        if (!CommonProperties.FinancialOverview.LoadData(path))
         {
             Toast.Make(LanguageResource.CouldNotOpenFile).Show();
             return;

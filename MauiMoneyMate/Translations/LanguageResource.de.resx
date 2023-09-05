@@ -417,23 +417,23 @@
   <data name="ViewMnu.Text" xml:space="preserve">
     <value>Ansicht</value>
   </data>
-  <data name="CloseWithoutSavingBtn.Text" xml:space="preserve">
-    <value>Schließen ohne zu speichern</value>
+  <data name="ContinueWithoutSavingBtn.Text" xml:space="preserve">
+    <value>Fortfahren ohne zu speichern</value>
   </data>
   <data name="DetailedSalesTitle" xml:space="preserve">
     <value>Detaillierte Umsätze</value>
   </data>
-  <data name="SaveAndCloseBtn.Text" xml:space="preserve">
-    <value>Speichern &amp; schließen</value>
+  <data name="SaveAndContinueBtn.Text" xml:space="preserve">
+    <value>Speichern &amp; fortfahren</value>
   </data>
-  <data name="SaveAndCloseBtn.FontSize" xml:space="preserve">
-    <value>13</value>
+  <data name="SaveAndContinueBtn.FontSize" xml:space="preserve">
+	  <value>13</value>
   </data>
-  <data name="CloseWithoutSavingBtn.FontSize" xml:space="preserve">
-    <value>13</value>
+  <data name="ContinueWithoutSavingBtn.FontSize" xml:space="preserve">
+	  <value>13</value>
   </data>
   <data name="UnsavedChangesTextLbl.Text" xml:space="preserve">
-    <value>Sie haben ungespeicherte Änderungen. Möchten Sie die Anwendung dennoch schließen?</value>
+    <value>Sie haben ungespeicherte Änderungen.</value>
   </data>
   <data name="UnsavedChangesTitle.Text" xml:space="preserve">
     <value>Ungespeicherte Änderungen</value>
@@ -445,39 +445,45 @@
     <value>Kürzlich geöffnet</value>
   </data>
   <data name="IncomeTextLbl.Text" xml:space="preserve">
-	  <value>Einnahmen</value>
+    <value>Einnahmen</value>
   </data>
   <data name="ExpensesTextLbl.Text" xml:space="preserve">
-	  <value>Ausgaben</value>
+    <value>Ausgaben</value>
   </data>
   <data name="BackMnuFlt.Text" xml:space="preserve">
-	  <value>Zurück</value>
+    <value>Zurück</value>
   </data>
   <data name="NewSalesBtn.FontSize" xml:space="preserve">
-	  <value>15</value>
+    <value>15</value>
   </data>
   <data name="RefreshMnuFlt.Text" xml:space="preserve">
-	  <value>Neu laden</value>
+    <value>Neu laden</value>
   </data>
   <data name="SalesCountLbl.Text" xml:space="preserve">
-	  <value>Anzahl Umsätze: </value>
+    <value>Anzahl Umsätze: </value>
   </data>
   <data name="IncomeCountLbl.Text" xml:space="preserve">
-	  <value>Davon Einnahmen:</value>
+    <value>Davon Einnahmen:</value>
   </data>
   <data name="ExpensesCountLbl.Text" xml:space="preserve">
-	  <value>Davon Ausgaben:</value>
+    <value>Davon Ausgaben:</value>
   </data>
   <data name="DeleteExpiredSalesBtn.Text" xml:space="preserve">
-	  <value>Umsätze löschen, die abgelaufen sind am</value>
+    <value>Umsätze löschen, die abgelaufen sind am</value>
   </data>
   <data name="DeleteExpiredSalesBtn.FontSize" xml:space="preserve">
-	  <value>14</value>
+    <value>14</value>
   </data>
   <data name="AppInfoMnuFlt.Text" xml:space="preserve">
-	  <value>Über MauiMoneyMate</value>
+    <value>Über MauiMoneyMate</value>
   </data>
   <data name="VersionLbl.Text" xml:space="preserve">
-	  <value>Version {0}</value>
+    <value>Version {0}</value>
+  </data>
+  <data name="DoYouWantToContinueClosingTheApplication" xml:space="preserve">
+    <value>Möchten Sie die Anwendung dennoch schließen?</value>
+  </data>
+  <data name="DoYouWantToContinueOpeningAnotherFile" xml:space="preserve">
+    <value>Möchten Sie dennoch eine andere Datei öffnen?</value>
   </data>
 </root>
