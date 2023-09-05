@@ -219,7 +219,11 @@ internal static class CommonFunctions
         page ??= Shell.Current.CurrentPage;
         if (!CommonProperties.DataIsSaved)
         {
-            page.ShowPopup(new UnsavedChangesPopup(page.Window));
+            page.ShowPopup(new UnsavedChangesPopup(LanguageResource.DoYouWantToContinueClosingTheApplication, _ =>
+            {
+                Application.Current.CloseWindow(page.Window);
+                Environment.Exit(1);
+            }));
             return;
         }
 

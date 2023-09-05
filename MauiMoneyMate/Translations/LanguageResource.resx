@@ -588,23 +588,23 @@
   <data name="ViewMnu.Text" xml:space="preserve">
     <value>View</value>
   </data>
-  <data name="CloseWithoutSavingBtn.FontSize" xml:space="preserve">
+  <data name="ContinueWithoutSavingBtn.FontSize" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="CloseWithoutSavingBtn.Text" xml:space="preserve">
-    <value>Close without saving</value>
+  <data name="ContinueWithoutSavingBtn.Text" xml:space="preserve">
+	  <value>Continue without saving</value>
   </data>
-  <data name="SaveAndCloseBtn.FontSize" xml:space="preserve">
+  <data name="SaveAndContinueBtn.FontSize" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="SaveAndCloseBtn.Text" xml:space="preserve">
-    <value>Save &amp; close</value>
+  <data name="SaveAndContinueBtn.Text" xml:space="preserve">
+	  <value>Save &amp; continue</value>
   </data>
   <data name="UnsavedChangesTextLbl.FontSize" xml:space="preserve">
     <value>16</value>
   </data>
   <data name="UnsavedChangesTextLbl.Text" xml:space="preserve">
-    <value>You have unsaved changes. Do you want to continue closing the Application?</value>
+	  <value>You have unsaved changes.</value>
   </data>
   <data name="UnsavedChangesTitle.FontSize" xml:space="preserve">
     <value>20</value>
@@ -686,5 +686,11 @@
   </data>
   <data name="RightsReservedLbl.FontSize" xml:space="preserve">
 	  <value>14</value>
+  </data>
+  <data name="DoYouWantToContinueClosingTheApplication" xml:space="preserve">
+	  <value>Do you want to continue closing the Application?</value>
+  </data>
+  <data name="DoYouWantToContinueOpeningAnotherFile" xml:space="preserve">
+	  <value>Do you want to continue opening another file?</value>
   </data>
 </root>

@@ -225,18 +225,18 @@ namespace MauiMoneyMate.Translations {
         /// <summary>
         ///   Looks up a localized string similar to 15.
         /// </summary>
-        internal static string CloseWithoutSavingBtn_FontSize {
+        internal static string ContinueWithoutSavingBtn_FontSize {
             get {
-                return ResourceManager.GetString("CloseWithoutSavingBtn.FontSize", resourceCulture);
+                return ResourceManager.GetString("ContinueWithoutSavingBtn.FontSize", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close without saving.
+        ///   Looks up a localized string similar to Continue without saving.
         /// </summary>
-        internal static string CloseWithoutSavingBtn_Text {
+        internal static string ContinueWithoutSavingBtn_Text {
             get {
-                return ResourceManager.GetString("CloseWithoutSavingBtn.Text", resourceCulture);
+                return ResourceManager.GetString("ContinueWithoutSavingBtn.Text", resourceCulture);
             }
         }
         
@@ -444,6 +444,24 @@ namespace MauiMoneyMate.Translations {
         internal static string DownloadUpdatesAutomaticallyLbl_Text {
             get {
                 return ResourceManager.GetString("DownloadUpdatesAutomaticallyLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to continue closing the Application?.
+        /// </summary>
+        internal static string DoYouWantToContinueClosingTheApplication {
+            get {
+                return ResourceManager.GetString("DoYouWantToContinueClosingTheApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to continue opening another file?.
+        /// </summary>
+        internal static string DoYouWantToContinueOpeningAnotherFile {
+            get {
+                return ResourceManager.GetString("DoYouWantToContinueOpeningAnotherFile", resourceCulture);
             }
         }
         
@@ -1231,7 +1249,7 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 14.
         /// </summary>
         internal static string RightsReservedLbl_FontSize {
             get {
@@ -1332,18 +1350,18 @@ namespace MauiMoneyMate.Translations {
         /// <summary>
         ///   Looks up a localized string similar to 15.
         /// </summary>
-        internal static string SaveAndCloseBtn_FontSize {
+        internal static string SaveAndContinueBtn_FontSize {
             get {
-                return ResourceManager.GetString("SaveAndCloseBtn.FontSize", resourceCulture);
+                return ResourceManager.GetString("SaveAndContinueBtn.FontSize", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save &amp; close.
+        ///   Looks up a localized string similar to Save &amp; continue.
         /// </summary>
-        internal static string SaveAndCloseBtn_Text {
+        internal static string SaveAndContinueBtn_Text {
             get {
-                return ResourceManager.GetString("SaveAndCloseBtn.Text", resourceCulture);
+                return ResourceManager.GetString("SaveAndContinueBtn.Text", resourceCulture);
             }
         }
         
@@ -1627,7 +1645,7 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have unsaved changes. Do you want to continue closing the Application?.
+        ///   Looks up a localized string similar to You have unsaved changes..
         /// </summary>
         internal static string UnsavedChangesTextLbl_Text {
             get {

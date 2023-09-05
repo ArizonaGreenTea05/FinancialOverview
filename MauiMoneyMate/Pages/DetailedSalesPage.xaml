@@ -19,9 +19,14 @@
             <MenuFlyoutItem x:Name="NewMnuFlt"
                             x:FieldModifier="internal"
                             Clicked="NewMnuFlt_OnClicked"/>
-            <MenuFlyoutItem x:Name="OpenMnuFlt"
-                            x:FieldModifier="internal"
-                            Clicked="OpenMnuFlt_OnClicked"/>
+            <MenuFlyoutSubItem x:Name="OpenMnuFlt"
+                               x:FieldModifier="internal">
+                <MenuFlyoutItem x:Name="OpenFileMnuFlt"
+                                x:FieldModifier="internal"
+                                Clicked="OpenMnuFlt_OnClicked"/>
+                <MenuFlyoutSubItem x:Name="OpenRecentMnuFlt"
+                                   x:FieldModifier="internal"/>
+            </MenuFlyoutSubItem>
             <MenuFlyoutSeparator/>
             <MenuFlyoutItem x:Name="SaveMnuFlt"
                             x:FieldModifier="internal"
