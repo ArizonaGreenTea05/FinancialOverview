@@ -693,4 +693,10 @@
   <data name="DoYouWantToContinueOpeningAnotherFile" xml:space="preserve">
 	  <value>Do you want to continue opening another file?</value>
   </data>
+  <data name="CreditsLbl.Text" xml:space="preserve">
+	  <value>Special thanks to {0} and {1} for their help with the color scheme and naming of the application.</value>
+  </data>
+  <data name="CreditsLbl.FontSize" xml:space="preserve">
+	  <value>14</value>
+  </data>
 </root>
