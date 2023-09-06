@@ -486,4 +486,7 @@
   <data name="DoYouWantToContinueOpeningAnotherFile" xml:space="preserve">
     <value>Möchten Sie dennoch eine andere Datei öffnen?</value>
   </data>
+  <data name="CreditsLbl.Text" xml:space="preserve">
+	  <value>Besonderer Dank geht an {0} und {1} für ihre Hilfe bei der Farbgestaltung und der Namensgebung der Anwendung.</value>
+  </data>
 </root>

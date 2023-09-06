@@ -295,6 +295,24 @@ namespace MauiMoneyMate.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CreditsLbl_FontSize {
+            get {
+                return ResourceManager.GetString("CreditsLbl.FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special thanks to {0} and {1} for their help with the color scheme and naming of the application..
+        /// </summary>
+        internal static string CreditsLbl_Text {
+            get {
+                return ResourceManager.GetString("CreditsLbl.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
         internal static string Dark {
