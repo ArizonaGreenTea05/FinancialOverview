@@ -10,6 +10,13 @@ using System.Diagnostics;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+using Microsoft.UI.Xaml;
+using Microsoft.Windows.AppLifecycle;
+using Windows.ApplicationModel.Activation;
+using CommunityToolkit.Maui.Alerts;
+using MauiMoneyMate.Utils;
+using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
+
 namespace MauiMoneyMate.Platforms.Windows
 {
     /// <summary>
@@ -46,6 +53,22 @@ namespace MauiMoneyMate.Platforms.Windows
                 CommonFunctions.SetForegroundWindow(processes.Where(p => p.Id != currentProcess.Id)
                     .Select(p => p.MainWindowHandle).ToList()[0]);
                 Environment.Exit(1);
+            }
+        }
+
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        {
+            base.OnLaunched(args);
+
+            var goodArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
+
+            switch (goodArgs.Kind)
+            {
+                case ExtendedActivationKind.File:
+                    var data = goodArgs.Data as IFileActivatedEventArgs;
+                    var paths = data.Files.Select(file => file.Path).ToArray();
+                    CommonProperties.FilePathFromEventArgs = paths[0];
+                    break;
             }
         }
 

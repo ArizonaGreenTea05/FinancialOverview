@@ -158,6 +158,7 @@ internal static class CommonProperties
     public static string NewIssueUrl => "https://github.com/ArizonaGreenTea05/FinancialOverview/issues/new";
     public static string WebsiteUrl => "https://arizonagreentea05.github.io/FinancialOverview/MauiMoneyMate/Website/MauiMoneyMate.html";
     public static string DatePickerFormat { get; } = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.Replace(".", "/");
+    public static string FilePathFromEventArgs { get; set; } = null;
 
     #region helper methods
 

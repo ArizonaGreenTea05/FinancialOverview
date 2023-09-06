@@ -268,6 +268,7 @@ public partial class MainViewModel : ObservableObject
     internal void OnLoaded(object sender, EventArgs e)
     {
         MainPage ??= (sender as Element).GetAncestor<MainPage>();
+        if (CommonProperties.FilePathFromEventArgs != null) CommonProperties.FinancialOverview.FilePath = CommonProperties.FilePathFromEventArgs;
         CommonProperties.FinancialOverview.LoadData();
         UpdateSales();
         CommonProperties.FinancialOverview.ClearHistory();
