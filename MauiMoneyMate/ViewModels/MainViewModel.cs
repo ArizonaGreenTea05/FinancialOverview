@@ -95,10 +95,10 @@ public partial class MainViewModel : ObservableObject
 
     #region private Members
 
-    private static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
     private static Rect _startUpBounds;
     private MainPage _mainPage;
     private readonly MenuBarItems _menuBarItems = new();
+    private bool _startupFinished = false;
 
     #endregion
 
@@ -240,8 +240,7 @@ public partial class MainViewModel : ObservableObject
 #if WINDOWS
         SaveWindowState();
 #endif
-        if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically)
-            UpdateProgram();
+        if (CommonProperties.UpdateAvailable && CommonProperties.DownloadUpdatesAutomatically) CommonFunctions.UpdateProgram();
     }
 
     #endregion
@@ -250,6 +249,7 @@ public partial class MainViewModel : ObservableObject
 
     internal void OnPageInitialized(MainPage mainPage)
     {
+        _startupFinished = false;
         LoadSettings();
         InitMenuBar(mainPage);
         LoadResources();
@@ -277,22 +277,10 @@ public partial class MainViewModel : ObservableObject
 
         Application.Current!.MainPage!.Window.Destroying += Window_OnDestroying;
 
-        if (CommonProperties.DownloadUpdatesAutomatically)
-        {
-            new Thread(t =>
-            {
-                CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
-                if (!CommonProperties.UpdateAvailable) return;
-                Toast.Make(
-                        $"{LanguageResource.NewAppVersionDetected}\n{LanguageResource.UpdateWillBeInstalledOnClosingTheApplication}")
-                    .Show();
-                Toast.Make($"{LanguageResource.DownloadingNewestVersion}").Show();
-                DownloadThread.Start();
-            }).Start();
-        }
-
-        if (CommonProperties.CheckForUpdatesOnStart) CommonProperties.UpdateAvailable = CommonFunctions.CheckForUpdates();
-        if (CommonProperties.UpdateAvailable) MainPage.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease, CommonFunctions.InstallDownloadedRelease));
+        if (_startupFinished) return;
+        if (CommonProperties.UpdateAvailable && CommonProperties.CheckForUpdatesOnStart)
+            MainPage.ShowPopup(new UpdatePopup(CommonFunctions.DownloadLatestRelease, CommonFunctions.InstallDownloadedRelease));
+        _startupFinished = true;
     }
 
     internal void MonthPkr_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -458,35 +446,6 @@ public partial class MainViewModel : ObservableObject
     {
         CommonFunctions.UpdateAppTheme(CommonProperties.CurrentAppTheme);
         CommonFunctions.UpdateAppLanguage(CommonProperties.CurrentAppLanguage);
-    }
-
-    private static void UpdateProgram()
-    {
-        if (DownloadThread.IsAlive) DownloadThread.Join();
-        if (!CommonFunctions.DownloadLatestRelease())
-        {
-            Toast.Make(
-                    $"{LanguageResource.CouldNotDownloadUpdate}\n{LanguageResource.PleaseCheckYourInternetConnectionAndTryAgainLater}")
-                .Show();
-            return;
-        }
-
-        if (!CommonFunctions.InstallDownloadedRelease())
-        {
-            Toast.Make(LanguageResource.CouldNotInstallUpdate).Show();
-            if (!CommonFunctions.DownloadLatestRelease())
-            {
-                Toast.Make(
-                        $"{LanguageResource.CouldNotDownloadUpdate}\n{LanguageResource.PleaseCheckYourInternetConnectionAndTryAgainLater}")
-                    .Show();
-                return;
-            }
-
-            if (!CommonFunctions.InstallDownloadedRelease())
-                Toast.Make(LanguageResource.CouldNotInstallUpdate).Show();
-        }
-
-        Toast.Make(LanguageResource.InstallationComplete).Show();
     }
 
     private void SaveListToAppData(List<string> content)

@@ -161,6 +161,8 @@ internal static class CommonProperties
     public static string DatePickerFormat { get; } = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.Replace(".", "/");
     public static string FilePathFromEventArgs { get; set; } = null;
 
+    public static readonly Thread DownloadThread = new(() => CommonFunctions.DownloadLatestRelease());
+
     #region helper methods
 
     private static void UpdateSettings(DataTable settings, string columnName, string value)
