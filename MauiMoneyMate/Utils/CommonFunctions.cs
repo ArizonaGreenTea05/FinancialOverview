@@ -7,9 +7,6 @@ using CommunityToolkit.Maui.Views;
 using FinancialOverview;
 using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
-using Microsoft.Maui.Devices;
-using Microsoft.Maui.Storage;
-using Microsoft.Maui.ApplicationModel;
 
 namespace MauiMoneyMate.Utils;
 
@@ -19,6 +16,35 @@ internal static class CommonFunctions
     [DllImport("user32.dll")]
     internal static extern bool SetForegroundWindow(IntPtr hWnd);
 #endif
+
+    internal static void UpdateProgram()
+    {
+        if (CommonProperties.DownloadThread.IsAlive) CommonProperties.DownloadThread.Join();
+        if (!DownloadLatestRelease())
+        {
+            Toast.Make(
+                    $"{LanguageResource.CouldNotDownloadUpdate}\n{LanguageResource.PleaseCheckYourInternetConnectionAndTryAgainLater}")
+                .Show();
+            return;
+        }
+
+        if (!InstallDownloadedRelease())
+        {
+            Toast.Make(LanguageResource.CouldNotInstallUpdate).Show();
+            if (!DownloadLatestRelease())
+            {
+                Toast.Make(
+                        $"{LanguageResource.CouldNotDownloadUpdate}\n{LanguageResource.PleaseCheckYourInternetConnectionAndTryAgainLater}")
+                    .Show();
+                return;
+            }
+
+            if (!InstallDownloadedRelease())
+                Toast.Make(LanguageResource.CouldNotInstallUpdate).Show();
+        }
+
+        Toast.Make(LanguageResource.InstallationComplete).Show();
+    }
 
     internal static void NewDocumentAction()
     {
