@@ -12,6 +12,7 @@ using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
 using MauiMoneyMate.Utils;
 using MauiMoneyMate.Utils.ResourceItemTemplates;
+using System;
 #if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -218,13 +219,13 @@ public partial class MainViewModel : ObservableObject
 
     private void UndoMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
-        DataIsSaved = !CommonProperties.FinancialOverview.Undo();
+        CommonProperties.FinancialOverview.Undo();
         UpdateSales();
     }
 
     private void RedoMnuFlt_OnClicked(object sender, EventArgs eventArgs)
     {
-        DataIsSaved = !CommonProperties.FinancialOverview.Redo();
+        CommonProperties.FinancialOverview.Redo();
         UpdateSales();
     }
 
@@ -252,7 +253,7 @@ public partial class MainViewModel : ObservableObject
         LoadSettings();
         InitMenuBar(mainPage);
         LoadResources();
-        DataIsSaved = File.Exists(CommonProperties.FinancialOverview.FilePath);
+        DataIsSaved = true;
 #if WINDOWS
         RestoreWindowState();
 #endif
