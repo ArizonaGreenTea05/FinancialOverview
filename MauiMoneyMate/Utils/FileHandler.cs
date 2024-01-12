@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui.Storage;
+using Microsoft.Maui.Devices;
+using Microsoft.Maui.Storage;
 
 namespace MauiMoneyMate.Utils;
 

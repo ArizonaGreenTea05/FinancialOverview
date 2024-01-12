@@ -7,6 +7,9 @@ using CommunityToolkit.Maui.Views;
 using FinancialOverview;
 using MauiMoneyMate.Popups;
 using MauiMoneyMate.Translations;
+using Microsoft.Maui.Devices;
+using Microsoft.Maui.Storage;
+using Microsoft.Maui.ApplicationModel;
 
 namespace MauiMoneyMate.Utils;
 

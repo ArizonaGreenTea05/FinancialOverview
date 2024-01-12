@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using MauiMoneyMate.Pages;
 using MauiMoneyMate.Popups;
+using Microsoft.Maui.ApplicationModel;
 
 namespace MauiMoneyMate.Utils
 {

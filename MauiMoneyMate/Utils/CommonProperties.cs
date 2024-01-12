@@ -3,6 +3,7 @@ using System.Globalization;
 using CommonLibrary;
 using MauiMoneyMate.Translations;
 using Path = System.IO.Path;
+using Microsoft.Maui.ApplicationModel;
 
 namespace MauiMoneyMate.Utils;
 
